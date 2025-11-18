@@ -6,8 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Discussion from "./pages/Discussion";
 import Articles from "./components/Articles";
+import AuthProvider from "./AuthContext";
 function App() {
   return (
+  <AuthProvider>
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Login />} />
@@ -18,6 +20,7 @@ function App() {
         <Route path="/forgot" element={<ForgotPassword />} />
       </Routes>
     </BrowserRouter>
+  </AuthProvider>
   );
 }
 

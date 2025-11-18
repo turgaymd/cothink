@@ -16,24 +16,31 @@ function Login() {
   
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("")
+
     if (!email || !password){
       setError("Bütün xanaları doldurun");
       return;
     }
-    setError("")
       try {
         const res = await axios.post("http://localhost:8000/api/login.php", {
           email,
           password,
         },
         { headers:{ "Content-Type":"application/json" }});
-            if(rememberMe){
-         localStorage.setItem("userInfo", JSON.stringify(res.data))
-         toast.success("Giriş uğurla tamamlandı")   
+
+        const userInfo={
+          username:res.data.username,
+          email:res.data.email,
+          token:res.data.token
+        }
+   if(rememberMe){
+    localStorage.setItem("user", JSON.stringify(userInfo))
     }
     else{
-     sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+     sessionStorage.setItem("user", JSON.stringify(userInfo));
     }  
+       toast.success("Giriş uğurla tamamlandı")   
         navigate("/home")
       } catch (err) {
         setError(err.response?.data?.message || "Istifadəçi adı və ya şifrə yalnışdır")

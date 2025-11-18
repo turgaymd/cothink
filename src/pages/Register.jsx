@@ -13,6 +13,7 @@ function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setError("")
     if (!username || !email || !password) {
       setError("Bütün xanaları doldurun");
       return;
@@ -25,12 +26,17 @@ function Register() {
       setError("Qaydalar və şərtləri qəbul edin");
       return;
     }
-    setError("");
     try {
-      const res = await axios.post( "http://localhost:8000/api/register.php", { username, email, password},
+    const res= await axios.post( "http://localhost:8000/api/register.php", { username, email, password},
         {headers:{"Content-Type":"application/json"}}
       );
-      localStorage.setItem("userInfo", JSON.stringify(res.data));
+       const userInfo={
+          username:res.data.username,
+          email:res.data.email,
+          token:res.data.token
+        }
+        localStorage.setItem("user", JSON.stringify(userInfo))
+
     } catch (err) {
       console.error(err.response?.data || err.message);
       setError(err.response?.data || err.message);
@@ -47,7 +53,7 @@ function Register() {
           <form className="login-form mx-auto pt-5" onSubmit={handleRegister}>
             {error && <p className="text-center text-red-600">{error}</p>}
             <div className="mb-5">
-              <label htmlFor="name" className="text-sm text-gray-900 font-medium mb-2">
+              <label htmlFor="name" className="text-sm text-black font-medium mb-2">
                 {" "}
                 Ad{" "}
               </label>
@@ -64,7 +70,7 @@ function Register() {
             <div className="mb-5">
               <label
                 htmlFor="email"
-                className="text-sm text-gray-900 font-medium mb-2"
+                className="text-sm text-black font-medium mb-2"
               >
                 Email
               </label>
@@ -82,7 +88,7 @@ function Register() {
             <div className="mb-5">
               <label
                 htmlFor="password"
-                className="text-gray-900 font-medium mb-4"
+                className="text-black font-medium mb-4"
               >
                 Şifrə
               </label>
