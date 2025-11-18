@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+body{
+  background-color: white;
+  font-family: "DM Sansss",sans-serif;
+}
+.navbar{
+  padding: 25px 20px;
+}
+.navbar a{
+  padding: 25px;
+  font-weight: 400;
+}
+.nav-item a.active{
+  background-color: royalblue !important;
+  transition: 1s;
+}
+.card {
+  width: 500px;
+  border-radius: 15px;
+  color: #444444;
+  background:#E4EAFF ;
+}
+.comments{
+  padding: 2rem;
+}
+.discussion{
+  padding:2rem;
+}
+.discussion-item, .comment-item{
+    padding: 2em;
+  border-radius: 15px;
+  border:1px solid #E9E9E9;
+  color: #444444;
+  box-shadow: 8px 10px 10px 8px rgba(0, 0, 0,0.1);
+  border-radius: 15px;
+}
+.card-body{
+  padding: 20px 25px;
+}
+.read-the-docs {
+  color: #888;
+}
+/* input{
+  outline: none;
+} */
+.forget-password{
+  text-decoration: underline;
+  color: #444444;
+
+}
+.hide{
+  position: absolute;
+  right: 10px;
+  top: 20px;
+}
+.profile-img img{
+  width: 60px;
+  height: 60px;
+  background: #3663C5;
+  border-radius: 50%;
+}
+.post-image img{
+  border-radius: 1px;
+}
+.navbar a.active{
+  background-color: royalblue;
+  color:white;
+  border-radius:25px;
+  padding: 15px 25px;
+}
+.sidebar{
+  border-right: 1px solid #ccc;
+  width: 300px;
+}
+.sidebar li img{
+  width: 24px;
+  height: 24px;
+}
+.research-form{
+  padding: 2rem;
+}
+.find-btn{
+  padding: 15px 55px;
+}
+.submit-form button{
+  padding: 15px 60px;
+}
+/* form label{
+  display: block;
+  padding-bottom: 0.6rem;
+} */
+.post-header img, .comment-header img{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.topic-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E9E9E9;
+  border-radius: 10px;
+  border: 1px solid #E9E9E9;
+  width: 100px;
+  padding: 20px 25px;
+  cursor: pointer;
+}
+.filter-item{
+  padding: 15px 25px;
+  background: #E9E9E9;
+  border-radius: 10px;
+}
+.filter-item.active{
+  background: royalblue;
+  color: white;
+}
+.add-article button{
+  padding: 15px 55px;
+  border-radius: 50px;
+}
+section{
+  padding: 20px;
+}
+.article-item{
+  background-image: url("../public/article.jpg");
+  background-position: center;
+  border-radius: 16px;
+  padding: 15px 25px;
+  color: white;
+}
+.article-author img{
+  width: 50px;
+  border-radius: 50%;
+  background-color: #E4EAFF;
+  height: 50px;
+
+}
