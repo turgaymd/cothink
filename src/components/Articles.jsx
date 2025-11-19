@@ -5,7 +5,6 @@ const Articles=()=>{
     return(
         <>
         <Header/>
-        <Sidebar/>
         <section>
         <div>
             <form>

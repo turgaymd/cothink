@@ -137,3 +137,30 @@ section{
   height: 50px;
 
 }
+.course-item{
+  padding:15px 25px;
+}
+.mentor-item{
+padding: 15px 25px;
+color: #828282;
+background: #F6F6F6;
+}
+.avatar{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #888;
+}
+.course-item article img{
+  height: 300px;
+  width: 100%;
+  border-radius: 8px;
+}
+.course-item .stats img{
+  width: 24px;
+  height: 24px;
+}
+.skills{
+  color:#444444;
+  font-weight: bold;
+}

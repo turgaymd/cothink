@@ -1,11 +1,11 @@
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import AddResearch from "../components/AddResearch";
-const Home=({activeTab})=>{
+const Home=()=>{
     return(
         <div>
           <Header/>
-          {activeTab ==="library" && <AddResearch/>}
+          {/* {activeTab ==="library" && <AddResearch/>} */}
         </div>
     )
 }
