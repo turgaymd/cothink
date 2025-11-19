@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Discussion from "./pages/Discussion";
 import AuthProvider from "./AuthContext";
 import Mentors from "./pages/Mentors";
+import Library from "./components/Library";
 function App() {
   return (
   <AuthProvider>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home/>} />
         <Route path="/discussion" element={<Discussion/>} />
+        <Route path="/library" element={<Library/>} />
         <Route path="/mentors" element={<Mentors/>} />
         <Route path="/forgot" element={<ForgotPassword />} />
       </Routes>

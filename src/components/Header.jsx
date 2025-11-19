@@ -14,14 +14,14 @@ function Header(){
                 <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/home">Ana Səhifə</NavLink></li>
                 <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/discussion">Sual-Cavab</NavLink></li>
                 <li className="nav-item"><NavLink className="" to="/mentors">Mentorlar</NavLink></li>
-                <li className="nav-item"><NavLink className="" to="/home">Reytinq</NavLink></li>
+                <li className="nav-item"><NavLink className="" to="/">Reytinq</NavLink></li>
             </ul>
-            <div className="actions flex gap-2">                 
-                   <button className="bg-gray-300"><CiSearch/></button>
-                   <button className="bg-gray-300"><IoIosNotificationsOutline/></button>
-                   <button className="profile-img rounded-full w-8 h-8">
-                    <img src="avatar.png"></img>
-                   </button>            
+            <div className="actions flex items-center gap-2">                 
+                   <button className="bg-gray-300 rounded-md"><CiSearch/></button>
+                   <button className="bg-gray-300 rounded-md"><IoIosNotificationsOutline/></button>
+                   <a className="profile-img rounded-full pl-2">
+                    <img src="avatarr.svg"></img>
+                   </a>            
             </div>
         </div>
 
