@@ -1,9 +1,10 @@
 import Header from "../components/Header";
-
+import Sidebar from "../components/Sidebar";
 const Mentors=()=>{
     return (
         <>
           <Header/>
+          <Sidebar/>
           <section>
                         <div className="filter mb-5">
 

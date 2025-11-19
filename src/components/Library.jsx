@@ -1,8 +1,6 @@
-import Header from "./Header";
 const Library=()=>{
     return(
             <>
-        <Header/>
      <section>
         <div className="switch-toogle flex justify-center items-center mb-5">
             <button className="bg-blue-700 text-white rounded-full px-4 py-2 w-1/3">Kitablar</button>

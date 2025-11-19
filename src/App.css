@@ -16,6 +16,9 @@ body{
   background-color: royalblue !important;
   transition: 1s;
 }
+section{
+  padding: 20px;
+}
 .card {
   width: 500px;
   border-radius: 15px;
@@ -25,17 +28,7 @@ body{
 .comments{
   padding: 2rem;
 }
-.discussion{
-  padding:2rem;
-}
-.discussion-item, .comment-item{
-    padding: 2em;
-  border-radius: 15px;
-  border:1px solid #E9E9E9;
-  color: #444444;
-  box-shadow: 8px 10px 10px 8px rgba(0, 0, 0,0.1);
-  border-radius: 15px;
-}
+
 .card-body{
   padding: 20px 25px;
 }
@@ -61,19 +54,13 @@ body{
   background: #3663C5;
   border-radius: 50%;
 }
-.post-image img{
-  border-radius: 1px;
-}
 .navbar a.active{
   background-color: royalblue;
   color:white;
   border-radius:25px;
   padding: 15px 25px;
 }
-.sidebar{
-  border-right: 1px solid #ccc;
-  width: 300px;
-}
+
 .sidebar li img{
   width: 24px;
   height: 24px;
@@ -93,8 +80,14 @@ body{
 } */
 .post-header img, .comment-header img{
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+}
+.post-reactions img{
+  width: 24px;
+  height: 24px;
+}
+.comment-reactions img{
+  width: 24px;
+  height: 24px;
 }
 .topic-item{
   display: flex;
@@ -120,9 +113,7 @@ body{
   padding: 15px 55px;
   border-radius: 50px;
 }
-section{
-  padding: 20px;
-}
+
 .article-item{
   background-image: url("../public/article.jpg");
   background-position: center;
@@ -172,4 +163,18 @@ border: 1px solid #ccc;
 .skills{
   color:#444444;
   font-weight: bold;
+}
+.discussion{
+  padding:2rem;
+}
+.discussion-item, .comment-item{
+    padding: 2em;
+  border-radius: 15px;
+  border:1px solid #E9E9E9;
+  color: #444444;
+  box-shadow: 8px 10px 10px 8px rgba(0, 0, 0,0.1);
+  border-radius: 15px;
+}
+.sidebar-content{
+  border-right: 1px solid #ccc;
 }

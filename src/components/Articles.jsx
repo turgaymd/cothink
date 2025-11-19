@@ -1,10 +1,7 @@
-import Header from "./Header";
-import Sidebar from "./Sidebar";
 
 const Articles=()=>{
     return(
         <>
-        <Header/>
         <section>
         <div>
             <form>

@@ -3,7 +3,6 @@ import Header from "./Header";
 const Course = () => {
   return (
     <>
-      <Header />
       <section>
            <form>
                 <div className="text-center mb-4">
