@@ -3,11 +3,9 @@ import Sidebar from "../components/Sidebar";
 const Mentors=()=>{
     return (
         <>
-          <Header/>
           <Sidebar/>
           <section>
                         <div className="filter mb-5">
-
                         <div className=" flex justify-between mb-3">
                 <h4 className="font-bold text-xl">Kategoriyalar</h4>
                 <a className="text-blue-500">Hamısına bax</a>

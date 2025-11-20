@@ -14,7 +14,7 @@ function Header(){
                 <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/home">Ana Səhifə</NavLink></li>
                 <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/discussion">Sual-Cavab</NavLink></li>
                 <li className="nav-item"><NavLink className="" to="/mentors">Mentorlar</NavLink></li>
-                <li className="nav-item"><NavLink className="" to="/">Reytinq</NavLink></li>
+                <li className="nav-item"><NavLink className="" to="/rating">Reytinq</NavLink></li>
             </ul>
             <div className="actions flex items-center gap-2">                 
                    <button className="bg-gray-300 rounded-md"><CiSearch/></button>

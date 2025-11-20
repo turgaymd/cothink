@@ -1,9 +1,7 @@
-import Header from "../components/Header"
 import Sidebar from "../components/Sidebar"
 function Discussion(){
     return(
         <div>
-             <Header/>
              <Sidebar/>
 <h2 className="text-center font-medium text-2xl">Diskussiya</h2>
 <div className="discussion">

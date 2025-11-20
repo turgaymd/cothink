@@ -1,6 +1,5 @@
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import AddResearch from "../components/AddResearch";
 import Library from "../components/Library";
 import { useState } from "react";
 import Course from "../components/Course";
@@ -8,7 +7,6 @@ const Home=()=>{
     const [activeTab, setActiveTab]=useState("courses")
     return(
         <div>
-          <Header/>
           <div className="grid md:grid-cols-12 gap-2">
             <div className="md:col-span-2 sidebar-content">
           <Sidebar activeTab={activeTab} setActiveTab={setActiveTab}/>

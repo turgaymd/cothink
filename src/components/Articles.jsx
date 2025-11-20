@@ -4,11 +4,7 @@ const Articles=()=>{
         <>
         <section>
         <div>
-            <form>
-                <div className="text-center mb-4">
-                    <input type="text" placeholder="Axtarış..." className="form-input border bg-gray-100 border-gray-300 px-3 py-2 outline-none rounded-lg"/>
-                </div>
-            </form>
+
             <div className=" flex justify-between mb-3">
                 <h4 className="font-medium text-xl">Mövzular</h4>
                 <a className="text-blue-500">Hamısına bax</a>
