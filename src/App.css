@@ -65,6 +65,14 @@ section{
   width: 24px;
   height: 24px;
 }
+.sidebar ul li a{
+  padding: 15px;
+ 
+}
+.sidebar ul li a.active{
+  color: white;
+   background: #3663C5;
+}
 .research-form{
   padding: 2rem;
 }
@@ -80,6 +88,9 @@ section{
 } */
 .post-header img, .comment-header img{
   border-radius: 50%;
+}
+.post-image img{
+  height: 300px;
 }
 .post-reactions img{
   width: 24px;
@@ -100,12 +111,11 @@ section{
   padding: 20px 25px;
   cursor: pointer;
 }
-.filter-item{
-  padding: 15px 25px;
+.filter-items span{
+  padding: 10px 35px;
   background: #E9E9E9;
-  border-radius: 10px;
 }
-.filter-item.active{
+.filter-items span.active{
   background: royalblue;
   color: white;
 }

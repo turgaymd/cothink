@@ -1,4 +1,5 @@
-
+import { FiPlus } from "react-icons/fi";
+import { NavLink } from "react-router-dom";
 const Articles=()=>{
     return(
         <>
@@ -78,7 +79,7 @@ const Articles=()=>{
             </div>          
                     </div>
             <div className="add-article flex justify-center">
-            <button className="bg-blue-800 text-white">Məqalə əlavə et</button>
+            <NavLink className="bg-blue-800 text-white flex gap-3 items-center rounded-full px-3 py-2" to={"/addarticle"}>Məqalə əlavə et <FiPlus/></NavLink>
             </div>
         </div>
         </section>

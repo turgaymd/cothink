@@ -1,9 +1,7 @@
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
+
 const Mentors=()=>{
     return (
-        <>
-          <Sidebar/>
+        <div className="md:col-span-10">
           <section>
                         <div className="filter mb-5">
                         <div className=" flex justify-between mb-3">
@@ -89,7 +87,7 @@ const Mentors=()=>{
             </div>
             </div>
           </section>
-        </>
+        </div>
     )
 }
 export default Mentors;

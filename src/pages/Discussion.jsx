@@ -1,8 +1,8 @@
-import Sidebar from "../components/Sidebar"
+
 function Discussion(){
+
     return(
-        <div>
-             <Sidebar/>
+        <>
 <h2 className="text-center font-medium text-2xl">Diskussiya</h2>
 <div className="discussion">
     <div className="discussion-item">
@@ -49,7 +49,7 @@ function Discussion(){
         </div>
     </div>
 </div>
-      </div>
+      </>
 
     )
 }

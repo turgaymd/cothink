@@ -1,13 +1,18 @@
+import { useState } from "react";
 import Search from "./Search";
+import Articles from "./Articles";
 
 const Library=()=>{
+  const [activeTab, setActiveTab]=useState("library")
     return(
             <>
      <section>
-        <div className="switch-toogle flex justify-center items-center mb-5">
-            <button className="bg-blue-700 text-white rounded-full px-4 py-2 w-1/3">Kitablar</button>
-            <button className="rounded-full p-4 py-2 w-1/3 border border-gray-300">Məqalələr</button>
-        </div>
+    <div className="flex justify-center mb-5">
+    <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
+            <button className=" bg-blue-700 text-white rounded-full w-full" onClick={()=>setActiveTab("books")}>Kitablar</button>
+            <button className="rounded-full w-full " onClick={()=>setActiveTab("articles")}>Məqalələr</button>
+        </div> 
+                </div>
 <Search/>
                     <div className="course-filter mt-5">
                     <div className="filtered-items flex gap-3">
@@ -15,6 +20,8 @@ const Library=()=>{
                     <span className="filter-item ">Hamısı</span>
                 </div>
             </div>
+            {activeTab==="articles" ? <Articles/> : <>
+         
         <div className="flex gap-4 mt-5">
    <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
                 <div className="flex items-center gap-5">
@@ -88,6 +95,7 @@ const Library=()=>{
                 </div>           
             </div>
               </div>
+                 </>} 
      </section>
 
                   </>

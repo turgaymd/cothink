@@ -1,18 +1,15 @@
 import Header from "./Header";
+import Search from "./Search";
 
 const Course = () => {
   return (
     <>
       <section>
-           <form>
-                <div className="text-center mb-4">
-                    <input type="text" placeholder="Axtarış..." className="form-input border bg-gray-100 border-gray-300 px-3 py-2 outline-none rounded-lg"/>
-                </div>
-            </form>
-                    <div className="course-filter mt-5">
-                    <div className="filtered-items flex gap-3">
-                    <span className="filter-item active">Fizika</span>
-                    <span className="filter-item ">Riyaziyyat</span>
+       <Search/>
+                    <div className="course-filter mt-5 mb-5">
+                    <div className="filter-items flex gap-3">
+                    <span className="active rounded-full">Fizika</span>
+                    <span className="rounded-full">Riyaziyyat</span>
                 </div>
             </div>
         <div className="grid grid-cols-2 gap-4">
@@ -65,8 +62,12 @@ const Course = () => {
               baş verdiyini elmi şəkildə anlaya biləcəksən.
             </p>
             <div className="flex justify-between pb-3 mt-3">
-              <div className="flex avatar">
+              <div className="flex avatar gap-3">
                 <img src="avatar.png" />
+                <div>
+                  <h4>Aydan A</h4>
+                  <p>20 Jan 2025</p>
+                </div>
               </div>
               <div className="flex items-center gap-3 ">
                 <img src="star.svg" /> <span>4.8</span>
