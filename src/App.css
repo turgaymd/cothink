@@ -11,9 +11,13 @@ body{
 .navbar li a{
   padding: 25px;
   font-weight: 400;
+
+}
+.actions button{
+font-size: 8px;
 }
 .nav-item a.active{
-  background-color: royalblue !important;
+  background-color: #3052B9;
 }
 section{
   padding: 20px;
@@ -139,10 +143,10 @@ section{
 .course-item{
   padding:15px 25px;
 }
-.mentor-item, .library-item{
+.mentor-item{
 padding: 15px 25px;
 color: #828282;
-background: #F6F6F6;
+background: #E9E9E9;
 }
 .library-item{
   padding: 20px 25px;
@@ -188,4 +192,25 @@ border: 1px solid #ccc;
 }
 .badge{
   bottom: -25px;
+}
+.mentor-profile{
+  padding: 20px 25px;
+}
+.mentor-avatar{
+  width: 200px;
+  height: 200px;
+}
+.mentor-profile .card{
+    padding: 20px 25px;
+}
+.mentor-banner{
+  background: #4E70D7;
+  padding: 15px 25px;
+  margin-bottom: 4rem;
+  border-radius: 25px;
+  height: 200px;
+  color: white;
+}
+.course-item .avatar img{
+  background:#C7B9DA ;
 }

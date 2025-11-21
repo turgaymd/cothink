@@ -3,14 +3,14 @@ import Search from "./Search";
 import Articles from "./Articles";
 
 const Library=()=>{
-  const [activeTab, setActiveTab]=useState("library")
+  const [activeTab, setActiveTab]=useState("books")
     return(
             <>
      <section>
     <div className="flex justify-center mb-5">
     <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
-            <button className=" bg-blue-700 text-white rounded-full w-full" onClick={()=>setActiveTab("books")}>Kitablar</button>
-            <button className="rounded-full w-full " onClick={()=>setActiveTab("articles")}>Məqalələr</button>
+            <button className={` rounded-full w-full ${activeTab==="books" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
+            <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
         </div> 
                 </div>
 <Search/>

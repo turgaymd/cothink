@@ -14,6 +14,8 @@ import Profile from "./pages/Profile";
 import Articles from "./components/Articles";
 import AddArticle from "./components/AddArticle";
 import SentCode from "./pages/SentCode";
+import Home from "./pages/Home";
+import MentorDetail from "./pages/MentorDetail";
 
 function App() {
   return (
@@ -25,8 +27,10 @@ function App() {
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/confirm" element={<SentCode/>} />
         <Route element={<MainLayout/>}>
+        <Route path="/home" element={<Home/>} />
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/mentors" element={<Mentors/>} />
+        <Route path="/mentor" element={<MentorDetail/>} />
         <Route path="/library" element={<Library/>} />
         <Route path="/courses" element={<Course/>} />
         <Route path="/rating" element={<Rating/>} />

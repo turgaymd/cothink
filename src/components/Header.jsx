@@ -17,8 +17,8 @@ function Header(){
                 <li className="nav-item"><NavLink className="" to="/rating">Reytinq</NavLink></li>
             </ul>
             <div className="actions flex items-center gap-2">                 
-                   <button className="bg-gray-300 rounded-md"><CiSearch/></button>
-                   <button className="bg-gray-300 rounded-md"><IoIosNotificationsOutline/></button>
+                   <button className="bg-gray-300 rounded-md p-2"><CiSearch className="text-2xl"/></button>
+                   <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <a className="profile-img rounded-full pl-2">
                     <img src="avatarr.svg"></img>
                    </a>            

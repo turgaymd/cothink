@@ -1,11 +1,14 @@
+import { useState } from "react";
+
 const Rating=()=>{
+    const [active, setActive]=useState("week")
     return (
         <div className="md:col-span-10 p-5">
             <section>
                 <div className="flex justify-center">
     <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
-            <button className=" bg-blue-700 text-white rounded-full w-full">Həftəlik Reyting</button>
-            <button className="rounded-full w-full ">Aylıq Reyting</button>
+            <button className={`rounded-full w-full ${active==="week" ?  "bg-blue-700 text-white " : ''}`} onClick={()=>setActive("week")}>Həftəlik Reyting</button>
+            <button className={`rounded-full w-full ${active==="month" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActive("month")}>Aylıq Reyting</button>
         </div>
             
                 </div>
@@ -24,16 +27,16 @@ const Rating=()=>{
 </div>
       </div>
        <div className="relative mb-2">
-         <img src="elvin.jpg" className="w-28 h-28 rounded-full border-[5px] border-amber-500 object-cover"/>
+         <img src="həcər.jpg" className="w-28 h-28 rounded-full border-[5px] border-amber-500 object-cover"/>
 <div className="absolute bottom-0 bg-amber-500 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 winner badge">
-   <div className="flex flex-col items-center">
+   <div className="flex flex-col items-center text-black">
         <p>Elvin</p>
      <p>812</p>
     </div>
 </div>
       </div>
 <div className="relative pt-5">
- <img src="elvin.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
+ <img src="emil.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
 <div className="absolute bottom-0 bg-blue-800 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 badge">
    <div className="flex flex-col items-center">
         <p>Elvin</p>
