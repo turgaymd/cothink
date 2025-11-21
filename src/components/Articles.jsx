@@ -34,10 +34,10 @@ const Articles=()=>{
                 
             </div>
             <div className="article-filter mt-5">
-                <div className="filtered-items flex gap-3">
-                    <span className="filter-item active">Hamısı</span>
-                    <span className="filter-item ">Trenddə</span>
-                    <span className="filter-item ">Ən yenilər</span>
+                <div className="filter-items flex gap-3">
+                    <span className="filter-item rounded-md active">Hamısı</span>
+                    <span className="filter-item rounded-md">Trenddə</span>
+                    <span className="filter-item rounded-md">Ən yenilər</span>
                 </div>
             </div>
             <div className="articles mt-5">

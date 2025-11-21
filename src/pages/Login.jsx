@@ -51,7 +51,7 @@ function Login() {
     <>
     <Toast/>
     <div className="flex justify-center items-center min-h-screen">
-      <div className="card">
+      <div className="card w-[90%] max-w-[500px]">
         <div className="card-body">
           <div className="login-title text-center mb-5">
             <h2 className="font-medium text-3xl text-black"> Daxil ol</h2>

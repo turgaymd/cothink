@@ -10,7 +10,7 @@ const Profile = () => {
       <h2 className="font-bold text-2xl text-center mb-5">Profili redaktə et</h2>
       <form className=" space-y-4 mt-5">
         <div className="flex gap-5 items-center">
-          <label className="font-bold">Ad</label>
+          <label className="block font-bold">Ad</label>
           <input
             type="text"
             id="name"
@@ -20,17 +20,17 @@ const Profile = () => {
           ></input>
         </div>
         <div className="flex gap-5 items-center">
-          <label className="font-bold">Email</label>
+          <label className="block font-bold text-right">Email</label>
           <input
             type="text"
             id="name"
             placeholder={email}
-            className="w-full px-3 py-2 bg-white text-black border border-gray-300 placeholder-gray-400 outline-none"
+            className="grow w-full px-3 py-2 bg-white text-black border border-gray-300 placeholder-gray-400 outline-none"
             onChange={(e) => setEmail(e.target.value)}
           ></input>
         </div>
         <div className="flex gap-5 items-center">
-          <label className="font-bold">Bio</label>
+          <label className="block font-bold">Bio</label>
           <textarea
             type="text"
             id="about"
@@ -50,7 +50,7 @@ const Profile = () => {
           ></input>
         </div>
            <div className="flex gap-5 items-center">
-          <label className="font-bold">Cinsi</label>
+          <label className="block font-bold">Cinsi</label>
           <input
             type="text"
             id="gender"

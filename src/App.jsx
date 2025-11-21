@@ -29,6 +29,7 @@ function App() {
         <Route path="/courses" element={<Course/>} />
         <Route path="/rating" element={<Rating/>} />
         <Route path="/settings" element={<Profile/>} />
+         <Route path="/saved" element={<Articles/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
         </Route>
       </Routes>

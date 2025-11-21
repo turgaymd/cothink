@@ -14,13 +14,11 @@ body{
 }
 .nav-item a.active{
   background-color: royalblue !important;
-  transition: 1s;
 }
 section{
   padding: 20px;
 }
 .card {
-  width: 500px;
   border-radius: 15px;
   color: #444444;
   background:#E4EAFF ;

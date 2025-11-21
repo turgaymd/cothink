@@ -35,7 +35,7 @@ const AddArticle=()=>{
      <label htmlFor="title" className="block title font-medium text-gray-900 pb-2">Şəkillər</label>
      <div className="flex justify-center items-center flex-col gap-3 border border-gray-300 p-5 rounded-2xl">
     <img src="image_icon.png"/>
-<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only"/>
+<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*"/>
 <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
     <button className="find-btn text-white bg-blue-800 px-3 py-2" onClick={handleUpload}>Axtar</button>
 </div>

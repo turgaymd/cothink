@@ -15,48 +15,26 @@ const Library=()=>{
                 </div>
 <Search/>
                     <div className="course-filter mt-5">
-                    <div className="filtered-items flex gap-3">
-                    <span className="filter-item active">Ən çox bəyənilənlər</span>
-                    <span className="filter-item ">Hamısı</span>
+                    <div className="filter-items flex gap-3">
+                    <span className="filter-item active rounded-md">Ən çox bəyənilənlər</span>
+                    <span className="filter-item rounded-md">Hamısı</span>
                 </div>
             </div>
             {activeTab==="articles" ? <Articles/> : <>
          
         <div className="flex gap-4 mt-5">
-   <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
-                <div className="flex items-center gap-5">
-                    <img src="book_1.png" className="w-35 h-35"  alt="book"></img>
-                    <div className="mentor-title flex flex-col gap-3">
-                        <h4 className="font-bold text-lg break-all">Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition</h4>
-                        <p>PDF </p>
-                         <div className="flex items-center gap-20 stats">
-                        <div className="flex items-center gap-2">
-                          <img src="download.svg"/>
-                          <span>Yüklə</span>
-                        </div>
-                         <div className="flex items-center gap-2">  
-                        <img src="share.svg"/>
-                        <span>Paylaş</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                      <img src="save.svg"/>
-               
-                        </div>
-                    </div>
-                    </div>
-              
-                </div>           
-            </div>
                <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
                 <div className="flex items-center gap-5">
                     <img src="book_1.png" className="w-35 h-35"  alt="book"></img>
                     <div className="mentor-title flex flex-col gap-3">
                         <h4 className="font-bold text-lg break-all">Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition</h4>
                         <p>PDF </p>
-                         <div className="flex items-center gap-20 stats">
+                         <div className="flex items-center gap-5 stats">
                         <div className="flex items-center gap-2">
+                          <a className="flex gap-3" download href="/books">
                           <img src="download.svg"/>
-                          <span>Yüklə</span>
+                          <span>Yüklə</span>                     
+                          </a>
                         </div>
                          <div className="flex items-center gap-2">  
                         <img src="share.svg"/>
@@ -71,16 +49,18 @@ const Library=()=>{
               
                 </div>           
             </div>
-              <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
+             <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
                 <div className="flex items-center gap-5">
                     <img src="book_1.png" className="w-35 h-35"  alt="book"></img>
                     <div className="mentor-title flex flex-col gap-3">
                         <h4 className="font-bold text-lg break-all">Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition</h4>
                         <p>PDF </p>
-                         <div className="flex items-center gap-20 stats">
+                         <div className="flex items-center gap-5 stats">
                         <div className="flex items-center gap-2">
+                          <a className="flex gap-3" download href="/books">
                           <img src="download.svg"/>
-                          <span>Yüklə</span>
+                          <span>Yüklə</span>                     
+                          </a>
                         </div>
                          <div className="flex items-center gap-2">  
                         <img src="share.svg"/>
@@ -88,12 +68,41 @@ const Library=()=>{
                         </div>
                         <div className="flex items-center gap-2">
                       <img src="save.svg"/>
+               
                         </div>
                     </div>
                     </div>
               
                 </div>           
             </div>
+             <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
+                <div className="flex items-center gap-5">
+                    <img src="book_1.png" className="w-35 h-35"  alt="book"></img>
+                    <div className="mentor-title flex flex-col gap-3">
+                        <h4 className="font-bold text-lg break-all">Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition</h4>
+                        <p>PDF </p>
+                         <div className="flex items-center gap-5 stats">
+                        <div className="flex items-center gap-2">
+                          <a className="flex gap-3" download href="/books">
+                          <img src="download.svg"/>
+                          <span>Yüklə</span>                     
+                          </a>
+                        </div>
+                         <div className="flex items-center gap-2">  
+                        <img src="share.svg"/>
+                        <span>Paylaş</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                      <img src="save.svg"/>
+               
+                        </div>
+                    </div>
+                    </div>
+              
+                </div>           
+            </div>
+              
+            
               </div>
                  </>} 
      </section>
