@@ -13,6 +13,7 @@ import MainLayout from "./MainLayout";
 import Profile from "./pages/Profile";
 import Articles from "./components/Articles";
 import AddArticle from "./components/AddArticle";
+import SentCode from "./pages/SentCode";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<ForgotPassword />} />
+        <Route path="/confirm" element={<SentCode/>} />
         <Route element={<MainLayout/>}>
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/mentors" element={<Mentors/>} />
@@ -29,7 +31,7 @@ function App() {
         <Route path="/courses" element={<Course/>} />
         <Route path="/rating" element={<Rating/>} />
         <Route path="/settings" element={<Profile/>} />
-         <Route path="/saved" element={<Articles/>} />
+        <Route path="/saved" element={<Articles/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
         </Route>
       </Routes>

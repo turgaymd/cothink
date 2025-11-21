@@ -1,9 +1,11 @@
 import {useState} from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const ForgotPassword=()=>{
       const [email, setEmail]=useState("")
       const [message, setMessage]=useState("")
       const [error, setError]=useState("")
+      const navigate=useNavigate()
 
       const handlePassword=async (e)=>{
         e.preventDefault()
@@ -16,6 +18,7 @@ const ForgotPassword=()=>{
             {headers:{"Content-Type":"application/json"}}
           )
           setMessage(res.data.message || "Şifrəni yeniləmək üçün link email ünvanına göndərildi")
+          navigate("/confirm")
         }
         catch(err){
           setError(err.response?.data?.message )
