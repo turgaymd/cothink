@@ -214,3 +214,13 @@ border: 1px solid #ccc;
 .course-item .avatar img{
   background:#C7B9DA ;
 }
+
+.features_card{
+  border-radius: 10px;
+  background: white;
+  padding: 15px 35px;
+
+}
+.user_img img{
+  background: linear-gradient(#3663C5, #AEC8FF);
+}
