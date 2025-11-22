@@ -29,7 +29,6 @@ function Discussion(){
             <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>26</div>
             <div className="saved-count flex items-center gap-2"><img src="save.svg"></img>36</div>
             <div className="share flex items-center gap-2"><img src="share.svg"></img>Paylaş</div>
-            
         </div>
     </div>
 

@@ -17,6 +17,8 @@ import SentCode from "./pages/SentCode";
 import Home from "./pages/Home";
 import MentorDetail from "./pages/MentorDetail";
 import Settings from "./pages/Settings";
+import NotFound from "./components/NotFound";
+import Profiles from "./pages/Profiles";
 
 function App() {
   return (
@@ -35,9 +37,10 @@ function App() {
         <Route path="/library" element={<Library/>} />
         <Route path="/courses" element={<Course/>} />
         <Route path="/rating" element={<Rating/>} />
-        <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile" element={<Profiles/>} />
         <Route path="/settings" element={<Settings/>} />
         <Route path="/saved" element={<Articles/>} />
+        <Route path="/*" element={<NotFound/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
         </Route>
       </Routes>
