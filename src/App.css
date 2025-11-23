@@ -67,10 +67,10 @@ section{
   width: 24px;
   height: 24px;
 }
-.sidebar ul li a{
+/* .sidebar ul li a{
   padding: 15px;
  
-}
+} */
 .sidebar ul li a.active{
   color: white;
    background: #3663C5;
