@@ -22,10 +22,13 @@ const Library=()=>{
             </div>
             {activeTab==="articles" ? <Articles/> : <>
          
-        <div className="flex gap-4 mt-5">
-               <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+               <div className="library-item shadow-xl rounded-xl mt-4">
+                        <a href="/libraryy">
                 <div className="flex items-center gap-5">
+         
                     <img src="book_1.png" className="w-35 h-35"  alt="book"></img>
+             
                     <div className="mentor-title flex flex-col gap-3">
                         <h4 className="font-bold text-lg break-all">Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition</h4>
                         <p>PDF </p>
@@ -47,11 +50,15 @@ const Library=()=>{
                     </div>
                     </div>
               
-                </div>           
+                </div>     
+                       </a>      
             </div>
-             <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
+             <div className="library-item shadow-xl rounded-xl mt-4">
+                        <a href="/libraryy">
                 <div className="flex items-center gap-5">
+         
                     <img src="book_1.png" className="w-35 h-35"  alt="book"></img>
+             
                     <div className="mentor-title flex flex-col gap-3">
                         <h4 className="font-bold text-lg break-all">Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition</h4>
                         <p>PDF </p>
@@ -73,11 +80,15 @@ const Library=()=>{
                     </div>
                     </div>
               
-                </div>           
+                </div>     
+                       </a>      
             </div>
-             <div className="library-item shadow-xl rounded-xl mt-4 w-1/3">
+             <div className="library-item shadow-xl rounded-xl mt-4">
+                        <a href="/libraryy">
                 <div className="flex items-center gap-5">
+         
                     <img src="book_1.png" className="w-35 h-35"  alt="book"></img>
+             
                     <div className="mentor-title flex flex-col gap-3">
                         <h4 className="font-bold text-lg break-all">Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition</h4>
                         <p>PDF </p>
@@ -99,8 +110,10 @@ const Library=()=>{
                     </div>
                     </div>
               
-                </div>           
+                </div>     
+                       </a>      
             </div>
+            
               
             
               </div>

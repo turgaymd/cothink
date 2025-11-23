@@ -31,8 +31,7 @@ const Profiles=()=>{
             <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Cavablar</button>
         </div> 
         </div>
-        <div className="grid grid-cols-12 gap-5 justify-center max-w-5xl mx-auto">
-            <div className="md:col-span-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center max-w-5xl mx-auto">
   <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
     <div className="flex justify-between items-center">
         <div className="flex gap-4">
@@ -54,8 +53,6 @@ const Profiles=()=>{
             <div className="share flex items-center gap-2"><img src="share.svg"></img>Paylaş</div>
         </div>
             </div>
-            </div>
-               <div className="md:col-span-6">
   <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
     <div className="flex justify-between items-center">
         <div className="flex gap-4">
@@ -76,7 +73,6 @@ const Profiles=()=>{
             <div className="saved-count flex items-center gap-2"><img src="save.svg"></img>36</div>
             <div className="share flex items-center gap-2"><img src="share.svg"></img>Paylaş</div>
         </div>
-            </div>
             </div>
           
         </div>

@@ -41,7 +41,7 @@ const Mentors=()=>{
                 <h4 className="font-bold text-xl">Ən yaxşı mentorlar</h4>
                 <a className="text-blue-500">Hamısına bax</a>
             </div>
-            <div className="grid grid-cols-2 gap-4 mt-5 pt-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5 pt-5">
                 <Link to={"/mentor"}>
                    <div className="mentor-item shadow-xl rounded-xl">
                 <div className="flex items-center gap-5">

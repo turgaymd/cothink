@@ -6,7 +6,7 @@ const Articles=()=>{
         <section>
         <div>
 
-            <div className=" flex justify-between mb-3">
+            <div className="flex justify-between mb-3">
                 <h4 className="font-medium text-xl">Mövzular</h4>
                 <a className="text-blue-500">Hamısına bax</a>
             </div>

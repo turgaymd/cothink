@@ -9,7 +9,7 @@ function MainLayout(){
     <div className="md:col-span-2 border-r border-r-gray-300">
     <Sidebar/>       
     </div>
-    <div className="md:col-span-10">
+    <div className="md:col-span-10 col-span-12">
     <Outlet/>
     </div>
     </div>

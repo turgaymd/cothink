@@ -10,15 +10,16 @@ import Rating from "./pages/Rating";
 import Course from "./components/Course";
 import Library from "./components/Library";
 import MainLayout from "./MainLayout";
-import Profile from "./pages/Profile";
 import Articles from "./components/Articles";
 import AddArticle from "./components/AddArticle";
 import SentCode from "./pages/SentCode";
 import Home from "./pages/Home";
-import MentorDetail from "./pages/MentorDetail";
+import Mentor from "./pages/Mentor";
 import Settings from "./pages/Settings";
 import NotFound from "./components/NotFound";
 import Profiles from "./pages/Profiles";
+import Book from "./components/Book";
+import Questions from "./pages/Questions";
 
 function App() {
   return (
@@ -32,14 +33,16 @@ function App() {
         <Route element={<MainLayout/>}>
         <Route path="/home" element={<Home/>} />
         <Route path="/discussion" element={<Discussion/>} />
+        <Route path="/questions" element={<Questions/>} />
         <Route path="/mentors" element={<Mentors/>} />
-        <Route path="/mentor" element={<MentorDetail/>} />
+        <Route path="/mentor" element={<Mentor/>} />
         <Route path="/library" element={<Library/>} />
+        <Route path="/libraryy" element={<Book/>} />
         <Route path="/courses" element={<Course/>} />
         <Route path="/rating" element={<Rating/>} />
         <Route path="/profile" element={<Profiles/>} />
         <Route path="/settings" element={<Settings/>} />
-        <Route path="/saved" element={<Articles/>} />
+        <Route path="/saved" element={<NotFound/>} />
         <Route path="/*" element={<NotFound/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
         </Route>

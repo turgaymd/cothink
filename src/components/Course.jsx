@@ -12,7 +12,7 @@ const Course = () => {
                     <span className="rounded-full">Riyaziyyat</span>
                 </div>
             </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
              
                     <div className="course-item shadow-lg rounded-2xl">
                         <article>
