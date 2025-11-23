@@ -5,7 +5,12 @@ import { BiBlock } from "react-icons/bi";
 import { PiKey } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaRegComments } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const Settings=()=>{
+    const navigate=useNavigate()
+    const handleLogout=()=>{
+        navigate("/")
+    }
     return (
         <section>
                  <div className="flex flex-col justify-center items-center mb-4">
@@ -72,7 +77,7 @@ const Settings=()=>{
             <h4 className="font-bold text-red-500">Hesabdan çıxış</h4>
             </div>
             </div>
-           <button><SlArrowRight className="text-red-500"/></button> 
+           <button onClick={handleLogout}><SlArrowRight className="text-red-500"/></button> 
         </div>
         </div>
         <h4 className="pb-3 text-black font-bold">Daha çox</h4>
