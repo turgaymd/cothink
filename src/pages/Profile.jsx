@@ -1,98 +1,84 @@
-import { useState, useRef } from "react";
-const Profile = () => {
-  const [name, setName]=useState("Rauf")
-  const [username, setUsername] = useState("Rauf_123");
-  const [email, setEmail] = useState("");
-  const [about, setAbout] = useState("");
-  const [phone, setPhone] = useState("+994 971");
-  const [gender, setGender]=useState("Kişi")
-
-      const fileInputRef=useRef(null);
-
-      const handleUpload=()=>{
-            fileInputRef.current.click()
-      }
-  return (
-    <div className="max-w-lg mx-auto">
-      <h2 className="font-bold text-2xl text-center mb-5 pb-3">Profili redaktə et</h2>
-      <form className=" space-y-4 mt-5 mb-5">
-        <div className="flex gap-3 items-center">
+import { useState } from "react";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { IoMenu } from "react-icons/io5";
+import { BsThreeDots } from "react-icons/bs";
+const Profiles=()=>{
+      const [activeTab, setActiveTab]=useState("books")
+    return  (
+        <section>
+            <div className="flex justify-between">
+        <div className="flex gap-5">
+            <div className="img">
+                <img src="rauf.jpg" className="rounded-full h-24 w-24 object-cover"/>                
+            </div>
+            <div className="flex flex-col gap-3 justify-center">
+                <h4 className="font-bold text-xl">Rauf Quliyev</h4>
+                <div className="flex gap-5">
+                    <span>38 post</span>
+                    <span>120 izləyici</span>
+                    <span>45 izlədiklərim</span>
+                </div>
+            </div>
+             </div>
+             <div className="actions flex gap-3">
+                <button><IoAddCircleOutline fontSize={24}/></button> 
+                <button><IoMenu fontSize={24}/></button> 
+             </div>
+        </div>
+            <div className="flex justify-center mb-5 mt-5">
+    <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
+            <button className={` rounded-full w-full ${activeTab==="books" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("books")}>Postlar</button>
+            <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Cavablar</button>
+        </div> 
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center max-w-5xl mx-auto">
+  <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
+    <div className="flex justify-between items-center">
+        <div className="flex gap-4">
+        <img src="həcər.jpg" className="rounded-full w-24 h-24"/>
         <div>
-          <img src="emil.jpg" className="rounded-full w-24 h-24 object-cover"/>
-        </div>
-        <div className="flex flex-col">
-          <h4 className="font-bold flex justify-center">Rauf Quliyev</h4>
-          <input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*"/>
-       <button className="text-blue-500" onClick={handleUpload}>Profil şəklini dəyiş</button>
-          </div>
-        </div>
-        <div className="flex gap-5 items-center">
-          <label className="block font-bold w-40 shrink-0">Ad</label>
-          <input
-            type="text"
-            id="name"
-            placeholder={name}
-            className="w-full px-3 py-2 bg-white text-black border border-gray-300 placeholder-gray-400 outline-none"
-            onChange={(e) => setName(e.target.value)}
-          ></input>
-        </div>
-        <div className="flex gap-5 items-center">
-          <label className="block font-bold w-40 shrink-0">İstifadəçi adı</label>
-          <input
-            type="text"
-            id="name"
-            placeholder={username}
-            className="w-full px-3 py-2 bg-white text-black border border-gray-300 placeholder-gray-400 outline-none"
-            onChange={(e) => setUsername(e.target.value)}
-          ></input>
-        </div>
-        <div className="flex gap-5 items-center">
-          <label className="block font-bold w-40 shrink-0">Email</label>
-          <input
-            type="text"
-            id="name"
-            placeholder={"Email"}
-            className="grow w-full px-3 py-2 bg-white text-black border border-gray-300 placeholder-gray-400 outline-none"
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-        </div>
-        <div className="flex gap-5 items-center">
-          <label className="block font-bold w-40 shrink-0">Bio</label>
-          <textarea
-            type="text"
-            id="about"
-            rows={3}
-            placeholder={about}
-            className="w-full px-3 py-2 bg-white text-black border border-gray-300 placeholder-gray-400 outline-none"
-            onChange={(e) => setAbout(e.target.value)}
-          ></textarea>
-        </div>
-        <div className="flex gap-5 items-center">
-          <label className="font-bold w-40 shrink-0">Telefon nömrəsi</label>
-          <input
-            type="text"
-            id="name"
-            placeholder={phone}
-            className="w-full px-3 py-2 bg-white text-black border border-gray-300 placeholder-gray-400 outline-none"
-            onChange={(e) => setPhone(e.target.value)}
-          ></input>
-        </div>
-           <div className="flex gap-5 items-center">
-          <label className="block font-bold w-40 shrink-0">Cinsi</label>
-          <input
-            type="text"
-            id="gender"
-            placeholder={gender}
-            className="w-full px-3 py-2 bg-white text-black border border-gray-300 placeholder-gray-400 outline-none"
-            onChange={(e) => setGender(e.target.value)}
-          ></input>
-        </div>
-        <div className="flex justify-center gap-5">
-            <button type="submit" className="bg-blue-800 rounded-md text-white">Göndər</button>
-            <button className="rounded-md text-blue-800">Hesabımı müvəqqəti deaktiv et</button>
-        </div>
-      </form>
+            <h4 className="font-bold text-xl">Aydan A</h4>
+            <p className="text-gray-500">UI/UX Designer</p>
+            <p className="text-gray-500">3 ay əvvəl</p></div>
+              </div>
+<BsThreeDots/>
     </div>
-  );
-};
-export default Profile;
+                <h4 className="font-bold text-2xl">Bugünkü Öyrənmə Nailiyyətim</h4>
+                <p className="text-gray-500">Bu gün Maxwell Tənlikləri mövzusunu öyrəndim və nəhayət elektromaqnetizmi başa düşməyə başladım.Açığı, əvvəllər bu mövzu mənə çox abstrakt gəlirdi və elektrik sahəsi...daha çox</p>
+           <img src="post.jpg" className="w-full h-60 rounded-md"/>
+            <div className="post-reactions flex gap-5">
+            <div className="like-count flex items-center gap-2"><img src="like.svg"></img>52</div>
+            <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>26</div>
+            <div className="saved-count flex items-center gap-2"><img src="save.svg"></img>36</div>
+            <div className="share flex items-center gap-2"><img src="share.svg"></img>Paylaş</div>
+        </div>
+            </div>
+  <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
+    <div className="flex justify-between items-center">
+        <div className="flex gap-4">
+        <img src="həcər.jpg" className="rounded-full w-24 h-24"/>
+        <div>
+            <h4 className="font-bold text-xl">Aydan A</h4>
+            <p className="text-gray-500">UI/UX Designer</p>
+            <p className="text-gray-500">3 ay əvvəl</p></div>
+              </div>
+<BsThreeDots/>
+    </div>
+                <h4 className="font-bold text-2xl">Bugünkü Öyrənmə Nailiyyətim</h4>
+                <p className="text-gray-500">Bu gün Maxwell Tənlikləri mövzusunu öyrəndim və nəhayət elektromaqnetizmi başa düşməyə başladım.Açığı, əvvəllər bu mövzu mənə çox abstrakt gəlirdi və elektrik sahəsi...daha çox</p>
+           <img src="post.jpg" className="w-full h-60 rounded-md"/>
+            <div className="post-reactions flex gap-5">
+            <div className="like-count flex items-center gap-2"><img src="like.svg"></img>52</div>
+            <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>26</div>
+            <div className="saved-count flex items-center gap-2"><img src="save.svg"></img>36</div>
+            <div className="share flex items-center gap-2"><img src="share.svg"></img>Paylaş</div>
+        </div>
+            </div>
+          
+        </div>
+               
+</section>
+
+    )
+}
+export default Profiles;

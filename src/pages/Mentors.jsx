@@ -1,7 +1,24 @@
 
-import { Link } from "react-router-dom";
 import Search from "../components/Search";
 const Mentors=()=>{
+       const mentorss=[
+        {
+            name:"Nərgiz Əliyeva",
+            img:"aysel.png",
+            category:"Proqramlaşdirma",
+            students:"3.2K",
+            comments:"200+",
+            rating:4
+        },
+           {
+            name:"Nərgiz Əliyeva",
+            img:"aysel.png",
+            category:"Proqramlaşdirma",
+            students:"3.2K",
+            comments:"200+",
+            rating:4
+        }
+       ]
     return (
         <div className="md:col-span-10">
           <section>
@@ -42,59 +59,32 @@ const Mentors=()=>{
                 <a className="text-blue-500">Hamısına bax</a>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5 pt-5">
-                <Link to={"/mentor"}>
-                   <div className="mentor-item shadow-xl rounded-xl">
-                <div className="flex items-center gap-5">
-                    <img src="mentor.jpg" className="avatar rounded-full" alt="mentor"></img>
+                {mentorss.map((item,index)=>(
+                   <div className="mentor-item shadow-xl rounded-xl" key={index}>
+                <a className="flex items-center gap-5" href="/mentor">
+                    <img src={item.img} className="avatar rounded-full" alt="mentor"></img>
                     <div className="mentor-title flex flex-col gap-3">
-                        <h4 className="font-bold textxl">Nərgiz Əliyeva</h4>
-                        <p>Proqramlaşdirma (Frontend) </p>
-                         <div className="flex justify-end items-center gap-20 stats">
+                        <h4 className="font-bold text-xl">{item.name}</h4>
+                        <p>{item.category} </p>
+                         <div className="flex justify-between gap-3 items-center stats">
                         <div className="flex items-center gap-2">
                           <img src="users.svg"/>
-                          <span>3.2k tələbə</span>
+                          <span>{item.students} tələbə</span>
                         </div>
                          <div className="flex items-center gap-2">  
                         <img src="comment.svg"/>
-                        <span>Rəy (200+)</span>
+                        <span>{item.comments}</span>
                         </div>
                         <div className="flex items-center gap-2">
                       <img src="stars.svg"/>
-                    <span>4.8/5</span>
+                    <span>{item.rating}</span>
                         </div>
                     </div>
                     </div>
               
-                </div>           
+                </a>           
             </div>
-                </Link>
-         
-                  <Link to={"/mentor"}>
-                   <div className="mentor-item shadow-xl rounded-xl">
-                <div className="flex items-center gap-5">
-                    <img src="mentor.jpg" className="avatar rounded-full" alt="mentor"></img>
-                    <div className="mentor-title flex flex-col gap-3">
-                        <h4 className="font-bold textxl">Nərgiz Əliyeva</h4>
-                        <p>Proqramlaşdirma (Frontend) </p>
-                         <div className="flex justify-end items-center gap-20 stats">
-                        <div className="flex items-center gap-2">
-                          <img src="users.svg"/>
-                          <span>3.2k tələbə</span>
-                        </div>
-                         <div className="flex items-center gap-2">  
-                        <img src="comment.svg"/>
-                        <span>Rəy (200+)</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                      <img src="stars.svg"/>
-                    <span>4.8/5</span>
-                        </div>
-                    </div>
-                    </div>
-              
-                </div>           
-            </div>
-                </Link>
+                   ))}       
             </div>
           </section>
         </div>

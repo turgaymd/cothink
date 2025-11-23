@@ -20,7 +20,7 @@ const Settings=()=>{
             <h2 className="font-medium text-xl pt-3">Gülarə Nəsirova</h2>
             </div>
         <div className="features_card shadow-white-200 shadow-xl px-3 py-2 mb-5">
-        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
+        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>navigate("/profile/edit")}>
             <div className="flex items-center gap-3">
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
@@ -33,7 +33,7 @@ const Settings=()=>{
            <button><SlArrowRight /></button> 
         </div>
           <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 cursor-pointer" onClick={()=>navigate("/resetPassword")}>
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><PiKey fontSize={24}/></span>  
             </div>
@@ -69,7 +69,7 @@ const Settings=()=>{
            <button><SlArrowRight /></button> 
         </div>
          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 cursor-pointer" onClick={handleLogout}>
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><IoLogOutOutline className="text-red-500" fontSize={24}/></span>  
             </div>
@@ -77,12 +77,12 @@ const Settings=()=>{
             <h4 className="font-bold text-red-500">Hesabdan çıxış</h4>
             </div>
             </div>
-           <button onClick={handleLogout}><SlArrowRight className="text-red-500"/></button> 
+           <button ><SlArrowRight className="text-red-500"/></button> 
         </div>
         </div>
         <h4 className="pb-3 text-black font-bold">Daha çox</h4>
         <div className="features_card shadow-white-200 shadow-xl">
-        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
+        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>navigate("/support")}>
             <div className="flex items-center gap-3">
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><FaRegComments fontSize={24}/></span>  

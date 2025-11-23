@@ -18,7 +18,7 @@ const Rating=()=>{
         <div className="flex gap-3 mb-5 pt-5">
             <div className="relative pt-5">
          <img src="elvin.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
-      
+
 <div className="absolute bottom-0 bg-blue-800 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 badge">
    <div className="flex flex-col items-center">
         <p>Elvin</p>

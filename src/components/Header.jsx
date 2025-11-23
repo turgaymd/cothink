@@ -12,7 +12,7 @@ function Header(){
         </div>
             <ul className="flex flex-row gap-5 nav">
                 <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/home">Ana Səhifə</NavLink></li>
-                <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/discussion">Sual-Cavab</NavLink></li>
+                <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/questions">Sual-Cavab</NavLink></li>
                 <li className="nav-item"><NavLink className="" to="/mentors">Mentorlar</NavLink></li>
                 <li className="nav-item"><NavLink className="" to="/rating">Reytinq</NavLink></li>
             </ul>

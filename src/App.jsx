@@ -17,9 +17,12 @@ import Home from "./pages/Home";
 import Mentor from "./pages/Mentor";
 import Settings from "./pages/Settings";
 import NotFound from "./components/NotFound";
-import Profiles from "./pages/Profiles";
+import Profile from "./pages/Profile";
 import Book from "./components/Book";
 import Questions from "./pages/Questions";
+import ResetPassword from "./components/ResetPassword";
+import EditProfile from "./pages/EditProfile";
+import Support from "./components/Support";
 
 function App() {
   return (
@@ -31,7 +34,7 @@ function App() {
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/confirm" element={<SentCode/>} />
         <Route element={<MainLayout/>}>
-        <Route path="/home" element={<Home/>} />
+        <Route path="/support" element={<Support/>} />
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/questions" element={<Questions/>} />
         <Route path="/mentors" element={<Mentors/>} />
@@ -40,9 +43,11 @@ function App() {
         <Route path="/libraryy" element={<Book/>} />
         <Route path="/courses" element={<Course/>} />
         <Route path="/rating" element={<Rating/>} />
-        <Route path="/profile" element={<Profiles/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile/edit" element={<EditProfile/>} />
         <Route path="/settings" element={<Settings/>} />
         <Route path="/saved" element={<NotFound/>} />
+        <Route path="/resetPassword" element={<ResetPassword/>} />
         <Route path="/*" element={<NotFound/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
         </Route>

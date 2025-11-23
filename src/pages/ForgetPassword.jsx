@@ -13,12 +13,13 @@ const ForgotPassword=()=>{
           setError("Email ünvanını daxil edin")
           return;
         }
+          navigate("/confirm")
         try{
          const res= await axios.post("http://localhost:8000/api/forget.php", {email},
             {headers:{"Content-Type":"application/json"}}
           )
           setMessage(res.data.message || "Şifrəni yeniləmək üçün link email ünvanına göndərildi")
-          navigate("/confirm")
+        
         }
         catch(err){
           setError(err.response?.data?.message )

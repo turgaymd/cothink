@@ -1,10 +1,10 @@
 import { FaRegComments } from "react-icons/fa";
 import { SlArrowRight } from "react-icons/sl";
-import { CiUser } from "react-icons/ci";
 import { CiCircleInfo } from "react-icons/ci";
-import { BsChatLeftQuote } from "react-icons/bs";
+import { BsChatLeftQuote, BsEnvelope } from "react-icons/bs";
 const Support=()=>{
     return (
+        <section>
         <div>
                <div className="features_card shadow-white-200 shadow-xl">
                          <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
@@ -34,7 +34,7 @@ const Support=()=>{
                     <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                         <div className="flex items-center gap-3">
                              <div className="icons">
-                          <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
+                          <span className="text-blue-500 rounded-full"><BsEnvelope fontSize={24}/></span>  
                         </div>
                         <div className="flex flex-col">
                         <h4 className="font-bold">Contact Support (Email)</h4>
@@ -58,6 +58,7 @@ const Support=()=>{
                             
                     </div>
         </div>
+        </section>
 
     )
 }
