@@ -1,6 +1,12 @@
 
+import { useState } from "react";
 import Search from "../components/Search";
+import categories from "../CategoryData";
+
 const Mentors=()=>{
+const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+const [visibleCategories, setVisibleCategories]=useState(2)
+
        const mentorss=[
         {
             name:"Nərgiz Əliyeva",
@@ -19,6 +25,12 @@ const Mentors=()=>{
             rating:4
         }
        ]
+    const handleMore=()=>{
+        setVisibleCategories(prev=>{
+        const newCount=prev+4
+        setDisplayedCategories(categories.slice(0, newCount))
+        return newCount;
+       })}
     return (
         <div className="md:col-span-10">
           <section>
@@ -41,22 +53,28 @@ const Mentors=()=>{
                         <div className="filter mb-5">
                         <div className=" flex justify-between mb-3">
                 <h4 className="font-bold text-xl">Kategoriyalar</h4>
-                <a className="text-blue-500">Hamısına bax</a>
+                {
+                visibleCategories<categories.length && (
+                <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
+                )
+            }
             </div>
       <div className="course-filter mt-5 mb-5">
                     <div className="filter-items flex gap-3">
-                    <span className="active rounded-md">Hamısı</span>
-                    <span className="rounded-md">Fizika</span>
-                    <span className="rounded-md">Riyaziyyat</span>
-                    <span className="rounded-md">Qrafik dizayn</span>
-                    <span className="rounded-md">Tarix</span>
-                    <span className="rounded-md">Proqramlaşdırma</span>
+                                            <span className="active rounded-md">Hamısı</span>
+                        {
+                            displayedCategories.map((item, index)=>(
+
+                    <span className="rounded-md" key={index}>{item.name}</span>
+                            ))
+                        }
+                   
                 </div>
             </div>
             </div>
             <div className="flex justify-between">
                 <h4 className="font-bold text-xl">Ən yaxşı mentorlar</h4>
-                <a className="text-blue-500">Hamısına bax</a>
+                <button className="text-blue-500" >Hamısına bax</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5 pt-5">
                 {mentorss.map((item,index)=>(

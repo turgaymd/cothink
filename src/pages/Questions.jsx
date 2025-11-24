@@ -1,53 +1,40 @@
+import categories from "../CategoryData";
 import Search from "../components/Search";
 import { FaRegComments } from "react-icons/fa";
+import { useState } from "react";
+import discussions from "../DiscussionsData";
 const Questions=()=>{
-    const discussions=[
-        {
-          author:"Samir",
-          img:"elvin.jpg",
-          date:"6 saat əvvəl",
-          title:"C++ da pointer və reference arasındakı əsas fərq nədir?",
-          category:"math.svg",
-          subcategory:"C++ | Göstəricilər və İstinadlar"
-        },
-          {
-          author:"Aysel",
-          img:"aysel.png",
-          date:"6 saat əvvəl",
-          title:"C++ da pointer və reference arasındakı əsas fərq nədir?",
-          category:"coding.svg",
-          subcategory:"C++ | Göstəricilər və İstinadlar"
-        }
-    ]
+ 
+    const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+    const [visibleCategories, setVisibleCategories]=useState(2)
+
+    const handleMore=()=>{
+        setVisibleCategories(prev=>{
+        const newCount=prev+4
+        setDisplayedCategories(categories.slice(0, newCount))
+        return newCount;
+       })}
     return (
         <section>
             <Search/>
              <div className="flex justify-between mb-3">
                 <h4 className="font-medium text-xl">Mövzular</h4>
-                <a className="text-blue-500">Hamısına bax</a>
+                  {
+                visibleCategories<categories.length && (
+                <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
+                )
+            }
             </div>
             <div className="topics  flex gap-4">
-                <div className="topic-item flex-1">
+                {
+                    displayedCategories.map((item, index)=>(
+                    <div className="topic-item flex-1" key={index}>
                     <a>
-                        <img src="history.svg"></img>
+                        <img src={item.img}></img>
                     </a>
                 </div>
-                   <div className="topic-item flex-1">
-                    <a>
-                        <img src="physics.svg"></img>
-                    </a>
-                </div>
-                 <div className="topic-item flex-1">
-                    <a>
-                        <img src="math.svg"></img>
-                    </a>
-                </div>
-                 <div className="topic-item flex-1">
-                    <a>
-                        <img src="coding.svg"></img>
-                    </a>
-                </div>
-                
+                    ))
+                }
             </div>
             <div className="mt-5 mb-5">
                 <h4 className="font-bold text-xl">Müzakirə formu</h4>
