@@ -1,5 +1,7 @@
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import categories from "../CategoryData";
+import { useState } from "react";
 const Articles=()=>{
     const articles=[
         {
@@ -15,6 +17,16 @@ const Articles=()=>{
             date:"10 saat əvvəl"
         }
     ]
+const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+const [visibleCategories, setVisibleCategories]=useState(2)
+
+    const handleMore=()=>{
+        setVisibleCategories(prev=>{
+        const newCount=prev+4
+        setDisplayedCategories(categories.slice(0, newCount))
+        return newCount;
+       })}
+
     return(
         <>
         <section>
@@ -22,29 +34,22 @@ const Articles=()=>{
 
             <div className="flex justify-between mb-3">
                 <h4 className="font-medium text-xl">Mövzular</h4>
-                <a className="text-blue-500">Hamısına bax</a>
+          {
+                visibleCategories<categories.length && (
+                <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
+                )
+            }
             </div>
             <div className="topics  flex gap-4">
-                <div className="topic-item flex-1">
+               {
+                    displayedCategories.map((item, index)=>(
+                    <div className="topic-item flex-1" key={index}>
                     <a>
-                        <img src="history.svg"></img>
+                        <img src={item.img}></img>
                     </a>
                 </div>
-                   <div className="topic-item flex-1">
-                    <a>
-                        <img src="physics.svg"></img>
-                    </a>
-                </div>
-                 <div className="topic-item flex-1">
-                    <a>
-                        <img src="math.svg"></img>
-                    </a>
-                </div>
-                 <div className="topic-item flex-1">
-                    <a>
-                        <img src="coding.svg"></img>
-                    </a>
-                </div>
+                    ))
+                }
                 
             </div>
             <div className="article-filter mt-5">
