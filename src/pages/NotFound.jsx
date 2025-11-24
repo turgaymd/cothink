@@ -1,7 +1,7 @@
 const NotFound=()=>{
     return (
      
-        <div className="flex flex-col gap-4 items-center justify-center">
+        <div className="flex flex-col gap-4 items-center justify-center min-h-screen">
             <img src="404.svg"/>
             <img src="cable.png" className="pt-3 animate-fadeIn"/>
         <h4 className="font-bold text-2xl pt-5">Səhifə tapılmadı</h4>
