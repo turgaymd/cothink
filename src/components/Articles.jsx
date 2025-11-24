@@ -26,7 +26,6 @@ const [visibleCategories, setVisibleCategories]=useState(2)
         setDisplayedCategories(categories.slice(0, newCount))
         return newCount;
        })}
-
     return(
         <>
         <section>
