@@ -10,7 +10,7 @@ function Header(){
         <div className=" flex justify-between items-center">
         <div className="logo">
             <Link to ="/home">
-                        <img src="logo.jpg"></img>
+                        <img src="/logo.jpg"></img>
             </Link>
         </div>
             <ul className="hidden md:flex gap-6 nav">
@@ -23,7 +23,7 @@ function Header(){
                    <button className="bg-gray-300 rounded-md p-2"><CiSearch className="text-2xl"/></button>
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <Link className="profile-img rounded-full pl-2" to={"/profile"}>
-                    <img src="avatarr.svg"></img>
+                    <img src="/avatarr.svg"></img>
                    </Link>            
             </div>
             <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
@@ -42,7 +42,7 @@ function Header(){
                    <button className="bg-gray-300 rounded-md p-2"><CiSearch className="text-2xl"/></button>
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <Link className="profile-img rounded-full pl-2" to={"/profile"}>
-                    <img src="avatarr.svg"></img>
+                    <img src="/avatarr.svg"></img>
                    </Link>            
             </div>
             </ul>   

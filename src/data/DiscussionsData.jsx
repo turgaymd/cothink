@@ -1,4 +1,3 @@
-import Discussion from "./pages/Discussion"
 
    const discussions=[
         {

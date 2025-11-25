@@ -49,7 +49,6 @@ function Login() {
   };
   return (
     <>
-    <Toast/>
     <div className="flex justify-center items-center min-h-screen">
       <div className="card w-[90%] max-w-[500px]">
         <div className="card-body">

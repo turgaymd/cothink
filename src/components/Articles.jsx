@@ -1,36 +1,31 @@
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import categories from "../CategoryData";
+import categories from "../data/CategoryData";
 import { useState } from "react";
+import articles from "../data/ArticlesData";
 const Articles=()=>{
-    const articles=[
-        {
-           title:"3-cü Kurs Tələbəsindən Törəmələri Həqiqətən Anlamaq Üçün Addım-Addım Təlimat",
-            author:'Aysel Məmmədov',
-            category:"Riyaziyyat",
-            date:"10 saat əvvəl"
-        },
-            {
-           title:"3-cü Kurs Tələbəsindən Törəmələri Həqiqətən Anlamaq Üçün Addım-Addım Təlimat",
-            author:'Aysel Məmmədov',
-            category:"Riyaziyyat",
-            date:"10 saat əvvəl"
-        }
-    ]
+   
 const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
 const [visibleCategories, setVisibleCategories]=useState(2)
+
+const  [query, setQuery]=useState("")
 
     const handleMore=()=>{
         setVisibleCategories(prev=>{
         const newCount=prev+4
         setDisplayedCategories(categories.slice(0, newCount))
         return newCount;
+
        })}
+       
+          const filteredArticles=articles.filter((item)=>
+        item.title.toLowerCase().includes(query.toLowerCase()) || 
+        item.category.toLowerCase().includes(query.toLowerCase())
+    )
     return(
         <>
         <section>
         <div>
-
             <div className="flex justify-between mb-3">
                 <h4 className="font-medium text-xl">Mövzular</h4>
           {
@@ -49,7 +44,6 @@ const [visibleCategories, setVisibleCategories]=useState(2)
                 </div>
                     ))
                 }
-                
             </div>
             <div className="article-filter mt-5">
                 <div className="filter-items flex gap-3">
@@ -59,8 +53,10 @@ const [visibleCategories, setVisibleCategories]=useState(2)
                 </div>
             </div>
             <div className="articles mt-5">
-                {
-                    articles.map((item, index)=>(
+                      {filteredArticles.length===0 ? 
+                  <p className="font-bold col-span-2 text-center text-2xl">Məqalə tapılmadı</p>   : (
+
+                    filteredArticles.map((item, index)=>(
   <div className="article-item mb-5" key={index}>
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center">
@@ -79,7 +75,7 @@ const [visibleCategories, setVisibleCategories]=useState(2)
                     </div>
                 </div>
             </div>   
-                    ))
+                    )))
                 }
                     </div>
             <div className="add-article flex justify-center">

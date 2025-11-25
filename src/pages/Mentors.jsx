@@ -1,11 +1,12 @@
 
 import { useState } from "react";
 import Search from "../components/Search";
-import categories from "../CategoryData";
+import categories from "../data/CategoryData";
 
 const Mentors=()=>{
 const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
-const [visibleCategories, setVisibleCategories]=useState(2)
+const  [visibleCategories, setVisibleCategories]=useState(4)
+const  [query, setQuery]=useState("")
 
        const mentorss=[
         {
@@ -31,10 +32,15 @@ const [visibleCategories, setVisibleCategories]=useState(2)
         setDisplayedCategories(categories.slice(0, newCount))
         return newCount;
        })}
+
+          const filteredMentors=mentorss.filter((item)=>
+        item.name.toLowerCase().includes(query.toLowerCase()) || 
+        item.category.toLowerCase().includes(query.toLowerCase())
+    )
     return (
         <div className="md:col-span-10">
           <section>
-            <Search/>
+            <Search query={query} setQuery={setQuery}/>
             <div className="mentor-banner mt-3">
                 <div className="relative">
                 <div className="">
@@ -77,7 +83,9 @@ const [visibleCategories, setVisibleCategories]=useState(2)
                 <button className="text-blue-500" >Hamısına bax</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5 pt-5">
-                {mentorss.map((item,index)=>(
+                  {filteredMentors.length===0 ? 
+                  <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
+                  (filteredMentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl" key={index}>
                 <a className="flex items-center gap-5" href="/mentor">
                     <img src={item.img} className="avatar rounded-full" alt="mentor"></img>
@@ -102,7 +110,7 @@ const [visibleCategories, setVisibleCategories]=useState(2)
               
                 </a>           
             </div>
-                   ))}       
+                   )))}
             </div>
           </section>
         </div>

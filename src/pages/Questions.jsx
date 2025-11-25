@@ -1,11 +1,11 @@
-import categories from "../CategoryData";
+import categories from "../data/CategoryData";
 import Search from "../components/Search";
 import { FaRegComments } from "react-icons/fa";
 import { useState } from "react";
-import discussions from "../DiscussionsData";
+import discussions from "../data/DiscussionsData";
 const Questions=()=>{
  
-    const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+    const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
     const [visibleCategories, setVisibleCategories]=useState(2)
 
     const handleMore=()=>{

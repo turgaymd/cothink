@@ -1,23 +1,15 @@
 import { useState } from "react";
 import Search from "./Search";
 import Articles from "./Articles";
-const books=[
+import books from "../data/BooksData";
 
-  { 
-    title:"Rosen_Discrete_Mathematics_and_Its_Applications_7th_Edition",
-    img:"book_1.png"
-},
- { 
-    title:"Discrete Mathematics - Richard Johnsonbaugh - 8th ed",
-    img:"book_1.png"
-},
-  { 
-    title:"Thomas Calculus Early Transcendentals 12th txtbk",
-    img:"book_1.png"
-},
-]
 const Library=()=>{
   const [activeTab, setActiveTab]=useState("books")
+  const  [query, setQuery]=useState("")
+
+   const filteredBooks=books.filter((item)=>
+        item.title.toLowerCase().includes(query.toLowerCase()) 
+    )
     return(
             <>
      <section>
@@ -27,7 +19,7 @@ const Library=()=>{
             <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
         </div> 
                 </div>
-<Search/>
+<Search query={query} setQuery={setQuery}/>
                     <div className="course-filter mt-5">
                     <div className="filter-items flex gap-3">
                     <span className="filter-item active rounded-md">Ən çox bəyənilənlər</span>
@@ -35,10 +27,10 @@ const Library=()=>{
                 </div>
             </div>
             {activeTab==="articles" ? <Articles/> : <>  
-         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-             {
-               books.map((item, index)=>(
+               {filteredBooks.length===0 ? 
+                  <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
+               filteredBooks.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
                         <a href="/libraryy">
                 <div className="flex items-center gap-5">
@@ -69,7 +61,7 @@ const Library=()=>{
                 </div>     
                        </a>      
             </div>
-               ))
+               )))
             }          
               </div>
                  </>} 

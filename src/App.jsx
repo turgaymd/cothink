@@ -21,6 +21,7 @@ import Questions from "./pages/Questions";
 import ResetPassword from "./components/ResetPassword";
 import EditProfile from "./pages/EditProfile";
 import Support from "./components/Support";
+import CourseDetail from "./components/CourseDetail";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         <Route path="/library" element={<Library/>} />
         <Route path="/libraryy" element={<Book/>} />
         <Route path="/courses" element={<Course/>} />
+        <Route path="/courses/course" element={<CourseDetail/>} />
         <Route path="/rating" element={<Rating/>} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/profile/edit" element={<EditProfile/>} />

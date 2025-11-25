@@ -1,5 +1,7 @@
+
 import { BsSearch } from "react-icons/bs";
-const Search = () => {
+const Search = ({query, setQuery}) => {
+
   return (
     <div className="flex justify-center">
       <form className="w-full max-w-sm">
@@ -7,7 +9,9 @@ const Search = () => {
           <input
             type="text"
             placeholder="Axtarış..."
+            value={query}
             className="form-input border bg-gray-100 border-gray-300 px-3 py-2 outline-none rounded-lg w-full"
+            onChange={(e)=>setQuery(e.target.value)}
           />
           <BsSearch className="absolute right-2 top-1/3 text-gray-500"/>
         </div>
