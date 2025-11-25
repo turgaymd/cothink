@@ -33,7 +33,7 @@ function Discussion(){
     </div>
 
 </div>
-<div className="comments mt-5">
+<div className="comments">
     <h4 className="mb-5 mt-5 font-bold">Rəylər</h4>
     <div className="comment-item">
           <div className="comment-header flex items-center">
@@ -41,7 +41,7 @@ function Discussion(){
             <div className="pl-4">
            <h4 className="font-semibold">Həcər Quliyeva</h4>
             <p className="text-gray-500">Tələbə – Kompüter Mühəndisliyi</p>
-            <p className="mt-3">Stack son daxil olanı birinci çıxarır, Queue isə birinci daxil olanı birinci.</p>
+            <p className="mt-3 text-black">Stack son daxil olanı birinci çıxarır, Queue isə birinci daxil olanı birinci.</p>
             </div>
                     </div>
             <div className="flex justify-end gap-5 comment-reactions">

@@ -34,7 +34,6 @@ function App() {
         <Route path="/confirm" element={<SentCode/>} />
         <Route path="/*" element={<NotFound/>} />
         <Route element={<MainLayout/>}>
-        <Route path="/support" element={<Support/>} />
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/questions" element={<Questions/>} />
         <Route path="/mentors" element={<Mentors/>} />
@@ -48,7 +47,6 @@ function App() {
         <Route path="/profile/edit" element={<EditProfile/>} />
         <Route path="/settings" element={<Settings/>} />
         <Route path="/saved" element={<NotFound/>} />
-        <Route path="/resetPassword" element={<ResetPassword/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
         </Route>
       </Routes>

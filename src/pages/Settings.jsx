@@ -6,14 +6,32 @@ import { PiKey } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaRegComments } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import TwoFactorAuth from "../components/TwoFactorAuth";
+import Support from "../components/Support";
+import ResetPassword from "../components/ResetPassword";
+
 const Settings=()=>{
     const navigate=useNavigate()
+    const [activeTab, setActiveTab]=useState("about")
     const handleLogout=()=>{
         navigate("/")
     }
+    if( activeTab==="changePassword"){
+       return <ResetPassword/>
+    }
+    if(activeTab=="twofactorauth"){
+      return <TwoFactorAuth/>
+    }
+    if(activeTab=="support"){
+      return <Support/>
+    }
     return (
         <section>
-                 <div className="flex flex-col justify-center items-center mb-4">
+           {
+                     <>
+   <div className="flex flex-col justify-center items-center mb-4">
+                
             <div>
                 <img src="avatarr.svg" className="rounded-full h-24 w-24 bg-blue-600"/>
             </div>
@@ -33,7 +51,7 @@ const Settings=()=>{
            <button><SlArrowRight /></button> 
         </div>
           <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={()=>navigate("/resetPassword")}>
+            <div className="flex items-center gap-3 cursor-pointer" onClick={()=>setActiveTab("changePassword")}>
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><PiKey fontSize={24}/></span>  
             </div>
@@ -45,7 +63,7 @@ const Settings=()=>{
            <button><SlArrowRight /></button> 
         </div>
           <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 cursor-pointer" onClick={()=>setActiveTab("twofactorauth")}>
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
             </div>
@@ -82,7 +100,7 @@ const Settings=()=>{
         </div>
         <h4 className="pb-3 text-black font-bold">Daha çox</h4>
         <div className="features_card shadow-white-200 shadow-xl">
-        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>navigate("/support")}>
+        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("support")}>
             <div className="flex items-center gap-3">
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><FaRegComments fontSize={24}/></span>  
@@ -115,7 +133,11 @@ const Settings=()=>{
             </div>
            <button><SlArrowRight /></button> 
         </div>
+        
         </div>
+                     </>
+                  }
+              
 </section>
     )
 }
