@@ -10,12 +10,16 @@ import { useState } from "react";
 import TwoFactorAuth from "../components/TwoFactorAuth";
 import Support from "../components/Support";
 import ResetPassword from "../components/ResetPassword";
+import About from "../components/About";
 
 const Settings=()=>{
     const navigate=useNavigate()
-    const [activeTab, setActiveTab]=useState("about")
+    const [activeTab, setActiveTab]=useState("")
     const handleLogout=()=>{
         navigate("/")
+    }
+     if(activeTab=="about"){
+      return <About/>
     }
     if( activeTab==="changePassword"){
        return <ResetPassword/>
@@ -26,6 +30,7 @@ const Settings=()=>{
     if(activeTab=="support"){
       return <Support/>
     }
+      
     return (
         <section>
            {
@@ -38,7 +43,7 @@ const Settings=()=>{
             <h2 className="font-medium text-xl pt-3">Gülarə Nəsirova</h2>
             </div>
         <div className="features_card shadow-white-200 shadow-xl px-3 py-2 mb-5">
-        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>navigate("/profile/edit")}>
+        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("about")}>
             <div className="flex items-center gap-3">
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
