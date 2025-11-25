@@ -8,7 +8,7 @@ body{
 .navbar{
   padding: 25px 20px;
 }
-.navbar li a{
+.navbar .desktop-menu li a{
   padding: 25px;
   font-weight: 400;
 

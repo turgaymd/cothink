@@ -15,7 +15,7 @@ const  [query, setQuery]=useState("")
             category:"Proqramlaşdirma",
             students:"3.2K",
             comments:"200+",
-            rating:4
+            rating:"4.8/5"
         },
            {
             name:"Nərgiz Əliyeva",
@@ -23,7 +23,7 @@ const  [query, setQuery]=useState("")
             category:"Proqramlaşdirma",
             students:"3.2K",
             comments:"200+",
-            rating:4
+            rating:"4.8/5"
         }
        ]
     const handleMore=()=>{
@@ -96,14 +96,15 @@ const  [query, setQuery]=useState("")
                         <div className="flex items-center gap-2">
                           <img src="users.svg"/>
                           <span>{item.students} tələbə</span>
-                        </div>
                          <div className="flex items-center gap-2">  
                         <img src="comment.svg"/>
                         <span>{item.comments}</span>
                         </div>
-                        <div className="flex items-center gap-2">
+                             </div>
+                        <div className="flex flex-col items-center gap-2">
+                                                <span>{item.rating}</span>
                       <img src="stars.svg"/>
-                    <span>{item.rating}</span>
+
                         </div>
                     </div>
                     </div>

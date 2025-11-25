@@ -43,16 +43,16 @@ const Questions=()=>{
                 {
                     discussions.map((item, index)=>(
                     <div className="rounded-md shadow-gray-300 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
-                           <div className="flex gap-3 justify-end">
-                        <p className="text-gray-400">
+                           <div className="flex gap-3 justify-end items-center text-sm">
+                        <span className="text-gray-400">
                             {item.author}
-                        </p>
-                        <p className="text-gray-400">
-                           * {item.date}
-                        </p>
+                        </span>
+                        <span className="leading-none text-gray-500">•</span>
+                        <span className="text-gray-400">
+                            {item.date}
+                        </span>
                         </div>
                 <div className="flex gap-7 ">
-                 
                     <img src={item.img} className="rounded-full w-24 h-24"/>
                     <div className="flex flex-col gap-3">
                         <h5 className="font-medium">{item.title}</h5>

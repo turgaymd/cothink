@@ -13,7 +13,7 @@ function Header(){
                         <img src="/logo.jpg"></img>
             </Link>
         </div>
-            <ul className="hidden md:flex gap-6 nav">
+            <ul className="hidden md:flex gap-6 desktop-menu">
                 <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/home">Ana Səhifə</NavLink></li>
                 <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/questions">Sual-Cavab</NavLink></li>
                 <li className="nav-item"><NavLink className="" to="/mentors">Mentorlar</NavLink></li>
@@ -27,7 +27,7 @@ function Header(){
                    </Link>            
             </div>
             <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
-                { open ? <IoClose/> : <IoMenu/>}
+                { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
             </button>
 
         </div>
