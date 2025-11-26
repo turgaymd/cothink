@@ -4,6 +4,7 @@ import { HiOutlineUsers } from "react-icons/hi2";
 import courses from "../data/CourseData";
 import { CourseCard } from "../components/Courses";
 import Articles from "../components/Articles";
+import Posts from "../components/Posts";
 const Mentor=()=>{
     const [activeTab, setActiveTab]=useState("courses")
     return (
@@ -14,7 +15,7 @@ const Mentor=()=>{
             <div className="bg-white shadow-3xl border border-gray-200 shadow-white-800 rounded-lg px-10 py-4">
                 <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
                 <div className="profil-img flex flex-col justify-center items-center">
-                    <img src="mentor_avatar.jpg" className="mentor-avatar rounded-full"/>
+                    <img src="/mentor_avatar.jpg" className="mentor-avatar rounded-full"/>
                    <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-700">
             <div className="like-count flex items-center gap-2"><HiOutlineUsers fontSize={24}/>   2.6k tələbə</div>
             <div className="comment-count flex items-center gap-2" ><FaRegComments fontSize={24}/>  Rəy(100+)</div>
@@ -60,6 +61,7 @@ const Mentor=()=>{
         </div>
 )}  
 {activeTab==="articles" && <Articles/> }
+   {activeTab==="posts" && <Posts/> }
 </div>
         </section>
         </div>

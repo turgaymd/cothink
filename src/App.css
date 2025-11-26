@@ -106,7 +106,7 @@ section{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #E9E9E9;
+  background: #FAFAFA;
   border-radius: 10px;
   border: 1px solid #E9E9E9;
   width: 100px;
@@ -230,6 +230,9 @@ border: 1px solid #ccc;
 }
 .post-item{
 padding: 25px 25px;
+}
+.progress-bar{
+  width: 45%;
 }
 /* .stats img{
   color: #444444 !important;

@@ -32,7 +32,7 @@ const Settings=()=>{
     }
       
     return (
-        <section>
+        <section className="pt-4">
            {
                      <>
    <div className="flex flex-col justify-center items-center mb-4">
@@ -42,13 +42,13 @@ const Settings=()=>{
             </div>
             <h2 className="font-medium text-xl pt-3">Gülarə Nəsirova</h2>
             </div>
-        <div className="features_card shadow-white-200 shadow-xl px-3 py-2 mb-5">
+        <div className="features_card px-3 py-2 mb-5 mt-4 shadow-sm inset-shadow-sm">
         <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("about")}>
             <div className="flex items-center gap-3">
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col pt-3">
             <h4 className="font-bold">Haqqımda</h4>
             <p className="text-gray-400">Ad , soyad, ünvan, profil şəkli</p>
             </div>
@@ -104,7 +104,7 @@ const Settings=()=>{
         </div>
         </div>
         <h4 className="pb-3 text-black font-bold">Daha çox</h4>
-        <div className="features_card shadow-white-200 shadow-xl">
+        <div className="features_card shadow-sm inset-shadow-sm">
         <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("support")}>
             <div className="flex items-center gap-3">
                  <div className="icons">

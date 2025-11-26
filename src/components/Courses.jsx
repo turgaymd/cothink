@@ -8,7 +8,7 @@ export const CourseCard=({item})=>{
   <div className="course-item shadow-lg rounded-2xl">
                         <article>
             <a>
-              <img src={item.img}></img>
+              <img src={`/${item.img}`}></img>
             </a>
             </article>
             <div className="course-category mt-3 text-blue-600">{item.category}</div>
@@ -16,7 +16,7 @@ export const CourseCard=({item})=>{
               <h4 className="font-bold text-2xl">
                  {item.title}
               </h4>
-              <a href="courses/course"><MdArrowOutward fontSize={24}/></a>
+              <a href="courses/id"><MdArrowOutward fontSize={24}/></a>
             </div>
             <p className="text-gray-500">
               <span className="font-medium skills text-black">
@@ -27,7 +27,7 @@ export const CourseCard=({item})=>{
             <div className="flex justify-between pb-3 mt-4">
               <div className="flex gap-5 items-center">
                 <div>
-                <img src={item.author_img} className=" rounded-full object-cover"/>
+                <img src={`/${item.author_img}`} className=" rounded-full object-cover"/>
                 </div>
                 <div className="flex flex-col">
                   <h4 className="font-bold">{item.author}</h4>
@@ -35,8 +35,8 @@ export const CourseCard=({item})=>{
                 </div>
               </div>
               <div className="flex items-center gap-3 ">
-                <img src="star.svg" /> <span>4.8</span>
-                <img src="users.svg" /> <span>3.2k</span>
+                <img src="/star.svg" /> <span>4.8</span>
+                <img src="/users.svg" /> <span>3.2k</span>
               </div>
             </div>
           </div>  

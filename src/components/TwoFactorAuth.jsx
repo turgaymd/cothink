@@ -4,7 +4,7 @@ import { BsChatLeftQuote, BsEnvelope } from "react-icons/bs";
 const TwoFactorAuth=()=>{
     return (
         <section>
-              <div className="features_card shadow-white-200 shadow-xl">
+              <div className="features_card shadow-sm inset-shadow-sm">
                                  <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                                 <div className="flex items-center gap-3">
                                      <div className="icons">

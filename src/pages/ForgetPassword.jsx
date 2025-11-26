@@ -1,6 +1,8 @@
 import {useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Toast from "../components/Toast";
 const ForgotPassword=()=>{
       const [email, setEmail]=useState("")
       const [message, setMessage]=useState("")
@@ -13,20 +15,24 @@ const ForgotPassword=()=>{
           setError("Email ünvanını daxil edin")
           return;
         }
-          navigate("/confirm")
+  
         try{
+
          const res= await axios.post("http://localhost:8000/api/forget.php", {email},
             {headers:{"Content-Type":"application/json"}}
           )
           setMessage(res.data.message || "Şifrəni yeniləmək üçün link email ünvanına göndərildi")
-        
+          toast.success("Şifrəni yeniləmək üçün link email ünvanına göndərildi")
+          navigate("/confirm")
         }
         catch(err){
-          setError(err.response?.data?.message )
+          setError(err.response?.data?.message || "Xəta baş verdi" )
           console.log(err)
         }
       }
     return(
+      <>
+      <Toast/>
   <div className="flex justify-center items-center min-h-screen">
    <div className="card w-[90%] max-w-[500px]">
       <div className="card-body">
@@ -61,7 +67,7 @@ const ForgotPassword=()=>{
       </div>
     </div>
     </div>
-
+</>
     )
 }
 export default ForgotPassword;

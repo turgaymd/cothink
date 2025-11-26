@@ -53,7 +53,7 @@ const  [query, setQuery]=useState("")
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center">
                         <div className="article-author flex items-center gap-2">
-                            <img src="avatar.png"/>
+                            <img src="/avatar.png"/>
                             <span>{item.author}</span>
                             <span>•</span>
                             <span>{item.date}</span>

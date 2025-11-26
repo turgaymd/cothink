@@ -24,7 +24,7 @@ function Discussion(){
         <div className="post-image pt-5">
 <img  src="discuss_.png" className="rounded-md"/>
         </div>
-        <div className="post-reactions flex justify-end gap-5">
+        <div className="post-reactions flex justify-end gap-5 pt-3">
             <div className="like-count flex items-center gap-2"><img src="like.svg"></img>52</div>
             <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>26</div>
             <div className="saved-count flex items-center gap-2"><img src="save.svg"></img>36</div>
@@ -34,7 +34,7 @@ function Discussion(){
 
 </div>
 <div className="comments">
-    <h4 className="mb-5 mt-5 font-bold">Rəylər</h4>
+    <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
     <div className="comment-item">
           <div className="comment-header flex items-center">
             <img  className="rounded-md avatar" src="həcər.jpg"></img>
@@ -44,7 +44,7 @@ function Discussion(){
             <p className="mt-3 text-black">Stack son daxil olanı birinci çıxarır, Queue isə birinci daxil olanı birinci.</p>
             </div>
                     </div>
-            <div className="flex justify-end gap-5 comment-reactions">
+            <div className="flex justify-end gap-5 comment-reactions pt-3">
             <div className="like-count flex items-center gap-2"><img src="like.svg"></img>52</div>
             <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>26</div>
         </div>

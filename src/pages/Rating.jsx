@@ -15,7 +15,7 @@ const Rating=()=>{
         <div className="flex flex-col items-center gap-4">
             <h2 className="text-2xl font-bold">Reytinq Cədvəli</h2>
             <p className="text-gray-400 pb-5">Sual verən,cavablayan,bəyənilən və paylaşım edənlər əsasında sıralama</p>
-        <div className="flex gap-3 mb-5 pt-5">
+        <div className="flex gap-3 mb-5 mt-5">
             <div className="relative pt-5">
          <img src="elvin.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
 
@@ -56,7 +56,7 @@ const Rating=()=>{
         </div>
              </div>
             </section>
-            <div className="flex justify-center mt-5">
+            <div className="flex justify-center mt-3">
                 <div className="border border-blue-300 w-full max-w-3xl flex items-center justify-between rounded-full px-8 md:px-4  py-2">
                         <div className="flex items-center gap-3" >
                         <img src="aysel.png" className=" rounded-full w-15 h-15 bg-gray-400 object-cover"/>       

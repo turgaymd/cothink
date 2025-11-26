@@ -87,7 +87,7 @@ const  [query, setQuery]=useState("")
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
                   (filteredMentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
-                    <a href="/mentor" className="block">
+                    <a href="/mentors/id" className="block">
                     <div className="mentor-title gap-5 flex">          
                             <img src={item.img} className="avatar rounded-full object-cover" alt="mentor"/>
                             <div className="flex flex-col w-full">

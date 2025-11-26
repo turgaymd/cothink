@@ -3,6 +3,7 @@ import Search from "../components/Search";
 import { FaRegComments } from "react-icons/fa";
 import { useState } from "react";
 import discussions from "../data/DiscussionsData";
+import { BsThreeDotsVertical } from "react-icons/bs";
 const Questions=()=>{
  
     const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
@@ -42,7 +43,7 @@ const Questions=()=>{
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 {
                     discussions.map((item, index)=>(
-                    <div className="rounded-md shadow-gray-300 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
+                    <div className="rounded-md shadow-gray-100 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
                            <div className="flex gap-3 justify-end items-center text-sm">
                         <span className="text-gray-400">
                             {item.author}
@@ -61,6 +62,9 @@ const Questions=()=>{
                         <a className="rounded-xl border border-gray-300 flex w-40 gap-3 items-center px-3 py-2" href="/discussion"><FaRegComments className="text-blue-500 text-xl"/>Fikrini paylaş</a>
                    </div>
                     </div>
+                </div>
+                <div className="flex justify-end">
+                    <button><BsThreeDotsVertical fontSize={24}/></button>
                 </div>
                 </div>
                     ))

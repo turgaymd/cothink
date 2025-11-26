@@ -13,7 +13,7 @@ const Books=()=>{
                   <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
                filteredBooks.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-                        <a href="/libraryy">
+                        <a href="/library/books/id">
                 <div className="flex items-center gap-5">
                     <img src={item.img} className="w-35 h-35"  alt="book"></img>
                     <div className="mentor-title flex flex-col gap-3">

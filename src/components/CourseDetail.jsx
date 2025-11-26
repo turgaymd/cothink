@@ -13,7 +13,7 @@ const CourseDetail=()=>{
                 <img src="/termodinamic.jpg" className="w-full"/>
             <div className="flex justify-between items-center mt-4">
                 <p className="text-gray-500">3 Dəqiqədə Termodinamikanın Əsasları</p>
-                <button className="bg-blue-800 text-white px-4 py-2 rounded-md">Kursu əldə et</button>
+                <a className="bg-blue-800 text-white px-4 py-2 rounded-md" href="/courses/id/content">Kursu əldə et</a>
             </div>
             <p className="text-blue-500">#Fizika</p>
                 <div className="flex  gap-5 mt-5">
@@ -23,7 +23,7 @@ const CourseDetail=()=>{
         </div>
         <div className="flex justify-between mt-5 mb-5">
             <div className="flex gap-3">
-            <img src="/aydan.png"/>
+            <img src="/aydan.png" className="object-cover w-10 h-10"/>
             <div className="flex flex-col">
                 <h4 className="font-bold">Aytac H.</h4>
                 <p className="text-gray-400">Abunəçilər 11.2k</p>

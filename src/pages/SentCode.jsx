@@ -1,16 +1,26 @@
 import OTPInput from "react-otp-input";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SentCode=()=>{
     const [otp,setOtp]=useState("")
     const [message, setMessage]=useState("")
     const [error, setError]=useState("")
+    const navigate=useNavigate()
     // const inputRefs=useRef([])
     // const handleFocus=(e)=>{
     //  e.target.select()
     // }
     const handleConfirm=(e)=>{
         e.preventDefault()
+        if(otp.length<4){
+          setError("4 rəqəm daxil edin")
+          return;
+        }
+        if(otp==='1234'){
+              navigate("/courses")
+        }
+        // navigate("/home")
     }
 return (
   <div className="flex justify-center items-center min-h-screen">
@@ -23,7 +33,7 @@ return (
         </div>
         <form className="login-form mx-auto" onSubmit={handleConfirm}>
           {message && <p className="font-bold text-green-600 text-center">{message}</p>} 
-           {error && <p className="font-bold text-red-600 text-center">{error}</p>}
+           {error && <p className="font-bold text-red-600 text-center pb-4">{error}</p>}
                      <div className="mb-5">
               <div className="flex justify-center gap-4">
                 <OTPInput

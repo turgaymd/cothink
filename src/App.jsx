@@ -22,6 +22,7 @@ import EditProfile from "./pages/EditProfile";
 import CourseDetail from "./components/CourseDetail";
 import Saved from "./components/Saved";
 import BookView from "./components/BookView";
+import CourseContent from "./components/CourseContent";
 
 function App() {
   return (
@@ -35,24 +36,29 @@ function App() {
         
         <Route path="/*" element={<NotFound/>} />
         <Route element={<MainLayout/>}>
+
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/questions" element={<Questions/>} />
-       
+        <Route path="/saved" element={<Saved/>} />
+
         <Route path="/mentors" element={<Mentors/>} />
-        <Route path="/mentor" element={<Mentor/>} />
+        <Route path="/mentors/:id" element={<Mentor/>} />
+
         <Route path="/library" element={<Library/>} />
         <Route path="/library/books/:id" element={<Book/>} />
         <Route path="/library/books/:id/read" element={<BookView/>} />
-        <Route path="/saved" element={<Saved/>} />
+        <Route path="/addarticle" element={<AddArticle/>} />
+
         <Route path="/courses" element={<Course/>} />
-        <Route path="/courses/course" element={<CourseDetail/>} />
+        <Route path="/courses/:id" element={<CourseDetail/>} />
+        <Route path="/courses/:id/content" element={<CourseContent/>} />
+
         <Route path="/rating" element={<Rating/>} />
-        <Route path="/profile" element={<Profile/>} />
-        
+        <Route path="/profile" element={<Profile/>} />      
         <Route path="/profile/edit" element={<EditProfile/>} />
         <Route path="/settings" element={<Settings/>} />
-        <Route path="/saved" element={<Saved/>} />
-        <Route path="/addarticle" element={<AddArticle/>} />
+  
+
         </Route>
       </Routes>
     </BrowserRouter>
