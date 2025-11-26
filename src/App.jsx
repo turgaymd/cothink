@@ -7,7 +7,7 @@ import Discussion from "./pages/Discussion";
 import AuthProvider from "./AuthContext";
 import Mentors from "./pages/Mentors";
 import Rating from "./pages/Rating";
-import Course from "./components/Course";
+import Course from "./components/Courses";
 import Library from "./components/Library";
 import MainLayout from "./MainLayout";
 import AddArticle from "./components/AddArticle";

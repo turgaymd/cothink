@@ -1,51 +1,39 @@
-import books from "../data/BooksData";
+
 import { useState } from "react";
+import Search from "./Search";
+import Articles from "./Articles";
+import Course, { CourseCard } from "./Courses";
+import courses from "../data/CourseData";
+import Books from "./Books";
 const Saved=()=>{
       const [activeTab, setActiveTab]=useState("books")
-      const  [query, setQuery]=useState("")
 
-       const filteredBooks=books.filter((item)=>
-        item.title.toLowerCase().includes(query.toLowerCase()) 
-    )
+ 
     return (
         <section>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-               {filteredBooks.length===0 ? 
-                  <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
-               filteredBooks.map((item, index)=>(
-                   <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-                        <a href="/libraryy">
-                <div className="flex items-center gap-5">
-                    <img src={item.img} className="w-35 h-35"  alt="book"></img>
-                    <div className="mentor-title flex flex-col gap-3">
-                        <h4 className="font-bold text-lg break-all">
-                          {item.title}
-                        </h4>
-                        <p>PDF </p>
-                         <div className="flex items-center gap-5 stats">
-                        <div className="flex items-center gap-2">
-                          <a className="flex gap-3" download href="/books">
-                          <img src="download.svg"/>
-                          <span>Yüklə</span>                     
-                          </a>
-                        </div>
-                         <div className="flex items-center gap-2">  
-                        <img src="share.svg"/>
-                        <span>Paylaş</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                      <img src="save.svg"/>
-               
-                        </div>
-                    </div>
-                    </div>
-              
-                </div>     
-                       </a>      
+            <Search/>
+                 <h4 className="font-bold text-xl mt-5">Kategoriyalar</h4>
+              <div className="course-filter mt-5 mb-5">
+                    <div className="filter-items flex gap-3">
+                    <button className={` rounded-md ${activeTab==="books" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
+                    <button className={`rounded-md ${activeTab==="articles" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
+                    <button className={`rounded-md ${activeTab==="courses" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("courses")}>Kurslar</button>
+                    <button className={`rounded-md ${activeTab==="posts" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("posts")}>Postlar</button>
+                </div>
             </div>
-               )))
-            }          
-              </div>
+            {activeTab === "courses" && (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {courses.length === 0 ? (
+      <p className="text-center text-xl font-bold col-span-3">Kurs tapılmadı</p>
+    ) : (
+      courses.map((item) => (
+        <CourseCard key={item._id} item={item} />
+      ))
+    )}
+  </div>
+)}
+                  {activeTab==="articles" && <Articles/> }
+                  {activeTab==="books" && <Books/> }
         </section>
     )
 }

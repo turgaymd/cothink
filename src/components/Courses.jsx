@@ -2,21 +2,10 @@
 import courses from "../data/CourseData";
 import Search from "./Search";
 import { MdArrowOutward } from "react-icons/md";
-const Course = () => {
-  return (
-    <>
-      <section>
-       <Search/>
-                    <div className="course-filter mt-5 mb-5">
-                    <div className="filter-items flex gap-3">
-                    <span className="active rounded-full">Fizika</span>
-                    <span className="rounded-full">Riyaziyyat</span>
-                </div>
-            </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
-             {
-              courses.map((item, index)=>(
-  <div className="course-item shadow-lg rounded-2xl" key={index}>
+
+export const CourseCard=({item})=>{
+  return(
+  <div className="course-item shadow-lg rounded-2xl">
                         <article>
             <a>
               <img src={item.img}></img>
@@ -51,6 +40,24 @@ const Course = () => {
               </div>
             </div>
           </div>  
+  )
+}
+
+const Courses = () => {
+  return (
+    <>
+      <section>
+       <Search/>
+                    <div className="course-filter mt-5 mb-5">
+                    <div className="filter-items flex gap-3">
+                    <span className="active rounded-full">Fizika</span>
+                    <span className="rounded-full">Riyaziyyat</span>
+                </div>
+            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
+             {
+              courses.map((item)=>(
+               <CourseCard key={item._id} item={item}/>
               ))
              }
                   
@@ -60,4 +67,4 @@ const Course = () => {
     </>
   );
 };
-export default Course;
+export default Courses;

@@ -118,6 +118,10 @@ section{
   background: #E9E9E9;
 }
 .filter-items span.active{
+  background: #4E70D7;
+  color: white;
+}
+.filter-items button.active{
   background: royalblue;
   color: white;
 }

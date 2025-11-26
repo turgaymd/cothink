@@ -2,10 +2,13 @@ import { useState } from "react";
 import Search from "./Search";
 import Articles from "./Articles";
 import books from "../data/BooksData";
+import categories from "../data/CategoryData";
 
 const Library=()=>{
   const [activeTab, setActiveTab]=useState("books")
   const  [query, setQuery]=useState("")
+  const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+  const [visibleCategories, setVisibleCategories]=useState(2)
 
    const filteredBooks=books.filter((item)=>
         item.title.toLowerCase().includes(query.toLowerCase()) 
@@ -15,15 +18,23 @@ const Library=()=>{
      <section>
     <div className="flex justify-center mb-5">
     <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
-            <button className={` rounded-full w-full ${activeTab==="books" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
-            <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
+            <button className={` rounded-full w-full ${activeTab==="books" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
+            <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
         </div> 
                 </div>
 <Search query={query} setQuery={setQuery}/>
+            <div className="flex justify-between mb-3">
+                <h4 className="font-medium text-xl">Mövzular</h4>
+          {
+                visibleCategories<categories.length && (
+                <button className="text-blue-500" >Hamısına bax</button>
+                )
+            }
+            </div>
                     <div className="course-filter mt-5">
                     <div className="filter-items flex gap-3">
-                    <span className="filter-item active rounded-md">Ən çox bəyənilənlər</span>
-                    <span className="filter-item rounded-md">Hamısı</span>
+                    <span className="filter-item active rounded-md bg-blue-800">Ən çox bəyənilənlər</span>
+                    <span className="filter-item rounded-md bg-blue-800">Hamısı</span>
                 </div>
             </div>
             {activeTab==="articles" ? <Articles/> : <>  

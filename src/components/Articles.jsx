@@ -1,22 +1,22 @@
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import categories from "../data/CategoryData";
+// import categories from "../data/CategoryData";
 import { useState } from "react";
 import articles from "../data/ArticlesData";
 const Articles=()=>{
    
-const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
-const [visibleCategories, setVisibleCategories]=useState(2)
+// const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+// const [visibleCategories, setVisibleCategories]=useState(2)
 
 const  [query, setQuery]=useState("")
 
-    const handleMore=()=>{
-        setVisibleCategories(prev=>{
-        const newCount=prev+4
-        setDisplayedCategories(categories.slice(0, newCount))
-        return newCount;
+    // const handleMore=()=>{
+    //     setVisibleCategories(prev=>{
+    //     const newCount=prev+4
+    //     setDisplayedCategories(categories.slice(0, newCount))
+    //     return newCount;
 
-       })}
+    //    })}
        
           const filteredArticles=articles.filter((item)=>
         item.title.toLowerCase().includes(query.toLowerCase()) || 
@@ -26,15 +26,8 @@ const  [query, setQuery]=useState("")
         <>
         <section>
         <div>
-            <div className="flex justify-between mb-3">
-                <h4 className="font-medium text-xl">Mövzular</h4>
-          {
-                visibleCategories<categories.length && (
-                <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
-                )
-            }
-            </div>
-            <div className="topics flex gap-4">
+
+            {/* <div className="topics flex gap-4">
                {
                     displayedCategories.map((item, index)=>(
                     <div className="topic-item flex-1" key={index}>
@@ -44,18 +37,17 @@ const  [query, setQuery]=useState("")
                 </div>
                     ))
                 }
-            </div>
-            <div className="article-filter mt-5">
+            </div> */}
+            {/* <div className="article-filter mt-5">
                 <div className="filter-items flex gap-3">
                     <span className="filter-item rounded-md active">Hamısı</span>
                     <span className="filter-item rounded-md">Trenddə</span>
                     <span className="filter-item rounded-md">Ən yenilər</span>
                 </div>
-            </div>
-            <div className="articles mt-5">
+            </div> */}
+            <div className="articles mt-3">
                       {filteredArticles.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Məqalə tapılmadı</p>   : (
-
                     filteredArticles.map((item, index)=>(
   <div className="article-item mb-5" key={index}>
                     <div className="article-content flex justify-between flex-col gap-4">
