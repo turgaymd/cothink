@@ -1,7 +1,11 @@
 import { useState } from "react";
-
+import { FaRegComments } from "react-icons/fa";
+import { HiOutlineUsers } from "react-icons/hi2";
+import courses from "../data/CourseData";
+import { CourseCard } from "../components/Courses";
+import Articles from "../components/Articles";
 const Mentor=()=>{
-    const [activeTab, setActiveTab]=useState("course")
+    const [activeTab, setActiveTab]=useState("courses")
     return (
         <div>
        <section>
@@ -11,9 +15,9 @@ const Mentor=()=>{
                 <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
                 <div className="profil-img flex flex-col justify-center items-center">
                     <img src="mentor_avatar.jpg" className="mentor-avatar rounded-full"/>
-                   <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-500">
-            <div className="like-count flex items-center gap-2"><img src="users.svg" ></img>2.6k tələbə</div>
-            <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>Rəy(100+)</div>
+                   <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-700">
+            <div className="like-count flex items-center gap-2"><HiOutlineUsers fontSize={24}/>   2.6k tələbə</div>
+            <div className="comment-count flex items-center gap-2" ><FaRegComments fontSize={24}/>  Rəy(100+)</div>
         </div>
 
                 </div>
@@ -38,83 +42,25 @@ const Mentor=()=>{
         </div>
             <div className="flex justify-center mb-5">
     <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
-            <button className={`rounded-full w-full ${activeTab==="course" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("course")}>Kurslar</button>
+            <button className={`rounded-full w-full ${activeTab==="courses" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("courses")}>Kurslar</button>
             <button  className={`rounded-full w-full ${activeTab==="posts" ?  "bg-blue-700 text-white" : ''}`}  onClick={()=>setActiveTab("posts")}>Postlar</button>
             <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
         </div> 
-                </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="course-item shadow-lg rounded-2xl">
-                        <article>
-            <a>
-              <img src="nuclear_reaction.jpg"></img>
-            </a>
-            </article>
-            <div className="course-category mt-3 text-blue-400">Fizika</div>
-            <div className="course-title mb-3 mt-3">
-              <h4 className="font-bold text-2xl">
-                Nüvə Reaksiyaları və Əsas Prinsiplər
-              </h4>
-            </div>
-            <p>
-              <span className="font-medium skills text-black">
-                Əldə Edəcəyin Bacarıqlar:
-              </span>
-              Nüvənin parçalanması, birləşməsi və çevrilməsi proseslərinin necə
-              baş verdiyini elmi şəkildə anlaya biləcəksən.
-            </p>
-            <div className="flex justify-between pb-3 mt-3">
-              <div className="flex gap-5 items-center">
-                <div className="avatar">
-                <img src="avatar.png" className=" rounded-full object-cover"/>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="font-bold">Aydan A</h4>
-                  <p>20 Jan 2025</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 ">
-                <img src="star.svg" /> <span>4.8</span>
-                <img src="users.svg" /> <span>3.2k</span>
-              </div>
-            </div>
-          </div>  
-             <div className="course-item shadow-lg rounded-2xl">
-                        <article>
-            <a>
-              <img src="nuclear_reaction.jpg"></img>
-            </a>
-            </article>
-            <div className="course-category mt-3 text-blue-400">Fizika</div>
-            <div className="course-title mb-3 mt-3">
-              <h4 className="font-bold text-2xl">
-                Nüvə Reaksiyaları və Əsas Prinsiplər
-              </h4>
-            </div>
-            <p>
-              <span className="font-medium skills text-black">
-                Əldə Edəcəyin Bacarıqlar:
-              </span>
-              Nüvənin parçalanması, birləşməsi və çevrilməsi proseslərinin necə
-              baş verdiyini elmi şəkildə anlaya biləcəksən.
-            </p>
-            <div className="flex justify-between pb-3 mt-3">
-              <div className="flex gap-5 items-center">
-                <div className="avatar">
-                <img src="avatar.png" className=" rounded-full object-cover"/>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="font-bold">Aydan A</h4>
-                  <p>20 Jan 2025</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 ">
-                <img src="star.svg" /> <span>4.8</span>
-                <img src="users.svg" /> <span>3.2k</span>
-              </div>
-            </div>
-          </div>  
+                </div> 
+                <div>                 
+                      {activeTab === "courses" && (
+ <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    {courses.length === 0 ? (
+      <p className="text-center text-xl font-bold col-span-3">Kurs tapılmadı</p>
+    ) : (
+      courses.map((item) => (
+        <CourseCard key={item._id} item={item} />
+      ))
+    )}
         </div>
+)}  
+{activeTab==="articles" && <Articles/> }
+</div>
         </section>
         </div>
     )

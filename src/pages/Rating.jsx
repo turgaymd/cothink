@@ -7,8 +7,8 @@ const Rating=()=>{
             <section>
                 <div className="flex justify-center">
     <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
-            <button className={`rounded-full w-full ${active==="week" ?  "bg-blue-700 text-white " : ''}`} onClick={()=>setActive("week")}>Həftəlik Reyting</button>
-            <button className={`rounded-full w-full ${active==="month" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActive("month")}>Aylıq Reyting</button>
+            <button className={`rounded-full w-full ${active==="week" ?  "bg-blue-800 text-white " : ''}`} onClick={()=>setActive("week")}>Həftəlik Reyting</button>
+            <button className={`rounded-full w-full ${active==="month" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActive("month")}>Aylıq Reyting</button>
         </div>
             
                 </div>

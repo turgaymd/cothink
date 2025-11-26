@@ -5,10 +5,9 @@ import Articles from "./Articles";
 import Course, { CourseCard } from "./Courses";
 import courses from "../data/CourseData";
 import Books from "./Books";
+import Posts from "./Posts";
 const Saved=()=>{
       const [activeTab, setActiveTab]=useState("books")
-
- 
     return (
         <section>
             <Search/>
@@ -34,6 +33,7 @@ const Saved=()=>{
 )}
                   {activeTab==="articles" && <Articles/> }
                   {activeTab==="books" && <Books/> }
+                    {activeTab==="posts" && <Posts/> }
         </section>
     )
 }

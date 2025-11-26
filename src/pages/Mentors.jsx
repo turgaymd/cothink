@@ -65,7 +65,7 @@ const  [query, setQuery]=useState("")
                 )
             }
             </div>
-      <div className="course-filter mt-4 mb-4">
+      <div className="course-filter mt-4 mb-5">
                     <div className="filter-items flex gap-3">
                                             <span className="active rounded-md">Hamısı</span>
                         {
@@ -94,7 +94,7 @@ const  [query, setQuery]=useState("")
                                 <h4 className="font-bold text-lg">{item.name}</h4>
                         <p>{item.category} </p>
                          <div className="flex justify-between gap-5 items-center pt-4">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
                           <img src="users.svg" className="w-5 h-5"/>
                           <span>{item.students} tələbə</span>

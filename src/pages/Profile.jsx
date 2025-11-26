@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { IoMenu } from "react-icons/io5";
-import { BsThreeDots } from "react-icons/bs";
+import Articles from "../components/Articles";
+import Books from "../components/Books";
+import courses from "../data/CourseData";
+import { CourseCard } from "../components/Courses";
+import Posts from "../components/Posts";
 const Profiles=()=>{
-      const [activeTab, setActiveTab]=useState("books")
+      const [activeTab, setActiveTab]=useState("courses")
     return  (
         <section>
             <div className="flex justify-between">
@@ -14,6 +18,7 @@ const Profiles=()=>{
             <div className="flex flex-col gap-3 justify-center">
                 <h4 className="font-bold text-xl">Rauf Quliyev</h4>
                 <div className="flex gap-5">
+                     <span>2.6k tələbə</span>
                     <span>38 post</span>
                     <span>120 izləyici</span>
                     <span>45 izlədiklərim</span>
@@ -25,57 +30,32 @@ const Profiles=()=>{
                 <button><IoMenu fontSize={24}/></button> 
              </div>
         </div>
+        <div className="flex gap-3 mt-3 mb-3">
+            <a className="bg-blue-800 text-white rounded-full py-3 px-5" href="/profile/edit">Profili redaktə et</a>
+            <button className="bg-blue-800 text-white rounded-full px-5 py-3">Profili paylaş</button>
+        </div>
             <div className="flex justify-center mb-5 mt-5">
     <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
-            <button className={` rounded-full w-full ${activeTab==="books" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("books")}>Postlar</button>
-            <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-700 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Cavablar</button>
+            <button className={`rounded-full w-full ${activeTab==="courses" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("courses")}>Kurslar</button>
+            <button className={` rounded-full w-full ${activeTab==="posts" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("posts")}>Postlar</button>
+            <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
         </div> 
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center max-w-5xl mx-auto">
-  <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
-    <div className="flex justify-between items-center">
-        <div className="flex gap-4">
-        <img src="həcər.jpg" className="rounded-full w-24 h-24"/>
-        <div>
-            <h4 className="font-bold text-xl">Aydan A</h4>
-            <p className="text-gray-500">UI/UX Designer</p>
-            <p className="text-gray-500">3 ay əvvəl</p></div>
-              </div>
-<BsThreeDots/>
-    </div>
-                <h4 className="font-bold text-2xl">Bugünkü Öyrənmə Nailiyyətim</h4>
-                <p className="text-gray-500">Bu gün Maxwell Tənlikləri mövzusunu öyrəndim və nəhayət elektromaqnetizmi başa düşməyə başladım.Açığı, əvvəllər bu mövzu mənə çox abstrakt gəlirdi və elektrik sahəsi...daha çox</p>
-           <img src="post.jpg" className="w-full h-60 rounded-md"/>
-            <div className="post-reactions flex gap-5">
-            <div className="like-count flex items-center gap-2"><img src="like.svg"></img>52</div>
-            <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>26</div>
-            <div className="saved-count flex items-center gap-2"><img src="save.svg"></img>36</div>
-            <div className="share flex items-center gap-2"><img src="share.svg"></img>Paylaş</div>
-        </div>
-            </div>
-  <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
-    <div className="flex justify-between items-center">
-        <div className="flex gap-4">
-        <img src="həcər.jpg" className="rounded-full w-24 h-24"/>
-        <div>
-            <h4 className="font-bold text-xl">Aydan A</h4>
-            <p className="text-gray-500">UI/UX Designer</p>
-            <p className="text-gray-500">3 ay əvvəl</p></div>
-              </div>
-<BsThreeDots/>
-    </div>
-                <h4 className="font-bold text-2xl">Bugünkü Öyrənmə Nailiyyətim</h4>
-                <p className="text-gray-500">Bu gün Maxwell Tənlikləri mövzusunu öyrəndim və nəhayət elektromaqnetizmi başa düşməyə başladım.Açığı, əvvəllər bu mövzu mənə çox abstrakt gəlirdi və elektrik sahəsi...daha çox</p>
-           <img src="post.jpg" className="w-full h-60 rounded-md"/>
-            <div className="post-reactions flex gap-5">
-            <div className="like-count flex items-center gap-2"><img src="like.svg"></img>52</div>
-            <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>26</div>
-            <div className="saved-count flex items-center gap-2"><img src="save.svg"></img>36</div>
-            <div className="share flex items-center gap-2"><img src="share.svg"></img>Paylaş</div>
-        </div>
-            </div>
-          
-        </div>
+
+
+  {activeTab === "courses" && (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {courses.length === 0 ? (
+      <p className="text-center text-xl font-bold col-span-3">Kurs tapılmadı</p>
+    ) : (
+      courses.map((item) => (
+        <CourseCard key={item._id} item={item} />
+      ))
+    )}
+  </div>
+)}
+                  {activeTab==="articles" && <Articles/> }
+                  {activeTab==="posts" && <Posts/> }
                
 </section>
 
