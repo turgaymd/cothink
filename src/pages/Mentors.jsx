@@ -86,22 +86,22 @@ const  [query, setQuery]=useState("")
                   {filteredMentors.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
                   (filteredMentors.map((item,index)=>(
-                   <div className="mentor-item shadow-xl rounded-xl" key={index}>
+                   <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
+                    <a href="/mentor" className="block">
                     <div className="mentor-title gap-5 flex">          
-                            <img src={item.img} className="avatar rounded-full" alt="mentor"></img>
-                            <div className="flex flex-col">
+                            <img src={item.img} className="avatar rounded-full object-cover" alt="mentor"/>
+                            <div className="flex flex-col w-full">
                                 <h4 className="font-bold text-lg">{item.name}</h4>
                         <p>{item.category} </p>
-                         <div className="flex gap-5 items-center pt-4">
+                         <div className="flex justify-between gap-5 items-center pt-4">
                         <div className="flex items-center gap-2">
                         <div className="flex items-center gap-2">
-                          <img src="users.svg"/>
+                          <img src="users.svg" className="w-5 h-5"/>
                           <span>{item.students} tələbə</span>
                                </div>
                          <div className="flex items-center gap-2">  
-                        <img src="comment.svg"/>
+                        <img src="comment.svg" className="w-5 h-5"/>
                         <span>{item.comments}</span>
-                   
                              </div>
                         </div>                               
                        <div className="flex flex-col items-center gap-2">
@@ -113,7 +113,7 @@ const  [query, setQuery]=useState("")
                            </div>   
                                                    
                             </div>
-                        
+                        </a>
                                        
             </div>
             
