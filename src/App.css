@@ -9,7 +9,7 @@ body{
   padding: 25px 20px;
 }
 .navbar .desktop-menu li a{
-  padding: 25px;
+  padding: 15px 25px;
   font-weight: 400;
 
 }
@@ -60,7 +60,6 @@ section{
   background-color: royalblue;
   color:white;
   border-radius:25px;
-  padding: 15px 25px;
 }
 
 .sidebar li img{
@@ -73,7 +72,7 @@ section{
 } */
 
 .sidebar ul li a.active{
-  color: white;
+   color: white;
    background: #3663C5;
 }
 .research-form{

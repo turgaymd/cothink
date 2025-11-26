@@ -73,12 +73,17 @@ const About=()=>{
                   required
                 ></input>
               </div>
-              
+
             </div>
           </form>
+          
         </div>
       </div>
     </div>
+    <div className="text-center mt-5">
+                  <a className="bg-blue-700 text-white px-5 py-3 rounded-md" href="/settings">Geri</a>
+    </div>
+
         </section>
     )
 }

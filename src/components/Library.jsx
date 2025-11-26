@@ -32,7 +32,7 @@ const Library=()=>{
                   <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
                filteredBooks.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-                        <a href="/libraryy">
+                        <a href="/library/books/:id">
                 <div className="flex items-center gap-5">
                     <img src={item.img} className="w-35 h-35"  alt="book"></img>
                     <div className="mentor-title flex flex-col gap-3">
@@ -43,16 +43,16 @@ const Library=()=>{
                          <div className="flex items-center gap-5 stats">
                         <div className="flex items-center gap-2">
                           <a className="flex gap-3" download href="/books">
-                          <img src="download.svg"/>
+                          <img src="/download.svg"/>
                           <span>Yüklə</span>                     
                           </a>
                         </div>
                          <div className="flex items-center gap-2">  
-                        <img src="share.svg"/>
+                        <img src="/share.svg"/>
                         <span>Paylaş</span>
                         </div>
                         <div className="flex items-center gap-2">
-                      <img src="save.svg"/>
+                      <img src="/save.svg"/>
                
                         </div>
                     </div>

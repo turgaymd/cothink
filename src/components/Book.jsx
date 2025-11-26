@@ -1,17 +1,20 @@
+import { useNavigate } from "react-router-dom"
+
 const Book=()=>{
+    const navigate=useNavigate()
     return (
         <section>
         <div className="flex justify-center items-center gap-4 flex-col mb-5">
 <h2 className="font-bold text-center text-2xl">Konvensiya</h2>
-<img src="book_1.png" className="w-24 h-24 text-center"/>
+<img src="/book_1.png" className="w-24 h-24 text-center"/>
 <p className="text-xl">Mathematics_and_Its_Applications_7th_Edition</p>
 <h4 className="font-bold text-xl">Rosen Discrete</h4>
    <div className="post-reactions flex justify-end gap-5">
-            <div className="like-count flex items-center gap-2"><img src="like.svg"></img>52</div>
-            <div className="saved-count flex items-center gap-2"><img src="save.svg"></img>36</div>
-            <div className="share flex items-center gap-2"><img src="share.svg"></img>Paylaş</div>
+            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>52</div>
+            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>36</div>
+            <div className="share flex items-center gap-2"><img src="/share.svg"></img>Paylaş</div>
  </div>
- <button className="bg-blue-800 text-white rounded-md px-4 py-2">Oxumağa davam edin</button>
+ <button className="bg-blue-800 text-white rounded-md px-4 py-2" onClick={()=>navigate('/library/books/:id/read')}>Oxumağa davam edin</button>
   </div>
 <div>
 <p className="text-center font-bold">Kitab haqqında </p>

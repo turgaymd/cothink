@@ -12,16 +12,16 @@ const  [query, setQuery]=useState("")
         {
             name:"Nərgiz Əliyeva",
             img:"aysel.png",
-            category:"Proqramlaşdirma",
+            category:"Proqramlaşdirma (Frontend)",
             students:"3.2K",
             comments:"200+",
             rating:"4.8/5"
         },
            {
-            name:"Nərgiz Əliyeva",
-            img:"aysel.png",
-            category:"Proqramlaşdirma",
-            students:"3.2K",
+            name:"Elvin Quliyev",
+            img:"elvin.jpg",
+            category:"Riyaziyyat & Alqoritmlər",
+            students:"2.6K",
             comments:"200+",
             rating:"4.8/5"
         }
@@ -42,7 +42,7 @@ const  [query, setQuery]=useState("")
           <section>
             <Search query={query} setQuery={setQuery}/>
             <div className="mentor-banner mt-3">
-                <div className="relative">
+                <div className="relative flex flex-col md:flex-row">
                 <div className="">
                 <h2 className="text-3xl font-medium pb-3">Öyrənmə Yolunuza Uyğun Mentorlar</h2>
                 <p className="font-medium text-xl">Sizə ən uyğun mentor profillərini kəşf edin.</p>
@@ -65,7 +65,7 @@ const  [query, setQuery]=useState("")
                 )
             }
             </div>
-      <div className="course-filter mt-5 mb-5">
+      <div className="course-filter mt-4 mb-4">
                     <div className="filter-items flex gap-3">
                                             <span className="active rounded-md">Hamısı</span>
                         {
@@ -82,35 +82,41 @@ const  [query, setQuery]=useState("")
                 <h4 className="font-bold text-xl">Ən yaxşı mentorlar</h4>
                 <button className="text-blue-500" >Hamısına bax</button>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5 pt-5">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 pt-4">
                   {filteredMentors.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
                   (filteredMentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl" key={index}>
-                <a className="flex items-center gap-5" href="/mentor">
-                    <img src={item.img} className="avatar rounded-full" alt="mentor"></img>
-                    <div className="mentor-title flex flex-col gap-3">
-                        <h4 className="font-bold text-xl">{item.name}</h4>
+                    <div className="mentor-title gap-5 flex">          
+                            <img src={item.img} className="avatar rounded-full" alt="mentor"></img>
+                            <div className="flex flex-col">
+                                <h4 className="font-bold text-lg">{item.name}</h4>
                         <p>{item.category} </p>
-                         <div className="flex justify-between gap-3 items-center stats">
+                         <div className="flex gap-5 items-center pt-4">
+                        <div className="flex items-center gap-2">
                         <div className="flex items-center gap-2">
                           <img src="users.svg"/>
                           <span>{item.students} tələbə</span>
+                               </div>
                          <div className="flex items-center gap-2">  
                         <img src="comment.svg"/>
                         <span>{item.comments}</span>
-                        </div>
+                   
                              </div>
-                        <div className="flex flex-col items-center gap-2">
-                                                <span>{item.rating}</span>
+                        </div>                               
+                       <div className="flex flex-col items-center gap-2">
+                        <span>{item.rating}</span>
                       <img src="stars.svg"/>
-
                         </div>
-                    </div>
-                    </div>
-              
-                </a>           
+                       
+                                   </div>
+                           </div>   
+                                                   
+                            </div>
+                        
+                                       
             </div>
+            
                    )))}
             </div>
           </section>

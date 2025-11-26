@@ -6,6 +6,7 @@ const Support=()=>{
     return (
         <section>
         <div>
+         <h2 className="text-center text-2xl font-bold pb-3">Kömək və dəstək</h2>
                <div className="features_card shadow-white-200 shadow-xl">
                          <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                         <div className="flex items-center gap-3">
@@ -58,6 +59,9 @@ const Support=()=>{
                             
                     </div>
         </div>
+         <div className="text-center mt-5">
+                  <a className="bg-blue-700 text-white px-5 py-3 rounded-md" href="/settings">Geri</a>
+    </div>
         </section>
 
     )

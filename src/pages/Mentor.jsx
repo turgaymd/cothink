@@ -5,15 +5,15 @@ const Mentor=()=>{
     return (
         <div>
        <section>
-        <h2 className="text-center font-bold text-2xl">Mentor Profili</h2>
-        <div className="mentor-profile ">
-            <div className="card ">
+        <h2 className="text-center font-bold text-2xl ">Mentor Profili</h2>
+        <div className="mentor-profile mt-4 ">
+            <div className="bg-white shadow-3xl border border-gray-200 shadow-white-800 rounded-lg px-10 py-4">
                 <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
                 <div className="profil-img flex flex-col justify-center items-center">
                     <img src="mentor_avatar.jpg" className="mentor-avatar rounded-full"/>
-                   <div className="flex justify-end gap-5 comment-reactions pt-3">
-            <div className="like-count flex items-center gap-2"><img src="users.svg"></img>2.6k tələbə</div>
-            <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>26</div>
+                   <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-500">
+            <div className="like-count flex items-center gap-2"><img src="users.svg" ></img>2.6k tələbə</div>
+            <div className="comment-count flex items-center gap-2" ><img src="comment.svg"></img>Rəy(100+)</div>
         </div>
 
                 </div>
@@ -22,6 +22,8 @@ const Mentor=()=>{
 <p>UX dizayn və istifadəçi tədqiqatı üzrə 6 illik təcrübəyə malikdir.</p>
 <div className="flex gap-4">
    <span className="bg-white rounded-full px-4 py-2 border border-gray-400"> UX/UI Designer</span>
+   <a></a>
+   <a></a>
 </div>
 <p>Danışıq dilləri:</p>
 <div className="flex gap-3 mt-2 mb-5">

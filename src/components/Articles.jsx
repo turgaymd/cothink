@@ -34,7 +34,7 @@ const  [query, setQuery]=useState("")
                 )
             }
             </div>
-            <div className="topics  flex gap-4">
+            <div className="topics flex gap-4">
                {
                     displayedCategories.map((item, index)=>(
                     <div className="topic-item flex-1" key={index}>

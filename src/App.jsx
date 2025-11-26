@@ -18,10 +18,10 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Book from "./components/Book";
 import Questions from "./pages/Questions";
-import ResetPassword from "./components/ResetPassword";
 import EditProfile from "./pages/EditProfile";
-import Support from "./components/Support";
 import CourseDetail from "./components/CourseDetail";
+import Saved from "./components/Saved";
+import BookView from "./components/BookView";
 
 function App() {
   return (
@@ -32,21 +32,26 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/confirm" element={<SentCode/>} />
+        
         <Route path="/*" element={<NotFound/>} />
         <Route element={<MainLayout/>}>
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/questions" element={<Questions/>} />
+       
         <Route path="/mentors" element={<Mentors/>} />
         <Route path="/mentor" element={<Mentor/>} />
         <Route path="/library" element={<Library/>} />
-        <Route path="/libraryy" element={<Book/>} />
+        <Route path="/library/books/:id" element={<Book/>} />
+        <Route path="/library/books/:id/read" element={<BookView/>} />
+        <Route path="/saved" element={<Saved/>} />
         <Route path="/courses" element={<Course/>} />
         <Route path="/courses/course" element={<CourseDetail/>} />
         <Route path="/rating" element={<Rating/>} />
         <Route path="/profile" element={<Profile/>} />
+        
         <Route path="/profile/edit" element={<EditProfile/>} />
         <Route path="/settings" element={<Settings/>} />
-        <Route path="/saved" element={<NotFound/>} />
+        <Route path="/saved" element={<Saved/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
         </Route>
       </Routes>
