@@ -23,6 +23,7 @@ import CourseDetail from "./components/CourseDetail";
 import Saved from "./components/Saved";
 import BookView from "./components/BookView";
 import CourseContent from "./components/CourseContent";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -36,10 +37,12 @@ function App() {
         
         <Route path="/*" element={<NotFound/>} />
         <Route element={<MainLayout/>}>
-
+        <Route path="/home" element={<Home/>} />
+        
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/questions" element={<Questions/>} />
         <Route path="/saved" element={<Saved/>} />
+
 
         <Route path="/mentors" element={<Mentors/>} />
         <Route path="/mentors/:id" element={<Mentor/>} />
