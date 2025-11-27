@@ -24,6 +24,7 @@ import Saved from "./components/Saved";
 import BookView from "./components/BookView";
 import CourseContent from "./components/CourseContent";
 import Home from "./pages/Home";
+import Article from "./components/Article";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
 
         <Route path="/library" element={<Library/>} />
         <Route path="/library/books/:id" element={<Book/>} />
+        <Route path="/library/articles/:id" element={<Article/>} />
         <Route path="/library/books/:id/read" element={<BookView/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
 

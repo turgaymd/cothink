@@ -12,7 +12,7 @@ const Profiles=()=>{
         <section>
             <div className="flex justify-between">
         <div className="flex gap-5">
-            <div className="img">
+            <div>
                 <img src="rauf.jpg" className="rounded-full h-24 w-24 object-cover"/>                
             </div>
             <div className="flex flex-col gap-3 justify-center">

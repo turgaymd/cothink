@@ -50,6 +50,7 @@ const  [query, setQuery]=useState("")
                   <p className="font-bold col-span-2 text-center text-2xl">Məqalə tapılmadı</p>   : (
                     filteredArticles.map((item, index)=>(
   <div className="article-item mb-5" key={index}>
+    <a href="/library/articles/id">
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center">
                         <div className="article-author flex items-center gap-2">
@@ -66,6 +67,7 @@ const  [query, setQuery]=useState("")
                         <p className="text-white">{item.title}</p>
                     </div>
                 </div>
+                </a>
             </div>   
                     )))
                 }

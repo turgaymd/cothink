@@ -28,13 +28,17 @@ const CourseDetail=()=>{
                 <h4 className="font-bold">Aytac H.</h4>
                 <p className="text-gray-400">Abunəçilər 11.2k</p>
                 </div>
+                
             </div>
+            
             <div className="flex items-center gap-3 ">                 
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <button className="bg-blue-500 text-white rounded-md p-2"><BsChatRightText className="text-2xl"/></button>
                    <button className="text-blue-700 rounded-md px-5 py-2 border border-blue-700">İzlə</button>
             </div>
+            
             </div>
+            
              </div>
              <div className="">
                 <button className="w-full bg-blue-800 text-xl text-white rounded-full">Kurs planı</button>
@@ -97,6 +101,20 @@ const CourseDetail=()=>{
                         </div>
                         </div>
              </div>
+                <div className="comment-item pt-3 mt-5">
+          <div className="comment-header flex md:flex-row flex-col items-center">
+            <img  className="rounded-md avatar" src="/həcər.jpg"></img>
+            <div className="pl-4">
+           <h4 className="font-semibold">Həcər Quliyeva</h4>
+            <p className="text-gray-500">Tələbə – Kompüter Mühəndisliyi</p>
+            <p className="mt-3 text-black">Çox aydın izah olunub. Xüsusilə Enerji və İş anlayışları arasındakı fərqlərin real nümunələrlə göstərilməsi xoşuma gəldi</p>
+            </div>
+                    </div>
+            <div className="flex justify-end gap-5 comment-reactions pt-3">
+            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>52</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>
+    </div>
+</div>
         </div>
      </section>
     )
