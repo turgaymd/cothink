@@ -24,7 +24,7 @@ if (strlen($password) < 8) {
 }
 
 // email var?
-$check = $pdo->prepare("SELECT mentor_id FROM mentors WHERE mentor_email = ?");
+$check = $pdo->prepare("SELECT student_id FROM student_table WHERE student_email = ?");
 $check->execute([$email]);
 
 if ($check->rowCount() > 0) {
@@ -36,7 +36,7 @@ if ($check->rowCount() > 0) {
 // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $query = $pdo->prepare("
-    INSERT INTO mentors (mentor_name, mentor_email, mentor_password)
+    INSERT INTO mentors (student_name, student_email, student_password)
     VALUES (?, ?, ?)
 ");
 
