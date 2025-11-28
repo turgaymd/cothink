@@ -1,12 +1,15 @@
-import { CiSearch } from "react-icons/ci";
-import { IoIosNotificationsOutline } from "react-icons/io";
+
 import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
-import { BiSolidQuoteAltLeft } from "react-icons/bi";
+import { LuBookText } from "react-icons/lu";
+import { RiQuestionnaireLine } from "react-icons/ri";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { MdArrowOutward } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
+import { SiReaddotcv } from "react-icons/si";
+import { useState } from "react";
 const Home=()=>{
+        const [open, setOpen]=useState(  false  )
     return (
         <>
                 <header className="w-full top-0 z-50 navbar items-center">
@@ -17,29 +20,41 @@ const Home=()=>{
                         </Link>
                     </div>
                         <ul className="hidden md:flex gap-6 desktop-menu">
-                            <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/home">Ana Səhifə</NavLink></li>
+                            <li className="nav-item"><a className={({isActive})=> isActive ? "active" : "" } href="#home">Ana Səhifə</a></li>
                             <li className="nav-item"><a className={({isActive})=> isActive ? "active" : "" } href="#services">Xidmətlərimiz</a></li>
                             <li className="nav-item"><a className="" href="#about">Haqqımızda</a></li>
-                            <li className="nav-item"><NavLink className="" to="/rating">Əlaqə</NavLink></li>
+                            <li className="nav-item"><a className="" to="/rating">Əlaqə</a></li>
                         </ul>
                            <div className="hidden md:flex actions items-center gap-3 ">                 
                                <a className="border border-blue-800 text-blue-800 rounded-full px-7 py-3" href="/register">Qeydiyyat</a>
                         </div>
-                        <button className="md:hidden text-3xl" >
-                            { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
-                        </button>
+                       <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
+                { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
+            </button>
             
                     </div>
+                      {
+                                    open && (
+                                    <ul className="md:hidden bg-white shadow-md flex flex-col gap-5 px-6 py-4 nav">
+                                    <li className="nav-item"><a  href="#home">Ana Səhifə</a></li>
+                                    <li className="nav-item"><a  href="#services">Xidmətlərimiz</a></li>
+                                    <li className="nav-item"><a  href="#about">Haqqımızda</a></li>
+                                    <li className="nav-item"><a c >Əlaqə</a></li>
+                                      
+                                </ul>   
+                                    )
+                    
+                                }
                     </header>
-                     <section>
-            <div className="grid grid-cols-2">
+                     <section id="home">
+            <div className="grid md:grid-cols-2  grid-cols-1">
                 <div className="flex flex-col justify-center ">
                     <h2 className="font-bold text-2xl">Bilik paylaşdıqca artır </h2>
                     <p className="text-gray-500 pb-4 pt-4">Öyrənməni daha ağıllı, daha sadə və daha əlçatan edən yeni nəsil təhsil platforması.
 CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bilikləri bir araya gətirir.</p>
 <button className="bg-blue-800 text-white rounded-full w-64 flex items-center justify-center gap-3"> Kəşfə başlayın <MdArrowOutward  className="text-blue-500 bg-white rounded-full" fontSize={24}/></button>
                 </div>
-                <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center mt-3">
                     <img src="home_banner.jpg" className="rounded-md"/>
                 </div>
             </div>
@@ -82,7 +97,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                 </div>
                 <div className="flex justify-center">
 
-                  <div class="bg-blue-700 w-64 h-32 rounded-[50%/50%] relative">
+                  <div className="bg-blue-700 w-64 h-32 rounded-[50%/50%] relative">
                                     <img src="macbook_.png" className="absolute bottom-2 object-cover" />
                   </div>
   
@@ -109,7 +124,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                                 <div className="flex border border-gray-200 rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
                         <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
-                     <HiOutlineUsers fontSize={24}/>
+                     <HiOutlineUsers fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
                      
@@ -121,8 +136,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                            <div className="flex border border-gray-200 rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
                         <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
-                     <img src="library.svg"/>
-                        </div>
+                    <LuBookText fontSize={28} className="text-blue-800"/>                        </div>
                      <div>
                      
                         <h5 className="font-bold text-xl">Akademik resurslar</h5>
@@ -133,10 +147,9 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                                 <div className="flex border border-gray-200 rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
                         <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
-                     <img src="library.svg"/>
+                     <RiQuestionnaireLine fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
-                     
                         <h5 className="font-bold text-xl">Sual–Cavab</h5>
                         <p>Tələbələr və mentorlar tərəfindən verilən real cavablar; ən faydalıları önə çıxır.</p>
                      </div>
@@ -146,7 +159,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                  <div className="flex border border-gray-200 mt-4  rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
                         <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
-                     <img src="library.svg"/>
+                     <SiReaddotcv fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
                      
@@ -161,14 +174,15 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
             <section>
   
                   <div className="mt-5 mb-5 rounded-2xl one-platform">
-                <div className="flex md:flex-row flex-col justify-between items-center gap-7 px-5 py-3"> 
+                <div className="flex md:flex-row flex-col justify-between items-center gap-4 px-5 py-3"> 
                     <div className="flex relative">
-                         <img src="laptop.png" className="bottom-10 w-80 object-cover h-64"/>
-                        <img src="articles.jpg" className="absolute w-60 h-40 top-20  -right-25"/>
-
+                    <div className="absolute -top-15 left-0 md:w-84 md:h-80  z-0 bg-blue-300   rounded-full  "> </div>
+                         <img src="laptop.png" className=" relative  w-40 md:w-80 h-auto object-cover z-9"/>    
+                         <div className="absolute -bottom-15 -right-25 w-48 h-48 md:w-64 md:h-64  z-0 bg-blue-300   rounded-full">  </div>
+                        <img src="articles.jpg" className="absolute pt-2 md:pt-12 w-30 md:w-60 h-auto top-20 z-10 -right-15 md:-right-25 "/>
                     </div>
                      <div>
-                  <h2 className="font-bold text-2xl pb-4"> Hər ehtiyacın — bir platformada</h2> 
+                  <h2 className="font-bold text-2xl pb-4 mt-7 md:mt-0" > Hər ehtiyacın — bir platformada</h2> 
                   <p>CoThink öyrənməni asanlaşdıran tam akademik mühit yaradır.
 Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
 </p> 
