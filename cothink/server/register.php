@@ -36,7 +36,7 @@ if ($check->rowCount() > 0) {
 // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $query = $pdo->prepare("
-    INSERT INTO mentors (student_name, student_email, student_password)
+    INSERT INTO student_table (student_name, student_email, student_password)
     VALUES (?, ?, ?)
 ");
 
