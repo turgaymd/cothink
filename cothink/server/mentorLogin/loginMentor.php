@@ -1,5 +1,5 @@
 <?php
-require_once "db.php";
+require_once "../db.php";
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -16,7 +16,7 @@ if (!$email || !$password) {
 }
 
 // Emailə uyğun mentor tap
-$query = $pdo->prepare("SELECT * FROM student_table WHERE student_email = ?");
+$query = $pdo->prepare("SELECT * FROM  mentors WHERE  mentor_email = ?");
 $query->execute([$email]);
 $user = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -26,7 +26,7 @@ if (!$user) {
 }
 
 // PASSWORD YOXLAMASI (hansı istifadə olunursa onu seç)
-if ($password !== $user["student_password"]) {  
+if ($password !== $user["mentor_password"]) {  
     // Əgər hash istifadə edirsənsə aşağıdakını işə sal
     // if (!password_verify($password, $user["mentor_password"])) {
 
@@ -37,8 +37,8 @@ if ($password !== $user["student_password"]) {
 $token = bin2hex(random_bytes(32));
 
 echo json_encode([
-    "username" => $user["student_name"],
-    "email" => $user["student_email"],
+    "username" => $user["mentor_name"],
+    "email" => $user["mentor_email"],
     "token" => $token
 ]);
 ?>
