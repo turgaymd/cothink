@@ -37,8 +37,9 @@ function App() {
         <Route path="/confirm" element={<SentCode/>} />
         
         <Route path="/*" element={<NotFound/>} />
+                <Route path="/home" element={<Home/>} />
         <Route element={<MainLayout/>}>
-        <Route path="/home" element={<Home/>} />
+
         
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/questions" element={<Questions/>} />

@@ -41,8 +41,6 @@ const Profiles=()=>{
             <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
         </div> 
         </div>
-
-
   {activeTab === "courses" && (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
     {courses.length === 0 ? (

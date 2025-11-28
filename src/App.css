@@ -234,6 +234,23 @@ padding: 25px 25px;
 .progress-bar{
   width: 45%;
 }
+.service-item{
+  padding: 25px 20px;
+}
+.one-platform{
+  background: #B5C1F5;
+  padding: 20px 25px;
+}
+footer{
+  background-color: #E2E2FB;
+  padding: 40px 25px;
+}
+footer h4{
+  padding-bottom: 1rem;
+}
+.footer-menu li {
+  padding-bottom: 15px;
+}
 /* .stats img{
   color: #444444 !important;
   width: 24px;
