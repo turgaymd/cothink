@@ -33,14 +33,13 @@ const Home=()=>{
                     </header>
                      <section>
             <div className="grid grid-cols-2">
-                <div >
+                <div className="flex flex-col justify-center ">
                     <h2 className="font-bold text-2xl">Bilik paylaşdıqca artır </h2>
                     <p className="text-gray-500 pb-4 pt-4">Öyrənməni daha ağıllı, daha sadə və daha əlçatan edən yeni nəsil təhsil platforması.
 CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bilikləri bir araya gətirir.</p>
-
-<button className="bg-blue-800 text-white rounded-full flex items-center justify-center gap-3"> Kəşfə başlayın <MdArrowOutward  className="text-blue-500 bg-white rounded-full" fontSize={24}/></button>
+<button className="bg-blue-800 text-white rounded-full w-64 flex items-center justify-center gap-3"> Kəşfə başlayın <MdArrowOutward  className="text-blue-500 bg-white rounded-full" fontSize={24}/></button>
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center items-center">
                     <img src="home_banner.jpg" className="rounded-md"/>
                 </div>
             </div>
@@ -48,7 +47,7 @@ CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bili
             <section id="about">
             <div>
                 <h2 className="font-bold text-3xl text-center mb-5">Niyə  Bizi Seçməlisiniz ?</h2>
-                <div className="grid md:grid-cols-4 md:gap-0 gap-3  grid-cols-1 pt-5">
+                <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 md:gap-0 gap-3  grid-cols-1 pt-5">
                     <div className="bg-gray-100  border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto">
                         <h5 className="font-bold">Təhlükəsiz və Etibarlı</h5>
                         <p className="text-gray-400 text-center">Bütün məzmun müəllimlər və mütəxəssislər tərəfindən yoxlanılır.</p>
