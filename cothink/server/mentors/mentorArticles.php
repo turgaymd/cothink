@@ -8,7 +8,7 @@ $mentor_id = $_GET['mentor_id'];
 $sql = $conn->query("SELECT * FROM mentor_article WHERE mentor_id=$mentor_id");
 $articles = [];
 
-while($row = $sql->fetch_assoc()){
+while($row = $sql->fetch(PDO::FETCH_ASSOC)){
     $articles[] = $row;
 }
 
