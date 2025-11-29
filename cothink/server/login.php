@@ -24,12 +24,8 @@ if (!$user) {
     echo json_encode(["error" => "Email və ya şifrə yanlışdır"]);
     exit;
 }
-
-// PASSWORD YOXLAMASI (hansı istifadə olunursa onu seç)
-if ($password !== $user["student_password"]) {  
-    // Əgər hash istifadə edirsənsə aşağıdakını işə sal
-    // if (!password_verify($password, $user["mentor_password"])) {
-
+ 
+if ($password !== $user["student_password"]) {   
     echo json_encode(["error" => "Email və ya şifrə yanlışdır"]);
     exit;
 }
@@ -39,6 +35,7 @@ $token = bin2hex(random_bytes(32));
 echo json_encode([
     "username" => $user["student_name"],
     "email" => $user["student_email"],
+    "success" => true,
     "token" => $token
 ]);
 ?>
