@@ -64,6 +64,7 @@ echo json_encode([
     "message" => "User registered successfully",
     "username" => $username,
     "email" => $email,
+    "password" => $password,
     "token" => $token
 ]);
 exit;
