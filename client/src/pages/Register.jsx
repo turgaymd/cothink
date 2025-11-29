@@ -2,7 +2,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ function Register() {
   const [hide, setHide] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
-
+  const navigate=useNavigate()
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("")
@@ -35,17 +36,20 @@ function Register() {
           email:res.data.email,
           token:res.data.token
         }
-          if (res.data.success) {
-    alert("Registration successful!");
-  } else {
-    setError(res.data.message || "Unknown error");
+          if (res.data.error) {
+          setError(res.data.error);
+               return;
+  }
+  if(res.data.success){
+    toast.success("Registered successfully")
+          navigate("/home")
   }
 
         localStorage.setItem("user", JSON.stringify(userInfo))
 
     } catch (err) {
       console.error(err.response?.data || err.message);
-      setError(err.response?.data || err.message);
+      setError(err.response?.data?.error || err.message);
     }
   };
   return (
