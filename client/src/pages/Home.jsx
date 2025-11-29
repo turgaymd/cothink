@@ -41,7 +41,7 @@ const Home=()=>{
                                     <li className="nav-item"><a  href="#home">Ana Səhifə</a></li>
                                     <li className="nav-item"><a  href="#services">Xidmətlərimiz</a></li>
                                     <li className="nav-item"><a  href="#about">Haqqımızda</a></li>
-                                    <li className="nav-item"><a c >Əlaqə</a></li>
+                                    <li className="nav-item"><a  >Əlaqə</a></li>
                                       
                                 </ul>   
                                     )
