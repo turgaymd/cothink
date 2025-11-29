@@ -1,29 +1,32 @@
 <?php
 require_once "db.php";
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: POST");
- 
+// CORS headers
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("Content-Type: application/json");
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$name = trim($data["name"] ?? '');
+$username = trim($data["username"] ?? '');
 $email = trim($data["email"] ?? '');
 $password = trim($data["password"] ?? '');
 
-// if (!$name || !$email || !$password) {
-//     echo json_encode(["error" => "Bütün xanaları doldurun"]);
+// if (strlen($password) < 8) {
+//     echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);
 //     exit;
 // }
 
-if (strlen($password) < 8) {
-    echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);
-    exit;
-}
-
-// email var?
+// Check if email exists
 $check = $pdo->prepare("SELECT student_id FROM student_table WHERE student_email = ?");
 $check->execute([$email]);
 
@@ -32,8 +35,8 @@ if ($check->rowCount() > 0) {
     exit;
 }
 
-// ŞİFRƏNİ HASH ET! 
-// $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// Hash password before saving
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $query = $pdo->prepare("
     INSERT INTO student_table (student_name, student_email, student_password)
@@ -41,7 +44,7 @@ $query = $pdo->prepare("
 ");
 
 try {
-    $query->execute([$name, $email, $password]);
+    $query->execute([$username, $email, $hashedPassword]);
 } catch (Exception $e) {
     echo json_encode(["error" => "DB error: " . $e->getMessage()]);
     exit;
@@ -50,10 +53,11 @@ try {
 $token = bin2hex(random_bytes(32));
 
 echo json_encode([
-    "username" => $name,
-    "email" => $email,
     "success" => true,
+    "message" => "User registered successfully",
+    "username" => $username,
+    "email" => $email,
     "token" => $token
 ]);
- 
+exit;
 ?>
