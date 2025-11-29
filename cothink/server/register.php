@@ -52,6 +52,7 @@ $token = bin2hex(random_bytes(32));
 echo json_encode([
     "username" => $name,
     "email" => $email,
+    "success" => true,
     "token" => $token
 ]);
 ?>
