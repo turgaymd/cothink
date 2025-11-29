@@ -12,42 +12,51 @@ function Register() {
   const [error, setError] = useState("");
 
   const handleRegister = async (e) => {
-    e.preventDefault();
-    setError("")
-    if (!name || !email || !password) {
-      setError("Bütün xanaları doldurun");
-      return;
-    }
-     if(password.length<8){
-      setError("Şifrə ən azı 8 simvol olmalıdır");
-      return;
-    }
-    if (!agreed) {
-      setError("Qaydalar və şərtləri qəbul edin");
-      return;
-    }
-    try {
-    const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", { name, email, password},
-        {headers:{"Content-Type":"application/json"}}
-      );
-       const userInfo={
-          username:res.data.name,
-          email:res.data.email,
-          token:res.data.token
-        }
-          if (res.data.success) {
-    alert("Registration successful!");
-  } else {
-    setError(res.data.message || "Unknown error");
+  e.preventDefault();
+  setError("");
+  if (!name || !email || !password) {
+    setError("Bütün xanaları doldurun");
+    return;
+  }
+  if (password.length < 8) {
+    setError("Şifrə ən azı 8 simvol olmalıdır");
+    return;
+  }
+  if (!agreed) {
+    setError("Qaydalar və şərtləri qəbul edin");
+    return;
   }
 
-        localStorage.setItem("user", JSON.stringify(userInfo))
+  try {
+    const res = await axios.post(
+      "http://localhost/test/register.php",
+      { name, email, password },
+      { headers: { "Content-Type": "application/json" } }
+    );
 
-    } catch (err) {
-      console.error(err.response?.data || err.message);
-      setError(err.response?.data || err.message);
+    if (res.data.success) {
+      const userInfo = {
+        name: res.data.name,
+        email: res.data.email,
+        token: res.data.token,
+      };
+      alert("Registration successful!");
+      localStorage.setItem("user", JSON.stringify(userInfo));
+    } else {
+      // Burada res.data.error var, Unknown error olmayacaq
+      setError(res.data.error || "Unknown error");
     }
-  };
+  } catch (err) {
+    console.error(err);
+
+    // Əgər backend cavabı varsa onu oxu
+    if (err.response && err.response.data && err.response.data.error) {
+      setError(err.response.data.error);
+    } else {
+      setError(err.message);
+    }
+  }
+};
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card w-[90%] max-w-[500px]">
@@ -59,7 +68,10 @@ function Register() {
           <form className="login-form mx-auto pt-5" onSubmit={handleRegister}>
             {error && <p className="text-center text-red-600">{error}</p>}
             <div className="mb-5">
-              <label htmlFor="name" className="text-sm text-black font-medium mb-2">
+              <label
+                htmlFor="name"
+                className="text-sm text-black font-medium mb-2"
+              >
                 {" "}
                 Ad{" "}
               </label>
@@ -67,6 +79,7 @@ function Register() {
                 <input
                   type="text"
                   id="name"
+                  value={name}
                   placeholder="Adınızı daxil edin"
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
                   onChange={(e) => setName(e.target.value)}
@@ -84,6 +97,7 @@ function Register() {
                 <input
                   type="email"
                   id="email"
+                  value={email}
                   placeholder="Email ünvanınızı daxil edin"
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
                   onChange={(e) => setEmail(e.target.value)}
@@ -92,16 +106,14 @@ function Register() {
               </div>
             </div>
             <div className="mb-5">
-              <label
-                htmlFor="password"
-                className="text-black font-medium mb-4"
-              >
+              <label htmlFor="password" className="text-black font-medium mb-4">
                 Şifrə
               </label>
               <div className="relative">
                 <input
                   type={hide ? "text" : "password"}
                   id="password"
+                  value={password}
                   placeholder="*******"
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                   required

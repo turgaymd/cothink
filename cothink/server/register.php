@@ -21,10 +21,17 @@ $username = trim($data["username"] ?? '');
 $email = trim($data["email"] ?? '');
 $password = trim($data["password"] ?? '');
 
+ 
 // if (strlen($password) < 8) {
 //     echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);
 //     exit;
 // }
+ 
+// if (strlen($password) < 8) {
+//     echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);
+//     exit;
+// };
+ 
 
 // Check if email exists
 $check = $pdo->prepare("SELECT student_id FROM student_table WHERE student_email = ?");
