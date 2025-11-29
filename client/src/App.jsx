@@ -37,7 +37,7 @@ function App() {
         <Route path="/confirm" element={<SentCode/>} />
         
         <Route path="/*" element={<NotFound/>} />
-                <Route path="/home" element={<Home/>} />
+        <Route path="/home" element={<Home/>} />
         <Route element={<MainLayout/>}>
 
         
