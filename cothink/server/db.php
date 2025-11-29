@@ -1,7 +1,8 @@
  
 <?php
-$host = '127.0.0.1';
-$db   = 'cothink';   
+$host = 'localhost';  
+$db   = 'cothink';   // <-- your database name
+ 
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
