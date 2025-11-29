@@ -34,14 +34,19 @@ function Login() {
           email:res.data.email,
           token:res.data.token
         }
+          if (res.data.success) {
+          toast.success("Giriş uğurla tamamlandı")   
+        navigate("/home")
+  } else {
+    setError(res.data.message || "Unknown error");
+  }
    if(rememberMe){
     localStorage.setItem("user", JSON.stringify(userInfo))
     }
     else{
      sessionStorage.setItem("user", JSON.stringify(userInfo));
     }  
-       toast.success("Giriş uğurla tamamlandı")   
-        navigate("/home")
+
       } catch (err) {
         setError(err.response?.data?.message || "Istifadəçi adı və ya şifrə yalnışdır")
         console.error(err);
