@@ -4,7 +4,7 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgetPassword";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Discussion from "./pages/Discussion";
-import AuthProvider from "./AuthContext";
+import AuthProvider from "./AuthProvider";
 import Mentors from "./pages/Mentors";
 import Rating from "./pages/Rating";
 import Course from "./components/Courses";
