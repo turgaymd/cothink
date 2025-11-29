@@ -6,7 +6,7 @@ $result = $conn->query($sql);
 
 $articles = [];
 
-while ($row = $result->fetch_assoc()) {
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $articles[] = $row;
 }
 
