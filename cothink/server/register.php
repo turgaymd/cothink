@@ -9,9 +9,9 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$name = trim($data["name"] ?? '');
-$email = trim($data["email"] ?? '');
-$password = trim($data["password"] ?? '');
+$name = trim($data["student_name"] ?? '');
+$email = trim($data["student_email"] ?? '');
+$password = trim($data["student_password"] ?? '');
 
 // if (!$name || !$email || !$password) {
 //     echo json_encode(["error" => "Bütün xanaları doldurun"]);
@@ -34,10 +34,10 @@ if ($check->rowCount() > 0) {
     exit;
 }
 
-$email = trim($data["email"] ?? '');
+$email = trim($data["student_email"] ?? '');
 
 // Email formatını xüsusi qaydada yoxla
-if (!preg_match("/^[a-zA-Z0-9._%+-]{4,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
+if (!preg_match("/^[a-zA-Z0-9._]{4,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
     echo json_encode(["error" => "Email düzgün formatda deyil"]);
     exit;
 }

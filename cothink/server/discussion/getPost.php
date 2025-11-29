@@ -33,8 +33,7 @@ while($row = $result->fetch_assoc()){
             'comment_id' => $row['comment_id'],
             'parent_id' => $row['parent_id'],
             'mentor_id' => $row['comment_mentor_id'],
-            'comment_text' => $row['comment_text'],
-            'created_at' => $row['created_at']
+            'comment_text' => $row['comment_text']
         ];
     }
 }

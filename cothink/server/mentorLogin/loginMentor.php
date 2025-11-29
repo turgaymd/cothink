@@ -7,8 +7,8 @@ header("Access-Control-Allow-Methods: POST");
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$email = trim($data["email"] ?? '');
-$password = trim($data["password"] ?? '');
+$email = trim($data["mentor_name"] ?? '');
+$password = trim($data["mentor_password"] ?? '');
 
 if (!$email || !$password) {
     echo json_encode(["error" => "Bütün xanaları doldurun"]);
@@ -39,6 +39,7 @@ $token = bin2hex(random_bytes(32));
 echo json_encode([
     "username" => $user["mentor_name"],
     "email" => $user["mentor_email"],
+    "success" => true,
     "token" => $token
 ]);
 ?>

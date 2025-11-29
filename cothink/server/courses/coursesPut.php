@@ -39,10 +39,10 @@ foreach ($lessons as $index => $lesson) {
     // Fayl yükləmə
     $file_name = null;
 
-    if (isset($_FILES['lesson_files']['name'][$index])) {
-        $tmp  = $_FILES["lesson_files"]["tmp_name"][$index];
-        $name = time() . "_" . $_FILES["lesson_files"]["name"][$index];
-        move_uploaded_file($tmp, "../uploads/course_files/" . $name);
+    if (isset($_FILES['course_files']['name'][$index])) {
+        $tmp  = $_FILES["course_files"]["tmp_name"][$index];
+        $name = time() . "_" . $_FILES["course_files"]["name"][$index];
+        move_uploaded_file($tmp, "../client/public/uploads/course_files/" . $name);  
         $file_name = $name;
     }
 

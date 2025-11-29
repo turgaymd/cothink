@@ -9,11 +9,11 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$name = trim($data["name"] ?? '');
-$email = trim($data["email"] ?? '');
-$linkedinLink = trim($data["linkedinLink"] ?? '');
-$category = trim($data["category"] ?? '');
-$password = trim($data["password"] ?? ''); 
+$name = trim($data["mentor_name"] ?? '');
+$email = trim($data["mentor_email"] ?? '');
+$linkedinLink = trim($data["linkedn_link"] ?? '');
+$category = trim($data["category_id"] ?? '');
+$password = trim($data["mentor_password"] ?? ''); 
 
 // if (!$name || !$email || !$password) {
 //     echo json_encode(["error" => "Bütün xanaları doldurun"]);
@@ -31,6 +31,14 @@ $check->execute([$email]);
 
 if ($check->rowCount() > 0) {
     echo json_encode(["error" => "Bu email ilə artıq qeydiyyat var"]);
+    exit;
+}
+
+$email = trim($data["mentor_email"] ?? '');
+
+// Email formatını xüsusi qaydada yoxla
+if (!preg_match("/^[a-zA-Z0-9._]{4,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
+    echo json_encode(["error" => "Email düzgün formatda deyil"]);
     exit;
 }
 
@@ -57,6 +65,7 @@ echo json_encode([
     "linkedinLink" => $linkedinLink,
     "category" => $category,
     "password" => $password,
+    "success" => true,
     "token" => $token
 ]);
 ?>
