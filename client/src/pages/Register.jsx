@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function Register() {
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hide, setHide] = useState(false);
@@ -14,7 +14,7 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("")
-    if (!username || !email || !password) {
+    if (!name || !email || !password) {
       setError("Bütün xanaları doldurun");
       return;
     }
@@ -27,11 +27,11 @@ function Register() {
       return;
     }
     try {
-    const res= await axios.post( "http://localhost/cothinke/server/register.php", { username, email, password},
+    const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", { name, email, password},
         {headers:{"Content-Type":"application/json"}}
       );
        const userInfo={
-          username:res.data.username,
+          username:res.data.name,
           email:res.data.email,
           token:res.data.token
         }
@@ -69,7 +69,7 @@ function Register() {
                   id="name"
                   placeholder="Adınızı daxil edin"
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                 ></input>
               </div>
             </div>
