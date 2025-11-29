@@ -8,6 +8,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { SiReaddotcv } from "react-icons/si";
 import { useState } from "react";
+
 const Home=()=>{
         const [open, setOpen]=useState(  false  )
 
