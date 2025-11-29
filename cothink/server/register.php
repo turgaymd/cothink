@@ -23,6 +23,8 @@ if (strlen($password) < 8) {
     exit;
 }
 
+
+
 // email var?
 $check = $pdo->prepare("SELECT student_id FROM student_table WHERE student_email = ?");
 $check->execute([$email]);
@@ -32,8 +34,14 @@ if ($check->rowCount() > 0) {
     exit;
 }
 
-// ŞİFRƏNİ HASH ET! 
-// $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$email = trim($data["email"] ?? '');
+
+// Email formatını xüsusi qaydada yoxla
+if (!preg_match("/^[a-zA-Z0-9._%+-]{4,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
+    echo json_encode(["error" => "Email düzgün formatda deyil"]);
+    exit;
+}
+ 
 
 $query = $pdo->prepare("
     INSERT INTO student_table (student_name, student_email, student_password)
