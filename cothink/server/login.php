@@ -37,8 +37,10 @@ if ($password !== $user["student_password"]) {
 $token = bin2hex(random_bytes(32));
 
 echo json_encode([
+    "success" => true,
     "username" => $user["student_name"],
     "email" => $user["student_email"],
     "token" => $token
 ]);
+
 ?>
