@@ -1,17 +1,25 @@
-import books from "../data/BooksData";
-import { useState } from "react";
-const Books=()=>{
-      const  [query, setQuery]=useState("")
 
-       const filteredBooks=books.filter((item)=>
-        item.title.toLowerCase().includes(query.toLowerCase()) 
-    )
+import { useState, useEffect } from "react";
+import axios from "axios";
+const Books=()=>{
+      // const  [query, setQuery]=useState("")
+      const [books, setBooks]=useState([])
+
+    //    const filteredBooks=books.filter((item)=>
+    //     item.title.toLowerCase().includes(query.toLowerCase())       
+    // )
+      useEffect(()=>{
+        axios.get("http://localhost/cothinke/server/books/bookRead.php").then(res=>{
+            setBooks(res.data)
+            console.log(books)
+        })
+     })
     return (
         <>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-               {filteredBooks.length===0 ? 
+               {books.length===0 ? 
                   <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
-               filteredBooks.map((item, index)=>(
+               books.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
                         <a href="/library/books/id">
                 <div className="flex items-center gap-5">

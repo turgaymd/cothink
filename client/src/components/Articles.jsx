@@ -1,14 +1,16 @@
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 // import categories from "../data/CategoryData";
-import { useState } from "react";
-import articles from "../data/ArticlesData";
+import { useState,useEffect } from "react";
+import axios from "axios";
 const Articles=()=>{
-   
+
+   const [articles,setArticles]=useState([])
+
 // const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
 // const [visibleCategories, setVisibleCategories]=useState(2)
 
-const  [query, setQuery]=useState("")
+// const  [query, setQuery]=useState("")
 
     // const handleMore=()=>{
     //     setVisibleCategories(prev=>{
@@ -17,11 +19,17 @@ const  [query, setQuery]=useState("")
     //     return newCount;
 
     //    })}
-       
-          const filteredArticles=articles.filter((item)=>
-        item.title.toLowerCase().includes(query.toLowerCase()) || 
-        item.category.toLowerCase().includes(query.toLowerCase())
-    )
+         useEffect(()=>{
+        axios.get("http://localhost/cothinke/server/articles/articleRead.php").then(res=>{
+            setArticles(res.data)
+            console.log(articles)
+        })
+     })
+
+    //       const filteredArticles=articles.filter((item)=>
+    //     item.title.toLowerCase().includes(query.toLowerCase()) || 
+    //     item.category.toLowerCase().includes(query.toLowerCase())
+    // )
     return(
         <>
         <section>
@@ -46,9 +54,9 @@ const  [query, setQuery]=useState("")
                 </div>
             </div> */}
             <div className="articles mt-3">
-                      {filteredArticles.length===0 ? 
+                      {articles.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Məqalə tapılmadı</p>   : (
-                    filteredArticles.map((item, index)=>(
+                    articles.map((item, index)=>(
   <div className="article-item mb-5" key={index}>
     <a href="/library/articles/id">
                     <div className="article-content flex justify-between flex-col gap-4">

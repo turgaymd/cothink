@@ -1,33 +1,15 @@
 import { BsThreeDots } from "react-icons/bs";
+import { useEffect,useState } from "react";
+import axios from "axios";
 const Posts=()=>{
-  const posts=[
-        {
-          author:"Aydan A",
-          author_img:"aydan.png",
-          position:"UI/UX Designer",
-          img:"/post.jpg",
-          date:"3 ay əvvəl",
-          title:"Bugünkü Öyrənmə Nailiyyətim",
-          description:"Bu gün Maxwell Tənlikləri mövzusunu öyrəndim və nəhayət elektromaqnetizmi başa düşməyə başladım.Açığı, əvvəllər bu mövzu mənə çox abstrakt gəlirdi və elektrik sahəsi...daha çox",
-          likes:52,
-          comments:26,
-          saved:36
+        const [posts, setPosts]=useState([])
 
-        },
-          {
-          author:"Aydan A",
-          author_img:"/aydan.png",
-          position:"UI/UX Designer",
-          img:"post.jpg",
-          date:"3 ay əvvəl",
-          title:"Bugünkü Öyrənmə Nailiyyətim",
-          description:"Bu gün Maxwell Tənlikləri mövzusunu öyrəndim və nəhayət elektromaqnetizmi başa düşməyə başladım.Açığı, əvvəllər bu mövzu mənə çox abstrakt gəlirdi və elektrik sahəsi...daha çox",
-          likes:52,
-          comments:26,
-          saved:36
-        },
-     
-    ]
+ useEffect(()=>{
+        axios.get("http://localhost/cothinke/server/posts/postsRead.php").then(res=>{
+            setPosts(res.data)
+            console.log(posts)
+        })
+     })
 
     return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center mx-auto">
