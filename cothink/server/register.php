@@ -1,4 +1,5 @@
 <?php
+// DB connection
 require_once "db.php";
 
 header("Access-Control-Allow-Origin: *");
@@ -28,7 +29,6 @@ if (strlen($password) < 8) {
 // email var?
 $check = $pdo->prepare("SELECT student_id FROM student_table WHERE student_email = ?");
 $check->execute([$email]);
-
 if ($check->rowCount() > 0) {
     echo json_encode(["error" => "Bu email ilə artıq qeydiyyat var"]);
     exit;
@@ -55,8 +55,10 @@ try {
     exit;
 }
 
+// Token
 $token = bin2hex(random_bytes(32));
 
+// Uğurlu cavab
 echo json_encode([
     "username" => $name,
     "email" => $email,
