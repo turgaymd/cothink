@@ -28,7 +28,7 @@ function Register() {
       return;
     }
     try {
-    const res= await axios.post( "http://localhost/cothinke/server/register.php", { username, email, password},
+    const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", { username, email, password},
         {headers:{"Content-Type":"application/json"}}
       );
        const userInfo={
