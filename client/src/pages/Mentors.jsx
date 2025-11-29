@@ -1,43 +1,24 @@
 
+
 import { useState,useEffect } from "react";
 import Search from "../components/Search";
-import categories from "../data/CategoryData";
 import axios from "axios";
-
+import categories from "../data/CategoryData";
 const Mentors=()=>{
 const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
 const  [visibleCategories, setVisibleCategories]=useState(4)
 const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
-useEffect(()=>{
- axios.get("http://localhost/cothinke/server/mentors/mentors.php").then((res)=>
-{
-    setMentors(res.data)
-    console.log(mentors)
-}).catch((err)=>{
-    console.err(err)
-})
-},[mentors])
+ 
 
-    //    const mentorss=[
-    //     {
-    //         name:"Nərgiz Əliyeva",
-    //         img:"aysel.png",
-    //         category:"Proqramlaşdirma (Frontend)",
-    //         students:"3.2K",
-    //         comments:"200+",
-    //         rating:"4.8/5"
-    //     },
-    //        {
-    //         name:"Elvin Quliyev",
-    //         img:"elvin.jpg",
-    //         category:"Riyaziyyat & Alqoritmlər",
-    //         students:"2.6K",
-    //         comments:"200+",
-    //         rating:"4.8/5"
-    //     }
-    //    ]
+     useEffect(()=>{
+        axios.get("http://localhost/cothinke/server/mentors/mentors.php").then(res=>{
+            setMentors(res.data)
+            console.log(mentors)
+        })
+     })
+
     const handleMore=()=>{
         setVisibleCategories(prev=>{
         const newCount=prev+4

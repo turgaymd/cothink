@@ -4,7 +4,7 @@ import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgetPassword";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Discussion from "./pages/Discussion";
-import AuthProvider from "./AuthContext";
+import AuthProvider from "./AuthProvider";
 import Mentors from "./pages/Mentors";
 import Rating from "./pages/Rating";
 import Course from "./components/Courses";
@@ -37,7 +37,7 @@ function App() {
         <Route path="/confirm" element={<SentCode/>} />
         
         <Route path="/*" element={<NotFound/>} />
-                <Route path="/home" element={<Home/>} />
+        <Route path="/home" element={<Home/>} />
         <Route element={<MainLayout/>}>
 
         

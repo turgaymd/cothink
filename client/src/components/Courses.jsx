@@ -1,9 +1,11 @@
 
-import courses from "../data/CourseData";
+// import courses from "../data/CourseData";
 import Search from "./Search";
 import { MdArrowOutward } from "react-icons/md";
-
+import { useEffect,useState } from "react";
+import axios from "axios";
 export const CourseCard=({item})=>{
+
   return(
   <div className="course-item shadow-lg rounded-2xl">
                         <article>
@@ -44,6 +46,13 @@ export const CourseCard=({item})=>{
 }
 
 const Courses = () => {
+    const [courses, setCourses]=useState([])
+   useEffect(()=>{
+        axios.get("http://localhost/cothinke/server/courses/courseRead.php").then(res=>{
+            setCourses(res.data)
+            console.log(courses)
+        })
+     })
   return (
     <>
       <section>

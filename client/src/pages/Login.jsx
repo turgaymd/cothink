@@ -16,7 +16,7 @@ function Login() {
   
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("")
+    setError("");
 
     if (!email || !password){
       setError("Bütün xanaları doldurun");
