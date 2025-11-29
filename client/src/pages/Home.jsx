@@ -10,13 +10,14 @@ import { SiReaddotcv } from "react-icons/si";
 import { useState } from "react";
 const Home=()=>{
         const [open, setOpen]=useState(  false  )
+
     return (
         <>
                 <header className="w-full top-0 z-50 navbar items-center">
                     <div className=" flex justify-between items-center">
                     <div className="logo">
                         <Link to ="/home">
-                                    <img src="/logo.jpg"></img>
+                         <img src="/logo.jpg"></img>
                         </Link>
                     </div>
                         <ul className="hidden md:flex gap-6 desktop-menu">
