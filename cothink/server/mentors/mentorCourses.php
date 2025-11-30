@@ -1,22 +1,79 @@
 <?php
 require_once "../db.php";
-header("Access-Control-Allow-Origin: *");
+
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
-// GET parametri yoxlanır
-$mentor_id = $_GET['mentor_id'] ?? null;
-
-if (!$mentor_id) {
-    echo json_encode(['status' => 'error', 'message' => 'mentor_id göndərilməyib']);
+// OPTIONS sorğusu üçün
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
     exit;
 }
 
-// PDO prepare + execute ilə sorğu
-$sql = "SELECT * FROM mentor_course WHERE mentor_id = ?";
+// GET-dən mentor_id alırıq
+$mentor_id = $_GET['mentor_id'] ?? null;
+
+// --- 1) BÜTÜN KURSLAR (mentor_id göndərilməyibsə) ---
+if (!$mentor_id) {
+
+    $sql = "
+        SELECT 
+            mc.*,
+            m.mentor_name,
+            m.profile_img,
+            c.category
+        FROM mentor_course mc
+        LEFT JOIN mentors m ON mc.mentor_id = m.mentor_id
+        LEFT JOIN categories c ON mc.category_id = c.category_id
+    ";
+
+    $result = $conn->query($sql);
+    $courses = [];
+
+    while ($course = $result->fetch(PDO::FETCH_ASSOC)) {
+
+        // Kurs üzrə dərslər
+        $stmt = $conn->prepare("SELECT * FROM course_video WHERE course_id = ?");
+        $stmt->execute([$course['course_id']]);
+        $course['lessons'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $courses[] = $course;
+    }
+
+    echo json_encode($courses);
+    exit;
+}
+
+
+// --- 2) MENTOR_ID-Ə GÖRƏ KURSLAR (filtrli versiya) ---
+
+$sql = "
+    SELECT 
+        mc.*,
+        m.mentor_name,
+        m.profile_img,
+        c.category
+    FROM mentor_course mc
+    LEFT JOIN mentors m ON mc.mentor_id = m.mentor_id
+    LEFT JOIN categories c ON mc.category_id = c.category_id
+    WHERE mc.mentor_id = ?
+";
+
 $stmt = $conn->prepare($sql);
 $stmt->execute([$mentor_id]);
 
-$courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$courses = [];
 
-echo json_encode(['status' => 'success', 'data' => $courses]);
-?>
+while ($course = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+    // Kursun dərsləri
+    $stmt2 = $conn->prepare("SELECT * FROM course_video WHERE course_id = ?");
+    $stmt2->execute([$course['course_id']]);
+    $course['lessons'] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+    $courses[] = $course;
+}
+
+echo json_encode($courses);

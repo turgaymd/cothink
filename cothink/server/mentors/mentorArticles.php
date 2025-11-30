@@ -1,20 +1,42 @@
 <?php
-require_once "../db.php";
-header('Content-Type: application/json');
+// CORS header-ləri
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Content-Type: application/json");
 
-$mentor_id = $_GET['mentor_id'] ?? null;
-
-if (!$mentor_id) {
-    echo json_encode(['status'=>'error','message'=>'mentor_id göndərilməyib']);
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
     exit;
 }
 
-// Mentor-a aid bütün artikllar
-$sql = "SELECT * FROM mentor_articles WHERE mentor_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->execute([$mentor_id]);
+require_once "../db.php";
 
-$articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+try {
+    $stmt = $conn->query("
+        SELECT 
+            ma.article_id,
+            ma.article_title,
+            ma.article_topic,
+            ma.created_at,
+            ma.category_id,
 
-echo json_encode(['status'=>'success','data'=>$articles]);
-?>
+            m.mentor_name,
+            c.category
+
+        FROM mentor_article AS ma
+        LEFT JOIN mentors AS m 
+            ON ma.mentor_id = m.mentor_id
+        LEFT JOIN categories AS c
+            ON ma.category_id = c.category_id
+    ");
+
+    $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($articles);
+
+} catch (PDOException $e) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => $e->getMessage()
+    ]);
+}

@@ -1,7 +1,6 @@
 import { useState,useEffect } from "react";
 import Search from "./Search";
-import Articles from "./Articles";
-// import books from "../data/BooksData";
+import Articles from "./Articles"; 
 import categories from "../data/CategoryData";
 import axios from "axios";
 const Library=()=>{
@@ -11,12 +10,15 @@ const Library=()=>{
   const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
   const [visibleCategories, setVisibleCategories]=useState(2)
 
-   useEffect(()=>{
-        axios.get("http://localhost/cothinke/server/books/bookRead.php").then(res=>{
-            setBooks(res.data)
-            console.log(books)
-        })
-     },[books])
+ useEffect(() => {
+    axios
+      .get("http://localhost/cothink1/cothink/server/books/bookRead.php")
+      .then((res) => {
+        setBooks(res.data.data); // <--- backend JSON-da "data" key var
+        console.log(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, [books]);
 
   //  const filteredBooks=books.filter((item)=>
   //       item.title.toLowerCase().includes(query.toLowerCase()) 
@@ -53,10 +55,10 @@ const Library=()=>{
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
                         <a href="/library/books/:id">
                 <div className="flex items-center gap-5">
-                    <img src={item.img} className="w-35 h-35"  alt="book"></img>
+                    <img src={item.book_img} className="w-35 h-35"  alt="book"></img>
                     <div className="mentor-title flex flex-col gap-3">
                         <h4 className="font-bold text-lg break-all">
-                          {item.title}
+                          {item.book_title}
                         </h4>
                         <p>PDF </p>
                          <div className="flex items-center gap-5 stats">
