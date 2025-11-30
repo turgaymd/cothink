@@ -10,8 +10,6 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
 const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
- 
-
      useEffect(()=>{
         axios.get("http://localhost/cothinke/server/mentors/mentors.php").then(res=>{
             setMentors(res.data)
