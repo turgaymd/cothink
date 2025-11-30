@@ -27,10 +27,10 @@ $password = trim($data["password"] ?? '');
 // ============================
 
 // Boş input yoxlaması
-// if (!$email || !$password) {
-//     echo json_encode(["error" => "Bütün xanaları doldurun"]);
-//     exit;
-// }
+if (!$email || !$password) {
+    echo json_encode(["error" => "Bütün xanaları doldurun"]);
+    exit;
+}
 
 // Email format validation
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
