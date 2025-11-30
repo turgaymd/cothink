@@ -42,7 +42,7 @@ function Register() {
   }
   if(res.data.success){
     toast.success("Registered successfully")
-          navigate("/home")
+          navigate("/courses")
   }
 
         localStorage.setItem("user", JSON.stringify(userInfo))
@@ -145,7 +145,7 @@ function Register() {
             </div>
             <p className="text-center mt-4">
               Mövcud hesabınız var idi?{" "}
-              <a href="/" className="text-blue-700">
+              <a href="/login" className="text-blue-700">
                 Daxil ol
               </a>
             </p>

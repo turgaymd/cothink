@@ -19,7 +19,7 @@ const Book=()=>{
 <div>
 <p className="text-center font-bold">Kitab haqqında </p>
 <p className="pt-4">
-    Kenneth H. Rosen-in “Discrete Mathematics and Its Applications” adlı kitabı informatika və riyaziyyat sahəsində ən çox istifadə olunan dərs vəsaitlərindən biridir. Kitabın 7-ci nəşri diskret riyaziyyatın əsas anlayışlarını aydın və geniş formada izah edir. Xüsusilə kompüter elmləri, mühəndislik və əlaqəli ixtisaslarda təhsil alan tələbələr üçün nəzərdə tutulub.
+    Kenneth H. Rosen-in “Discrete Mathematics and Its Applications” adlı kitabı informatika və  riyaziyyat sahəsində ən çox istifadə olunan dərs vəsaitlərindən biridir. Kitabın 7-ci nəşri diskret riyaziyyatın əsas anlayışlarını aydın və geniş formada izah edir. Xüsusilə kompüter elmləri, mühəndislik və əlaqəli ixtisaslarda təhsil alan tələbələr üçün nəzərdə tutulub.
 Kitabda məntiq, çoxluqlar, funksiyalar, alqoritmlər, ədəd nəzəriyyəsi, kombinatorika və qraf nəzəriyyəsi kimi mövzular əhatə olunur. Həmçinin, ehtimal nəzəriyyəsi, əlaqələr, Bul algebrası və rekursiv münasibətlərlə modelləşdirmə də kitabın əsas hissələrindəndir.
 Əsas üstünlüklərindən biri nəzəri biliklərlə praktiki tətbiqlərin balanslaşdırılmasıdır. Çoxlu nümunələr və müxtəlif çətinlik dərəcəsində tapşırıqlar tələbələrin mövzunu daha yaxşı mənimsəməsinə kömək edir. Dünyanın bir çox universitetində bu kitab diskret riyaziyyat dərslərində əsas dərs vəsaiti kimi istifadə olunur.
 </p>
