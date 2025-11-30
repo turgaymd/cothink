@@ -8,10 +8,13 @@ import { MdArrowOutward } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { SiReaddotcv } from "react-icons/si";
 import { useState } from "react";
+import { BsInstagram } from "react-icons/bs";
 
 const Home=()=>{
         const [open, setOpen]=useState(  false  )
-
+        const sendEmail=(e)=>{
+                 e.preventDefault()
+        }
     return (
         <>
                 <header className="w-full top-0 z-50 navbar items-center">
@@ -25,7 +28,7 @@ const Home=()=>{
                             <li className="nav-item"><a className={({isActive})=> isActive ? "active" : "" } href="#home">Ana Səhifə</a></li>
                             <li className="nav-item"><a className={({isActive})=> isActive ? "active" : "" } href="#services">Xidmətlərimiz</a></li>
                             <li className="nav-item"><a className="" href="#about">Haqqımızda</a></li>
-                            <li className="nav-item"><a className="" to="/rating">Əlaqə</a></li>
+                            <li className="nav-item"><a className="" href="#contact">Əlaqə</a></li>
                         </ul>
                            <div className="hidden md:flex actions items-center gap-3 ">                 
                                <a className="border border-blue-800 text-blue-800 rounded-full px-7 py-3" href="/register">Qeydiyyat</a>
@@ -173,6 +176,65 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
             </div>
       
             </section>
+            <section id="contact">
+                <h2 className="font-bold text-center text-3xl ">Əlaqə</h2>
+                <div className="max-w-4xl mx-auto">
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white">
+                   <div className="contact-box1">
+                    <div className="flex flex-col">
+                       <h4 className="font-bold text-xl">Email Address</h4> 
+                       <p>cothink@gmail.com</p>
+                    </div>
+                   </div>
+                    <div className="contact-box2">
+                    <div className="flex flex-col items-center justify-center">
+                       <h4 className="font-bold text-xl">Phone Number </h4> 
+                       <p>+012 123 45 67</p>
+                    </div>
+                 </div>
+                 <div className="contact-box3">
+                    <div className="flex flex-col justify-center items-end">
+                       <h4 className="font-bold text-xl">Social Media</h4> 
+                       <a><BsInstagram fontSize={24}/></a>
+                    </div>
+                      </div>
+                      </div>
+                </div>
+   
+                <div className="mt-5 max-w-2xl mx-auto">
+               <form  onSubmit={sendEmail}>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 mt-4'>       
+            <div className="w-full">
+              <label className="block font-bold pb-2">Ad</label>
+              <input type="text" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md" name="user_name" required placeholder="Adınızı daxil edin"></input>
+              </div>            
+            <div>
+            <label className="block font-bold pb-2">Mobil nömrə</label>
+          <input type="email" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md"  name="user_email" required placeholder="Mobil nömrənizi daxil edin"></input>
+          </div>    
+          </div> 
+              <div className="mt-4 mb-4">
+            <label className="block font-bold pb-2">Email</label>
+          <input type="email" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md"  name="user_email" required placeholder="E-mailinizi daxil edin"></input>
+          </div>   
+          <div className="sm:col-span-2">
+          <label className="block mb-2 font-bold pb-2">Qeyd*</label>
+        <textarea className="w-full shadow-sm bg-gray-200 outline-none px-5 py-2 mt-2 rounded-md" rows={5} name="message" placeholder=""/>
+        </div>
+          <div className='text-center mt-4'>
+      <button className="w-full rounded-full submit bg-black text-white" type="submit" >Təsdiqlə</button>
+          </div>
+          <div className="row">
+            {/* {result ?  Swal.fire({
+              icon:"success",
+              text:"Message sent successfully"
+            }) : <></>} */}
+          </div>
+          </form>
+          
+                </div>
+                </section>
+
             <section>
   
                   <div className="mt-5 mb-5 rounded-2xl one-platform">
@@ -228,19 +290,6 @@ Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
           </div>
                           
             </section>
-     {/* <div className="grid grid-cols-3 gap-3 mt-5">
-        <div className="relative">
-        <div className="bg-white shadow-lg rounded-3xl p-6 overflow-hidden">
-            <div className="absolute bottom-0 left-0 h-2 w-100 bg-blue-300  rotate-6 rounded-b-3xl"></div>
-            <h5 className="font-bold text-xl">Aysel Qasımova</h5>
-            <p>Tələbə</p>
-            <BiSolidQuoteAltLeft fontSize={24}/>
-            <p  className="text-gray-500">CoThink izahları çox anlaşılandır və tələbənin dərsi qavramasını əhəmiyyətli dərəcədə sürətləndirir.
-Platformanın interaktivliyi öyrənməni daha maraqlı edir.</p>
-        </div>
-     </div>
-            </div> */}
-            
             <footer>
                 <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
                     <div>

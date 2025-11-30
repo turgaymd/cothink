@@ -31,13 +31,13 @@ function App() {
   <AuthProvider>
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Login />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/confirm" element={<SentCode/>} />
         
         <Route path="/*" element={<NotFound/>} />
-        <Route path="/home" element={<Home/>} />
         <Route element={<MainLayout/>}>
 
         
@@ -54,11 +54,10 @@ function App() {
         <Route path="/library/articles/:id" element={<Article/>} />
         <Route path="/library/books/:id/read" element={<BookView/>} />
         <Route path="/addarticle" element={<AddArticle/>} />
-
         <Route path="/courses" element={<Course/>} />
         <Route path="/courses/:id" element={<CourseDetail/>} />
+        
         <Route path="/courses/:id/content" element={<CourseContent/>} />
-
         <Route path="/rating" element={<Rating/>} />
         <Route path="/profile" element={<Profile/>} />      
         <Route path="/profile/edit" element={<EditProfile/>} />
