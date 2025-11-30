@@ -25,6 +25,8 @@ import BookView from "./components/BookView";
 import CourseContent from "./components/CourseContent";
 import Home from "./pages/Home";
 import Article from "./components/Article";
+import MainHome from "./pages/MainHome";
+import Share from "./pages/Share";
 
 function App() {
   return (
@@ -39,12 +41,13 @@ function App() {
         
         <Route path="/*" element={<NotFound/>} />
         <Route element={<MainLayout/>}>
-
+       <Route path="/home" element={<MainHome/>} />
         
         <Route path="/discussion" element={<Discussion/>} />
         <Route path="/questions" element={<Questions/>} />
         <Route path="/saved" element={<Saved/>} />
-
+        <Route path="/share" element={<Share/>} />
+      
 
         <Route path="/mentors" element={<Mentors/>} />
         <Route path="/mentors/:id" element={<Mentor/>} />

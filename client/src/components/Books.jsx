@@ -15,18 +15,16 @@ const Books = () => {
         console.log(res.data.data);
       })
       .catch((err) => console.error(err));
-  }, []);
-  return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-        {books.length === 0 ? (
-          <p className="font-bold col-span-4 text-center text-2xl">
-            Kitab tapılmadı
-          </p>
-        ) : (
-          books.map((item, index) => (
-            <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-              <a href="/library/books/id">
+  }, [books]);
+
+    return (
+        <>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+               {books.length===0 ? 
+                  <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
+               books.map((item, index)=>(
+                   <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
+                        <a href="/library/books/id">
                 <div className="flex items-center gap-5">
                   <img
                     src={item.book_img}

@@ -1,5 +1,6 @@
 import { BsThreeDots } from "react-icons/bs";
 import { useEffect,useState } from "react";
+// import posts from "../data/PostsData"
 import axios from "axios";
 const Posts=()=>{
         const [posts, setPosts]=useState([])
@@ -10,8 +11,7 @@ useEffect(()=>{
             setPosts(res.data) // backend JSON-dakı array
             console.log(res.data) // burda datanı görəcəksən
         })
-        .catch(err => console.error(err))
-}, []);
+     },[posts])
 
     return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center mx-auto">
