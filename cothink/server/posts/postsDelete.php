@@ -12,7 +12,7 @@ if(!$post_id){
 
 $sql = "DELETE FROM mentor_post WHERE post_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $post_id);
+$stmt->execute([$post_id]);
 
 if($stmt->execute()){
     echo json_encode(["status"=>"success","message"=>"Post deleted"]);

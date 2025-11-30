@@ -10,10 +10,10 @@ $sql = "SELECT p.*,
         LEFT JOIN comments c ON p.post_id = c.post_id
         ORDER BY p.post_id DESC, c.created_at ASC";
 
-$result = $conn->query($sql);
+$stmt = $conn->query($sql);
 
 $posts = [];
-while($row = $result->fetch(PDO::FETCH_ASSOC)){
+while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     $post_id = $row['post_id'];
     if(!isset($posts[$post_id])){
         $posts[$post_id] = [
@@ -23,12 +23,13 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
             'category_id' => $row['category_id'],
             'post_img' => $row['post_img'],
             'post_tags' => $row['post_tags'],
-            'post_decs' => $row['post_decs'],
+            'post_desc' => $row['post_desc'],
             'comments' => []
         ];
     }
 
-    if($row['comment_id']){
+    // comment varsa əlavə et
+    if($row['comment_id'] !== null){
         $posts[$post_id]['comments'][] = [
             'comment_id' => $row['comment_id'],
             'parent_id' => $row['parent_id'],

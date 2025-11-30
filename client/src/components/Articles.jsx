@@ -20,7 +20,7 @@ const Articles=()=>{
 
     //    })}
          useEffect(()=>{
-        axios.get("http://localhost/cothinke/server/articles/articleRead.php").then(res=>{
+        axios.get("http://localhost/cothink1/cothink/server/articles/articleRead.php").then(res=>{
             setArticles(res.data)
             console.log(articles)
         })
@@ -63,16 +63,16 @@ const Articles=()=>{
                     <div className="article-header flex justify-between items-center">
                         <div className="article-author flex items-center gap-2">
                             <img src="/avatar.png"/>
-                            <span>{item.author}</span>
+                            <span>{item.mentor_name}</span>
                             <span>•</span>
-                            <span>{item.date}</span>
+                            {/* <span>{item.date}</span> */}
                         </div>
                         <div className="category">
                             <span className="bg-blue-800 rounded-md px-5 py-2">{item.category}</span>
                         </div>
                     </div>
                     <div className="article-title">
-                        <p className="text-white">{item.title}</p>
+                        <p className="text-white">{item.article_title}</p>
                     </div>
                 </div>
                 </a>

@@ -20,7 +20,7 @@ $sql = "INSERT INTO mentor_course (course_title, category_id, subcategory)
         VALUES (?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sis", $course_title, $category_id, $subcategory);
+$stmt->execute([$course_title, $category_id, $subcategory]);
 
 if (!$stmt->execute()) {
     echo json_encode(["status"=>"error","message"=>"Kurs əlavə olunmadı"]);
@@ -28,7 +28,7 @@ if (!$stmt->execute()) {
 }
 
 // Yeni kurs id
-$course_id = $stmt->insert_id;
+$course_id = $conn->lastInsertId();
 
 
 // =============================
@@ -67,8 +67,7 @@ foreach ($lessons as $index => $lesson) {
              VALUES (?, ?, ?, ?)";
 
     $stmtL = $conn->prepare($sqlL);
-    $stmtL->bind_param("isss", $course_id, $lesson_title, $video_link, $file_name);
-    $stmtL->execute();
+    $stmtL->execute([$course_id, $lesson_title, $video_link, $file_name]); 
 }
 
 echo json_encode([

@@ -13,14 +13,13 @@ if (!$course_id) {
 
     $courses = [];
 
-    while($course = $result->fetch_assoc()) {
+    while ($course = $result->fetch(PDO::FETCH_ASSOC)) {
 
-        // Kursun dərslərini çəkirik
-        $sqlLessons = "SELECT * FROM course_video WHERE course_id=?";
+        // Kursun dərslərini çəkirik (PDO versiyası)
+        $sqlLessons = "SELECT * FROM course_video WHERE course_id = ?";
         $stmt = $conn->prepare($sqlLessons);
-        $stmt->bind_param("i", $course['course_id']);
-        $stmt->execute();
-        $lessons = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->execute([$course['course_id']]);
+        $lessons = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $course['lessons'] = $lessons;
         $courses[] = $course;
@@ -32,22 +31,20 @@ if (!$course_id) {
 
 
 // 2) Tək kurs + dərslər
-$sql = "SELECT * FROM mentor_course WHERE course_id=?";
+$sql = "SELECT * FROM mentor_course WHERE course_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $course_id);
-$stmt->execute();
-$course = $stmt->get_result()->fetch_assoc();
+$stmt->execute([$course_id]);
+$course = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$course) {
     echo json_encode(["status" => "error", "message" => "Kurs tapılmadı"]);
     exit;
 }
 
-$sqlLessons = "SELECT * FROM course_video WHERE course_id=?";
+$sqlLessons = "SELECT * FROM course_video WHERE course_id = ?";
 $stmt2 = $conn->prepare($sqlLessons);
-$stmt2->bind_param("i", $course_id);
-$stmt2->execute();
-$lessons = $stmt2->get_result()->fetch_all(MYSQLI_ASSOC);
+$stmt2->execute([$course_id]);
+$lessons = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 $course['lessons'] = $lessons;
 

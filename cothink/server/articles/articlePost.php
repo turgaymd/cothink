@@ -21,9 +21,9 @@ $sql = "INSERT INTO mentor_article
 VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssiisss", 
+$stmt->execute([
     $article_title, $description, $mentor_id, 
-    $catagory_id, $tags, $article_img, $article_topic
+    $catagory_id, $tags, $article_img, $article_topic, $article_id ]
 );
 
 if ($stmt->execute()) {

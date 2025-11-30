@@ -62,8 +62,7 @@ $sql .= " WHERE mentor_id = ?";
 
 $stmt = $conn->prepare($sql);
 
-$stmt->bind_param(
-    "ssssssi",
+$stmt->execute([
     $mentor_name,
     $mentor_username,
     $mentor_email,
@@ -71,7 +70,7 @@ $stmt->bind_param(
     $mentor_password,
     $linkedin_link,
     $mentor_id
-);
+]);
 
 if ($stmt->execute()) {
     echo json_encode([

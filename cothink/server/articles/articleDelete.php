@@ -14,7 +14,7 @@ if (!$article_id) {
 
 $sql = "DELETE FROM mentor_article WHERE article_id=?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $article_id);
+$stmt->execute([$article_id]);
 
 if ($stmt->execute()) {
     echo json_encode(["status" => "success", "message" => "Article deleted"]);

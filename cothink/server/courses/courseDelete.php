@@ -15,13 +15,13 @@ if (!$course_id) {
 // Əvvəlcə dərsləri sil
 $sql1 = "DELETE FROM course_video WHERE course_id=?";
 $stmt1 = $conn->prepare($sql1);
-$stmt1->bind_param("i", $course_id);
+$stmt1->execute([$course_id]);
 $stmt1->execute();
 
 // Sonra kursu sil
 $sql2 = "DELETE FROM mentor_course WHERE course_id=?";
 $stmt2 = $conn->prepare($sql2);
-$stmt2->bind_param("i", $course_id);
+$stmt2->execute([$course_id]);
 
 if ($stmt2->execute()) {
     echo json_encode(["status" => "success", "message" => "Kurs və bütün dərslər silindi"]);

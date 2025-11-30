@@ -3,14 +3,20 @@ require_once "../db.php";
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-$mentor_id = $_GET['mentor_id'];
+// mentor_id GET parametri yoxlanır
+$mentor_id = $_GET['mentor_id'] ?? null;
 
-$sql = $conn->query("SELECT * FROM mentor_book WHERE mentor_id=$mentor_id");
-$books = [];
-
-while($row = $sql->fetch(PDO::FETCH_ASSOC)){
-    $books[] = $row;
+if (!$mentor_id) {
+    echo json_encode(['status' => 'error', 'message' => 'mentor_id göndərilməyib']);
+    exit;
 }
 
-echo json_encode($books);
+// PDO prepare + execute ilə sorğu
+$sql = "SELECT * FROM mentor_books WHERE mentor_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$mentor_id]);
+
+$books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+echo json_encode(['status' => 'success', 'data' => $books]);
 ?>
