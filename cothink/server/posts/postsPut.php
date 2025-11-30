@@ -17,7 +17,7 @@ $sql = "UPDATE mentor_post
         WHERE post_id=?";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("iissssi", $mentor_id, $category_id, $post_title, $post_desc, $post_img, $post_tags, $post_id);
+$stmt->execute([$mentor_id, $category_id, $post_title, $post_desc, $post_img, $post_tags, $post_id]);
 
 if($stmt->execute()){
     echo json_encode(["status" => "success", "message" => "Post updated"]);

@@ -20,7 +20,7 @@ $sql = "INSERT INTO mentor_post (mentor_id, category_id, post_title, post_desc, 
         VALUES (?,?,?,?,?,?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("iissss", $mentor_id, $category_id, $post_title, $post_desc, $post_img, $post_tags);
+$stmt->execute([$mentor_id, $category_id, $post_title, $post_desc, $post_img, $post_tags]);
 
 if($stmt->execute()){
     echo json_encode(["status" => "success", "message" => "Post created successfully"]);

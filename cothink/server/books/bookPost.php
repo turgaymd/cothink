@@ -1,6 +1,8 @@
 <?php
 require_once "../db.php";
 
+header("Content-Type: application/json");
+
 $book_title  = $_POST['book_title'] ?? null;
 $description = $_POST['description'] ?? null;
 $mentor_id   = $_POST['mentor_id'] ?? null;
@@ -15,16 +17,15 @@ if (!$book_title || !$description || !$mentor_id) {
 // FILE UPLOAD
 ////////////////////
 
-// uploads folder inside client
 $upload_dir = __DIR__ . "/../../client/uploads/";
 
-// Create if not exists
 if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0777, true);
 }
 
-// --- book_img ---
+// --- book_img upload ---
 $book_img = null;
+
 if (!empty($_FILES['book_img']['name'])) {
     $img_name = time() . "_" . basename($_FILES['book_img']['name']);
     $img_path = $upload_dir . $img_name;
@@ -34,8 +35,9 @@ if (!empty($_FILES['book_img']['name'])) {
     }
 }
 
-// --- book_file ---
+// --- book_file upload ---
 $book_file = null;
+
 if (!empty($_FILES['book_file']['name'])) {
     $file_name = time() . "_" . basename($_FILES['book_file']['name']);
     $file_path = $upload_dir . $file_name;
@@ -46,19 +48,25 @@ if (!empty($_FILES['book_file']['name'])) {
 }
 
 ////////////////////
-// DATABASE INSERT
+// DATABASE INSERT (PDO)
 ////////////////////
 
-$sql = "INSERT INTO mentor_book 
+$sql = "INSERT INTO mentor_books 
         (book_title, description, mentor_id, catagory_id, book_img, book_file)
         VALUES (?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssiiss", 
-    $book_title, $description, $mentor_id, $catagory_id, $book_img, $book_file
-);
 
-if ($stmt->execute()) {
+$success = $stmt->execute([
+    $book_title,
+    $description,
+    $mentor_id,
+    $catagory_id,
+    $book_img,
+    $book_file
+]);
+
+if ($success) {
     echo json_encode(["status" => "success", "message" => "Book created"]);
 } else {
     echo json_encode(["status" => "error", "message" => "Insert failed"]);

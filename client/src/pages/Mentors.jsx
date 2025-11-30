@@ -11,7 +11,7 @@ const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
      useEffect(()=>{
-        axios.get("http://localhost/cothinke/server/mentors/mentors.php").then(res=>{
+        axios.get("http://localhost/cothink1/cothink/server/mentors/mentors.php").then(res=>{
             setMentors(res.data)
             console.log(mentors)
         })

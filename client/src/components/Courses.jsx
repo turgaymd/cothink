@@ -29,11 +29,11 @@ export const CourseCard=({item})=>{
             <div className="flex justify-between pb-3 mt-4">
               <div className="flex gap-5 items-center">
                 <div>
-                <img src={`/${item.author_img}`} className=" rounded-full object-cover"/>
+                <img src={`/${item.book_img}`} className=" rounded-full object-cover"/>
                 </div>
                 <div className="flex flex-col">
-                  <h4 className="font-bold">{item.author}</h4>
-                  <p>{item.date}</p>
+                  <h4 className="font-bold">{item.book_title}</h4>
+                  {/* <p>{item.date}</p> */}
                 </div>
               </div>
               <div className="flex items-center gap-3 ">
@@ -48,7 +48,7 @@ export const CourseCard=({item})=>{
 const Courses = () => {
     const [courses, setCourses]=useState([])
    useEffect(()=>{
-        axios.get("http://localhost/cothinke/server/courses/courseRead.php").then(res=>{
+        axios.get("http://localhost/cothink1/cothink/server/courses/courseRead.php").then(res=>{
             setCourses(res.data)
             console.log(courses)
         })

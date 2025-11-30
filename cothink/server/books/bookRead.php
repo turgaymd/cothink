@@ -7,18 +7,18 @@ header("Content-Type: application/json");
 $id = $_GET['id'] ?? null;
 
 if ($id) {
-    $sql = "SELECT * FROM mentor_book WHERE id = ?";
+    $sql = "SELECT * FROM mentor_books WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
+    $stmt->execute([$id]);
+
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
 } else {
-    $sql = "SELECT * FROM mentor_book";
+    $sql = "SELECT * FROM mentor_books";
     $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-$stmt->execute();
-$result = $stmt->get_result();
-
-$data = ($id) ? $result->fetch_assoc() : $result->fetch_all(MYSQLI_ASSOC);
 
 echo json_encode(["status" => "success", "data" => $data]);
 ?>

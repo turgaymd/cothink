@@ -10,12 +10,11 @@ if (!$id) {
     exit;
 }
 
-// Get old files
-$sql = "SELECT book_img, book_file FROM mentor_book WHERE id = ?";
+// --- Köhnə faylları götür ---
+$sql = "SELECT book_img, book_file FROM mentor_books WHERE id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id);
-$stmt->execute();
-$old = $stmt->get_result()->fetch_assoc();
+$stmt->execute([$id]);
+$old = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$old) {
     echo json_encode(["status" => "error", "message" => "Book not found"]);
@@ -33,6 +32,7 @@ $upload_dir = __DIR__ . "/../../client/uploads/";
 $book_img = $old['book_img'];
 
 if (!empty($_FILES['book_img']['name'])) {
+
     if ($book_img && file_exists($upload_dir . $book_img)) {
         unlink($upload_dir . $book_img);
     }
@@ -46,6 +46,7 @@ if (!empty($_FILES['book_img']['name'])) {
 $book_file = $old['book_file'];
 
 if (!empty($_FILES['book_file']['name'])) {
+
     if ($book_file && file_exists($upload_dir . $book_file)) {
         unlink($upload_dir . $book_file);
     }
@@ -55,13 +56,16 @@ if (!empty($_FILES['book_file']['name'])) {
     $book_file = $file_name;
 }
 
-$sql = "UPDATE mentor_book 
-        SET book_title = ?, description = ?, mentor_id = ?, catagory_id = ?, 
+
+// ----------- YENİLƏMƏ (PDO versiyası) -----------
+$sql = "UPDATE mentor_books 
+        SET book_title = ?, description = ?, mentor_id = ?, catagory_id = ?,
             book_img = ?, book_file = ?
         WHERE id = ?";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssiissi",
+
+$success = $stmt->execute([
     $book_title,
     $description,
     $mentor_id,
@@ -69,9 +73,9 @@ $stmt->bind_param("ssiissi",
     $book_img,
     $book_file,
     $id
-);
+]);
 
-if ($stmt->execute()) {
+if ($success) {
     echo json_encode(["status" => "success", "message" => "Book updated"]);
 } else {
     echo json_encode(["status" => "error", "message" => "Update failed"]);

@@ -22,9 +22,9 @@ $sql = "UPDATE mentor_article SET
     WHERE article_id=?";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ssiisssi", 
+$stmt->execute([
     $article_title, $description, $mentor_id, 
-    $catagory_id, $tags, $article_img, $article_topic, $article_id
+    $catagory_id, $tags, $article_img, $article_topic, $article_id ]
 );
 
 if ($stmt->execute()) {

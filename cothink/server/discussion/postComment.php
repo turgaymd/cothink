@@ -1,5 +1,5 @@
 <?php
-require_once "db.php";
+require_once "../db.php";
 header('Content-Type: application/json');
 
 $data = json_decode(file_get_contents("php://input"), true);
@@ -14,13 +14,18 @@ if(!$post_id || !$mentor_id || !$comment_text){
     exit;
 }
 
+// PDO ilə insert
 $sql = "INSERT INTO comments (post_id, mentor_id, parent_id, comment_text) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("iiis", $post_id, $mentor_id, $parent_id, $comment_text);
 
-if($stmt->execute()){
-    echo json_encode(['status'=>'success','comment_id'=>$stmt->insert_id]);
+$success = $stmt->execute([$post_id, $mentor_id, $parent_id, $comment_text]);
+
+if($success){
+    // PDO-da son əlavə olunan ID
+    $comment_id = $conn->lastInsertId();
+    echo json_encode(['status'=>'success','comment_id'=>$comment_id]);
 } else {
-    echo json_encode(['status'=>'error','message'=>$stmt->error]);
+    $errorInfo = $stmt->errorInfo();
+    echo json_encode(['status'=>'error','message'=>$errorInfo[2]]);
 }
 ?>
