@@ -18,7 +18,7 @@ const Profiles=()=>{
             <div className="flex flex-col gap-3 justify-center">
                 <h4 className="font-bold text-xl">Rauf Quliyev</h4>
                 <div className="flex gap-5">
-                     <span>2.6k tələbə</span>
+                     <span>2.6k  tələbə</span>
                     <span>38 post</span>
                     <span>120 izləyici</span>
                     <span>45 izlədiklərim</span>
@@ -44,7 +44,7 @@ const Profiles=()=>{
   {activeTab === "courses" && (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
     {courses.length === 0 ? (
-      <p className="text-center text-xl font-bold col-span-3">Kurs tapılmadı</p>
+      <p className="text-center text-xl font-bold col-span-3">Kurs tapılmadı.</p>
     ) : (
       courses.map((item) => (
         <CourseCard key={item._id} item={item} />
