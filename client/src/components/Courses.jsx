@@ -32,7 +32,7 @@ export const CourseCard=({item})=>{
                 <img src={`/${item.book_img}`} className=" rounded-full object-cover"/>
                 </div>
                 <div className="flex flex-col">
-                  <h4 className="font-bold">{item.book_title}</h4>
+                  <h4 className="font-bold">{item.book_name}</h4>
                   {/* <p>{item.date}</p> */}
                 </div>
               </div>

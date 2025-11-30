@@ -33,7 +33,7 @@ const EditProfile = () => {
       formData.append("profile_img", fileInputRef.current.files[0]);
     }
 
-    const res = await fetch("http://localhost/server/mentor/update.php", {
+    const res = await fetch("http://localhost/cothink1/cothink/server/profile/updateProfile.php", {
       method: "POST",
       body: formData,
     });

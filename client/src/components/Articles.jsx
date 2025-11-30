@@ -19,13 +19,14 @@ const Articles=()=>{
     //     return newCount;
 
     //    })}
-         useEffect(()=>{
-        axios.get("http://localhost/cothink1/cothink/server/articles/articleRead.php").then(res=>{
+        useEffect(() => {
+    axios.get("http://localhost/cothink1/cothink/server/articles/articleRead.php")
+        .then(res => {
             setArticles(res.data)
-            console.log(articles)
+            console.log(res.data) // burda gələn datanı görə bilərsən
         })
-     })
-
+        .catch(err => console.error(err))
+}, []);
     //       const filteredArticles=articles.filter((item)=>
     //     item.title.toLowerCase().includes(query.toLowerCase()) || 
     //     item.category.toLowerCase().includes(query.toLowerCase())
@@ -58,21 +59,21 @@ const Articles=()=>{
                   <p className="font-bold col-span-2 text-center text-2xl">Məqalə tapılmadı</p>   : (
                     articles.map((item, index)=>(
   <div className="article-item mb-5" key={index}>
-    <a href="/library/articles/id">
+    <a href={`/library/articles/${item.article_id}`}>
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center">
                         <div className="article-author flex items-center gap-2">
                             <img src="/avatar.png"/>
-                            <span>{item.mentor_name}</span>
+                            <span>{item.article_title}</span>
                             <span>•</span>
                             {/* <span>{item.date}</span> */}
                         </div>
                         <div className="category">
-                            <span className="bg-blue-800 rounded-md px-5 py-2">{item.category}</span>
+                            <span className="bg-blue-800 rounded-md px-5 py-2">{item.category_id}</span>
                         </div>
                     </div>
                     <div className="article-title">
-                        <p className="text-white">{item.article_title}</p>
+                        <p className="text-white">{item.article_topic}</p>
                     </div>
                 </div>
                 </a>
