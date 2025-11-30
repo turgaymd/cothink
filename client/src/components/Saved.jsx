@@ -1,9 +1,10 @@
 
 import { useState } from "react";
 import Search from "./Search";
-import Articles from "./Articles";
+import Articles, { ArticleCard } from "./Articles";
 import Course, { CourseCard } from "./Courses";
 import courses from "../data/CourseData";
+import articles from "../data/ArticlesData"
 import Books from "./Books";
 import Posts from "./Posts";
 const Saved=()=>{
@@ -31,7 +32,17 @@ const Saved=()=>{
     )}
   </div>
 )}
-                  {activeTab==="articles" && <Articles/> }
+                  {activeTab==="articles" && 
+                  <>
+                    {articles.length === 0 ? (
+      <p className="text-center text-xl font-bold col-span-3">Məqalə tapılmadı</p>
+    ) : (
+      articles.map((item) => (
+        <ArticleCard key={item._id} item={item} />
+      ))
+    )}
+                  </>
+                   }
                   {activeTab==="books" && <Books/> }
                     {activeTab==="posts" && <Posts/> }
         </section>
