@@ -23,7 +23,7 @@ function Login() {
       return;
     }
       try {
-        const res = await axios.post("http://localhost/cothinke/server/login.php", {
+        const res = await axios.post("http://localhost/test/login.php", {
           email,
           password,
         },
