@@ -1,14 +1,29 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Search from "./Search";
 import Articles, { ArticleCard } from "./Articles";
-import Course, { CourseCard } from "./Courses";
-import courses from "../data/CourseData";
-import articles from "../data/ArticlesData"
+import Course, { CourseCard } from "./Courses"; 
 import Books from "./Books";
 import Posts from "./Posts";
+import axios from "axios";
 const Saved=()=>{
       const [activeTab, setActiveTab]=useState("books")
+      const [articles, setArticles]=useState([])
+      const [courses, setCourses]=useState([])
+      
+              useEffect(() => {
+          axios.get("http://localhost/cothink1/cothink/server/articles/articleRead.php")
+              .then(res => {
+                  setArticles(res.data)
+                  console.log(res.data) // burda gələn datanı görə bilərsən
+              })
+              .catch(err => console.error(err))
+              axios.get("http://localhost/cothink1/cothink/server/courses/courseRead.php").then(res=>{
+            setCourses(res.data)
+            console.log(courses)
+        })
+      }, []);
+ 
     return (
         <section>
             <Search/>

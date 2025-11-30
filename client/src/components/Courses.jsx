@@ -10,13 +10,13 @@ export const CourseCard=({item})=>{
   <div className="course-item shadow-lg rounded-2xl">
                         <article>
             <a>
-              <img src={`/${item.img}`}></img>
+              <img src={`${item.course_img}`}></img>
             </a>
             </article>
             <div className="course-category mt-3 text-blue-600">{item.category}</div>
             <div className="course-title mb-3 mt-3 flex justify-between">
               <h4 className="font-bold text-2xl">
-                 {item.title}
+                 {item.course_title}
               </h4>
               <a href="courses/id"><MdArrowOutward fontSize={24}/></a>
             </div>
@@ -29,11 +29,11 @@ export const CourseCard=({item})=>{
             <div className="flex justify-between pb-3 mt-4">
               <div className="flex gap-5 items-center">
                 <div>
-                <img src={`/${item.book_img}`} className=" rounded-full object-cover"/>
+                <img src={`/${item.profile_img}`} className=" rounded-full object-cover"/>
                 </div>
                 <div className="flex flex-col">
-                  <h4 className="font-bold">{item.book_name}</h4>
-                  {/* <p>{item.date}</p> */}
+                  <h4 className="font-bold">{item.mentor_name}</h4>
+                  <p>{item.created_at}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 ">
@@ -67,7 +67,7 @@ const Courses = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
              {
               courses.map((item)=>(
-               <CourseCard key={item._id} item={item}/>
+               <CourseCard key={item.course_id} item={item}/>
               ))
              }
                   

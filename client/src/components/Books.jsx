@@ -12,7 +12,7 @@ const Books = () => {
       .get("http://localhost/cothink1/cothink/server/books/bookRead.php")
       .then((res) => {
         setBooks(res.data.data); // <--- backend JSON-da "data" key var
-        console.log(res.data.data);
+        console.log(res.data);
       })
       .catch((err) => console.error(err));
   }, [books]);
