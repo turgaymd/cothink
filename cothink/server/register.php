@@ -42,8 +42,7 @@ if ($check->rowCount() > 0) {
     exit;
 }
 
-// Hash password before saving
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// Hash password before saving 
 
 $query = $pdo->prepare("
     INSERT INTO student_table (student_name, student_email, student_password)
@@ -51,7 +50,7 @@ $query = $pdo->prepare("
 ");
 
 try {
-    $query->execute([$username, $email, $hashedPassword]);
+    $query->execute([$username, $email, $password]);
 } catch (Exception $e) {
     echo json_encode(["error" => "DB error: " . $e->getMessage()]);
     exit;
