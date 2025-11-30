@@ -4,6 +4,7 @@ import { FaRegComments } from "react-icons/fa";
 import { useState } from "react";
 import discussions from "../data/DiscussionsData";
 import { BsThreeDotsVertical } from "react-icons/bs";
+
 const Questions=()=>{
  
     const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
@@ -26,14 +27,20 @@ const Questions=()=>{
                 )
             }
             </div>
-            <div className="topics  flex gap-4">
+            <div className="topics grid grid-cols-1 md:grid-cols-4 gap-4">
                 {
                     displayedCategories.map((item, index)=>(
-                    <div className="topic-item flex-1" key={index}>
+                        <>
+                        <div className="w-full ">
+                    <div className="topic-item mb-2" key={index}>
                     <a>
                         <img src={item.img}></img>
-                    </a>
+                    </a>   
+                        </div> 
+                    <h4 className="font-bold text-center">{item.name}</h4>
                 </div>
+
+                        </>
                     ))
                 }
             </div>

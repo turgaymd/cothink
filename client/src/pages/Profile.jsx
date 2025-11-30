@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { IoMenu } from "react-icons/io5";
-import Articles from "../components/Articles";
-import Books from "../components/Books";
+import articles from "../data/ArticlesData";
 import courses from "../data/CourseData";
 import { CourseCard } from "../components/Courses";
+import { ArticleCard } from "../components/Articles";
 import Posts from "../components/Posts";
 const Profiles=()=>{
       const [activeTab, setActiveTab]=useState("courses")
@@ -52,7 +52,17 @@ const Profiles=()=>{
     )}
   </div>
 )}
-                  {activeTab==="articles" && <Articles/> }
+                  {activeTab==="articles" && 
+                  <>
+                    {articles.length === 0 ? (
+      <p className="text-center text-xl font-bold col-span-3">Məqalə tapılmadı</p>
+    ) : (
+      articles.map((item) => (
+        <ArticleCard key={item._id} item={item} />
+      ))
+    )}
+                  </>
+                   }
                   {activeTab==="posts" && <Posts/> }
                
 </section>
