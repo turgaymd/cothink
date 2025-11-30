@@ -13,7 +13,7 @@ $sql = "SELECT p.*,
 $result = $conn->query($sql);
 
 $posts = [];
-while($row = $result->fetch_assoc()){
+while($row = $result->fetch(PDO::FETCH_ASSOC)){
     $post_id = $row['post_id'];
     if(!isset($posts[$post_id])){
         $posts[$post_id] = [

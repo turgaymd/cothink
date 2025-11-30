@@ -21,10 +21,17 @@ $username = trim($data["username"] ?? '');
 $email = trim($data["email"] ?? '');
 $password = trim($data["password"] ?? '');
 
-if (strlen($password) < 8) {
-    echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);
-    exit;
-}
+ 
+// if (strlen($password) < 8) {
+//     echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);
+//     exit;
+// }
+ 
+// if (strlen($password) < 8) {
+//     echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);
+//     exit;
+// };
+ 
 
 // Check if email exists
 $check = $pdo->prepare("SELECT student_id FROM student_table WHERE student_email = ?");
@@ -35,8 +42,7 @@ if ($check->rowCount() > 0) {
     exit;
 }
 
-// Hash password before saving
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// Hash password before saving 
 
 $query = $pdo->prepare("
     INSERT INTO student_table (student_name, student_email, student_password)
@@ -44,7 +50,7 @@ $query = $pdo->prepare("
 ");
 
 try {
-    $query->execute([$username, $email, $hashedPassword]);
+    $query->execute([$username, $email, $password]);
 } catch (Exception $e) {
     echo json_encode(["error" => "DB error: " . $e->getMessage()]);
     exit;
@@ -57,6 +63,7 @@ echo json_encode([
     "message" => "User registered successfully",
     "username" => $username,
     "email" => $email,
+    "password" => $password,
     "token" => $token
 ]);
 exit;
