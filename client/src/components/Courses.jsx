@@ -47,12 +47,13 @@ export const CourseCard=({item})=>{
 
 const Courses = () => {
     const [courses, setCourses]=useState([])
+    
    useEffect(()=>{
         axios.get("http://localhost/cothink1/cothink/server/courses/courseRead.php").then(res=>{
             setCourses(res.data)
             console.log(courses)
         })
-     })
+     },[courses])
   return (
     <>
       <section>
