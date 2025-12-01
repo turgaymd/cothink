@@ -1,5 +1,6 @@
 <?php
 require_once "../db.php";
+session_start();
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -14,6 +15,8 @@ if (!$email || !$password) {
     echo json_encode(["error" => "Bütün xanaları doldurun"]);
     exit;
 }
+
+$_SESSION["mentor_id"] = $mentor["mentor_id"];
 
 // Emailə uyğun mentor tap
 $query = $pdo->prepare("SELECT * FROM  mentors WHERE  mentor_email = ?");

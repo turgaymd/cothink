@@ -1,5 +1,6 @@
 <?php
 require_once "../db.php";
+session_start();
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -19,6 +20,8 @@ $password = trim($data["password"] ?? '');
 //     echo json_encode(["error" => "Bütün xanaları doldurun"]);
 //     exit;
 // }
+
+$_SESSION["mentor_id"] = $mentor["mentor_id"];
 
 if (strlen($password) < 8) {
     echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);

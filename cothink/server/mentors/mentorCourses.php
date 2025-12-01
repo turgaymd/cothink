@@ -1,5 +1,6 @@
 <?php
 require_once "../db.php";
+session_start();
 
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -10,11 +11,14 @@ header("Content-Type: application/json");
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
+} 
+// MENTOR ID SESSION-DAN
+if (!isset($_SESSION['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
+    exit;
 }
 
-// GET-dən mentor_id alırıq
-$mentor_id = $_GET['mentor_id'] ?? null;
-
+$mentor_id = $_SESSION['mentor_id'];
 // --- 1) BÜTÜN KURSLAR (mentor_id göndərilməyibsə) ---
 if (!$mentor_id) {
 

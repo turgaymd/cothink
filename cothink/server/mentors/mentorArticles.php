@@ -1,5 +1,8 @@
 <?php
 // CORS header-ləri
+require_once "../db.php";
+session_start();
+
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
@@ -10,7 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-require_once "../db.php";
+
+// MENTOR ID SESSION-DAN
+if (!isset($_SESSION['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
+    exit;
+}
+
+$mentor_id = $_SESSION['mentor_id'];
+
 
 try {
     $stmt = $conn->query("
