@@ -57,7 +57,7 @@ const [mentors, setMentors]=useState([])
             }
             </div>
       <div className="course-filter mt-4 mb-5">
-                    <div className="filter-items flex gap-3">
+                    <div className="filter-items flex gap-3 flex-col md:flex-row">
                                             <span className="active rounded-md">Hamısı</span>
                         {
                             displayedCategories.map((item, index)=>(

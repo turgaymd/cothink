@@ -1,11 +1,6 @@
 import { useState,useEffect } from "react";
-<<<<<<< HEAD
 import Search from "../utils/Search";
 import Articles from "./Articles";
-=======
-import Search from "./Search";
-import Articles from "./Articles"; 
->>>>>>> 638467c0412b0b88af9de4443dff6c869914ec77
 import categories from "../data/CategoryData";
 import axios from "axios";
 const Library=()=>{
