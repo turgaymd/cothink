@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
+
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $data = json_decode(file_get_contents("php://input"), true);
@@ -21,7 +22,8 @@ $username = trim($data["username"] ?? '');
 $email = trim($data["email"] ?? '');
 $password = trim($data["password"] ?? '');
 
- 
+$_SESSION["student_id"] = $student["student_id"];
+
 // if (strlen($password) < 8) {
 //     echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);
 //     exit;
