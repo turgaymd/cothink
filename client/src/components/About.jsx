@@ -1,11 +1,24 @@
+import { useState } from "react";
 
 const About=()=>{
+  const [name, setName]=useState("Şəms")
+  const [lastName, setLastName]=useState("Məmmədzadə")
+  const [email, setEmail]=useState("shamsmemmedzade@gmail.com")
+  const [phone, setPhone]=useState("+994  055-123-45-67")
+  
+  const handleEdit=()=>{
+    // setName("")
+    // setLastName("")
+    // setEmail("")
+    // setPhone("")
+  }
     return(
         <section>
  <div className="flex justify-center">
       <div className="card w-[90%] max-w-[500px]">
         <div className="card-body">
           <form className="login-form mx-auto" >
+            <div className="flex justify-end text-blue-600 cursor-pointer" onClick={handleEdit}>Redaktə et</div>
               <div className="mb-5">
               <label
                 htmlFor="name"
@@ -17,7 +30,7 @@ const About=()=>{
                 <input
                   type= "text"
                   id="name"
-                  placeholder="Şəms"
+                  placeholder={name}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                   required
                 ></input>
@@ -34,7 +47,7 @@ const About=()=>{
                 <input
                   type="text" 
                   id="lastName"
-                  placeholder="Məmmədzadə"
+                  placeholder={lastName}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                   required
                 ></input>
@@ -42,7 +55,7 @@ const About=()=>{
             </div>
             <div className="mb-5">
               <label
-                htmlFor="password"
+                htmlFor="email"
                 className="text-gray-900 font-medium mb-4"
               >
                 E-mail
@@ -51,7 +64,7 @@ const About=()=>{
                 <input
                   type= "text" 
                   id="email"
-                  placeholder="shamsmemmedzade@gmail.com"
+                  placeholder={email}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                   required
                 ></input>
@@ -68,7 +81,7 @@ const About=()=>{
                 <input
                   type= "text" 
                   id="phone"
-                  placeholder="+994  055-123-45-67"
+                  placeholder={phone}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                   required
                 ></input>

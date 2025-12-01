@@ -1,6 +1,7 @@
 import { useRef,useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Select from "react-select"
 const AddPost=({setActiveTab})=>{
     const [postTitle, setPostTitle]=useState("")
     const [postDesc,setPostDesc]=useState("")
@@ -23,14 +24,23 @@ const AddPost=({setActiveTab})=>{
         const newArticle={postTitle, postDesc, postImg, postCategory, postTags}
         try{
       const res= await axios.post("http://localhost/cothinke/server/posts/postPost.php", {newArticle},
-         { headers:{ "Content-Type":"application/json" }});
+          { headers:{ "Content-Type":"multipart/form-data"}});
          if(res.data.success){
-            toast.success("Article created successfully")
+            toast.success("Post uğurla əlavə olundu")
          }
     }
     catch(err){
         console.log(err.message)
     }
+    }
+    const options=[
+        {value:"Riyaziyyat", label:"Riyaziyyat"},
+        {value:"Fizika", label:"Fizika"},
+        {value:"Tarix", label:"Tarix"}
+      
+    ]
+    const handleSelect=(selectedCategory)=>{
+        setPostCategory(selectedCategory.value)
     }
     return (
         <div className="research-form">
@@ -48,15 +58,16 @@ const AddPost=({setActiveTab})=>{
 </div>
                 </div>
                     <div className="mb-4">
- <label htmlFor="description" className="block title font-semibold pb-2">Kateqoriya</label>
-<input type="text" className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg" placeholder="Riyaziyyat" onChange={(e)=>setPostTags(e.target.value)}/>
+ <label htmlFor="category" className="block title font-semibold pb-2">Kateqoriya</label>
+<Select options={options} onChange={handleSelect} />
+
 </div>
 
 <div className="mb-4">
      <label htmlFor="title" className="block title font-semibold pb-2">Şəkillər</label>
      <div className="flex justify-center items-center flex-col gap-3 border border-gray-300 p-5 rounded-2xl">
     <img src="image_icon.png"/>
-<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setPostImg(e.target.value)}/>
+<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setPostImg(e.target.files[0])}/>
 <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
     <button className="find-btn text-white bg-blue-800 rounded-md px-3 py-2 " onClick={handleUpload}>Axtar</button>
 </div>
