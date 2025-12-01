@@ -1,6 +1,3 @@
-import { FiPlus } from "react-icons/fi";
-import { Link } from "react-router-dom";
-// import categories from "../data/CategoryData";
 import { useState,useEffect } from "react";
 import axios from "axios";
 
@@ -31,17 +28,8 @@ export const ArticleCard=({item})=>{
 const Articles=()=>{
 
    const [articles,setArticles]=useState([])
-
-// const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
-// const [visibleCategories, setVisibleCategories]=useState(2)
-// const  [query, setQuery]=useState("")
-    // const handleMore=()=>{
-    //     setVisibleCategories(prev=>{
-    //     const newCount=prev+4
-    //     setDisplayedCategories(categories.slice(0, newCount))
-    //     return newCount;
-
-    //    })}
+   const  [query, setQuery]=useState("")
+   
         useEffect(() => {
     axios.get("http://localhost/cothink1/cothink/server/articles/articleRead.php")
         .then(res => {
@@ -50,26 +38,24 @@ const Articles=()=>{
         })
         .catch(err => console.error(err))
 }, []);
-    //       const filteredArticles=articles.filter((item)=>
-    //     item.title.toLowerCase().includes(query.toLowerCase()) || 
-    //     item.category.toLowerCase().includes(query.toLowerCase())
-    // )
+
+          const filteredArticles=articles.filter((item)=>
+        item.title.toLowerCase().includes(query.toLowerCase()) || 
+        item.category.toLowerCase().includes(query.toLowerCase())
+    )
     return(
         <>
         <section>
         <div>
             <div className="articles mt-3">
-                      {articles.length===0 ? 
+                      {filteredArticles.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Məqalə tapılmadı</p>   : (
 
-                    articles.map((item)=>(
+                    filteredArticles.map((item)=>(
                                 <ArticleCard key={item._id} item={item}/>
                     )))
                 }
                     </div>
-            {/* <div className="add-article flex justify-center">
-            <Link className="bg-blue-800 text-white flex gap-3 items-center rounded-full px-3 py-2" to={"/addarticle"}>Məqalə əlavə et <FiPlus/></Link>
-            </div> */}
         </div>
         </section>
                     </>

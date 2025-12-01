@@ -1,5 +1,5 @@
 import categories from "../data/CategoryData";
-import Search from "../components/Search";
+import Search from "../utils/Search";
 import { FaRegComments } from "react-icons/fa";
 import { useState } from "react";
 import discussions from "../data/DiscussionsData";

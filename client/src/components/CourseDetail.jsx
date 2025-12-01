@@ -5,6 +5,7 @@ import { MdAssignment } from "react-icons/md";
 import { FaRegComments, FaRegFile } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
+
 const CourseDetail=()=>{
     return(
      <section>

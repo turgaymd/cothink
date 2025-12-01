@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FaRegComments } from "react-icons/fa";
 import { HiOutlineUsers } from "react-icons/hi2";
-import courses from "../data/CourseData";
 import { CourseCard } from "../components/Courses";
 import Articles from "../components/Articles";
 import Posts from "../components/Posts";
+import axios from "axios";
 const Mentor=()=>{
     const [activeTab, setActiveTab]=useState("courses")
+    const [courses, setCourses]=useState([])
+        
+       useEffect(()=>{
+            axios.get("http://localhost/cothink1/cothink/server/courses/courseRead.php").then(res=>{
+                setCourses(res.data)
+                console.log(courses)
+            })
+         },[courses])
     return (
         <div>
        <section>

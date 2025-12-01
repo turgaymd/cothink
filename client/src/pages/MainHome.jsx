@@ -6,7 +6,6 @@ import categories from "../data/CategoryData";
 const MainHome=()=>{
 const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
 const  [visibleCategories, setVisibleCategories]=useState(4)
-const  [query, setQuery]=useState("")
     return (
         <section>
                 <div className="mentor-banner mt-3">

@@ -1,6 +1,6 @@
 
 // import courses from "../data/CourseData";
-import Search from "./Search";
+import Search from "../utils/Search";
 import { MdArrowOutward } from "react-icons/md";
 import { useEffect,useState } from "react";
 import axios from "axios";

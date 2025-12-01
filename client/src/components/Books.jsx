@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 const Books = () => {
-  // const  [query, setQuery]=useState("")
+  const  [query, setQuery]=useState("")
   const [books, setBooks] = useState([]);
 
-  //    const filteredBooks=books.filter((item)=>
-  //     item.title.toLowerCase().includes(query.toLowerCase())
-  // )
+     const filteredBooks=books.filter((item)=>
+      item.title.toLowerCase().includes(query.toLowerCase())
+  )
   useEffect(() => {
     axios
       .get("http://localhost/cothink1/cothink/server/books/bookRead.php")
@@ -20,9 +20,9 @@ const Books = () => {
     return (
         <>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-               {books.length===0 ? 
+               {filteredBooks.length===0 ? 
                   <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
-               books.map((item, index)=>(
+               filteredBooks.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
                         <a href="/library/books/id">
                 <div className="flex items-center gap-5">

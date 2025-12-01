@@ -2,7 +2,7 @@ import {useState} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Toast from "../components/Toast";
+import Toast from "../utils/Toast";
 const ForgotPassword=()=>{
       const [email, setEmail]=useState("")
       const [message, setMessage]=useState("")
