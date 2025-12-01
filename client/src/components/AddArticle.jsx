@@ -2,7 +2,7 @@ import { Link} from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import Select from "react-select"
 const AddArticle=()=>{
     const [articleTitle, setArticleTitle]=useState("")
     const [articleDesc,setArticleDesc]=useState("")
@@ -26,16 +26,24 @@ const AddArticle=()=>{
         const newArticle={articleTitle, articleDesc, articleContent, articleImg, articleCategory, articleTags}
         try{
       const res= await axios.post("http://localhost/cothinke/server/articles/articlePost.php", {newArticle},
-         { headers:{ "Content-Type":"application/json" }});
+         { headers:{ "Content-Type":"multipart/form-data"}});
          if(res.data.success){
-            toast.success("Article created successfully")
+            toast.success("Məqalə uğurla əlavə olundu")
          }
     }
     catch(err){
         console.log(err.message)
     }
     }
-    
+        const options=[
+        {value:"Riyaziyyat", label:"Riyaziyyat"},
+        {value:"Fizika", label:"Fizika"},
+        {value:"Tarix", label:"Tarix"}
+      
+    ]
+    const handleSelect=(selectedCategory)=>{
+        setArticleCategory(selectedCategory.value)
+    }
     return (
         <div className="research-form">
             <h2 className="text-center font-bold text-3xl pb-5">Məqalə əlavə et</h2>
@@ -52,8 +60,8 @@ const AddArticle=()=>{
 </div>
                 </div>
                     <div className="mb-4">
- <label htmlFor="description" className="block title font-semibold text-gray-900 pb-2">Kateqoriya</label>
-
+ <label htmlFor="category" className="block title font-semibold pb-2">Kateqoriya</label>
+<Select options={options} onChange={handleSelect} />
 </div>
 <div className="mb-4 mt-4">
  <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2" >Məqalə Məzmunu</label>
@@ -63,7 +71,7 @@ const AddArticle=()=>{
      <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2">Şəkillər</label>
      <div className="flex justify-center items-center flex-col gap-3 border border-gray-300 p-5 rounded-2xl">
     <img src="image_icon.png"/>
-<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setArticleImg(e.target.value)}/>
+<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setArticleImg(e.target.files[0])}/>
 <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
     <button className="find-btn text-white bg-blue-800 px-3 py-2 rounded-md" onClick={handleUpload}>Axtar</button>
 </div>

@@ -68,19 +68,19 @@ CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bili
             <div>
                 <h2 className="font-bold text-3xl text-center mb-5">Niyə  Bizi Seçməlisiniz ?</h2>
                 <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 md:gap-0 gap-3  grid-cols-1 pt-5">
-                    <div className="bg-gray-100  border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto">
+                    <div className="bg-gray-100  border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-400">
                         <h5 className="font-bold">Təhlükəsiz və Etibarlı</h5>
                         <p className="text-gray-400 text-center">Bütün məzmun müəllimlər və mütəxəssislər tərəfindən yoxlanılır.</p>
                     </div>
-                                        <div className="bg-gray-100 border border-blue-300 rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto">
+                                        <div className="bg-gray-100 border border-blue-300 rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-500">
                         <h5 className="font-bold">Proqrama Uyğun</h5>
                         <p className="text-gray-400 text-center">Dərs izahları və resurslar Azərbaycan tədris proqramına uyğun hazırlanır.</p>
                     </div>
-                                        <div className="bg-gray-100 border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto">
+                                        <div className="bg-gray-100 border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-300">
                         <h5 className="font-bold">İnsan Dəstəyi</h5>
                         <p className="text-gray-400 text-center">Mentorlar və tələbə icması suallara real və aydın cavablar verir.</p>
                     </div>
-                                        <div className="bg-gray-100 border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto">
+                                        <div className="bg-gray-100 border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-400">
                         <h5 className="font-bold">AI Filtrasiyası</h5>
                         <p className="text-gray-400 text-center">Yanlış, uyğunsuz və keyfiyyətsiz məzmun avtomatik təmizlənir.</p>
                     </div>
@@ -116,7 +116,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                <div className="grid md:grid-cols-2 grid-cols-1 gap-3 mt-5">
                 <div className="flex border border-gray-200 rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
+                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
                      <img src="library.svg"/>
                         </div>
                      <div>
@@ -128,7 +128,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                 </div>
                                 <div className="flex border border-gray-200 rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
+                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
                      <HiOutlineUsers fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
@@ -140,7 +140,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                 </div>
                            <div className="flex border border-gray-200 rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
+                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
                     <LuBookText fontSize={28} className="text-blue-800"/>                        </div>
                      <div>
                      
@@ -151,7 +151,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                 </div>
                                 <div className="flex border border-gray-200 rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
+                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
                      <RiQuestionnaireLine fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
@@ -163,7 +163,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                </div>
                  <div className="flex border border-gray-200 mt-4  rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-20 h-20">
+                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
                      <SiReaddotcv fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
@@ -180,7 +180,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                 <h2 className="font-bold text-center text-3xl ">Əlaqə</h2>
                 <div className="max-w-4xl mx-auto">
              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white">
-                   <div className="contact-box1">
+                   <div className="md:contact-box1 bg-blue-800">
                     <div className="flex flex-col">
                        <h4 className="font-bold text-xl">Email Address</h4> 
                        <p>cothink@gmail.com</p>

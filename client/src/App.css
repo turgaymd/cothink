@@ -252,8 +252,8 @@ footer h4{
 }
 .contact-box1, .contact-box2, .contact-box3 {
   background-repeat: no-repeat;
-  background-size: cover;
-  padding: 40px;
+  background-size: contain;
+  padding: 10px;
 
 }
 .contact-box1 {

@@ -20,7 +20,7 @@ const Questions=()=>{
         <section>
             <Search/>
              <div className="flex justify-between mb-3">
-                <h4 className="font-medium text-xl">Mövzular</h4>
+                <h4 className="font-semibold text-xl">Mövzular</h4>
                   {
                 visibleCategories<categories.length && (
                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
