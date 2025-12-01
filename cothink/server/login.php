@@ -38,6 +38,9 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
+$_SESSION["student_id"] = $student["student_id"];
+
+
 // ============================
 //  DB QUERY
 // ============================

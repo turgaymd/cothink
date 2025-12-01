@@ -1,14 +1,24 @@
 <?php
 require_once "../db.php";
+session_start();
 
 header("Content-Type: application/json");
 
+ 
+
+// MENTOR ID SESSION-DAN
+if (!isset($_SESSION['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
+    exit;
+}
+
+$mentor_id = $_SESSION['mentor_id'];
+
 $book_title  = $_POST['book_title'] ?? null;
-$description = $_POST['description'] ?? null;
-$mentor_id   = $_POST['mentor_id'] ?? null;
+$description = $_POST['description'] ?? null; 
 $catagory_id = $_POST['catagory_id'] ?? null;
 
-if (!$book_title || !$description || !$mentor_id) {
+if (!$book_title || !$description ) {
     echo json_encode(["status" => "error", "message" => "Required fields missing"]);
     exit;
 }

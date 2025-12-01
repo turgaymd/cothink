@@ -1,15 +1,18 @@
 <?php
 require_once "../db.php";
+session_start();
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
-
-// mentor_id GET parametri yoxlanır
-$mentor_id = $_GET['mentor_id'] ?? null;
-
-if (!$mentor_id) {
-    echo json_encode(['status' => 'error', 'message' => 'mentor_id göndərilməyib']);
+ 
+// MENTOR ID SESSION-DAN
+if (!isset($_SESSION['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
     exit;
 }
+
+$mentor_id = $_SESSION['mentor_id'];
+ 
 
 // PDO prepare + execute ilə sorğu
 $sql = "SELECT * FROM mentor_books WHERE mentor_id = ?";

@@ -1,9 +1,20 @@
 <?php
 require_once "../db.php";
+session_start();
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: *");
+
+
+
+// MENTOR ID SESSION-DAN
+if (!isset($_SESSION['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
+    exit;
+}
+
+$mentor_id = $_SESSION['mentor_id'];
 
 // 1) Kurs məlumatlarını al
 $course_title = $_POST['course_title'] ?? null;
@@ -20,7 +31,7 @@ $sql = "INSERT INTO mentor_course (course_title, category_id, subcategory)
         VALUES (?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->execute([$course_title, $category_id, $subcategory]);
+$stmt->execute([$course_title, $mentor_id, $category_id, $subcategory]);
 
 if (!$stmt->execute()) {
     echo json_encode(["status"=>"error","message"=>"Kurs əlavə olunmadı"]);
@@ -50,12 +61,12 @@ foreach ($lessons as $index => $lesson) {
     // Fayl upload
     $file_name = null;
 
-    if (isset($_FILES["lesson_files"]["name"][$index])) {
+    if (isset($_FILES["course_files"]["name"][$index])) {
 
-        $tmp = $_FILES["lesson_files"]["tmp_name"][$index];
-        $name = time() . "_" . $_FILES["lesson_files"]["name"][$index];
+        $tmp = $_FILES["course_files"]["tmp_name"][$index];
+        $name = time() . "_" . $_FILES["course_files"]["name"][$index];
 
-        $upload_path = "../uploads/course_files/" . $name;
+        $upload_path = "../../client/uploads/course_files/" . $name;
 
         if (move_uploaded_file($tmp, $upload_path)) {
             $file_name = $name;
