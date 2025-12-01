@@ -20,7 +20,7 @@ import Book from "./components/Book";
 import Questions from "./pages/Questions";
 import EditProfile from "./pages/EditProfile";
 import CourseDetail from "./components/CourseDetail";
-import Saved from "./components/Saved";
+import Saved from "./pages/Saved";
 import BookView from "./components/BookView";
 import CourseContent from "./components/CourseContent";
 import Home from "./pages/Home";

@@ -1,7 +1,6 @@
 import { useState,useEffect } from "react";
-import Search from "./Search";
+import Search from "../utils/Search";
 import Articles from "./Articles";
-// import books from "../data/BooksData";
 import categories from "../data/CategoryData";
 import axios from "axios";
 const Library=()=>{
@@ -18,9 +17,9 @@ const Library=()=>{
         })
      },[books])
 
-  //  const filteredBooks=books.filter((item)=>
-  //       item.title.toLowerCase().includes(query.toLowerCase()) 
-  //   )
+   const filteredBooks=books.filter((item)=>
+        item.title.toLowerCase().includes(query.toLowerCase()) 
+    )
     return(
             <>
      <section>
@@ -47,9 +46,9 @@ const Library=()=>{
             </div>
             {activeTab==="articles" ? <Articles/> : <>  
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-               {books.length===0 ? 
+               {filteredBooks.length===0 ? 
                   <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
-               books.map((item, index)=>(
+               filteredBooks.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
                         <a href="/library/books/:id">
                 <div className="flex items-center gap-5">
@@ -71,8 +70,7 @@ const Library=()=>{
                         <span>Paylaş</span>
                         </div>
                         <div className="flex items-center gap-2">
-                      <img src="/save.svg"/>
-               
+                      <img src="/save.svg"/>              
                         </div>
                     </div>
                     </div>

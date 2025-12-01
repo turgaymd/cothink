@@ -1,7 +1,7 @@
 
 
 import { useState,useEffect } from "react";
-import Search from "../components/Search";
+import Search from "../utils/Search";
 import axios from "axios";
 import categories from "../data/CategoryData";
 const Mentors=()=>{
