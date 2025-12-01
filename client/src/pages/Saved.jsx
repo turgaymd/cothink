@@ -29,7 +29,7 @@ const Saved=()=>{
             <Search/>
                  <h4 className="font-bold text-xl mt-5">Kategoriyalar</h4>
               <div className="course-filter mt-5 mb-5">
-                    <div className="filter-items flex gap-3">
+                    <div className="filter-items flex md:flex-row flex-col gap-3">
                     <button className={` rounded-md ${activeTab==="books" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
                     <button className={`rounded-md ${activeTab==="articles" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
                     <button className={`rounded-md ${activeTab==="courses" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("courses")}>Kurslar</button>
