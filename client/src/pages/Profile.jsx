@@ -5,6 +5,7 @@ import { CourseCard } from "../components/Courses";
 import { ArticleCard } from "../components/Articles";
 import Posts from "../components/Posts";
 import axios from "axios";
+
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("courses");
   const [courses, setCourses] = useState([]);
@@ -117,4 +118,5 @@ const Profile = () => {
     </section>
   );
 };
+
 export default Profile;
