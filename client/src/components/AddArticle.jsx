@@ -1,94 +1,132 @@
-import { Link} from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Select from "react-select"
-const AddArticle=()=>{
-    const [articleTitle, setArticleTitle]=useState("")
-    const [articleDesc,setArticleDesc]=useState("")
-    const [articleContent,setArticleContent]=useState("")
-    const [articleImg,setArticleImg]=useState("")
-    const [articleCategory,setArticleCategory]=useState("")
-    const [articleTags, setArticleTags]=useState("")
-    const [error, setError]=useState("")
-  
-    const fileInputRef=useRef(null);
 
-    const handleUpload=()=>{
-          fileInputRef.current.click()
+const AddPost = () => {
+  const [article_title, setArticleTitle] = useState("");
+  const [article_desc, setArticleDesc] = useState("");
+  const [article_img, setArticleImg] = useState("");
+  const [article_tags, setArticleTags] = useState("");
+  const [category_id, setCategoryId] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [error, setError] = useState("");
+
+  // ✔ backend_categoryRead.php-dən category-ləri çək
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost/cothink1/cothink/server/categories/categoryRead.php"
+      )
+      .then((res) => {
+        if (res.data.status === "success") {
+          setCategories(res.data.data);
+        }
+      })
+      .catch(() => toast.error("Category yüklənmədi"));
+  }, []);
+
+  const handlePost = async (e) => {
+    e.preventDefault();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    const mentor_id = user?.mentor_id;
+
+    if (!mentor_id) {
+      toast.error("LocalStorage-də user tapılmadı!");
+      return;
     }
-    const handleArticle=async (e)=>{
-        e.preventDefault()
-        if (!articleTitle || !articleCategory){
+
+    if (!article_title || !article_desc || !category_id) {
       setError("Bütün xanaları doldurun");
       return;
     }
-        const newArticle={articleTitle, articleDesc, articleContent, articleImg, articleCategory, articleTags}
-        try{
-      const res= await axios.post("http://localhost/cothinke/server/articles/articlePost.php", {newArticle},
-         { headers:{ "Content-Type":"multipart/form-data"}});
-         if(res.data.success){
-            toast.success("Məqalə uğurla əlavə olundu")
-         }
-    }
-    catch(err){
-        console.log(err.message)
-    }
-    }
-        const options=[
-        {value:"Riyaziyyat", label:"Riyaziyyat"},
-        {value:"Fizika", label:"Fizika"},
-        {value:"Tarix", label:"Tarix"}
-      
-    ]
-    const handleSelect=(selectedCategory)=>{
-        setArticleCategory(selectedCategory.value)
-    }
-    return (
-        <div className="research-form">
-            <h2 className="text-center font-bold text-3xl pb-5">Məqalə əlavə et</h2>
-            <form className="mt-5" onSubmit={handleArticle}>
-                 {error && <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">{error}</p>}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                       <div>
-                <label className="block title font-semibold text-gray-900 pb-2" htmlFor="title" onChange={(e)=>setArticleTitle(e.target.value)}>Məqalə başlığı</label>
-                <textarea className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg dark:bg-gray-700 dark:text-white dark:border-none" cols={5}  rows={3}   placeholder="Məqalə başlığı əlavə edin"/>
-               </div>
-               <div>
- <label htmlFor="description" className="block title font-semibold text-gray-900 pb-2" onChange={(e)=>setArticleDesc(e.target.value)}>Qısa izah /Məqalə haqqında</label>
-<textarea type="text" className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg" cols={5}  rows={3}  placeholder="Məqalənizin mövzusu, məqsədi və kimlər üçün faydalı olduğunu 2–3 cümlə ilə yazın"/>
-</div>
-                </div>
-                    <div className="mb-4">
- <label htmlFor="category" className="block title font-semibold pb-2">Kateqoriya</label>
-<Select options={options} onChange={handleSelect} />
-</div>
-<div className="mb-4 mt-4">
- <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2" >Məqalə Məzmunu</label>
-<textarea type="text" className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg" cols={5}  rows={3} placeholder="Məqalənizin əsas hissəsini burada yazın – izahlar, formul və nümunələr əlavə edə bilərsiniz" onChange={(e)=>setArticleContent(e.target.value)}/>
-</div>
-<div className="mb-4">
-     <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2">Şəkillər</label>
-     <div className="flex justify-center items-center flex-col gap-3 border border-gray-300 p-5 rounded-2xl">
-    <img src="image_icon.png"/>
-<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setArticleImg(e.target.files[0])}/>
-<p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
-    <button className="find-btn text-white bg-blue-800 px-3 py-2 rounded-md" onClick={handleUpload}>Axtar</button>
-</div>
-</div>
-<div>
-     <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2" onChange={(e)=>setArticleTags(e.target.value)}>Etiketlər</label>
-<input type="text" className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg" placeholder="Mövzunu ifadə edən açar sözlər əlavə edin"/>
-</div>
-<div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
-    <Link className="border border-blue-800 text-blue-800 px-7 py-4" to={"/library"}>Ləğv et</Link>
-    <button type="submit" className="text-white bg-blue-800 px-7 py-4">Yadda Saxla</button>
-    
-</div>
 
+    try {
+      const res = await axios.post(
+        "http://localhost/cothink1/cothink/server/articles/articlePost.php",
+        {
+        //   mentor_id,
+          article_title,
+          article_desc,
+          article_img,
+          article_tags,
+          category_id,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
 
-            </form>
-        </div>
-    )
-}
-export default AddArticle;
+      if (res.data.status === "success") {
+        toast.success("Post uğurla əlavə olundu");
+        setArticleTitle("");
+        setArticleDesc("");
+        setArticleImg("");
+        setArticleTags("");
+        setCategoryId("");
+        setError("");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+  };
+
+  return (
+    <div className="research-form">
+      <h2 className="text-center font-bold text-3xl pb-5">Post əlavə et</h2>
+
+      <form onSubmit={handlePost}>
+        {error && <p className="text-red-600">{error}</p>}
+
+        <input
+          type="text"
+          placeholder="Başlıq"
+          value={article_title}
+          onChange={(e) =>  setArticleTitle(e.target.value)}
+        />
+
+        <textarea
+          placeholder="İzah"
+          value={article_desc}
+          onChange={(e) =>  setArticleDesc(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Şəkil Linki (post_img)"
+          value={article_img}
+          onChange={(e) =>  setArticleImg(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Taglar (vergüllə ayır)"
+          value={article_tags}
+          onChange={(e) =>  setArticleTags(e.target.value)}
+        />
+
+        {/* CATEGORY SELECT */}
+        <select
+          value={category_id}
+          onChange={(e) => setCategoryId(e.target.value)}
+        >
+          <option value="">Kateqoriya seç</option>
+
+          {categories.map((cat) => (
+            <option key={cat.category_id} value={cat.category_id}>
+              {cat.category}
+            </option>
+          ))}
+        </select>
+
+        <button type="submit">Yadda saxla</button>
+      </form>
+    </div>
+  );
+};
+
+export default AddPost;

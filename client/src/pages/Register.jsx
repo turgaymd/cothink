@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -34,15 +34,17 @@ function Register() {
        const userInfo={
           username:res.data.username,
           email:res.data.email,
-          token:res.data.token
+          token:res.data.token ,
+          studentId:res.data.studentId
         }
           if (res.data.error) {
           setError(res.data.error);
                return;
   }
   if(res.data.success){
-    toast.success("Registered successfully")
-          navigate("/courses")
+    // toast.success("Registered successfully")
+          navigate("/home")
+          alert("Hesab uğurla yaradıldı")
   }
 
         localStorage.setItem("user", JSON.stringify(userInfo))

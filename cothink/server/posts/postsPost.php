@@ -1,18 +1,27 @@
 <?php
 require_once "../db.php";
 session_start();
+// CORS header
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 $data = json_decode(file_get_contents("php://input"), true);
 
 
 // MENTOR ID SESSION-DAN
-if (!isset($_SESSION['mentor_id'])) {
+if (!isset($_SESSION['student_id'])) {
     echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
     exit;
 }
 
-$mentor_id = $_SESSION['mentor_id'];
+$mentor_id = $_SESSION['student_id'];
  
 $category_id = $data["category_id"] ?? null;
 $post_title  = $data["post_title"] ?? null;

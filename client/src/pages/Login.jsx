@@ -2,7 +2,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { createSessionStorage, useNavigate } from "react-router-dom";
 import {toast} from "react-toastify"
 import Toast from "../utils/Toast";
 
@@ -23,13 +23,14 @@ function Login() {
       return;
     }
       try {
-        const res = await axios.post("http://localhost/test/login.php", {
+        const res = await axios.post("http://localhost/cothink1/cothink/server/login.php", {
           email,
-          password,
+          password
         },
         { headers:{ "Content-Type":"application/json" }});
 
         const userInfo={
+          student_id:res.data.student_id  ,
           username:res.data.username,
           email:res.data.email,
           token:res.data.token
@@ -42,6 +43,7 @@ function Login() {
   }
    if(rememberMe){
     localStorage.setItem("user", JSON.stringify(userInfo))
+    sessionStorage.setItem("user", JSON.stringify(userInfo));
     }
     else{
      sessionStorage.setItem("user", JSON.stringify(userInfo));
