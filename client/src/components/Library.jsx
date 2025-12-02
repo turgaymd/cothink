@@ -8,7 +8,7 @@ const Library=()=>{
   const [books, setBooks]=useState([])
   const  [query, setQuery]=useState("")
   const [categories,setCategories]=useState([])
-  const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+  // const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
   const [visibleCategories, setVisibleCategories]=useState(2)
 
 
@@ -20,7 +20,8 @@ const Library=()=>{
       })
       .catch((err) => console.error(err));
           axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
-            setCategories(res.data)
+            setCategories(res.data) ;
+            console.log(res.data)
         })
   }, [books]);
 

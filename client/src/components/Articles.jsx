@@ -33,16 +33,15 @@ const Articles=()=>{
         useEffect(() => {
     axios.get("http://localhost/cothink1/cothink/server/articles/articleRead.php")
         .then(res => {
-            setArticles(res.data)
-            console.log(res.data) // burda gələn datanı görə bilərsən
+            setArticles(res.data)  // burda gələn datanı görə bilərsən
         })
         .catch(err => console.error(err))
 }, []);
 
           const filteredArticles=articles.filter((item)=>
-        item.article_title.toLowerCase().includes(query.toLowerCase()) || 
-        item.category.toLowerCase().includes(query.toLowerCase())
-    )
+        item.article_title.toLowerCase().includes(query.toLowerCase()) 
+          
+    ) 
     return(
         <>
         <section>
