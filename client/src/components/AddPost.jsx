@@ -1,4 +1,4 @@
-import { useRef,useState } from "react";
+import { useState, useEffect,useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Select from "react-select";
@@ -6,28 +6,62 @@ const AddPost=({setActiveTab})=>{
     const [postTitle, setPostTitle]=useState("")
     const [postDesc,setPostDesc]=useState("")
     const [postImg,setPostImg]=useState("")
-    const [postCategory,setPostCategory]=useState("")
     const [postTags, setPostTags]=useState("")
     const [input, setInput]=useState("")
     const [error, setError]=useState("")
+    const [categoryId, setCategoryId] = useState("");
+    const [categories, setCategories]=useState([])
+    
+    
+const fileInputRef = useRef(null);
 
-    const fileInputRef=useRef(null);
+  const handleUpload = (e) => {
+    e.preventDefault();
+    fileInputRef.current.click();
+  };
 
-    const handleUpload=()=>{
-          fileInputRef.current.click()
-    }
+  useEffect(() => {
+    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
+      .then((res) => {
+        if (res.data.status === "success") {
+          setCategories(res.data.data);
+        }
+      })
+      .catch(() => toast.error("Category yüklənmədi"));
+  }, []);
+
+
     const handlePost=async(e)=>{
         e.preventDefault()
-          if (!postTitle || !postCategory || !postDesc || !postImg || !postTags){
+    const user = JSON.parse(localStorage.getItem("user"));
+    const student_id = user?.student_id;
+
+    if (!student_id) {
+      toast.error("LocalStorage-də user tapılmadı!");
+      return;
+    }
+    if (!postTitle || !categoryId || !postDesc || !postImg || !postTags){
       setError("Bütün xanaları doldurunn");
       return;
     }
-        const newPost={post_title:postTitle, post_desc:postDesc, post_img:postImg, postCategory, post_tags:postTags}
+        const newPost={
+            post_title:postTitle, 
+            post_desc:postDesc,
+            post_img:postImg, 
+            post_tags:postTags,
+            category_id:categoryId, 
+        }
         try{
       const res= await axios.post("http://localhost/cothinke/server/posts/postPost.php", {newPost},
        { headers:{ "Content-Type":"application/json" }});
          if(res.data.success){
             toast.success("Post uğurla əlavə olundu")
+            setPostTitle("");
+            setPostDesc("");
+            setPostImg("");
+            setPostTags("");
+            setCategoryId("")
+            setError("");
          }
          else{
             setError(res.data.error)
@@ -37,14 +71,8 @@ const AddPost=({setActiveTab})=>{
         console.log(err.message)
     }
     }
-    const options=[
-        {value:"Riyaziyyat", label:"Riyaziyyat"},
-        {value:"Fizika", label:"Fizika"},
-        {value:"Tarix", label:"Tarix"}
-      
-    ]
     const handleSelect=(selectedCategory)=>{
-        setPostCategory(selectedCategory.value)
+        setCategoryId(selectedCategory.value)
     }
         const handleTags=(e)=>{
         if(e.key==="Enter" || e.key===","){
@@ -76,7 +104,10 @@ const AddPost=({setActiveTab})=>{
                 </div>
                     <div className="mb-4">
  <label htmlFor="category" className="block title font-semibold pb-2">Kateqoriya</label>
-<Select options={options} onChange={handleSelect} />
+<Select options={categories.map(item=>({
+value:item.category_id,
+label:item.category
+}))} onChange={handleSelect} placeholder="Kategoriya seçin"/>
 </div>
 
 <div className="mb-4">
@@ -110,3 +141,4 @@ const AddPost=({setActiveTab})=>{
     )
 }
 export default AddPost;
+

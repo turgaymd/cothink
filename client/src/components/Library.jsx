@@ -25,7 +25,7 @@ const Library=()=>{
   }, [books]);
 
    const filteredBooks=books.filter((item)=>
-        item.title.toLowerCase().includes(query.toLowerCase()) 
+        item.book_title.toLowerCase().includes(query.toLowerCase()) 
     )
     return(
             <>

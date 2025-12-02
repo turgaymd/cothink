@@ -5,7 +5,7 @@ const Books = () => {
   const [books, setBooks] = useState([]);
 
      const filteredBooks=books.filter((item)=>
-      item.title.toLowerCase().includes(query.toLowerCase())
+      item.book_title.toLowerCase().includes(query.toLowerCase())
   )
   useEffect(() => {
     axios
