@@ -1,14 +1,16 @@
-import categories from "../data/CategoryData";
+
 import Search from "../utils/Search";
 import { FaRegComments } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import discussions from "../data/DiscussionsData";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import axios from "axios";
 
 const Questions=()=>{
- 
+    const [categories,setCategories]=useState([]);
     const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
     const [visibleCategories, setVisibleCategories]=useState(2)
+
 
     const handleMore=()=>{
         setVisibleCategories(prev=>{
@@ -16,6 +18,11 @@ const Questions=()=>{
         setDisplayedCategories(categories.slice(0, newCount))
         return newCount;
        })}
+useEffect(()=>{
+       axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
+            setCategories(res.data)
+        })
+},[])
     return (
         <section>
             <Search/>
@@ -34,7 +41,7 @@ const Questions=()=>{
                         <div className="w-full ">
                     <div className="topic-item mb-2" key={index}>
                     <a>
-                        <img src={item.img}></img>
+                        {/* <img src={item.img}></img> */}
                     </a>   
                         </div> 
                     <h4 className="font-bold text-center">{item.name}</h4>

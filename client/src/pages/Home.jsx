@@ -19,9 +19,15 @@ const Home=()=>{
         <>
                 <header className="w-full top-0 z-50 navbar items-center">
                     <div className=" flex justify-between items-center">
+                             <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
+                { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
+            </button>
                     <div className="logo">
-                        <Link to ="/home">
+                        <Link to ="/home" className="hidden md:flex">
                          <img src="/logo.jpg"></img>
+                        </Link>
+                         <Link to ="/home" className="md:hidden flex">
+                         <img src="mobile_logo.png"></img>
                         </Link>
                     </div>
                         <ul className="hidden md:flex gap-6 desktop-menu">
@@ -30,16 +36,15 @@ const Home=()=>{
                             <li className="nav-item"><a className="" href="#about">Haqqımızda</a></li>
                             <li className="nav-item"><a className="" href="#contact">Əlaqə</a></li>
                         </ul>
-                           <div className="hidden md:flex actions items-center gap-3 ">                 
+                           <div className=" md:flex actions items-center gap-3 ">                 
                                <a className="border border-blue-800 text-blue-800 rounded-full px-7 py-3" href="/register">Qeydiyyat</a>
                         </div>
-                       <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
-                { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
-            </button>
+                  
             
                     </div>
                       {
                                     open && (
+                                        <>
                                     <ul className="md:hidden bg-white shadow-md flex flex-col gap-5 px-6 py-4 nav">
                                     <li className="nav-item"><a  href="#home">Ana Səhifə</a></li>
                                     <li className="nav-item"><a  href="#services">Xidmətlərimiz</a></li>
@@ -47,6 +52,8 @@ const Home=()=>{
                                     <li className="nav-item"><a  >Əlaqə</a></li>
                                       
                                 </ul>   
+                                 
+                        </>
                                     )
                     
                                 }

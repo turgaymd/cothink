@@ -3,17 +3,21 @@
 import { useState,useEffect } from "react";
 import Search from "../utils/Search";
 import axios from "axios";
-import categories from "../data/CategoryData";
+
 const Mentors=()=>{
+const [categories,setCategories]=useState([])
 const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
 const  [visibleCategories, setVisibleCategories]=useState(4)
 const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
+
      useEffect(()=>{
         axios.get("http://localhost/cothink1/cothink/server/mentors/mentors.php").then(res=>{
             setMentors(res.data)
-            console.log(mentors)
+        })
+         axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
+            setCategories(res.data)
         })
      })
 
@@ -24,10 +28,10 @@ const [mentors, setMentors]=useState([])
         return newCount;
        })}
 
-    //       const filteredMentors=mentors.filter((item)=>
-    //     item.name.toLowerCase().includes(query.toLowerCase()) || 
-    //     item.category.toLowerCase().includes(query.toLowerCase())
-    // )
+          const filteredMentors=mentors.filter((item)=>
+        item.name.toLowerCase().includes(query.toLowerCase()) || 
+        item.category.toLowerCase().includes(query.toLowerCase())
+    )
     return (
         <div className="md:col-span-10">
           <section>
@@ -74,9 +78,9 @@ const [mentors, setMentors]=useState([])
                 <button className="text-blue-500" >Hamısına bax</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 pt-4">
-                  {mentors.length===0 ? 
+                  {filteredMentors.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
-                  (mentors.map((item,index)=>(
+                  (filteredMentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
                     <a href="/mentors/id" className="block">
                     <div className="mentor-title gap-5 flex">          

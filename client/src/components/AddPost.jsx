@@ -1,13 +1,14 @@
 import { useRef,useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Select from "react-select"
+import Select from "react-select";
 const AddPost=({setActiveTab})=>{
     const [postTitle, setPostTitle]=useState("")
     const [postDesc,setPostDesc]=useState("")
     const [postImg,setPostImg]=useState("")
     const [postCategory,setPostCategory]=useState("")
     const [postTags, setPostTags]=useState("")
+    const [input, setInput]=useState("")
     const [error, setError]=useState("")
 
     const fileInputRef=useRef(null);
@@ -17,16 +18,19 @@ const AddPost=({setActiveTab})=>{
     }
     const handlePost=async(e)=>{
         e.preventDefault()
-          if (!postTitle || !postCategory){
-      setError("Bütün xanaları doldurun");
+          if (!postTitle || !postCategory || !postDesc || !postImg || !postTags){
+      setError("Bütün xanaları doldurunn");
       return;
     }
-        const newArticle={postTitle, postDesc, postImg, postCategory, postTags}
+        const newPost={post_title:postTitle, post_desc:postDesc, post_img:postImg, postCategory, post_tags:postTags}
         try{
-      const res= await axios.post("http://localhost/cothinke/server/posts/postPost.php", {newArticle},
-          { headers:{ "Content-Type":"multipart/form-data"}});
+      const res= await axios.post("http://localhost/cothinke/server/posts/postPost.php", {newPost},
+       { headers:{ "Content-Type":"application/json" }});
          if(res.data.success){
             toast.success("Post uğurla əlavə olundu")
+         }
+         else{
+            setError(res.data.error)
          }
     }
     catch(err){
@@ -41,6 +45,19 @@ const AddPost=({setActiveTab})=>{
     ]
     const handleSelect=(selectedCategory)=>{
         setPostCategory(selectedCategory.value)
+    }
+        const handleTags=(e)=>{
+        if(e.key==="Enter" || e.key===","){
+           e.preventDefault()
+           const newTag=input.trim()
+           if(newTag && !postTags.includes(newTag)){
+            setPostTags([...postTags, newTag])
+            setInput("")
+           }
+        }
+    }
+    const handleRemove=(removedTag)=>{
+       setPostTags(postTags.filter(tag=>tag!==removedTag))
     }
     return (
         <div className="research-form">
@@ -60,22 +77,30 @@ const AddPost=({setActiveTab})=>{
                     <div className="mb-4">
  <label htmlFor="category" className="block title font-semibold pb-2">Kateqoriya</label>
 <Select options={options} onChange={handleSelect} />
-
 </div>
 
 <div className="mb-4">
      <label htmlFor="title" className="block title font-semibold pb-2">Şəkillər</label>
      <div className="flex justify-center items-center flex-col gap-3 border border-gray-300 p-5 rounded-2xl">
     <img src="image_icon.png"/>
-<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setPostImg(e.target.files[0])}/>
+<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setPostImg(e.target.files[0].name || '')}/>
 <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
     <button className="find-btn text-white bg-blue-800 rounded-md px-3 py-2 " onClick={handleUpload}>Axtar</button>
 </div>
 </div>
 <div>
-     <label htmlFor="title" className="block title font-semibold pb-2" onChange={(e)=>setPostTags(e.target.value)}>Etiketlər</label>
-<input type="text" className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg" placeholder="Mövzunu ifadə edən açar sözlər əlavə edin"/>
+    <div className="flex flex-wrap gap-2">
+     <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2" >Etiketlər</label>
+<input type="text" className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg" placeholder="Mövzunu ifadə edən açar sözlər əlavə edin" value={input} onChange={(e)=>setInput(e.target.value)} onKeyDown={handleTags}/>
+    {postTags.map((tag)=>(
+        <div key={tag}className="flex  justify-between  items-center bg-blue-600 text-white rounded-md px-5 py-1">
+            {tag}
+           <button onClick={()=>handleRemove(tag)}><IoMdClose fontSize={20}/></button>
+        </div>
+    ))}
 </div>
+</div>
+
 <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center" >
     <button className="border w-64 border-blue-800 text-blue-800 px-7 py-4" onClick={()=>setActiveTab("nothing")}>Ləğv et</button>
     <button type="submit" className="w-64 text-white bg-blue-800 px-7 py-4">Yadda Saxla</button>

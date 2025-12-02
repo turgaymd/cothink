@@ -2,23 +2,26 @@
 import { useState,useEffect } from "react";
 import Search from "../utils/Search";
 import Articles from "./Articles";
-import categories from "../data/CategoryData";
 import axios from "axios";
 const Library=()=>{
   const [activeTab, setActiveTab]=useState("books")
   const [books, setBooks]=useState([])
   const  [query, setQuery]=useState("")
+  const [categories,setCategories]=useState([])
   const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
   const [visibleCategories, setVisibleCategories]=useState(2)
+
 
  useEffect(() => {
     axios
       .get("http://localhost/cothink1/cothink/server/books/bookRead.php")
       .then((res) => {
         setBooks(res.data.data); // <--- backend JSON-da "data" key var
-        console.log(res.data);
       })
       .catch((err) => console.error(err));
+          axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
+            setCategories(res.data)
+        })
   }, [books]);
 
    const filteredBooks=books.filter((item)=>
