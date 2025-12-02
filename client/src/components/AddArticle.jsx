@@ -1,5 +1,5 @@
 import { Link} from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Select from "react-select";
@@ -9,41 +9,59 @@ const AddArticle=()=>{
     const [articleDesc,setArticleDesc]=useState("")
     const [articleContent,setArticleContent]=useState("")
     const [articleImg,setArticleImg]=useState("")
-    const [articleCategory,setArticleCategory]=useState("")
+    const [categoryId, setCategoryId] = useState("");
     const [articleTags, setArticleTags]=useState([])
+    const [categories, setCategories]=useState([])
     const [error, setError]=useState("")
     const [input, setInput]=useState("")
     const fileInputRef=useRef(null);
+
+
+      useEffect(() => {
+    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
+      .then((res) => {
+        if (res.data.status === "success") {
+          setCategories(res.data.data);
+        }
+      })
+      .catch(() => toast.error("Category yüklənmədi"));
+  }, []);
 
     const handleUpload=()=>{
           fileInputRef.current.click()
     }
     const handleArticle=async (e)=>{
         e.preventDefault()
-        if (!articleTitle || !articleCategory){
+        if (!articleTitle || !categoryId){
       setError("Bütün xanaları doldurun");
       return;
     }
-        const newArticle={article_title:articleTitle, description:articleDesc, articleContent, article_img:articleImg, category:articleCategory, tags:articleTags}
+        const newArticle={
+            article_title:articleTitle, 
+            description:articleDesc,
+             articleContent, 
+             article_img:articleImg, 
+             category_id:categoryId,
+            tags:articleTags}
         try{
-      const res= await axios.post("http://localhost/cothinke/server/articles/articlePost.php", {newArticle},
+      const res= await axios.post("http://localhost/cothinke/server/articles/articleArticle.php", {newArticle},
            { headers:{ "Content-Type":"application/json" }});
          if(res.data.success){
-            toast.success("Məqalə uğurla əlavə olundu")
+            toast.success("Məqalə uğurla əlavə olundu");
+            setArticleTitle("");
+            setArticleDesc("");
+            setArticleImg("");
+            setArticleTags("");
+            setCategoryId("")
+             setError("");
          }
     }
     catch(err){
         console.log(err.message)
     }
     }
-        const options=[
-        {value:"Riyaziyyat", label:"Riyaziyyat"},
-        {value:"Fizika", label:"Fizika"},
-        {value:"Tarix", label:"Tarix"}
-      
-    ]
     const handleSelect=(selectedCategory)=>{
-        setArticleCategory(selectedCategory.value)
+        setCategoryId(selectedCategory.value)
     }
     const handleTags=(e)=>{
         if(e.key==="Enter" || e.key===","){
@@ -75,7 +93,10 @@ const AddArticle=()=>{
                 </div>
                     <div className="mb-4">
  <label htmlFor="category" className="block title font-semibold pb-2">Kateqoriya</label>
-<Select options={options} onChange={handleSelect} />
+<Select options={categories.map(item=>({
+value:item.category_id,
+label:item.category
+}))} onChange={handleSelect} placeholder="Kategoriya seçin"/>
 </div>
 <div className="mb-4 mt-4">
  <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2" >Məqalə Məzmunu</label>

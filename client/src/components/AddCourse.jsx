@@ -1,4 +1,4 @@
-import { useState,useRef } from "react"
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FiUploadCloud } from "react-icons/fi";
@@ -6,23 +6,44 @@ import Select from "react-select";
 const AddCourse=({setActiveTab})=>{
     const [courseTitle, setCourseTitle]=useState("")
     const [courseFile,setCourseFile]=useState("")
-    const [courseCategory,setCourseCategory]=useState("")
     const [courseLink,setCourseLink]=useState("")
     const [lessonTitle, setLessonTitle]=useState("")
+    const [categories, setCategories]=useState([])
+    const [categoryId, setCategoryId] = useState("");
     const [error, setError]=useState("")
 
-    const fileInputRef=useRef(null);
 
-    const handleUpload=()=>{
-          fileInputRef.current.click()
-    }
-    const handleCourse=async(e)=>{
-        e.preventDefault()
-          if (!courseTitle || !courseLink){
+        useEffect(() => {
+    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
+      .then((res) => {
+        if (res.data.status === "success") {
+          setCategories(res.data.data);
+        }
+      })
+      .catch(() => toast.error("Category yüklənmədi"));
+  }, []);
+
+  const fileInputRef = useRef(null);
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    fileInputRef.current.click();
+  }; 
+
+  const handleCourse = async (e) => {
+    e.preventDefault();
+
+    if (!courseTitle || courseFile || courseLink || lessonTitle) {
       setError("Bütün xanaları doldurun");
       return;
     }
-        const newCourse={course_title:courseTitle, course_img:courseFile,courseCategory, video_link:courseLink, lesson_title:lessonTitle}
+        const newCourse={
+             course_title:courseTitle,
+             course_img:courseFile,
+             category_id:categoryId, 
+             video_link:courseLink, 
+             lesson_title:lessonTitle
+            }
         try{
       const res= await axios.post("http://localhost/cothinke/server/courses/courseCourse.php", {newCourse},
          { headers:{ "Content-Type":"application/json" }});
@@ -34,14 +55,8 @@ const AddCourse=({setActiveTab})=>{
         console.log(err.message)
     }
     }
-      const options=[
-        {value:"Riyaziyyat", label:"Riyaziyyat"},
-        {value:"Fizika", label:"Fizika"},
-        {value:"Tarix", label:"Tarix"}
-      
-    ]
     const handleSelect=(selectedCategory)=>{
-        setCourseCategory(selectedCategory.value)
+        setCategoryId(selectedCategory.value)
     }
     return (
         <div className="research-form">
@@ -53,7 +68,10 @@ const AddCourse=({setActiveTab})=>{
                         <h2 className="text-center font-bold text-xl">Kurs Məlumatları</h2>
                                <div className="mb-4">
  <label htmlFor="category" className="block title font-semibold pb-2">Kateqoriya</label>
-<Select options={options} onChange={handleSelect} />
+<Select options={categories.map(item=>({
+value:item.category_id,
+label:item.category
+}))} onChange={handleSelect} placeholder="Kategoriya seçin"/>
 </div>
      <div className="mb-4 mt-4">
  <label htmlFor="description" className="block title font-semibold text-gray-900 pb-2">Kurs adı</label>
@@ -81,8 +99,10 @@ PNG, JPG, PDF, DOC və digər fayllar dəstəklənir
     <button className="border w-64 border-blue-800 text-blue-800 px-7 py-4" onClick={()=>setActiveTab("nothing")}>Ləğv et</button>
     <button type="submit" className="w-64 text-white bg-blue-800 px-7 py-4">Yadda Saxla</button>
 </div>
-            </form>
-        </div>
-    )
-}
+  
+      </form>
+    </div>
+  );
+};
+
 export default AddCourse;
