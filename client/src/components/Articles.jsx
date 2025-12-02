@@ -40,7 +40,7 @@ const Articles=()=>{
 }, []);
 
           const filteredArticles=articles.filter((item)=>
-        item.title.toLowerCase().includes(query.toLowerCase()) || 
+        item.article_title.toLowerCase().includes(query.toLowerCase()) || 
         item.category.toLowerCase().includes(query.toLowerCase())
     )
     return(
