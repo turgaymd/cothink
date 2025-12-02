@@ -270,6 +270,9 @@ footer h4{
 .share-category{
   padding: 25px 20px;
 }
+.swiper-button-prev, .swiper-button-next{
+  color: #444444 !important;
+}
 /* .stats img{
   color: #444444 !important;
   width: 24px;

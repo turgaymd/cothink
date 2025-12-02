@@ -1,11 +1,17 @@
 
 
 import { useState } from "react";
-
+import {Swiper, SwiperSlide} from "swiper/react"
 import categories from "../data/CategoryData";
+import {Autoplay, Navigation, Pagination} from "swiper/modules"
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 const MainHome=()=>{
+    
 const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
 const  [visibleCategories, setVisibleCategories]=useState(4)
+
     return (
         <section>
                 <div className="mentor-banner mt-3">
@@ -18,15 +24,30 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                     <div className="overflow-hidden">
                    <img src="mentor_banner.jpg" className="w-40 h-40 shadow-2xs rounded-full"/>
                     </div>
- 
                 </div>
                 </div>
-      
             </div>
             <div>
-
                <h2 className="font-bold text-2xl text-center mb-5">Ən Çox Bəyənilən Məqalələr</h2>
-          <div className="article-item mb-5" >
+               <Swiper
+               modules={[Navigation, Pagination,Autoplay]}
+               autoplay={{
+                delay:2500,
+                disableOnInteraction:false,
+               }}
+               spaceBetween={10}
+               navigation={{
+                nextEl:".swiper-button-next",
+                prevEl:".swiper-button-prev"
+               }}
+               pagination={{
+                clickable:true,
+                el:".swiper-pagination"
+            }}
+                           
+               >
+                <SwiperSlide>
+                        <div className="article-item mb-5 p-6" >
     <a href="/library/articles/id">
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center">
@@ -45,7 +66,52 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                     </div>
                 </div>
                 </a>
-            </div>   
+            </div>  
+                </SwiperSlide>
+                   <SwiperSlide>  <div className="article-item mb-5 p-6" >
+    <a href="/library/articles/id">
+                    <div className="article-content flex justify-between flex-col gap-4">
+                    <div className="article-header flex justify-between items-center">
+                        <div className="article-author flex items-center gap-2">
+                            <img src="/avatar.png"/>
+                            <span>Elcan Məmmədov</span>
+                            <span>•</span>
+                            <span>10 saat əvvəl</span>
+                        </div>
+                        <div className="category">
+                            <span className="bg-blue-800 rounded-md px-5 py-2">Riyaziyyat</span>
+                        </div>
+                    </div>
+                    <div className="article-title">
+                        <p className="text-white">3-cü Kurs Tələbəsindən Törəmələri Həqiqətən Anlamaq Üçün Addım-Addım Təlimat</p>
+                    </div>
+                </div>
+                </a>
+            </div>  </SwiperSlide>
+                      <SwiperSlide>  <div className="article-item mb-5 p-6" >
+    <a href="/library/articles/id">
+                    <div className="article-content flex justify-between flex-col gap-4">
+                    <div className="article-header flex justify-between items-center">
+                        <div className="article-author flex items-center gap-2">
+                            <img src="/avatar.png"/>
+                            <span>Elcan Məmmədov</span>
+                            <span>•</span>
+                            <span>10 saat əvvəl</span>
+                        </div>
+                        <div className="category">
+                            <span className="bg-blue-800 rounded-md px-5 py-2">Riyaziyyat</span>
+                        </div>
+                    </div>
+                    <div className="article-title">
+                        <p className="text-white">3-cü Kurs Tələbəsindən Törəmələri Həqiqətən Anlamaq Üçün Addım-Addım Təlimat</p>
+                    </div>
+                </div>
+                </a>
+            </div>  </SwiperSlide>
+<div className="swiper-pagination flex justify-center mt-8"></div>
+               </Swiper>
+               
+       
                     <div className="filter mb-5">
                                          <div className=" flex justify-between mb-3">
                           
@@ -72,6 +138,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                                 <div className="flex gap-3 items-center">
                                     <img src="aydan.png"/>
                                     <h5>Ayan Əlizadə</h5>
+                                    <span>•</span>
                                     <p>6 saat əvvəl</p>
                                 </div>
                                 <div>
@@ -91,6 +158,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                                 <div className="flex gap-3 items-center">
                                     <img src="aydan.png"/>
                                     <h5>Ayan Əlizadə</h5>
+                                     <span>•</span>
                                     <p>6 saat əvvəl</p>
                                 </div>
                                 <div>

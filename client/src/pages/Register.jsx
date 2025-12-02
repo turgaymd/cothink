@@ -34,7 +34,8 @@ function Register() {
        const userInfo={
           username:res.data.username,
           email:res.data.email,
-          token:res.data.token
+          token:res.data.token,
+          studentId:res.data.studentId
         }
           if (res.data.error) {
           setError(res.data.error);
