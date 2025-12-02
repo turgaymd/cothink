@@ -22,7 +22,7 @@ $username = trim($data["username"] ?? '');
 $email = trim($data["email"] ?? '');
 $password = trim($data["password"] ?? '');
 
-$_SESSION["student_id"] = $student["student_id"];
+$_SESSION["student_id"] = $user["student_id"];
 
 // if (strlen($password) < 8) {
 //     echo json_encode(["error" => "Şifrə ən azı 8 simvol olmalıdır"]);

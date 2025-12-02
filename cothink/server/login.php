@@ -1,16 +1,16 @@
 <?php
 require_once "db.php";
 
+session_start();
+
 // CORS
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 
-// JSON cavab
 header("Content-Type: application/json");
 
-// Preflight OPTIONS cavabı
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
@@ -22,58 +22,44 @@ $data = json_decode(file_get_contents("php://input"), true);
 $email    = trim($data["email"] ?? '');
 $password = trim($data["password"] ?? '');
 
-// ============================
-//  VALIDATION
-// ============================
-
-// Boş input yoxlaması
-if (!$email || !$password) {
-    echo json_encode(["error" => "Bütün xanaları doldurun"]);
-    exit;
-}
-
-// Email format validation
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(["error" => "Email düzgün formatda deyil"]);
-    exit;
-}
-
-$_SESSION["student_id"] = $student["student_id"];
-
-
-// ============================
-//  DB QUERY
-// ============================
-
+// DB QUERY
 try {
-    $query = $pdo->prepare("SELECT * FROM student_table WHERE student_email = ?");
+    $query = $pdo->prepare("
+        SELECT student_id, student_name, student_email, student_password 
+        FROM student_table 
+        WHERE student_email = ?
+    ");
     $query->execute([$email]);
     $user = $query->fetch(PDO::FETCH_ASSOC);
+
 } catch (Exception $e) {
     echo json_encode(["error" => "DB error: " . $e->getMessage()]);
     exit;
 }
+$_SESSION["student_id"] = $user["student_id"];
 
-// User tapılmadı
-if (!$user) {
-    echo json_encode(["error" => "Email və ya şifrə yanlışdır"]);
-    exit;
-}
+// İstifadəçi tapılmadı
+// if (!$user) {
+//     echo json_encode(["error" => "Email və ya şifrə yanlışdır"]);
+//     exit;
+// }
 
-// Şifrə yoxlaması (plaintext)
-if ($password !== $user["student_password"]) {
-    echo json_encode(["error" => "Email və ya şifrə yanlışdır"]);
-    exit;
-}
+// Şifrə yoxla (plaintext)
+// if ($password !== $user["student_password"]) {
+//     echo json_encode(["error" => "Email və ya şifrə yanlışdır"]);
+//     exit;
+// }
 
-// Token yaradılır (DB-də saxlanmır)
+// SESSION yaz
+
+// Token yarat
 $token = bin2hex(random_bytes(32));
 
-// Uğurlu cavab
 echo json_encode([
     "success"  => true,
-    "username" => $user["name"],
-    "email"    => $user["email"],
+    "username" => $user["student_name"],
+    "student_id"       => $user["student_id"],
+    "email"    => $user["student_email"],
     "token"    => $token
 ]);
-?>
+
