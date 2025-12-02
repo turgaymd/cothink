@@ -1,13 +1,7 @@
-<<<<<<< HEAD
+ 
 import { useState,useEffect } from "react";
 import Search from "../utils/Search";
-import Articles from "./Articles";
-=======
-import { useState,useEffect } from "react"; 
-import Search from "../utils/Search";
-import Articles from "./Articles"; 
-// import Search from "./Search"; 
->>>>>>> 32c13d21622cee0bc539a8dfff2efa23a983a02b
+import Articles from "./Articles";   
 import categories from "../data/CategoryData";
 import axios from "axios";
 const Library=()=>{
@@ -28,7 +22,7 @@ const Library=()=>{
   }, [books]);
 
    const filteredBooks=books.filter((item)=>
-        item.title.toLowerCase().includes(query.toLowerCase()) 
+        item.book_title.toLowerCase().includes(query.toLowerCase()) 
     )
     return(
             <>
