@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -54,6 +54,8 @@ function Register() {
     }
   };
   return (
+    <>
+    <ToastContainer/>
     <div className="flex justify-center items-center min-h-screen">
       <div className="card w-[90%] max-w-[500px]">
         <div className="card-body">
@@ -154,6 +156,7 @@ function Register() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 export default Register;
