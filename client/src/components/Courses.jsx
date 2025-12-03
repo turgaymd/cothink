@@ -59,7 +59,7 @@ const Courses = () => {
       <section>
        <Search/>
                     <div className="course-filter mt-5 mb-5">
-                    <div className="filter-items flex gap-3">
+                    <div className="filter-items flex md:flex-row flex-col gap-3">
                     <span className="active rounded-full">Fizika</span>
                     <span className="rounded-full">Riyaziyyat</span>
                 </div>

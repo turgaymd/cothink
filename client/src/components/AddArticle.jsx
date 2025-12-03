@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const AddArticle = () => {
   const [articleTitle, setArticleTitle] = useState("");
@@ -17,9 +18,9 @@ const AddArticle = () => {
   const [error, setError] = useState("");
 
   const fileInputRef = useRef(null);
+  const navigate=useNavigate()
 
   useEffect(() => {
-    // Backend-dən categoryləri çəkmək
     axios
       .get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
       .then((res) => {
@@ -64,105 +65,10 @@ const AddArticle = () => {
     //   return;
     // }
 
-    if (!articleTitle || !categoryId) {
+    if (!articleTitle || !articleDesc || !articleContent || !articleTags || !categoryId) {
       setError("Bütün xanaları doldurun");
       return;
     }
-<<<<<<< HEAD
-        const newArticle={
-            article_title:articleTitle, 
-            description:articleDesc,
-             articleContent, 
-             article_img:articleImg, 
-             category_id:categoryId,
-            tags:articleTags
-        }
-        try{
-      const res= await axios.post("http://localhost/cothinke/server/articles/articleArticle.php", newArticle,
-           { headers:{ "Content-Type":"application/json" }});
-         if(res.data.success){
-            toast.success("Məqalə uğurla əlavə olundu");
-            setArticleTitle("");
-            setArticleDesc("");
-            setArticleImg("");
-            setArticleTags("");
-            setCategoryId("")
-             setError("");
-         }
-    }
-    catch(err){
-        console.log(err.message)
-    }
-    }
-    const handleSelect=(selectedCategory)=>{
-        setCategoryId(selectedCategory.value)
-    }
-    const handleTags=(e)=>{
-        if(e.key==="Enter" || e.key===","){
-           e.preventDefault()
-           const newTag=input.trim()
-           if(newTag && !articleTags.includes(newTag)){
-            setArticleTags([...articleTags, newTag])
-            setInput("")
-           }
-        }
-    }
-    const handleRemove=(removedTag)=>{
-       setArticleTags(articleTags.filter(tag=>tag!==removedTag))
-    }
-    return (
-        <div className="research-form">
-            <h2 className="text-center font-bold text-3xl pb-5">Məqalə əlavə et</h2>
-            <form className="mt-5" onSubmit={handleArticle}>
-                 {error && <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">{error}</p>}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                       <div>
-                <label className="block title font-semibold text-gray-900 pb-2" htmlFor="title" >Məqalə başlığı</label>
-                <textarea className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg dark:bg-gray-700 dark:text-white dark:border-none" cols={5}  rows={3}   placeholder="Məqalə başlığı əlavə edin" onChange={(e)=>setArticleTitle(e.target.value)}/>
-               </div>
-               <div>
- <label htmlFor="description" className="block title font-semibold text-gray-900 pb-2" >Qısa izah /Məqalə haqqında</label>
-<textarea type="text" className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg" onChange={(e)=>setArticleDesc(e.target.value)} cols={5}  rows={3}  placeholder="Məqalənizin mövzusu, məqsədi və kimlər üçün faydalı olduğunu 2–3 cümlə ilə yazın"/>
-</div>
-                </div>
-                    <div className="mb-4">
-<Select options={categories.map(item=>({
-value:item.category_id,
-label:item.category
-}))} onChange={handleSelect} placeholder="Kategoriya seçin"/>
-</div>
-<div className="mb-4 mt-4">
- <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2" >Məqalə Məzmunu</label>
-<textarea type="text" className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg" cols={5}  rows={3} placeholder="Məqalənizin əsas hissəsini burada yazın – izahlar, formul və nümunələr əlavə edə bilərsiniz" onChange={(e)=>setArticleContent(e.target.value)}/>
-</div>
-<div className="mb-4">
-     <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2">Şəkillər</label>
-     <div className="flex justify-center items-center flex-col gap-3 border border-gray-300 p-5 rounded-2xl">
-    <img src="image_icon.png"/>
-<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setArticleImg(e.target.files[0].value || '')}/>
-<p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
-    <button className="find-btn text-white bg-blue-800 px-3 py-2 rounded-md" onClick={handleUpload}>Axtar</button>
-</div>
-</div>
-<div>
-    <div className="flex flex-wrap gap-2">
-     <label htmlFor="title" className="block title font-semibold text-gray-900 pb-2" >Etiketlər</label>
-<input type="text" className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg" placeholder="Mövzunu ifadə edən açar sözlər əlavə edin" value={input} onChange={(e)=>setInput(e.target.value)} onKeyDown={handleTags}/>
-    {articleTags.map((tag)=>(
-        <div key={tag}className="flex  justify-between  items-center bg-blue-600 text-white rounded-md px-5 py-1">
-            {tag}
-           <button onClick={()=>handleRemove(tag)}><IoMdClose fontSize={20}/></button>
-        </div>
-    ))}
-</div>
-</div>
-<div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
-    <Link className="border border-blue-800 text-blue-800 px-7 py-4" to={"/library"}>Ləğv et</Link>
-    <button type="submit" className="text-white bg-blue-800 px-7 py-4">Yadda Saxla</button>
-    
-</div>
-            </form>
-=======
 
     const formData = new FormData();
     // formData.append("mentor_id", mentor_id);
@@ -211,8 +117,6 @@ label:item.category
             {error}
           </p>
         )}
-
-        {/* Başlıq və qısa izah */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block title font-semibold text-gray-900 pb-2">
@@ -240,10 +144,7 @@ label:item.category
               onChange={(e) => setArticleDesc(e.target.value)}
             />
           </div>
->>>>>>> 2ee1b7af73a24770d9b5a7cccaea628bc84cb6aa
         </div>
-
-        {/* Kateqoriya */}
         <div className="mb-4">
           <label className="block title font-semibold pb-2">Kateqoriya</label>
           <Select
@@ -255,8 +156,6 @@ label:item.category
             placeholder="Kategoriya seçin"
           />
         </div>
-
-        {/* Məqalə Məzmunu */}
         <div className="mb-4">
           <label className="block title font-semibold text-gray-900 pb-2">
             Məqalə Məzmunu
@@ -270,20 +169,20 @@ label:item.category
             onChange={(e) => setArticleContent(e.target.value)}
           />
         </div>
-
-        {/* Şəkil Upload */}
         <div className="mb-4">
           <label className="block title font-semibold text-gray-900 pb-2">
             Şəkil
           </label>
           <div className="flex flex-col items-center border border-gray-300 p-5 rounded-2xl gap-3">
             {preview && <img src={preview} alt="Preview" className="w-32 h-32" />}
+               <img src="image_icon.png"/>
+                           <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
             <button
               type="button"
               className="text-white bg-blue-800 px-3 py-2 rounded-md"
               onClick={handleUpload}
             >
-              Şəkil seç
+              Axtar
             </button>
             <input
               ref={fileInputRef}
@@ -298,10 +197,9 @@ label:item.category
                 }
               }}
             />
+
           </div>
         </div>
-
-        {/* Tags */}
         <div className="mb-4">
           <label className="block title font-semibold text-gray-900 pb-2">
             Etiketlər
@@ -328,9 +226,7 @@ label:item.category
             ))}
           </div>
         </div>
-
-        {/* Submit */}
-        <div className="flex gap-3 justify-center mt-5">
+        <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
           <button
             type="reset"
             className="border border-blue-800 text-blue-800 px-7 py-4 rounded"
@@ -343,6 +239,7 @@ label:item.category
               setCategoryId("");
               setArticleTags([]);
               setInput("");
+              navigate("/share")
             }}
           >
             Ləğv et

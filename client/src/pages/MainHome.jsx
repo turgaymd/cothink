@@ -14,21 +14,20 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
 
     return (
         <section>
-                <div className="mentor-banner mt-3">
-                <div className="relative flex flex-col md:flex-row">
+               <div className="mentor-banner mt-3">
+                <div className="relative flex flex-col md:flex-row items-center justify-between">
                 <div className="">
                 <h2 className="text-3xl font-medium pb-3">Daha məqsədli öyrən, daha az əziyyət çək.</h2>
                 <p className="font-medium text-xl">Sənə uyğun öyrənmə metodları ilə tanış ol.</p>
                 </div>
-                <div className="absolute right-0 top-1">
-                    <div className="overflow-hidden">
-                   <img src="mentor_banner.jpg" className="w-40 h-40 shadow-2xs rounded-full"/>
+                <div className="flex md:justify-end justify-center">
+                   <img src="mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
                     </div>
                 </div>
-                </div>
+      
             </div>
             <div>
-               <h2 className="font-bold text-2xl text-center mb-5">Ən Çox Bəyənilən Məqalələr</h2>
+               <h2 className="font-bold text-2xl text-center mb-8">Ən Çox Bəyənilən Məqalələr</h2>
                <Swiper
                modules={[Navigation, Pagination,Autoplay]}
                autoplay={{
@@ -110,15 +109,11 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
             </div>  </SwiperSlide>
 <div className="swiper-pagination flex justify-center mt-8"></div>
                </Swiper>
-               
-       
                     <div className="filter mb-5">
-                                         <div className=" flex justify-between mb-3">
-                          
-                               
+                                         <div className=" flex justify-between mb-3">     
                              </div>
                        <div className="course-filter mt-4 mb-5">
-                                     <div className="filter-items flex gap-3">
+                                     <div className="filter-items flex md:flex-row flex-col gap-3">
                                                              <span className="active rounded-md">Sizin üçün</span>
                                          {
                                              displayedCategories.map((item, index)=>(
@@ -130,7 +125,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                                  </div>
                              </div>
                              </div>      
-                             <div className="grid grid-cols-2 md:grid-col-2 gap-3 mt-2">
+                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                                 <div className="mentor-item rounded-md">
                                     <a href="/library/articles/:id">
                                     <div className="flex justify-between">

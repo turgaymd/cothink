@@ -15,7 +15,6 @@ const CourseContent=()=>{
             <button className="text-white bg-blue-800 rounded-md py-3">Öyrənməyə davam edin</button>
             <div className="features_card shadow-sm inset-shadow-sm mt-4">
                 <h4 className="font-semibold text-center text-xl pb-4">“Enerji haqqında əsas anlayışlar”</h4>
-            {/* <iframe src="/video.mp4" className="w-full h-screen rounded-md"></iframe> */}
             <div></div>
             <div className="flex justify-center relative flex-col items-center">
             <video src="/video.mp4" className="md:h-[64vh] h-[40vh] w-full object-cover rounded-md" controls={true}/>
@@ -68,8 +67,7 @@ const CourseContent=()=>{
                          <p>5 Dərs</p>
                         <span>45 Dəqiqə</span>
                         </div>
-                    </div>
-                    
+                    </div>                    
                     </div>
                     <div className="comments">
                         <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…"/>
