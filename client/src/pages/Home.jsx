@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { LuBookText } from "react-icons/lu";
-import { RiQuestionnaireLine } from "react-icons/ri";
+import { RiDoubleQuotesL, RiQuestionnaireLine } from "react-icons/ri";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { MdArrowOutward } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
@@ -312,6 +312,40 @@ Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
 </div>
             </div>
             </div>
+                          </section>
+                          <section className="testimonal">
+                            <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+                                   <div className="md:rotate-10  md:skew-x-10   relative mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
+                                   <div className="absolute -top-8">
+                                    <img src="aysel_avatar.png" className="w-15 h-15 object-cover"/>
+                                    </div>
+                                    <h4 className="font-bold text-xl">Aysel Qasımova</h4>
+                                    <p className="text-gray-500">Tələbə</p>
+                                    <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
+                                    <p className="text-gray-600 pb-12 pt-5">CoThink izahları çox anlaşılandır və tələbənin dərsi qavramasını əhəmiyyətli dərəcədə sürətləndirir.
+Platformanın interaktivliyi öyrənməni daha maraqlı edir.</p>
+                                </div>
+                                    <div className="relative developer-box  bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
+                                     <div className="absolute -top-8">
+                                    <img src="lale_avatar.png" className="w-15 h-15 object-cover"/>
+                                    </div>
+                                    <h4 className="font-bold text-xl">Lalə Yaqubova</h4>
+                                    <p className="text-gray-500">Developer</p>
+                                <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
+                                    <p className="text-gray-600 pb-12 pt-5">Məzmunun strukturlaşdırılmış şəkildə verilməsi öyrənmə prosesini yüngülləşdirir.
+CoThink tələbənin motivasiyasını artıran real bir sistem təqdim edir.</p>
+                                </div>
+                                    <div className=" md:rotate-5 rotate-0  md:-skew-y-10 skew-0  relative  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
+                                     <div className="absolute -top-8">
+                                    <img src="emill_avatar.png" className="w-15 h-15 object-cover"/>
+                                    </div>
+                                    <h4 className="font-bold text-xl">Emil Məmmədli</h4>
+                                    <p className="text-gray-500">Qrafik dizayner</p>
+                                 <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
+                                    <p className="text-gray-600 pb-12 pt-5">Sual–cavab bölməsi çox aktivdir və tələbələr bir-birinə faydalı olur.
+Sadə interfeys və aydın məzmun platformanı daha effektiv edir.</p>
+                                </div>
+                            </div>
                           </section>
             <section>
             <div >

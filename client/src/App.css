@@ -255,6 +255,9 @@ footer h4{
 .swiper-button-prev, .swiper-button-next{
   color: #444444 !important;
 }
+.testimonal{
+  padding: 3rem;
+}
 /* .stats img{
   color: #444444 !important;
   width: 24px;
