@@ -2,7 +2,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import { createSessionStorage, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import {toast} from "react-toastify"
 import Toast from "../utils/Toast";
 
@@ -16,7 +16,6 @@ function Login() {
   
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
 
     if (!email || !password){
       setError("Bütün xanaları doldurun");
@@ -28,27 +27,24 @@ function Login() {
           password
         },
         { headers:{ "Content-Type":"application/json" }});
-
-        const userInfo={
+          if (res.data.success) {
+          const userInfo={
           student_id:res.data.student_id  ,
           username:res.data.username,
           email:res.data.email,
           token:res.data.token
         }
-          if (res.data.success) {
+    sessionStorage.setItem("user", JSON.stringify(userInfo));
+ 
+    if(rememberMe){
+    localStorage.setItem("user", JSON.stringify(userInfo))
+    }  
           toast.success("Giriş uğurla tamamlandı")   
-        navigate("/home")
-  } else {
+          setTimeout(()=>navigate("/home"), 1500)
+         }
+  else {
     setError(res.data.message || "Unknown error");
   }
-   if(rememberMe){
-    localStorage.setItem("user", JSON.stringify(userInfo))
-    sessionStorage.setItem("user", JSON.stringify(userInfo));
-    }
-    else{
-     sessionStorage.setItem("user", JSON.stringify(userInfo));
-    }  
-
       } catch (err) {
         setError(err.response?.data?.message || "Istifadəçi adı və ya şifrə yalnışdır")
         console.error(err);

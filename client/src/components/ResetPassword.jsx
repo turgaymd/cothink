@@ -1,6 +1,8 @@
 
+import axios from "axios";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 const ResetPassword=()=>{
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword]=useState("")
@@ -37,11 +39,27 @@ const ResetPassword=()=>{
     )
   }
 
-    const handleReset=(e)=>{
-         e.preventDefault()
+    const handleReset=async(e)=>{
+         e.preventDefault();
+         setError("")
          if(newPassword!==confirmPassword){
             setError("Şifrələr uyğun gəlmir")
          }
+          try{
+         const res= await axios.put("http://localhost:8000/api/reset.php", {currentPassword, newPassword},
+            {headers:{"Content-Type":"application/json"}}
+          )
+          if(res.data.success){
+         toast.success("Şifrəniz yeniləndi")
+          }
+          else{
+            setError(res.data.message || "Xəta baş verdi")
+          }
+        }
+        catch(err){
+          setError(err.response?.data?.message || "Xəta baş verdi" )
+          console.log(err)
+        }
     }
     return (
         <>
