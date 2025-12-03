@@ -314,8 +314,8 @@ Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
             </div>
                           </section>
                           <section className="testimonal">
-                            <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
-                                   <div className="md:rotate-10  md:skew-x-10   relative mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
+                            <div className="grid grid-cols-1 gap-12 md:grid-cols-3 ">
+                                   <div className="relative md:rotate-10  student-box   md:skew-x-10 z-10  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-3xl flex flex-col items-center justify-center px-7 py-7">
                                    <div className="absolute -top-8">
                                     <img src="aysel_avatar.png" className="w-15 h-15 object-cover"/>
                                     </div>
@@ -324,6 +324,7 @@ Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
                                     <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
                                     <p className="text-gray-600 pb-12 pt-5">CoThink izahları çox anlaşılandır və tələbənin dərsi qavramasını əhəmiyyətli dərəcədə sürətləndirir.
 Platformanın interaktivliyi öyrənməni daha maraqlı edir.</p>
+                            
                                 </div>
                                     <div className="relative developer-box  bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
                                      <div className="absolute -top-8">
@@ -335,7 +336,7 @@ Platformanın interaktivliyi öyrənməni daha maraqlı edir.</p>
                                     <p className="text-gray-600 pb-12 pt-5">Məzmunun strukturlaşdırılmış şəkildə verilməsi öyrənmə prosesini yüngülləşdirir.
 CoThink tələbənin motivasiyasını artıran real bir sistem təqdim edir.</p>
                                 </div>
-                                    <div className=" md:rotate-5 rotate-0  md:-skew-y-10 skew-0  relative  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
+                                    <div className=" designer-box md:rotate-5 rotate-0  md:-skew-y-10 skew-0  relative  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
                                      <div className="absolute -top-8">
                                     <img src="emill_avatar.png" className="w-15 h-15 object-cover"/>
                                     </div>
