@@ -67,7 +67,7 @@ const Home=()=>{
         }
     return (
         <>
-        <ToastContainer/>
+      
                 <header className="w-full top-0 z-50 navbar items-center">
                     <div className=" flex justify-between items-center">
                              <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
@@ -108,6 +108,7 @@ const Home=()=>{
                     
                                 }
                     </header>
+                      <ToastContainer/>
                      <section id="home">
             <div className="grid md:grid-cols-2  grid-cols-1">
                 <div className="flex flex-col justify-center ">
