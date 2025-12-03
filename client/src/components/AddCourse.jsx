@@ -13,10 +13,7 @@ const AddCourse = ({ setActiveTab }) => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get(
-        "http://localhost/cothink1/cothink/server/categories/categoryRead.php"
-      )
+    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
       .then((res) => {
         if (res.data.status === "success") {
           setCategories(res.data.data);
@@ -35,7 +32,7 @@ const AddCourse = ({ setActiveTab }) => {
   const handleCourse = async (e) => {
     e.preventDefault();
 
-    if (!courseTitle || !courseFile || !courseLink || !lessonTitle) {
+    if (!courseTitle || !courseLink || !lessonTitle || !categoryId) {
       setError("Bütün xanaları doldurun");
       return;
     }

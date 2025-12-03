@@ -102,8 +102,7 @@ const Home=()=>{
                                     <li className="nav-item"><a  href="#about">Haqqımızda</a></li>
                                     <li className="nav-item"><a  >Əlaqə</a></li>
                                       
-                                </ul>   
-                                 
+                                </ul>                
                         </>
                                     )
                     

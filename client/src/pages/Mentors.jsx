@@ -36,20 +36,18 @@ const [mentors, setMentors]=useState([])
           <section>
             <Search query={query} setQuery={setQuery}/>
             <div className="mentor-banner mt-3">
-                <div className="relative flex flex-col md:flex-row">
+                <div className="relative flex flex-col md:flex-row items-center justify-between">
                 <div className="">
                 <h2 className="text-3xl font-medium pb-3">Öyrənmə Yolunuza Uyğun Mentorlar</h2>
                 <p className="font-medium text-xl">Sizə ən uyğun mentor profillərini kəşf edin.</p>
                 </div>
-                <div className="absolute right-0 top-1">
-                    <div className="overflow-hidden">
-                   <img src="mentor_banner.jpg" className="w-40 h-40 shadow-2xs rounded-full"/>
+                <div className="flex md:justify-end justify-center">
+                   <img src="mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
                     </div>
- 
-                </div>
                 </div>
       
             </div>
+            
                         <div className="filter mb-5">
                         <div className=" flex justify-between mb-3">
                 <h4 className="font-bold text-xl">Kategoriyalar</h4>

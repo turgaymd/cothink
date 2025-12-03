@@ -2,13 +2,15 @@ import { useState, useEffect,useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Select from "react-select";
+import { IoMdClose } from "react-icons/io";
 const AddPost=({setActiveTab})=>{
     const [postTitle, setPostTitle]=useState("")
     const [postDesc,setPostDesc]=useState("")
     const [postImg,setPostImg]=useState("")
-    const [postTags, setPostTags]=useState("")
+    const [postTags, setPostTags]=useState([])
     const [input, setInput]=useState("")
     const [error, setError]=useState("")
+    const [preview, setPreview] = useState(null);
     const [categoryId, setCategoryId] = useState("");
     const [categories, setCategories]=useState([])
     
@@ -44,16 +46,16 @@ const fileInputRef = useRef(null);
       setError("Bütün xanaları doldurunn");
       return;
     }
-        const newPost={
-            post_title:postTitle, 
-            post_desc:postDesc,
-            post_img:postImg, 
-            post_tags:postTags,
-            category_id:categoryId, 
-        }
+    const formData = new FormData();
+    formData.append('post_title', postTitle );
+    formData.append('post_desc', postDesc);
+    formData.append('post_img', postImg);
+    formData.append('post_tags',postTags);
+    formData.append('category_id',categoryId);
+
         try{
-      const res= await axios.post("http://localhost/cothinke/server/posts/postPost.php", newPost,
-       { headers:{ "Content-Type":"application/json" }});
+      const res= await axios.post("http://localhost/cothinke/server/posts/postPost.php", formData,
+               { headers: { "Content-Type": "multipart/form-data" } })
          if(res.data.success){
             toast.success("Post uğurla əlavə olundu")
             setPostTitle("");
@@ -61,6 +63,7 @@ const fileInputRef = useRef(null);
             setPostImg("");
             setPostTags("");
             setCategoryId("")
+            setPreview(null)
             setError("");
          }
          else{
@@ -99,7 +102,7 @@ const fileInputRef = useRef(null);
                </div>
                <div>
  <label htmlFor="description" className="block title font-semibold pb-2" >Qısa İzah / Post Haqqında</label>
-<textarea type="text" className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg" cols={5}  rows={3}  placeholder="Post haqqında 1–2 cümləlik açıqlama" onChange={(e)=>setPostDesc(e.target.value)}/>
+<textarea  className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg" cols={5}  rows={3}  placeholder="Post haqqında 1–2 cümləlik açıqlama" onChange={(e)=>setPostDesc(e.target.value)}/>
 </div>
                 </div>
                     <div className="mb-4">
@@ -109,12 +112,18 @@ value:item.category_id,
 label:item.category
 }))} onChange={handleSelect} placeholder="Kategoriya seçin"/>
 </div>
-
 <div className="mb-4">
      <label htmlFor="title" className="block title font-semibold pb-2">Şəkillər</label>
      <div className="flex justify-center items-center flex-col gap-3 border border-gray-300 p-5 rounded-2xl">
+         {preview && <img src={preview} alt="Preview" className="w-32 h-32" />}
     <img src="image_icon.png"/>
-<input  ref={fileInputRef} type="file" placeholder="Şəkilləri buraya sürükləyin və ya" className="sr-only" accept="image/*" onChange={(e)=>setPostImg(e.target.files[0].name || '')}/>
+<input  ref={fileInputRef} type="file" className="sr-only" accept="image/*"  onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  setPostImg(file);
+                  setPreview(URL.createObjectURL(file));
+                }
+              }}/>
 <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
     <button className="find-btn text-white bg-blue-800 rounded-md px-3 py-2 " onClick={handleUpload}>Axtar</button>
 </div>

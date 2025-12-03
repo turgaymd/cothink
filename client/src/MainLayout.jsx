@@ -6,7 +6,7 @@ function MainLayout(){
     <>
     <Header/>
     <div className="grid grid-cols-12">
-    <div className="md:col-span-2 col-span-1 border-r border-r-gray-300">
+    <div className="md:col-span-2 col-span-1 border-r border-r-gray-300 min-h-screen">
     <Sidebar/>       
     </div>
     <div className="md:col-span-10 col-span-11">
