@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -30,28 +30,27 @@ function Register() {
     try {
     const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", { username, email, password},
         {headers:{"Content-Type":"application/json"}}
-      );
-       const userInfo={
-          username:res.data.username,
-          email:res.data.email,
-          token:res.data.token,
-          studentId:res.data.studentId
-        }
+      );  
           if (res.data.error) {
           setError(res.data.error);
                return;
   }
   if(res.data.success){
-    // toast.success("Registered successfully")
-          navigate("/home")
-          alert("Hesab uğurla yaradıldı")
-  }
-
+     const userInfo={
+          username:res.data.username,
+          email:res.data.email,
+          token:res.data.token,
+          studentId:res.data.studentId
+        }
         localStorage.setItem("user", JSON.stringify(userInfo))
-
+          toast.success("Qeydiyyat uğurla tamamlandı")
+          setTimeout(()=>navigate("/home"), 1500)
+  }
     } catch (err) {
-      console.error(err.response?.data || err.message);
-      setError(err.response?.data?.error || err.message);
+      const msg=err.response?.data?.error || "Xəta baş verdi"
+      console.error( msg );
+      toast.error(msg)
+      setError(msg);
     }
   };
   return (

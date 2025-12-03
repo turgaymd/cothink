@@ -52,7 +52,7 @@ const fileInputRef = useRef(null);
             category_id:categoryId, 
         }
         try{
-      const res= await axios.post("http://localhost/cothinke/server/posts/postPost.php", {newPost},
+      const res= await axios.post("http://localhost/cothinke/server/posts/postPost.php", newPost,
        { headers:{ "Content-Type":"application/json" }});
          if(res.data.success){
             toast.success("Post uğurla əlavə olundu")

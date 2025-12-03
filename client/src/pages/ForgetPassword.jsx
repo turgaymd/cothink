@@ -15,7 +15,7 @@ const ForgotPassword=()=>{
           setError("Email ünvanını daxil edin")
           return;
         }
-  
+
         try{
 
          const res= await axios.post("http://localhost:8000/api/forget.php", {email},
@@ -23,7 +23,10 @@ const ForgotPassword=()=>{
           )
           setMessage(res.data.message || "Şifrəni yeniləmək üçün link email ünvanına göndərildi")
           toast.success("Şifrəni yeniləmək üçün link email ünvanına göndərildi")
+          setTimeout(()=>{
           navigate("/confirm")
+          }, 1500)
+
         }
         catch(err){
           setError(err.response?.data?.message || "Xəta baş verdi" )

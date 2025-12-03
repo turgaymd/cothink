@@ -250,23 +250,6 @@ footer h4{
 .footer-menu li {
   padding-bottom: 15px;
 }
-.contact-box1, .contact-box2, .contact-box3 {
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding: 10px;
-
-}
-.contact-box1 {
-  background-image: url("/contact_box1.jpg");
-}
-
-.contact-box2 {
-  background-image: url("/contact_box2.jpg");
-}
-
-.contact-box3 {
-  background-image: url("/contact_box3.jpg");
-}
 .share-category{
   padding: 25px 20px;
 }
@@ -278,3 +261,4 @@ footer h4{
   width: 24px;
   height: 24px;
 } */
+

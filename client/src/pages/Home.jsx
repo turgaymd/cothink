@@ -1,5 +1,5 @@
 
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { LuBookText } from "react-icons/lu";
 import { RiQuestionnaireLine } from "react-icons/ri";
@@ -9,14 +9,65 @@ import { IoMdAdd } from "react-icons/io";
 import { SiReaddotcv } from "react-icons/si";
 import { useState } from "react";
 import { BsInstagram } from "react-icons/bs";
-
+import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
+import Swal from "sweetalert2";
 const Home=()=>{
         const [open, setOpen]=useState(  false  )
-        const sendEmail=(e)=>{
+        const [error, setError]=useState("")
+        const [email, setEmail]=useState("")
+        const [name, setName]=useState("")
+        const [phone, setPhone]=useState("")
+        const [message, setMessage]=useState("")
+        const sendEmail=async(e)=>{
                  e.preventDefault()
+                if(!email){
+                   setError("Zəhmət olmasa email ünvanınızı daxil edin.")
+                }
+                else{
+                    setError('')
+                }
+                 try{
+         const res = await axios.post("http://localhost/cothink1/cothink/server/contact.php", 
+                 { email},
+                  { headers:{ "Content-Type":"application/json" }});
+                    if(res.data.success){
+                   Swal.fire({
+                    text:"Email göndərildi"
+                  })
+                 }    
+            }
+            catch(err){
+                console.error(err)
+                
+            }              
+        }
+        const handleContact=async (e)=>{
+            e.preventDefault()
+            const formData= {name, email, phone, message} 
+            if(!email || !phone || !message){
+                toast.error("Bütün xanaları doldurun")
+                return;
+            }
+            try{
+            const res= await axios.post("http://localhost/cothink1/cothink/server/contact.php", formData,
+              
+                  { headers:{ "Content-Type":"application/json" }});
+                 if(res.data.success){
+                   Swal.fire({
+                    text:"Mesajınız uğurla göndərildi"
+                  })
+                 }         
+            }
+            catch(err){
+                console.error(err)
+                toast.error("Xəta baş verdi, yenidən cəhd edin")
+                
+            } 
         }
     return (
         <>
+        <ToastContainer/>
                 <header className="w-full top-0 z-50 navbar items-center">
                     <div className=" flex justify-between items-center">
                              <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
@@ -184,58 +235,60 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
       
             </section>
             <section id="contact">
-                <h2 className="font-bold text-center text-3xl ">Əlaqə</h2>
-                <div className="max-w-4xl mx-auto">
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white">
-                   <div className="md:contact-box1 bg-blue-800">
-                    <div className="flex flex-col">
-                       <h4 className="font-bold text-xl">Email Address</h4> 
-                       <p>cothink@gmail.com</p>
+                <h2 className="font-bold text-center text-3xl mb-7 ">Əlaqə</h2>
+             <div className="grid grid-cols-1 gap-1 md:grid-cols-3 text-white mt-5 mb-5 ">
+                    <div className="flex flex-col rounded-md">
+                        <div className="bg-blue-800 rounded-t-md w-[80%] h-15 flex items-center pl-4">  
+                                   <h4 className="font-bold text-xl">Email Address</h4>    
+                        </div>
+                         <div className="bg-blue-800 rounded-b-xl pl-5 w-full h-15">
+                                 <p>cothink@gmail.com</p>
+                        </div>
+                   </div>
+                  
+                    <div className="flex flex-col items-center justify-center rounded-md">
+                        <div className="bg-blue-800 rounded-t-md w-full  h-15 flex justify-center items-center">        
+                                                      <h4 className="font-bold text-xl text-center">Phone Number</h4>
+                        </div>
+                         <div className="bg-blue-800 rounded-b-xl text-center w-[200px] h-15">
+                                 <p>+012 123 45 67</p>
+                        </div>
+                    </div>
+                    <div className="flex flex-col rounded-md justify-end items-end">
+                        <div className="bg-blue-800 rounded-t-md w-[80%] h-15 flex items-center pr-4 justify-end">
+                                     <h4 className="font-bold text-xl">Social Media</h4>
+                        </div>
+                         <div className="bg-blue-800 rounded-b-xl flex items-center justify-end pr-4 w-full h-15">
+                      
+                                 <button><BsInstagram fontSize={24}/></button>
                     </div>
                    </div>
-                    <div className="contact-box2">
-                    <div className="flex flex-col items-center justify-center">
-                       <h4 className="font-bold text-xl">Phone Number </h4> 
-                       <p>+012 123 45 67</p>
-                    </div>
-                 </div>
-                 <div className="contact-box3">
-                    <div className="flex flex-col justify-center items-end">
-                       <h4 className="font-bold text-xl">Social Media</h4> 
-                       <a><BsInstagram fontSize={24}/></a>
-                    </div>
+                   
                       </div>
-                      </div>
-                </div>
-   
-                <div className="mt-5 max-w-2xl mx-auto">
-               <form  onSubmit={sendEmail}>
+                <div className="mt-8 max-w-2xl mx-auto">
+               <form  onSubmit={handleContact}>
               <div className='grid grid-cols-1 md:grid-cols-2 gap-3 mb-4 mt-4'>       
             <div className="w-full">
               <label className="block font-bold pb-2">Ad</label>
-              <input type="text" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md" name="user_name" required placeholder="Adınızı daxil edin"></input>
+              <input type="text" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md" name="user_name"  placeholder="Adınızı daxil edin" onChange={(e)=>setName(e.target.value)}></input>
               </div>            
             <div>
             <label className="block font-bold pb-2">Mobil nömrə</label>
-          <input type="email" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md"  name="user_email" required placeholder="Mobil nömrənizi daxil edin"></input>
+          <input type="tel" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md"  name="user_phone"  placeholder="Mobil nömrənizi daxil edin" onChange={(e)=>setPhone(e.target.value)}/>
           </div>    
           </div> 
               <div className="mt-4 mb-4">
             <label className="block font-bold pb-2">Email</label>
-          <input type="email" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md"  name="user_email" required placeholder="E-mailinizi daxil edin"></input>
+          <input type="email" className="w-full shadow-sm bg-gray-200 outline-none px-5 py-3 rounded-md"  name="user_email" placeholder="E-mailinizi daxil edin" onChange={(e)=>setEmail(e.target.value)}/>
           </div>   
           <div className="sm:col-span-2">
           <label className="block mb-2 font-bold pb-2">Qeyd*</label>
-        <textarea className="w-full shadow-sm bg-gray-200 outline-none px-5 py-2 mt-2 rounded-md" rows={5} name="message" placeholder=""/>
+        <textarea className="w-full shadow-sm bg-gray-200 outline-none px-5 py-2 mt-2 rounded-md" rows={5} name="message" placeholder="" onChange={(e)=>setMessage(e.target.value)}/>
         </div>
           <div className='text-center mt-4'>
       <button className="w-full rounded-full submit bg-black text-white" type="submit" >Təsdiqlə</button>
           </div>
           <div className="row">
-            {/* {result ?  Swal.fire({
-              icon:"success",
-              text:"Message sent successfully"
-            }) : <></>} */}
           </div>
           </form>
           
@@ -305,8 +358,11 @@ Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
                     </a>
                     <p className="pb-4 pt-4 text-gray-600">CoThink — tələbələrin öyrəndiyi, paylaşdığı və birlikdə inkişaf etdiyi sosial təhsil platformasıdır.
 Məqsədimiz öyrənmə prosesini daha aydın, əlçatan və effektiv etməkdir.</p>
-                       <input type="text" className="w-full px-5 py-3 bg-gray-100 rounded-full outline-none" placeholder="E-mailinizi daxil edin"/>
+<form onSubmit={sendEmail}>
+                       <input type="email" className="w-full px-5 py-3 bg-gray-100 rounded-full outline-none" placeholder="E-mailinizi daxil edin" onChange={(e)=>setEmail(e.target.value)} />
+                 {error && <p className="pt-2 text-red-500">{error}</p>}
                  <button type="submit" className="bg-black text-white w-full rounded-full mt-4">Təsdiqlə</button>
+                  </form>
                   </div>
           <div></div>
           <div className="mt-3">

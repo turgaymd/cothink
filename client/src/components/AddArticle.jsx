@@ -42,9 +42,10 @@ const AddArticle=()=>{
              articleContent, 
              article_img:articleImg, 
              category_id:categoryId,
-            tags:articleTags}
+            tags:articleTags
+        }
         try{
-      const res= await axios.post("http://localhost/cothinke/server/articles/articleArticle.php", {newArticle},
+      const res= await axios.post("http://localhost/cothinke/server/articles/articleArticle.php", newArticle,
            { headers:{ "Content-Type":"application/json" }});
          if(res.data.success){
             toast.success("Məqalə uğurla əlavə olundu");
@@ -92,7 +93,6 @@ const AddArticle=()=>{
 </div>
                 </div>
                     <div className="mb-4">
- <label htmlFor="category" className="block title font-semibold pb-2">Kateqoriya</label>
 <Select options={categories.map(item=>({
 value:item.category_id,
 label:item.category
@@ -128,8 +128,6 @@ label:item.category
     <button type="submit" className="text-white bg-blue-800 px-7 py-4">Yadda Saxla</button>
     
 </div>
-
-
             </form>
         </div>
     )
