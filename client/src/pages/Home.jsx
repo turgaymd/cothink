@@ -126,19 +126,19 @@ CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bili
             <div>
                 <h2 className="font-bold text-3xl text-center mb-5">Niyə  Bizi Seçməlisiniz ?</h2>
                 <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 md:gap-0 gap-3  grid-cols-1 pt-5">
-                    <div className="bg-gray-100  border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-400">
+                    <div className="bg-gray-100  border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-400 cursor-pointer">
                         <h5 className="font-bold">Təhlükəsiz və Etibarlı</h5>
                         <p className="text-gray-400 text-center">Bütün məzmun müəllimlər və mütəxəssislər tərəfindən yoxlanılır.</p>
                     </div>
-                                        <div className="bg-gray-100 border border-blue-300 rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-500">
+                                        <div className="bg-gray-100 border border-blue-300 rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-500 cursor-pointer">
                         <h5 className="font-bold">Proqrama Uyğun</h5>
                         <p className="text-gray-400 text-center">Dərs izahları və resurslar Azərbaycan tədris proqramına uyğun hazırlanır.</p>
                     </div>
-                                        <div className="bg-gray-100 border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-300">
+                                        <div className="bg-gray-100 border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-300 cursor-pointer">
                         <h5 className="font-bold">İnsan Dəstəyi</h5>
                         <p className="text-gray-400 text-center">Mentorlar və tələbə icması suallara real və aydın cavablar verir.</p>
                     </div>
-                                        <div className="bg-gray-100 border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-400">
+                                        <div className="bg-gray-100 border border-blue-300  rounded-full w-80 h-80 flex flex-col justify-center items-center p-4 mx-auto hover:border-amber-400 cursor-pointer">
                         <h5 className="font-bold">AI Filtrasiyası</h5>
                         <p className="text-gray-400 text-center">Yanlış, uyğunsuz və keyfiyyətsiz məzmun avtomatik təmizlənir.</p>
                     </div>
