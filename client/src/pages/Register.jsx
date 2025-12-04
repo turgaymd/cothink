@@ -41,9 +41,8 @@ function Register() {
           setError(res.data.error);
                return;
   }
-  if(res.data.success){
-    // toast.success("Registered successfully")
-          navigate("/home")
+  if(res.data.success){ 
+          navigate("/login")
           alert("Hesab uğurla yaradıldı")
   }
 
