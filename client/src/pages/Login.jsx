@@ -34,7 +34,7 @@ function Login() {
           token:res.data.token
         }
     sessionStorage.setItem("user", JSON.stringify(userInfo));
- 
+
     if(rememberMe){
     localStorage.setItem("user", JSON.stringify(userInfo))
     }  
