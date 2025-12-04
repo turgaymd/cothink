@@ -12,7 +12,7 @@ const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
      useEffect(()=>{
-        axios.get("http://localhost/cothink1/cothink/server/mentors/mentors.php").then(res=>{
+        axios.get("http://localhost/cothinke/server/mentors/mentors.php").then(res=>{
             setMentors(res.data)
         })
          axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
@@ -81,7 +81,7 @@ const [mentors, setMentors]=useState([])
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
                     <a href="/mentors/id" className="block">
                     <div className="mentor-title gap-5 flex">          
-                            <img src={item.profile_img} className="avatar rounded-full object-cover" alt="mentor"/>
+                            <img src={item.img} className="avatar rounded-full object-cover" alt="mentor"/>
                             <div className="flex flex-col w-full">
                                 <h4 className="font-bold text-lg">{item.mentor_name}</h4>
                         <p>{item.category_id} </p>
@@ -93,7 +93,7 @@ const [mentors, setMentors]=useState([])
                                </div>
                          <div className="flex items-center gap-2">  
                         <img src="comment.svg" className="w-5 h-5"/>
-                        {/* <span>{item.comments}</span> */}
+                        <span>{item.comments}</span>
                              </div>
                         </div>                               
                        <div className="flex flex-col items-center gap-2">

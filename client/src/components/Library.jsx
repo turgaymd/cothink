@@ -14,7 +14,7 @@ const Library=()=>{
 
  useEffect(() => {
     axios
-      .get("http://localhost/cothink1/cothink/server/books/bookRead.php")
+      .get("http://localhost/cothink/server/books/bookRead.php")
       .then((res) => {
         setBooks(res.data.data); // <--- backend JSON-da "data" key var
       })

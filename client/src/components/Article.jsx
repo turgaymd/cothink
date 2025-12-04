@@ -1,9 +1,27 @@
 import { IoMdTime } from "react-icons/io";
 import { FaRegCalendar } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const Article=()=>{
+          const [article, setArticle] = useState([]);
+      useEffect(() => {
+    axios
+      .get("http://localhost/cothink/server/articles/articleDetail.php")
+      .then((res) => {
+        setArticle(res.data); 
+        console.log(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
     return(
         <section>
-        <h2 className="font-bold text-2xl">UX/UI Dizayn Müasir Rəqəmsal Təcrübələri Necə Formalaşdırır?</h2>
+            <div>
+                {
+                    article.map((item)=>{
+                        return(
+                            <>
+                                <h2 className="font-bold text-2xl">{item.article_title}</h2>
         <div className="flex flex-col md:flex-row gap-3 justify-between mb-4 mt-4">
             <div className="flex md:flex-row gap-3">
         <img src="/aysel.png" className="object-cover w-20 h-20"/>
@@ -14,21 +32,25 @@ const Article=()=>{
         </div>
         <div className="flex gap-3 text-gray-400">
           <IoMdTime fontSize={24}/>  <p>8 dəq oxuma</p>
-        <FaRegCalendar fontSize={24}/>  <p>2024-12-15</p>
+        <FaRegCalendar fontSize={24}/>  <p>{item.created_at}</p>
         </div>
         </div>
         <div className="post-reactions flex gap-5">
             <div className="flex gap-3">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>52</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>    
+            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{item.likes}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{item.comments}</div>    
         </div>
          <div className="post-reactions flex  gap-5">
             <div className="share flex items-center gap-2"><img src="/share.svg"></img>Paylaş</div>
-            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>36</div>
+            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{item.saved}</div>
         </div>
          </div>
          <div className="pt-3 mt-3">
-            <img src="/ui.jpg" className="rounded-md"/>
+            <img src={item.article_img} className="rounded-md"/>
+            <p>{item.description}</p>
+            <div className="flex gap-3 md:flex-row flex-col">
+            {item.article_tags}
+            </div>
          </div>
           <div className="comments">
                 <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
@@ -51,6 +73,12 @@ const Article=()=>{
             <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>
     </div>
 </div>
+                    </div>
+                            </>
+                        )
+                    })
+                }
+    
                     </div>
         </section>
     )
