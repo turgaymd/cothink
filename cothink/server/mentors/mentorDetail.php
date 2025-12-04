@@ -1,19 +1,50 @@
 <?php
 require_once "../db.php";
-session_start();
-header("Access-Control-Allow-Origin: *");
+
+// CORS
+header("Access-Control-Allow-Origin: http://localhost:5173");
+header("Access-Control-Allow-Methods: GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
 
-// MENTOR ID SESSION-DAN
-if (!isset($_SESSION['mentor_id'])) {
-    echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$mentor_id = $_SESSION['mentor_id'];
+$id = $_GET['id'] ?? null;
 
-$sql = $conn->query("SELECT * FROM mentors WHERE mentor_id=$id");
-$mentor = $sql->fetch(PDO::FETCH_ASSOC);
+if (!$id) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "Mentor ID göndərilməyib"
+    ]);
+    exit;
+}
 
-echo json_encode($mentor);
+try {
+    $sql = "SELECT * FROM mentors WHERE mentor_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    $mentor = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$mentor) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Mentor tapılmadı"
+        ]);
+        exit;
+    }
+
+    echo json_encode([
+        "status" => "success",
+        "data" => $mentor
+    ]);
+
+} catch (PDOException $e) {
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
+}
 ?>

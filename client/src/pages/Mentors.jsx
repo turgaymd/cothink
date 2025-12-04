@@ -1,18 +1,16 @@
-
-
 import { useState,useEffect } from "react";
 import Search from "../utils/Search";
 import axios from "axios";
 
 const Mentors=()=>{
 const [categories,setCategories]=useState([])
-const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
-const  [visibleCategories, setVisibleCategories]=useState(4)
+// const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+// const  [visibleCategories, setVisibleCategories]=useState(4)
 const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
      useEffect(()=>{
-        axios.get("http://localhost/cothinke/server/mentors/mentors.php").then(res=>{
+        axios.get("http://localhost/cothink1/cothink/server/mentors/mentors.php").then(res=>{
             setMentors(res.data)
         })
          axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
@@ -20,16 +18,16 @@ const [mentors, setMentors]=useState([])
         })
      })
 
-    const handleMore=()=>{
-        setVisibleCategories(prev=>{
-        const newCount=prev+4
-        setDisplayedCategories(categories.slice(0, newCount))
-        return newCount;
-       })}
+    // const handleMore=()=>{
+    //     setVisibleCategories(prev=>{
+    //     const newCount=prev+4
+    //     setDisplayedCategories(categories.slice(0, newCount))
+    //     return newCount;
+    //    })}
 
           const filteredMentors=mentors.filter((item)=>
-        item.name.toLowerCase().includes(query.toLowerCase()) || 
-        item.category.toLowerCase().includes(query.toLowerCase())
+        item.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+        // item.category.toLowerCase().includes(query.toLowerCase())
     )
     return (
         <div className="md:col-span-10">
@@ -51,22 +49,22 @@ const [mentors, setMentors]=useState([])
                         <div className="filter mb-5">
                         <div className=" flex justify-between mb-3">
                 <h4 className="font-bold text-xl">Kategoriyalar</h4>
-                {
+                {/* {
                 visibleCategories<categories.length && (
                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
                 )
-            }
+            } */}
             </div>
       <div className="course-filter mt-4 mb-5">
                     <div className="filter-items flex gap-3 flex-col md:flex-row">
                                             <span className="active rounded-md">Hamısı</span>
-                        {
+                        {/* {
                             displayedCategories.map((item, index)=>(
 
                     <span className="rounded-md" key={index}>{item.name}</span>
                             ))
                         }
-                   
+                    */}
                 </div>
             </div>
             </div>
@@ -79,7 +77,7 @@ const [mentors, setMentors]=useState([])
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
                   (filteredMentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
-                    <a href="/mentors/id" className="block">
+                    <a href={`/mentors/mentor/${item.mentor_id}`} className="block">
                     <div className="mentor-title gap-5 flex">          
                             <img src={item.img} className="avatar rounded-full object-cover" alt="mentor"/>
                             <div className="flex flex-col w-full">

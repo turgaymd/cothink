@@ -4,7 +4,7 @@ import axios from "axios";
 export const ArticleCard=({item})=>{
     return(
           <div className="article-item mb-5">
-    <a href="/library/articles/id">
+    <a href={`/library/articles/${item.article_id}`}>
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center">
                         <div className="article-author flex items-center gap-2">
@@ -39,8 +39,7 @@ const Articles=()=>{
 }, []);
 
           const filteredArticles=articles.filter((item)=>
-        item.article_title.toLowerCase().includes(query.toLowerCase()) 
-          
+        item.article_title.toLowerCase().includes(query.toLowerCase())
     ) 
     return(
         <>
