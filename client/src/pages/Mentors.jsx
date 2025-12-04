@@ -6,8 +6,8 @@ import axios from "axios";
 
 const Mentors=()=>{
 const [categories,setCategories]=useState([])
-const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
-const  [visibleCategories, setVisibleCategories]=useState(4)
+// const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+// const  [visibleCategories, setVisibleCategories]=useState(4)
 const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
@@ -20,12 +20,12 @@ const [mentors, setMentors]=useState([])
         })
      })
 
-    const handleMore=()=>{
-        setVisibleCategories(prev=>{
-        const newCount=prev+4
-        setDisplayedCategories(categories.slice(0, newCount))
-        return newCount;
-       })}
+    // const handleMore=()=>{
+    //     setVisibleCategories(prev=>{
+    //     const newCount=prev+4
+    //     setDisplayedCategories(categories.slice(0, newCount))
+    //     return newCount;
+    //    })}
 
           const filteredMentors=mentors.filter((item)=>
         item.name.toLowerCase().includes(query.toLowerCase()) || 
@@ -51,22 +51,22 @@ const [mentors, setMentors]=useState([])
                         <div className="filter mb-5">
                         <div className=" flex justify-between mb-3">
                 <h4 className="font-bold text-xl">Kategoriyalar</h4>
-                {
+                {/* {
                 visibleCategories<categories.length && (
                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
                 )
-            }
+            } */}
             </div>
       <div className="course-filter mt-4 mb-5">
                     <div className="filter-items flex gap-3 flex-col md:flex-row">
                                             <span className="active rounded-md">Hamısı</span>
-                        {
+                        {/* {
                             displayedCategories.map((item, index)=>(
 
                     <span className="rounded-md" key={index}>{item.name}</span>
                             ))
                         }
-                   
+                    */}
                 </div>
             </div>
             </div>

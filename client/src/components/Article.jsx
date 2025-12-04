@@ -3,7 +3,7 @@ import { FaRegCalendar } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 const Article=()=>{
-          const [article, setArticle] = useState([]);
+          const [article, setArticle] = useState(null);
       useEffect(() => {
     axios
       .get("http://localhost/cothink/server/articles/articleDetail.php")
@@ -17,11 +17,7 @@ const Article=()=>{
     return(
         <section>
             <div>
-                {
-                    article.map((item)=>{
-                        return(
-                            <>
-                                <h2 className="font-bold text-2xl">{item.article_title}</h2>
+                                <h2 className="font-bold text-2xl">{article.article_title}</h2>
         <div className="flex flex-col md:flex-row gap-3 justify-between mb-4 mt-4">
             <div className="flex md:flex-row gap-3">
         <img src="/aysel.png" className="object-cover w-20 h-20"/>
@@ -32,24 +28,24 @@ const Article=()=>{
         </div>
         <div className="flex gap-3 text-gray-400">
           <IoMdTime fontSize={24}/>  <p>8 dəq oxuma</p>
-        <FaRegCalendar fontSize={24}/>  <p>{item.created_at}</p>
+        <FaRegCalendar fontSize={24}/>  <p>{article.created_at}</p>
         </div>
         </div>
         <div className="post-reactions flex gap-5">
             <div className="flex gap-3">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{item.likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{item.comments}</div>    
+            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{article.likes}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{article.comments}</div>    
         </div>
          <div className="post-reactions flex  gap-5">
             <div className="share flex items-center gap-2"><img src="/share.svg"></img>Paylaş</div>
-            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{item.saved}</div>
+            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{article.saved}</div>
         </div>
          </div>
          <div className="pt-3 mt-3">
-            <img src={item.article_img} className="rounded-md"/>
-            <p>{item.description}</p>
+            <img src={article.article_img} className="rounded-md"/>
+            <p>{article.description}</p>
             <div className="flex gap-3 md:flex-row flex-col">
-            {item.article_tags}
+            {article.article_tags}
             </div>
          </div>
           <div className="comments">
@@ -73,12 +69,7 @@ const Article=()=>{
             <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>
     </div>
 </div>
-                    </div>
-                            </>
-                        )
-                    })
-                }
-    
+                    </div>              
                     </div>
         </section>
     )
