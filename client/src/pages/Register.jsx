@@ -5,16 +5,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 function Register() {
+  
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [subject, setSubject]=useState("")
   const [linkedin, setLinkedin]=useState("")
-
   const [hide, setHide] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
-    const [activeTab, setActiveTab]=useState("student")
+  const [activeTab, setActiveTab]=useState("student")
+
+    
   const navigate=useNavigate()
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -32,13 +34,10 @@ function Register() {
       return;
     }
     try {
-    const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", { username, email, password, subject, linkedin},
+    const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", activeTab==="student" ? { username, email, password} : { username, email, password, subject, linkedin},
         {headers:{"Content-Type":"application/json"}}
       );  
-          if (res.data.error) {
-          setError(res.data.error);
-               return;
-  }
+
   if(res.data.success){
      const userInfo={
           username:res.data.username,
@@ -52,9 +51,7 @@ function Register() {
   }
     } catch (err) {
       const msg=err.response?.data?.error || "Xəta baş verdi"
-      console.error( msg );
       toast.error(msg)
-      setError(msg);
     }
   };
   return (
@@ -64,14 +61,14 @@ function Register() {
       <div className="card w-[90%] max-w-[500px]">
         <div className="card-body">
           <div className="login-title text-center mb-5">
-            <h2 className="font-medium text-3xl text-black"> Qeydiyyat</h2>
+            <h2 className="font-medium text-2xl text-black"> Qeydiyyat</h2>
             <p className="text-gray-500 text-2xl">Hesabınızı yaradın</p>
            
           </div>
             <div className="flex justify-center ">
-        <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
+        <div className="switch-toogle flex justify-center items-center mb-2  max-w-3xl w-full bg-white border border-gray-200">
           <button
-            className={`rounded-full w-full ${
+            className={` w-full ${
               activeTab === "student" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("student")}
@@ -79,7 +76,7 @@ function Register() {
             Tələbə
           </button>
           <button
-            className={` rounded-full w-full ${
+            className={` w-full ${
               activeTab === "mentor" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("mentor")}
@@ -90,7 +87,7 @@ function Register() {
       </div>
           <form className="login-form mx-auto" onSubmit={handleRegister}>
             {error && <p className="text-center text-red-600">{error}</p>}
-            <div className="mb-5">
+            <div className="mb-2">
               <label htmlFor="name" className="text-sm font-bold mb-2">
                 {" "}
                 Ad{" "}
@@ -107,7 +104,7 @@ function Register() {
             </div>
             { activeTab==='mentor' && 
             <>
-                    <div className="mb-5">
+                    <div className="mb-2">
               <label htmlFor="name" className="text-sm font-bold mb-2">
                 {" "}
                 Linkedin profiliniz{" "}
@@ -122,7 +119,7 @@ function Register() {
                 ></input>
               </div>
             </div>
-             <div className="mb-5">
+             <div className="mb-2">
               <label htmlFor="name" className="text-sm font-bold mb-2">
                 {" "}
                 Fənn{" "}
@@ -139,7 +136,7 @@ function Register() {
             </div>
             </>
             }
-            <div className="mb-5">
+            <div className="mb-2">
               <label
                 htmlFor="email"
                 className="text-sm font-bold mb-2"
@@ -157,7 +154,7 @@ function Register() {
                 ></input>
               </div>
             </div>
-            <div className="mb-5">
+            <div className="mb-2">
               <label
                 htmlFor="password"
                 className="font-bold mb-4"
@@ -178,7 +175,7 @@ function Register() {
                 </i>
               </div>
             </div>
-            <div className="flex mb-4 justify-between">
+            <div className="flex mb-2 justify-between">
               <div>
                 <input
                   type="checkbox"
@@ -205,7 +202,7 @@ function Register() {
                 Google ilə daxil ol
               </button>
             </div>
-            <p className="text-center mt-4">
+            <p className="text-center mt-2">
               Mövcud hesabınız var idi?{" "}
               <a href="/login" className="text-blue-700">
                 Daxil ol
