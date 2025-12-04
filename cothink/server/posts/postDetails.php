@@ -28,17 +28,17 @@ try {
     $sql = "
         SELECT 
             p.id,
-            p.post_title,
-            p.post_text,
+            p.post_title, 
+            p.post_desc, 
             p.post_img,
+            p.post_tags,
             p.created_at,
             p.mentor_id,
             p.category_id,
 
             m.mentor_name,
-            m.mentor_bio,
 
-            c.category AS category_name
+            c.category AS category
 
         FROM mentor_post p
         LEFT JOIN mentors m ON p.mentor_id = m.mentor_id
