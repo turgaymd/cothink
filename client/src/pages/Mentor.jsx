@@ -10,7 +10,6 @@ const Mentor = () => {
   const [activeTab, setActiveTab] = useState("courses");
   const [mentor, setMentor] = useState(null);
   const [courses, setCourses] = useState([]);
-
   const { id } = useParams();
 
   useEffect(() => {
