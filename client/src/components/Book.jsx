@@ -17,11 +17,9 @@ const Book = () => {
       })
       .catch((err) => console.error(err));
   }, [id]);
-
   if (!book) {
     return <Loading/>;
   }
-
   return (
     <section>
       <div>
@@ -42,7 +40,6 @@ const Book = () => {
               <img src="/share.svg" alt="share" /> Paylaş
             </div>
           </div>
-
           <button
             className="bg-blue-800 text-white rounded-md px-4 py-2 mt-3"
             onClick={() => navigate(`/library/books/${book.book_id}/read`)}
@@ -50,7 +47,6 @@ const Book = () => {
             Oxumağa davam edin
           </button>
         </div>
-
         <div className="max-w-3xl mx-auto">
           <p className="text-center font-bold mb-2">Kitab haqqında</p>
           <p className="pt-4 text-justify">{book.description}</p>

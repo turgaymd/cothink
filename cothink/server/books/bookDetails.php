@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // ?id=5 gəlir
-$id = $_GET['id'] ?? null;
+$id = $_GET['book_id'] ?? null;
 
 if (!$id) {
     echo json_encode([
@@ -26,25 +26,24 @@ if (!$id) {
 try {
     $sql = "
         SELECT 
-            b.id,
+            b.book_id,
             b.book_title,
             b.book_img,
-            b.book_description,
+            b.description,
             b.mentor_id,
             b.category_id,
             b.created_at,
 
-            m.mentor_name,
-            m.mentor_bio,
+            m.mentor_name, 
 
-            c.category AS category_name
+            c.category AS category 
 
         FROM mentor_books AS b
         LEFT JOIN mentors AS m
             ON b.mentor_id = m.mentor_id
         LEFT JOIN categories AS c
             ON b.category_id = c.category_id
-        WHERE b.id = ?
+        WHERE b.book_id = ?
     ";
 
     $stmt = $conn->prepare($sql);

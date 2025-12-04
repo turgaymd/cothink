@@ -1,5 +1,3 @@
-
-
 import { useState,useEffect } from "react";
 import Search from "../utils/Search";
 import axios from "axios";
@@ -12,7 +10,7 @@ const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
      useEffect(()=>{
-        axios.get("http://localhost/cothinke/server/mentors/mentors.php").then(res=>{
+        axios.get("http://localhost/cothink1/cothink/server/mentors/mentors.php").then(res=>{
             setMentors(res.data)
         })
          axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
@@ -28,8 +26,8 @@ const [mentors, setMentors]=useState([])
     //    })}
 
           const filteredMentors=mentors.filter((item)=>
-        item.name.toLowerCase().includes(query.toLowerCase()) || 
-        item.category.toLowerCase().includes(query.toLowerCase())
+        item.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+        // item.category.toLowerCase().includes(query.toLowerCase())
     )
     return (
         <div className="md:col-span-10">
@@ -79,7 +77,7 @@ const [mentors, setMentors]=useState([])
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
                   (filteredMentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
-                    <a href="/mentors/id" className="block">
+                    <a href={`/mentors/mentor/${item.mentor_id}`} className="block">
                     <div className="mentor-title gap-5 flex">          
                             <img src={item.img} className="avatar rounded-full object-cover" alt="mentor"/>
                             <div className="flex flex-col w-full">
