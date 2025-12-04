@@ -16,7 +16,6 @@ const Mentor=()=>{
                 console.log(mentor)
             })
          },[])
-
        useEffect(()=>{
             axios.get("http://localhost/cothink1/cothink/server/courses/courseRead.php").then(res=>{
                 setCourses(res.data)
@@ -41,7 +40,6 @@ const Mentor=()=>{
             <div className="like-count flex items-center gap-2"><HiOutlineUsers fontSize={24}/>   {item.students} tələbə</div>
             <div className="comment-count flex items-center gap-2" ><FaRegComments fontSize={24}/>  {item.comments} Rəy </div>
         </div>
-
                 </div>
                 <div className="mentor-info flex flex-col gap-2">
 <h4 className="font-bold text-xl">{item.name}</h4>

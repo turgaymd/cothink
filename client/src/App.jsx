@@ -43,7 +43,7 @@ function App() {
         <Route element={<MainLayout/>}>
        <Route path="/home" element={<MainHome/>} />
         
-        <Route path="/discussion" element={<Discussion/>} />
+        <Route path="/questions/:id" element={<Discussion/>} />
         <Route path="/questions" element={<Questions/>} />
         <Route path="/saved" element={<Saved/>} />
         <Route path="/share" element={<Share/>} />
@@ -59,7 +59,7 @@ function App() {
         <Route path="/addarticle" element={<AddArticle/>} />
         <Route path="/courses" element={<Course/>} />
         <Route path="/courses/:id" element={<CourseDetail/>} />
-        
+  
         <Route path="/courses/:id/content" element={<CourseContent/>} />
         <Route path="/rating" element={<Rating/>} />
         <Route path="/profile" element={<Profile/>} />      
