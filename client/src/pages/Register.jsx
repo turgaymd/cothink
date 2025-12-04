@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 function Register() {
-  
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -112,7 +112,7 @@ function Register() {
               <div>
                 <input
                   type="text"
-                  id="name"
+                  id="linkedin"
                   placeholder="Linkedin profilinizin linkini daxil edin"
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
                   onChange={(e) => setLinkedin(e.target.value)}
@@ -127,7 +127,7 @@ function Register() {
               <div>
                 <input
                   type="text"
-                  id="name"
+                  id="subject"
                   placeholder="Tədris etdiyiniz fənni daxil edin"
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
                   onChange={(e) => setSubject(e.target.value)}
