@@ -5,15 +5,34 @@ import { MdAssignment } from "react-icons/md";
 import { FaRegComments, FaRegFile } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Loading from "../utils/Loading";
+
 
 const CourseDetail=()=>{
+  const [course, setCourse]=useState(null)
+    const { id } = useParams();  
+    useEffect(() => {
+      axios
+        .get(`http://localhost/cothink/server/courses/courseDetails.php?id=${id}`)
+        .then((res) => {
+          setCourse(res.data.data);
+          console.log(res.data.data);
+        })
+        .catch((err) => console.error(err));
+    }, [id])
+
+     if (!course) return <Loading/>;
     return(
      <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+    
             <div className="">
                 <img src="/termodinamic.jpg" className="w-full"/>
             <div className="flex justify-between items-center mt-4">
-                <p className="text-gray-500">3 Dəqiqədə Termodinamikanın Əsasları</p>
+                <p className="text-gray-500">{course.course_title}</p>
                 <a className="bg-blue-800 text-white px-4 py-2 rounded-md" href="/courses/id/content">Kursu əldə et</a>
             </div>
             <p className="text-blue-500">#Fizika</p>

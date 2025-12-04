@@ -18,7 +18,7 @@ export const CourseCard=({item})=>{
               <h4 className="font-bold text-2xl">
                  {item.course_title}
               </h4>
-              <a href="courses/id"><MdArrowOutward fontSize={24}/></a>
+              <a href={`courses/${item.course_id}`}><MdArrowOutward fontSize={24}/></a>
             </div>
             <p className="text-gray-500">
               <span className="font-medium skills text-black">
@@ -49,11 +49,11 @@ const Courses = () => {
     const [courses, setCourses]=useState([])
     
    useEffect(()=>{
-        axios.get("http://localhost/cothink1/cothink/server/courses/courseRead.php").then(res=>{
+        axios.get("http://localhost/cothink/server/courses/courseRead.php").then(res=>{
             setCourses(res.data)
             console.log(courses)
         })
-     },[courses])
+     },[])
   return (
     <>
       <section>

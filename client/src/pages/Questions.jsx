@@ -2,36 +2,36 @@
 import Search from "../utils/Search";
 import { FaRegComments } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import discussions from "../data/DiscussionsData";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import axios from "axios";
 
 const Questions=()=>{
-    const [categories,setCategories]=useState([]);
-    const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
-    const [visibleCategories, setVisibleCategories]=useState(2)
+    // const [categories,setCategories]=useState([]);
+    // const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+    // const [visibleCategories, setVisibleCategories]=useState(2)
+    const [discussions,setDiscussions]=useState([])
+
+    // const handleMore=()=>{
+    //     setVisibleCategories(prev=>{
+    //     const newCount=prev+4
+    //     setDisplayedCategories(categories.slice(0, newCount))
+    //     return newCount;
+    //    })}
+useEffect(()=>{
+       axios.get("http://localhost/cothink/server/posts/postsRead.php").then(res=>{
+            setDiscussions(res.data)
+        })
+
+        //    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
+        //     setCategories(res.data)
+        // })
+},[])
 
 
-    const handleMore=()=>{
-        setVisibleCategories(prev=>{
-        const newCount=prev+4
-        setDisplayedCategories(categories.slice(0, newCount))
-        return newCount;
-       })}
-useEffect(()=>{
-       axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
-            setCategories(res.data)
-        })
-},[])
-useEffect(()=>{
-       axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
-            setCategories(res.data)
-        })
-},[])
     return (
         <section>
             <Search/>
-             <div className="flex justify-between mb-3">
+             {/* <div className="flex justify-between mb-3">
                 <h4 className="font-semibold text-xl">Mövzular</h4>
                   {
                 visibleCategories<categories.length && (
@@ -46,7 +46,6 @@ useEffect(()=>{
                         <div className="w-full ">
                     <div className="topic-item mb-2" key={index}>
                     <a>
-                        {/* <img src={item.img}></img> */}
                     </a>   
                         </div> 
                     <h4 className="font-bold text-center">{item.name}</h4>
@@ -55,7 +54,7 @@ useEffect(()=>{
                         </>
                     ))
                 }
-            </div>
+            </div> */}
             <div className="mt-5 mb-5">
                 <h4 className="font-bold text-xl">Müzakirə formu</h4>
             </div>
@@ -75,10 +74,10 @@ useEffect(()=>{
                 <div className="flex gap-7 ">
                     <img src={item.img} className="rounded-full w-24 h-24"/>
                     <div className="flex flex-col gap-3">
-                        <h5 className="font-medium">{item.title}</h5>
+                        <h5 className="font-medium">{item.post_title}</h5>
                     <div className="flex gap-3"> <img src={item.category} className="w-5 h-5"/>  <p className="text-gray-400">{item.subcategory}</p></div>
                         <div>
-                        <a className="rounded-xl border border-gray-300 flex w-40 gap-3 items-center px-3 py-2" href="/discussion"><FaRegComments className="text-blue-500 text-xl"/>Fikrini paylaş</a>
+                        <a className="rounded-xl border border-gray-300 flex w-40 gap-3 items-center px-3 py-2" href={`/questions/${item.post_id}`}><FaRegComments className="text-blue-500 text-xl"/>Fikrini paylaş</a>
                    </div>
                     </div>
                 </div>
