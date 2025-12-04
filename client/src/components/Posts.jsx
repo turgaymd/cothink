@@ -5,7 +5,7 @@ const Posts=()=>{
         const [posts, setPosts]=useState([])
 
 useEffect(()=>{
-    axios.get("http://localhost/cothink1/cothink/server/posts/postsRead.php")
+    axios.get("http://localhost/cothink/server/posts/postsRead.php")
         .then(res => {
             setPosts(res.data) // backend JSON-dakı array
         })

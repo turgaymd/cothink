@@ -23,6 +23,11 @@ useEffect(()=>{
             setCategories(res.data)
         })
 },[])
+useEffect(()=>{
+       axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
+            setCategories(res.data)
+        })
+},[])
     return (
         <section>
             <Search/>

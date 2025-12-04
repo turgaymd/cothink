@@ -7,32 +7,45 @@ import Posts from "../components/Posts";
 import axios from "axios";
 const Mentor=()=>{
     const [activeTab, setActiveTab]=useState("courses")
+    const [mentor, setMentor]=useState([])
     const [courses, setCourses]=useState([])
         
+     useEffect(()=>{
+            axios.get("http://localhost/cothinke/server/mentors/mentors.php").then(res=>{
+                setMentor(res.data)
+                console.log(mentor)
+            })
+         },[])
+
        useEffect(()=>{
             axios.get("http://localhost/cothink1/cothink/server/courses/courseRead.php").then(res=>{
                 setCourses(res.data)
                 console.log(courses)
             })
          },[courses])
+         
     return (
         <div>
        <section>
         <h2 className="text-center font-bold text-2xl ">Mentor Profili</h2>
         <div className="mentor-profile mt-4 ">
-            <div className="bg-white shadow-3xl border border-gray-200 shadow-white-800 rounded-lg px-10 py-4">
+            {
+                mentor.map((item)=>{
+                    return (
+                        <>
+                           <div className="bg-white shadow-3xl border border-gray-200 shadow-white-800 rounded-lg px-10 py-4">
                 <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
                 <div className="profil-img flex flex-col justify-center items-center">
-                    <img src="/mentor_avatar.jpg" className="mentor-avatar rounded-full"/>
+                    <img src={`/${item.img}`} className="mentor-avatar rounded-full"/>
                    <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-700">
-            <div className="like-count flex items-center gap-2"><HiOutlineUsers fontSize={24}/>   2.6k tələbə</div>
-            <div className="comment-count flex items-center gap-2" ><FaRegComments fontSize={24}/>  Rəy(100+)</div>
+            <div className="like-count flex items-center gap-2"><HiOutlineUsers fontSize={24}/>   {item.students} tələbə</div>
+            <div className="comment-count flex items-center gap-2" ><FaRegComments fontSize={24}/>  {item.comments} Rəy </div>
         </div>
 
                 </div>
                 <div className="mentor-info flex flex-col gap-2">
-<h4 className="font-bold text-xl">Aysel Məmmədova</h4>
-<p>UX dizayn və istifadəçi tədqiqatı üzrə 6 illik təcrübəyə malikdir.</p>
+<h4 className="font-bold text-xl">{item.name}</h4>
+<p>{item.description}</p>
 <div className="flex gap-4">
    <span className="bg-white rounded-full px-4 py-2 border border-gray-400"> UX/UI Designer</span>
    <a></a>
@@ -48,6 +61,11 @@ const Mentor=()=>{
                                     
                 </div>
             </div>
+                        </>
+                    )
+                })
+            }
+         
         </div>
             <div className="flex justify-center mb-5">
     <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
