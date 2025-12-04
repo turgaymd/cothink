@@ -50,7 +50,7 @@ function App() {
       
 
         <Route path="/mentors" element={<Mentors/>} />
-        <Route path="/mentors/:id" element={<Mentor/>} />
+        <Route path="/mentors/mentor/:id" element={<Mentor/>} />
 
         <Route path="/library" element={<Library/>} />
         <Route path="/library/books/:id" element={<Book/>} />

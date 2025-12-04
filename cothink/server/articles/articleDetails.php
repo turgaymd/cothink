@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 require_once "../db.php";
 
 // URL-də ?id=23 kimi gəlir
-$article_id = $_GET['id'] ?? null;
+$article_id = $_GET['article_id'] ?? null;
 
 if (!$article_id) {
     echo json_encode([
@@ -29,14 +29,16 @@ try {
         SELECT 
             ma.article_id,
             ma.article_title,
-            ma.article_topic,
-            ma.article_text,
+            ma.article_topic, 
+            ma.article_desc, 
             ma.created_at,
             ma.mentor_id,
             ma.category_id,
+            ma.likes,
+            ma.saved,
 
-            m.mentor_name,
-            m.mentor_bio,
+            m.mentor_name, 
+            m.profile_img, 
 
             c.category
 
