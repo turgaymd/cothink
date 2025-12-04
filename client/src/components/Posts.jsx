@@ -5,7 +5,7 @@ const Posts=()=>{
         const [posts, setPosts]=useState([])
 
 useEffect(()=>{
-    axios.get("http://localhost/cothink/server/posts/postsRead.php")
+    axios.get("http://localhost/cothink1/cothink/server/posts/postsRead.php")
         .then(res => {
             setPosts(res.data) // backend JSON-dakı array
         })
@@ -32,9 +32,9 @@ useEffect(()=>{
                 <p className="text-gray-500">{item.post_desc}</p>
            <img src="/post.jpg" className="w-full h-60 rounded-md"/>
             <div className="post-reactions flex gap-5">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{item.post_likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{item.post_comments}</div>
-            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{item.post_saved}</div>
+            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{item.likes}</div>
+            {/* <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{item.post_comments}</div> */}
+            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{item.saved}</div>
             <div className="share flex items-center gap-2"><img src="/share.svg"></img>Paylaş</div>
         </div>
             </div>
