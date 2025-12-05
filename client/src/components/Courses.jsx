@@ -51,7 +51,6 @@ const Courses = () => {
    useEffect(()=>{
         axios.get("http://localhost/cothink/server/courses/courseRead.php").then(res=>{
             setCourses(res.data)
-            console.log(courses)
         })
      },[])
   return (

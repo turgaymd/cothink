@@ -16,7 +16,7 @@ const [mentors, setMentors]=useState([])
          axios.get("http://localhost/cothink/server/categories/categoryRead.php").then(res=>{
             setCategories(res.data)
         })
-     })
+     },[])
 
     // const handleMore=()=>{
     //     setVisibleCategories(prev=>{
