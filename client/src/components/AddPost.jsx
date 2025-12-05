@@ -54,7 +54,7 @@ const fileInputRef = useRef(null);
     formData.append('category_id',categoryId);
 
         try{
-      const res= await axios.post("http://localhost/cothink1/cothink/server/posts/postPost.php", formData,
+      const res= await axios.post("http://localhost/cothink1/cothink/server/studentPosts/postsPost.php", formData,
                { headers: { "Content-Type": "multipart/form-data" } })
          if(res.data.success){
             toast.success("Post uğurla əlavə olundu")
