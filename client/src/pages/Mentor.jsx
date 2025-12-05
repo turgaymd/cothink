@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { CourseCard } from "../components/Courses";
+import { SlSocialLinkedin } from "react-icons/sl";
+import { TbWorld } from "react-icons/tb";
 import Articles from "../components/Articles";
 import Posts from "../components/Posts";
 import axios from "axios";
@@ -21,14 +23,14 @@ const Mentor = () => {
       .catch((err) => console.log(err));
   }, [id]);
   
-  useEffect(() => {
-    axios
-      .get("http://localhost/cothink/server/courses/courseRead.php")
-      .then((res) => {
-        setCourses(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []); 
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost/cothink/server/courses/courseRead.php")
+  //     .then((res) => {
+  //       setCourses(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []); 
 
   if (!mentor) {
     return <p className="text-center text-xl mt-8">Mentor tapılmadı</p>;
@@ -42,12 +44,15 @@ const Mentor = () => {
             <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
               <div className="profil-img flex flex-col justify-center items-center">
                 <img
-                  src={`/${mentor.profile_img}`}
+                  src={`${mentor.profile_img}`}
                   className="mentor-avatar rounded-full"
                 />
                 <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-700">
                   <div className="like-count flex items-center gap-2">
                     <HiOutlineUsers fontSize={24} /> {mentor.students} tələbə
+                  </div>
+                    <div className="like-count flex items-center gap-2">
+                    <HiOutlineUsers fontSize={24} /> {mentor.comments} Rəy(100+)
                   </div>
                 </div>
               </div>
@@ -59,8 +64,11 @@ const Mentor = () => {
                   <span className="bg-white rounded-full px-4 py-2 border border-gray-400">
                     {mentor.position}
                   </span>
+                  <a href={mentor.linkedn_link} className="border border-gray-400 px-3 py-1 rounded-md"><SlSocialLinkedin fontSize={24}/></a>
+                 <a href={mentor.website_link} className="border border-gray-400 px-3 py-1 rounded-md"><TbWorld fontSize={24}/></a>
+                  <a></a>
                 </div>
-                <p>Danışıq dilləri:</p>
+                <p className="pt-3">Danışıq dilləri:</p>
                 <div className="flex gap-3 mt-2 mb-5">
                   <span className="bg-white rounded-md px-4 py-2 border border-gray-400">Azərbaycan</span>
                   <span className="bg-white rounded-md px-4 py-2 border border-gray-400">Alman</span>
