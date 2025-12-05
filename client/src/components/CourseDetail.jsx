@@ -16,7 +16,7 @@ const CourseDetail=()=>{
     const { id } = useParams();  
     useEffect(() => {
       axios
-        .get(`http://localhost/cothink/server/courses/courseDetails.php?id=${id}`)
+        .get(`http://localhost/cothink1/cothink/server/courses/courseDetails.php?id=${id}`)
         .then((res) => {
           setCourse(res.data.data);
           console.log(res.data.data);

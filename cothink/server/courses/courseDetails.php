@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // GET course_id
-$course_id = $_GET['course_id'] ?? null;
+$course_id = $_GET['id'] ?? null;
 
 if (!$course_id) {
     echo json_encode([
