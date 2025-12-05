@@ -8,7 +8,7 @@ function Discussion(){
   const [comments, setComments]=useState([])
   useEffect(() => {
     axios
-      .get(`http://localhost/cothink/server/posts/postDetails.php?id=${id}`)
+      .get(`http://localhost/cothink1/cothink/server/posts/postDetails.php?id=${id}`)
       .then((res) => {
         setPost(res.data.data);
         console.log(res.data.data);
@@ -18,7 +18,7 @@ function Discussion(){
 
    useEffect(() => {
     axios
-      .get(`http://localhost/cothink/server/discussion/getPost.php?id=1`)
+      .get(`http://localhost/cothink1/cothink/server/discussion/getPost.php?id=1`)
       .then((res) => {
           const postData=res.data.find((p)=>p.post_id===Number(id))
         setComments(postData.comments);
