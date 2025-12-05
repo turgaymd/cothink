@@ -45,22 +45,7 @@ const AddCourse = ({ setActiveTab }) => {
     formData.append("course_file", courseFile); // FAYL BURADADIR
     formData.append("mentor_id", 7); // test üçün, sonra localStorage-dən götürərsən
 
-    try {
-      const res = await axios.post(
-        "http://localhost/cothink1/cothink/server/courses/coursePost.php",
-        formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
-      );
-
-      if (res.data.status === "success") {
-        toast.success("Kurs uğurla əlavə olundu");
-      } else {
-        toast.error(res.data.message);
-      }
-    } catch (err) {
-      console.log(err);
-      toast.error("Xəta baş verdi");
-    }
+   
   };
 
   const handleSelect = (selectedCategory) => {
