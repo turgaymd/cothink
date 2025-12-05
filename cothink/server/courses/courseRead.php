@@ -19,7 +19,7 @@ if (!$course_id) {
     $sql = "
         SELECT 
             mc.*,
-            m.name,
+            m.mentor_name,
             m.profile_img,
             c.category
         FROM mentor_course mc

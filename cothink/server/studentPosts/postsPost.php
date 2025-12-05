@@ -30,21 +30,21 @@ $post_tags    = $data["post_tags"] ?? null;
 //     VALIDATION
 // ===============================
 
-if (!$post_title || !$post_desc) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Title və description tələb olunur"
-    ]);
-    exit;
-}
+// if (!$post_title || !$post_desc) {
+//     echo json_encode([
+//         "status" => "error",
+//         "message" => "Title və description tələb olunur"
+//     ]);
+//     exit;
+// }
 
-if (!$category_id) {
-    echo json_encode([
-        "status" => "error",
-        "message" => "Category seçilməlidir"
-    ]);
-    exit;
-}
+// if (!$category_id) {
+//     echo json_encode([
+//         "status" => "error",
+//         "message" => "Category seçilməlidir"
+//     ]);
+//     exit;
+// }
 
 // ===============================
 //       DB INSERT SORĞUSU
