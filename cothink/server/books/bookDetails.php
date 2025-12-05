@@ -29,6 +29,7 @@ try {
             b.book_id,
             b.book_title,
             b.book_img,
+            b.book_file,
             b.description,
             b.mentor_id,
             b.category_id,
