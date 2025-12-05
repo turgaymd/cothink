@@ -10,10 +10,10 @@ const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
      useEffect(()=>{
-        axios.get("http://localhost/cothink1/cothink/server/mentors/mentors.php").then(res=>{
+        axios.get("http://localhost/cothink/server/mentors/mentors.php").then(res=>{
             setMentors(res.data)
         })
-         axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
+         axios.get("http://localhost/cothink/server/categories/categoryRead.php").then(res=>{
             setCategories(res.data)
         })
      })

@@ -1,6 +1,6 @@
 import { useState, useEffect,useRef } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
 const AddPost=({setActiveTab})=>{
@@ -23,7 +23,7 @@ const fileInputRef = useRef(null);
   };
 
   useEffect(() => {
-    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
+    axios.get("http://localhost/cothink/server/categories/categoryRead.php")
       .then((res) => {
         if (res.data.status === "success") {
           setCategories(res.data.data);
@@ -91,6 +91,8 @@ const fileInputRef = useRef(null);
        setPostTags(postTags.filter(tag=>tag!==removedTag))
     }
     return (
+      <>
+      <ToastContainer/>
         <div className="research-form">
             <h2 className="text-center font-bold text-3xl pb-5">Post əlavə et</h2>
             <form className="mt-5" onSubmit={handlePost}>
@@ -147,6 +149,7 @@ label:item.category
 </div>
             </form>
         </div>
+        </>
     )
 }
 export default AddPost;

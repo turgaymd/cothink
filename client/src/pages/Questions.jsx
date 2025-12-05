@@ -6,32 +6,34 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import axios from "axios";
 
 const Questions=()=>{
-    // const [categories,setCategories]=useState([]);
-    // const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
-    // const [visibleCategories, setVisibleCategories]=useState(2)
+    const [categories,setCategories]=useState([]);
+    const [displayedCategories, setDisplayedCategories]=useState([])
+    const [visibleCategories, setVisibleCategories]=useState(2)
     const [discussions,setDiscussions]=useState([])
 
-    // const handleMore=()=>{
-    //     setVisibleCategories(prev=>{
-    //     const newCount=prev+4
-    //     setDisplayedCategories(categories.slice(0, newCount))
-    //     return newCount;
-    //    })}
+ 
+
 useEffect(()=>{
        axios.get("http://localhost/cothink/server/posts/postsRead.php").then(res=>{
             setDiscussions(res.data)
         })
 
-        //    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
-        //     setCategories(res.data)
-        // })
+           axios.get("http://localhost/cothink/server/categories/categoryRead.php").then(res=>{
+            setCategories(res.data.data)
+            setDisplayedCategories(res.data.data.slice(0,4))
+        })
 },[])
-
+   const handleMore=()=>{
+        setVisibleCategories(prev=>{
+        const newCount=prev+4
+        setDisplayedCategories(categories.slice(0, newCount))
+        return newCount;
+       })}
 
     return (
         <section>
             <Search/>
-             {/* <div className="flex justify-between mb-3">
+             <div className="flex justify-between mb-3">
                 <h4 className="font-semibold text-xl">Mövzular</h4>
                   {
                 visibleCategories<categories.length && (
@@ -46,15 +48,16 @@ useEffect(()=>{
                         <div className="w-full ">
                     <div className="topic-item mb-2" key={index}>
                     <a>
+                        <img src={item?.category_img}/>
                     </a>   
                         </div> 
-                    <h4 className="font-bold text-center">{item.name}</h4>
+                    <h4 className="font-bold text-center">{item.category}</h4>
                 </div>
 
                         </>
                     ))
                 }
-            </div> */}
+            </div>
             <div className="mt-5 mb-5">
                 <h4 className="font-bold text-xl">Müzakirə formu</h4>
             </div>
@@ -64,11 +67,11 @@ useEffect(()=>{
                     <div className="rounded-md shadow-gray-100 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
                            <div className="flex gap-3 justify-end items-center text-sm">
                         <span className="text-gray-400">
-                            {item.author}
+                            {item.mentor_name}
                         </span>
-                        <span className="leading-none text-gray-500">•</span>
+                        {/* <span className="leading-none text-gray-500">•</span> */}
                         <span className="text-gray-400">
-                            {item.date}
+                            {item.created_at}
                         </span>
                         </div>
                 <div className="flex gap-7 ">

@@ -5,12 +5,18 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 function Register() {
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [subject, setSubject]=useState("")
+  const [linkedin, setLinkedin]=useState("")
   const [hide, setHide] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
+  const [activeTab, setActiveTab]=useState("student")
+
+    
   const navigate=useNavigate()
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -28,13 +34,10 @@ function Register() {
       return;
     }
     try {
-    const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", { username, email, password},
+    const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", activeTab==="student" ? { username, email, password} : { username, email, password, subject, linkedin},
         {headers:{"Content-Type":"application/json"}}
       );  
-          if (res.data.error) {
-          setError(res.data.error);
-               return;
-  }
+
   if(res.data.success){
      const userInfo={
           username:res.data.username,
@@ -48,9 +51,7 @@ function Register() {
   }
     } catch (err) {
       const msg=err.response?.data?.error || "Xəta baş verdi"
-      console.error( msg );
       toast.error(msg)
-      setError(msg);
     }
   };
   return (
@@ -60,13 +61,34 @@ function Register() {
       <div className="card w-[90%] max-w-[500px]">
         <div className="card-body">
           <div className="login-title text-center mb-5">
-            <h2 className="font-medium text-3xl text-black"> Qeydiyyat</h2>
+            <h2 className="font-medium text-2xl text-black"> Qeydiyyat</h2>
             <p className="text-gray-500 text-2xl">Hesabınızı yaradın</p>
+           
           </div>
-          <form className="login-form mx-auto pt-5" onSubmit={handleRegister}>
+            <div className="flex justify-center ">
+        <div className="switch-toogle flex justify-center items-center mb-2  max-w-3xl w-full bg-white border border-gray-200">
+          <button
+            className={` w-full ${
+              activeTab === "student" ? "bg-blue-800 text-white" : ""
+            }`}
+            onClick={() => setActiveTab("student")}
+          >
+            Tələbə
+          </button>
+          <button
+            className={` w-full ${
+              activeTab === "mentor" ? "bg-blue-800 text-white" : ""
+            }`}
+            onClick={() => setActiveTab("mentor")}
+          >
+           Mentor
+          </button>
+        </div>
+      </div>
+          <form className="login-form mx-auto" onSubmit={handleRegister}>
             {error && <p className="text-center text-red-600">{error}</p>}
-            <div className="mb-5">
-              <label htmlFor="name" className="text-sm text-black font-medium mb-2">
+            <div className="mb-2">
+              <label htmlFor="name" className="text-sm font-bold mb-2">
                 {" "}
                 Ad{" "}
               </label>
@@ -80,10 +102,44 @@ function Register() {
                 ></input>
               </div>
             </div>
-            <div className="mb-5">
+            { activeTab==='mentor' && 
+            <>
+                    <div className="mb-2">
+              <label htmlFor="name" className="text-sm font-bold mb-2">
+                {" "}
+                Linkedin profiliniz{" "}
+              </label>
+              <div>
+                <input
+                  type="text"
+                  id="linkedin"
+                  placeholder="Linkedin profilinizin linkini daxil edin"
+                  className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
+                  onChange={(e) => setLinkedin(e.target.value)}
+                ></input>
+              </div>
+            </div>
+             <div className="mb-2">
+              <label htmlFor="name" className="text-sm font-bold mb-2">
+                {" "}
+                Fənn{" "}
+              </label>
+              <div>
+                <input
+                  type="text"
+                  id="subject"
+                  placeholder="Tədris etdiyiniz fənni daxil edin"
+                  className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
+                  onChange={(e) => setSubject(e.target.value)}
+                ></input>
+              </div>
+            </div>
+            </>
+            }
+            <div className="mb-2">
               <label
                 htmlFor="email"
-                className="text-sm text-black font-medium mb-2"
+                className="text-sm font-bold mb-2"
               >
                 Email
               </label>
@@ -98,10 +154,10 @@ function Register() {
                 ></input>
               </div>
             </div>
-            <div className="mb-5">
+            <div className="mb-2">
               <label
                 htmlFor="password"
-                className="text-black font-medium mb-4"
+                className="font-bold mb-4"
               >
                 Şifrə
               </label>
@@ -119,7 +175,7 @@ function Register() {
                 </i>
               </div>
             </div>
-            <div className="flex mb-4 justify-between">
+            <div className="flex mb-2 justify-between">
               <div>
                 <input
                   type="checkbox"
@@ -146,7 +202,7 @@ function Register() {
                 Google ilə daxil ol
               </button>
             </div>
-            <p className="text-center mt-4">
+            <p className="text-center mt-2">
               Mövcud hesabınız var idi?{" "}
               <a href="/login" className="text-blue-700">
                 Daxil ol

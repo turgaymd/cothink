@@ -3,31 +3,37 @@ import { useState,useEffect } from "react";
 import Search from "../utils/Search";
 import Articles from "./Articles";
 import axios from "axios";
+import Books from "./Books";
 const Library=()=>{
   const [activeTab, setActiveTab]=useState("books")
   const [books, setBooks]=useState([])
   const  [query, setQuery]=useState("")
   const [categories,setCategories]=useState([])
-  // const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+  const [displayedCategories, setDisplayedCategories]=useState([])
   const [visibleCategories, setVisibleCategories]=useState(2)
 
 
  useEffect(() => {
     axios
-      .get("http://localhost/cothink1/cothink/server/books/bookRead.php")
+      .get("http://localhost/cothink/server/books/bookRead.php")
       .then((res) => {
-        setBooks(res.data.data); // <--- backend JSON-da "data" key var
+        setBooks(res.data.data);
       })
       .catch((err) => console.error(err));
-          axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
-            setCategories(res.data) ;
-            console.log(res.data)
-        })
-  }, [books]);
 
-   const filteredBooks=books.filter((item)=>
-        item.book_title.toLowerCase().includes(query.toLowerCase()) 
-    )
+          axios.get("http://localhost/cothink/server/categories/categoryRead.php").then(res=>{
+            setCategories(res.data.data) ;
+            setDisplayedCategories(res.data.data.slice(0,4))
+        })
+  }, []);
+
+    const handleMore=()=>{
+        setVisibleCategories(prev=>{
+        const newCount=prev+4
+        setDisplayedCategories(categories.slice(0, newCount))
+        return newCount;
+       })}
+
     return(
             <>
      <section>
@@ -42,9 +48,26 @@ const Library=()=>{
                 <h4 className="font-medium text-xl">Mövzular</h4>
           {
                 visibleCategories<categories.length && (
-                <button className="text-blue-500" >Hamısına bax</button>
+                <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
                 )
             }
+            </div>
+                     <div className="topics grid grid-cols-1 md:grid-cols-4 gap-4">
+                {
+                    displayedCategories.map((item, index)=>(
+                        <>
+                        <div className="w-full ">
+                    <div className="topic-item mb-2" key={index}>
+                    <a>
+                        <img src={item?.category_img}/>
+                    </a>   
+                        </div> 
+                    <h4 className="font-bold text-center">{item.category}</h4>
+                </div>
+
+                        </>
+                    ))
+                }
             </div>
                     <div className="course-filter mt-5">
                     <div className="filter-items flex gap-3">
@@ -53,45 +76,9 @@ const Library=()=>{
                 </div>
             </div>
             {activeTab==="articles" ? <Articles/> : <>  
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-               {filteredBooks.length===0 ? 
-                  <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
-               filteredBooks.map((item, index)=>(
-                   <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-                        <a href={`/library/books/${item.book_id}`}>
-                <div className="flex items-center gap-5">
-                    <img src={item.book_img} className="w-35 h-35"  alt="book"></img>
-                    <div className="mentor-title flex flex-col gap-3">
-                        <h4 className="font-bold text-lg break-all">
-                          {item.book_title}
-                        </h4>
-                        <p>PDF </p>
-                         <div className="flex items-center gap-5 stats">
-                        <div className="flex items-center gap-2">
-                          <a className="flex gap-3" download href="/books">
-                          <img src="/download.svg"/>
-                          <span>Yüklə</span>                     
-                          </a>
-                        </div>
-                         <div className="flex items-center gap-2">  
-                        <img src="/share.svg"/>
-                        <span>Paylaş</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                      <img src="/save.svg"/>              
-                        </div>
-                    </div>
-                    </div>
-              
-                </div>     
-                       </a>      
-            </div>
-               )))
-            }          
-              </div>
+                   <Books books={books} query={query}/>
                  </>} 
      </section>
-
                   </>
     )
 }

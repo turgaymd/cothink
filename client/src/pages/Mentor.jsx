@@ -10,12 +10,11 @@ const Mentor = () => {
   const [activeTab, setActiveTab] = useState("courses");
   const [mentor, setMentor] = useState(null);
   const [courses, setCourses] = useState([]);
-
   const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost/cothink1/cothink/server/mentors/mentorDetail.php?id=${id}`)
+      .get(`http://localhost/cothink/server/mentors/mentorDetail.php?id=${id}`)
       .then((res) => {
         setMentor(res.data.data);
       })
@@ -24,7 +23,7 @@ const Mentor = () => {
   
   useEffect(() => {
     axios
-      .get("http://localhost/cothink1/cothink/server/courses/courseRead.php")
+      .get("http://localhost/cothink/server/courses/courseRead.php")
       .then((res) => {
         setCourses(res.data);
       })
