@@ -39,7 +39,7 @@ const CourseDetail=()=>{
                 <img src={course.course_img} className="w-full"/>
             <div className="flex justify-between items-center mt-4">
                 <p className="text-gray-500">{course.course_title}</p>
-                <a className="bg-blue-800 text-white px-4 py-2 rounded-md" href="/courses/id/content">Kursu əldə et</a>
+                <a className="bg-blue-800 text-white px-4 py-2 rounded-md" href={`/courses/${course.course_id}/content`}>Kursu əldə et</a>
             </div>
             <p className="text-blue-500">#Fizika</p>
                 <div className="flex  gap-5 mt-5">

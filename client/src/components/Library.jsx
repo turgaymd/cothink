@@ -9,7 +9,7 @@ const Library=()=>{
   const [books, setBooks]=useState([])
   const  [query, setQuery]=useState("")
   const [categories,setCategories]=useState([])
-  // const [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
+  const [displayedCategories, setDisplayedCategories]=useState([])
   const [visibleCategories, setVisibleCategories]=useState(2)
 
 
@@ -17,14 +17,23 @@ const Library=()=>{
     axios
       .get("http://localhost/cothink/server/books/bookRead.php")
       .then((res) => {
-        setBooks(res.data.data); // <--- backend JSON-da "data" key var
+        setBooks(res.data.data);
       })
       .catch((err) => console.error(err));
+
           axios.get("http://localhost/cothink/server/categories/categoryRead.php").then(res=>{
-            setCategories(res.data) ;
-            console.log(res.data)
+            setCategories(res.data.data) ;
+            setDisplayedCategories(res.data.data.slice(0,4))
         })
   }, []);
+
+    const handleMore=()=>{
+        setVisibleCategories(prev=>{
+        const newCount=prev+4
+        setDisplayedCategories(categories.slice(0, newCount))
+        return newCount;
+       })}
+
     return(
             <>
      <section>
@@ -39,9 +48,26 @@ const Library=()=>{
                 <h4 className="font-medium text-xl">Mövzular</h4>
           {
                 visibleCategories<categories.length && (
-                <button className="text-blue-500" >Hamısına bax</button>
+                <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
                 )
             }
+            </div>
+                     <div className="topics grid grid-cols-1 md:grid-cols-4 gap-4">
+                {
+                    displayedCategories.map((item, index)=>(
+                        <>
+                        <div className="w-full ">
+                    <div className="topic-item mb-2" key={index}>
+                    <a>
+                        <img src={item?.category_img}/>
+                    </a>   
+                        </div> 
+                    <h4 className="font-bold text-center">{item.category}</h4>
+                </div>
+
+                        </>
+                    ))
+                }
             </div>
                     <div className="course-filter mt-5">
                     <div className="filter-items flex gap-3">
