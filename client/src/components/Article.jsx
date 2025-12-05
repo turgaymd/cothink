@@ -11,7 +11,7 @@ const Article = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost/cothink1/cothink/server/articles/articleDetails.php?article_id=${id}`
+        `http://localhost/cothink/server/articles/articleDetails.php?article_id=${id}`
       )
       .then((res) => {
         setArticle(res.data?.data || null);
@@ -31,7 +31,7 @@ const Article = () => {
         <div className="flex flex-col md:flex-row gap-3 justify-between mb-4 mt-4">
           <div className="flex md:flex-row gap-3">
             <img
-              src={`/${article.profile_img || "aysel.png"}`}
+              src={`/${article.article_img}`}
               className="object-cover w-20 h-20 rounded-full"
             />
             <div className="flex flex-col gap-3">
