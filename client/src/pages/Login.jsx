@@ -21,7 +21,7 @@ function Login() {
       return;
     }
       try {
-        const res = await axios.post("http://localhost/cothink1/cothink/server/login.php", {
+        const res = await axios.post("http://localhost/cothink/server/login.php", {
           email,
           password
         },
@@ -34,7 +34,7 @@ function Login() {
           token:res.data.token
         }
     sessionStorage.setItem("user", JSON.stringify(userInfo));
- 
+
     if(rememberMe){
     localStorage.setItem("user", JSON.stringify(userInfo))
     }  
