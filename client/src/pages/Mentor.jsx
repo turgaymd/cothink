@@ -18,25 +18,25 @@ const Mentor = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost/cothink/server/mentors/mentorDetail.php?id=${id}`)
+      .get(`http://localhost/cothink1/cothink/server/mentors/mentorDetail.php?id=${id}`)
       .then((res) => {
         setMentor(res.data.data);
       })
       .catch((err) => console.log(err));
          axios
-      .get("http://localhost/cothink/server/mentors/mentorCourses.php")
+      .get(`http://localhost/cothink1/cothink/server/mentors/mentorCourses.php?id=${id}`)
       .then((res) => {
         setCourses(res.data);
       })
       .catch((err) => console.log(err));
        axios
-      .get("http://localhost/cothink/server/mentors/mentorPosts.php")
+      .get(`http://localhost/cothink1/cothink/server/mentors/mentorPosts.php?id=${id}`)
       .then((res) => {
         setPosts(res.data);
       })
       .catch((err) => console.log(err));
        axios
-      .get("http://localhost/cothink/server/mentors/mentorArticles.php")
+      .get(`http://localhost/cothink1/cothink/server/mentors/mentorArticles.php?id=${id}`)
       .then((res) => {
         setArticles(res.data);
       })

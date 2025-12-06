@@ -34,7 +34,13 @@ try {
             b.mentor_id,
             b.category_id,
             b.created_at,
+<<<<<<< HEAD
+            b.likes,
+            b.saved,
+            
+=======
 
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
             m.mentor_name, 
 
             c.category AS category 
