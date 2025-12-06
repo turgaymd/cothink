@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 export const ApiContext = createContext(null);
 
-const apiUrl = process.env.NODE_ENV === "production" ? "https://cothink.az" : "https://localhost/cothink";
+const apiUrl = "https://cothink.az"; 
 
 const ApiProvider = (props) => {
   return (
