@@ -47,16 +47,16 @@ if ($check->rowCount() > 0) {
 }
 
 // Şifrəni HASH ET!
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+// $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // INSERT
 $query = $pdo->prepare("
-    INSERT INTO mentors (mentor_name, mentor_email, linkedn_link, category_id, mentor_position, mentor_password)
-    VALUES (?, ?, ?, ?, ?, ?)
+    INSERT INTO mentors (mentor_name, mentor_email, linkedn_link, category_id, mentor_password)
+    VALUES (?, ?, ?, ?, ?)
 ");
 
 try {
-    $query->execute([$name, $email, $linkedinLink, $category, $position, $hashedPassword]);
+    $query->execute([$name, $email, $linkedinLink, $category, $password]);
 } catch (Exception $e) {
     echo json_encode(["error" => "DB error: " . $e->getMessage()]);
     exit;
@@ -79,8 +79,7 @@ echo json_encode([
     "name" => $name,
     "email" => $email,
     "linkedinLink" => $linkedinLink,
-    "category" => $category,
-    "position" => $position,
+    "category" => $category, 
     "token" => $token
 ]);
 

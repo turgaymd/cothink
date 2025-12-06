@@ -16,7 +16,7 @@ const Mentor = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost/cothink/server/mentors/mentorDetail.php?id=${id}`)
+      .get(`http://localhost/cothink1/cothink/server/mentors/mentorDetail.php?id=${id}`)
       .then((res) => {
         setMentor(res.data.data);
       })

@@ -1,7 +1,6 @@
 <?php
 // CORS header-ləri
 require_once "../db.php";
-session_start();
 
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -13,18 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
+// FRONTEND-DƏN mentor_id QƏBUL ET
+$data = json_decode(file_get_contents("php://input"), true);
 
-// MENTOR ID SESSION-DAN
-if (!isset($_SESSION['mentor_id'])) {
-    echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
+if (!isset($data['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "mentor_id missing"]);
     exit;
 }
 
-$mentor_id = $_SESSION['mentor_id'];
-
+$mentor_id = intval($data['mentor_id']);
 
 try {
-    $stmt = $conn->query("
+    $stmt = $conn->prepare("
         SELECT 
             ma.article_id,
             ma.article_title,
@@ -40,12 +39,16 @@ try {
             ON ma.mentor_id = m.mentor_id
         LEFT JOIN categories AS c
             ON ma.category_id = c.category_id
+        WHERE ma.mentor_id = ?
     ");
+
+    $stmt->execute([$mentor_id]);
 
     $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($articles);
 
 } catch (PDOException $e) {
+
     echo json_encode([
         'status' => 'error',
         'message' => $e->getMessage()

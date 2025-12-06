@@ -34,7 +34,9 @@ try {
             b.mentor_id,
             b.category_id,
             b.created_at,
-
+            b.likes,
+            b.saved,
+            
             m.mentor_name, 
 
             c.category AS category 
