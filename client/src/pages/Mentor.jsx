@@ -3,7 +3,7 @@ import { HiOutlineUsers } from "react-icons/hi2";
 import { CourseCard } from "../components/Courses";
 import { SlSocialLinkedin } from "react-icons/sl";
 import { TbWorld } from "react-icons/tb";
-import Articles from "../components/Articles";
+import Articles, { ArticleCard } from "../components/Articles";
 import Posts from "../components/Posts";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -12,6 +12,8 @@ const Mentor = () => {
   const [activeTab, setActiveTab] = useState("courses");
   const [mentor, setMentor] = useState(null);
   const [courses, setCourses] = useState([]);
+   const [articles, setArticles] = useState([]);
+   const [posts,setPosts]=useState([])
   const { id } = useParams();
 
   useEffect(() => {
@@ -21,16 +23,26 @@ const Mentor = () => {
         setMentor(res.data.data);
       })
       .catch((err) => console.log(err));
+         axios
+      .get("http://localhost/cothink/server/mentors/mentorCourses.php")
+      .then((res) => {
+        setCourses(res.data);
+      })
+      .catch((err) => console.log(err));
+       axios
+      .get("http://localhost/cothink/server/mentors/mentorPosts.php")
+      .then((res) => {
+        setPosts(res.data);
+      })
+      .catch((err) => console.log(err));
+       axios
+      .get("http://localhost/cothink/server/mentors/mentorArticles.php")
+      .then((res) => {
+        setArticles(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [id]);
   
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost/cothink/server/courses/courseRead.php")
-  //     .then((res) => {
-  //       setCourses(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []); 
 
   if (!mentor) {
     return <p className="text-center text-xl mt-8">Mentor tapılmadı</p>;
@@ -118,9 +130,32 @@ const Mentor = () => {
               )}
             </div>
           )}
-
-          {activeTab === "articles" && <Articles />}
-          {activeTab === "posts" && <Posts />}
+           {activeTab === "articles" && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {articles.length === 0 ? (
+                <p className="text-center text-xl font-bold col-span-3">
+                  Kurs tapılmadı
+                </p>
+              ) : (
+                articles.map((item) => (
+                  <ArticleCard key={item._id} item={item} />
+                ))
+              )}
+            </div>
+          )}
+           {activeTab === "posts" && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {posts.length === 0 ? (
+                <p className="text-center text-xl font-bold col-span-3">
+                  Kurs tapılmadı
+                </p>
+              ) : (
+                posts.map((item) => (
+                  <Posts />
+                ))
+              )}
+            </div>
+          )}
         </div>
       </section>
     </div>
