@@ -64,7 +64,7 @@ const Mentor = () => {
                     <HiOutlineUsers fontSize={24} /> {mentor.students} tələbə
                   </div>
                     <div className="like-count flex items-center gap-2">
-                    <HiOutlineUsers fontSize={24} /> {mentor.comments} Rəy  (100+)
+                    <HiOutlineUsers fontSize={24} /> {mentor.comments} Rəy f(100+)
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@ const Mentor = () => {
                  <a href={mentor.website_link} className="border border-gray-400 px-3 py-1 rounded-md"><TbWorld fontSize={24}/></a>
                   <a></a>
                 </div>
-                <p className="pt-3">Danışıq dilləri:</p>
+                <p className="pt-3">Danışıq dilləri: ,</p>
                 <div className="flex gap-3 mt-2 mb-5">
                   <span className="bg-white rounded-md px-4 py-2 border border-gray-400">Azərbaycan</span>
                   <span className="bg-white rounded-md px-4 py-2 border border-gray-400">Alman</span>
