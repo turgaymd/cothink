@@ -3,7 +3,11 @@ import { HiOutlineUsers } from "react-icons/hi2";
 import { CourseCard } from "../components/Courses";
 import { SlSocialLinkedin } from "react-icons/sl";
 import { TbWorld } from "react-icons/tb";
+<<<<<<< HEAD
 import Articles from "../components/Articles";
+=======
+import Articles, { ArticleCard } from "../components/Articles";
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
 import Posts from "../components/Posts";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -12,15 +16,25 @@ const Mentor = () => {
   const [activeTab, setActiveTab] = useState("courses");
   const [mentor, setMentor] = useState(null);
   const [courses, setCourses] = useState([]);
+<<<<<<< HEAD
+=======
+   const [articles, setArticles] = useState([]);
+   const [posts,setPosts]=useState([])
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
   const { id } = useParams();
 
   useEffect(() => {
     axios
+<<<<<<< HEAD
       .get(`http://localhost/cothink1/cothink/server/mentors/mentorDetail.php?id=${id}`)
+=======
+      .get(`http://localhost/cothink/server/mentors/mentorDetail.php?id=${id}`)
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
       .then((res) => {
         setMentor(res.data.data);
       })
       .catch((err) => console.log(err));
+<<<<<<< HEAD
   }, [id]);
   
   // useEffect(() => {
@@ -31,6 +45,28 @@ const Mentor = () => {
   //     })
   //     .catch((err) => console.log(err));
   // }, []); 
+=======
+         axios
+      .get("http://localhost/cothink/server/mentors/mentorCourses.php")
+      .then((res) => {
+        setCourses(res.data);
+      })
+      .catch((err) => console.log(err));
+       axios
+      .get("http://localhost/cothink/server/mentors/mentorPosts.php")
+      .then((res) => {
+        setPosts(res.data);
+      })
+      .catch((err) => console.log(err));
+       axios
+      .get("http://localhost/cothink/server/mentors/mentorArticles.php")
+      .then((res) => {
+        setArticles(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
+  
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
 
   if (!mentor) {
     return <p className="text-center text-xl mt-8">Mentor tapılmadı</p>;
@@ -38,7 +74,11 @@ const Mentor = () => {
   return (
     <div>
       <section>
+<<<<<<< HEAD
         <h2 className="text-center font-bold text-2xl ">Mentor Profili</h2>
+=======
+        <h2 className="text-center font-bold text-2xl ">Mentor Profili </h2>
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
         <div className="mentor-profile mt-4 ">
           <div className="bg-white shadow-3xl border border-gray-200 rounded-lg px-10 py-4">
             <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
@@ -52,7 +92,11 @@ const Mentor = () => {
                     <HiOutlineUsers fontSize={24} /> {mentor.students} tələbə
                   </div>
                     <div className="like-count flex items-center gap-2">
+<<<<<<< HEAD
                     <HiOutlineUsers fontSize={24} /> {mentor.comments} Rəy(100+)
+=======
+                    <HiOutlineUsers fontSize={24} /> {mentor.comments} Rəy f(100+)
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
                   </div>
                 </div>
               </div>
@@ -68,7 +112,11 @@ const Mentor = () => {
                  <a href={mentor.website_link} className="border border-gray-400 px-3 py-1 rounded-md"><TbWorld fontSize={24}/></a>
                   <a></a>
                 </div>
+<<<<<<< HEAD
                 <p className="pt-3">Danışıq dilləri:</p>
+=======
+                <p className="pt-3">Danışıq dilləri: ,</p>
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
                 <div className="flex gap-3 mt-2 mb-5">
                   <span className="bg-white rounded-md px-4 py-2 border border-gray-400">Azərbaycan</span>
                   <span className="bg-white rounded-md px-4 py-2 border border-gray-400">Alman</span>
@@ -118,9 +166,38 @@ const Mentor = () => {
               )}
             </div>
           )}
+<<<<<<< HEAD
 
           {activeTab === "articles" && <Articles />}
           {activeTab === "posts" && <Posts />}
+=======
+           {activeTab === "articles" && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {articles.length === 0 ? (
+                <p className="text-center text-xl font-bold col-span-3">
+                  Kurs tapılmadı
+                </p>
+              ) : (
+                articles.map((item) => (
+                  <ArticleCard key={item._id} item={item} />
+                ))
+              )}
+            </div>
+          )}
+           {activeTab === "posts" && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {posts.length === 0 ? (
+                <p className="text-center text-xl font-bold col-span-3">
+                  Kurs tapılmadı
+                </p>
+              ) : (
+                posts.map((item) => (
+                  <Posts />
+                ))
+              )}
+            </div>
+          )}
+>>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
         </div>
       </section>
     </div>
