@@ -27,9 +27,11 @@ import Home from "./pages/Home";
 import Article from "./components/Article";
 import MainHome from "./pages/MainHome";
 import Share from "./pages/Share";
+import ApiProvider from "./ApiContext";
 
 function App() {
   return (
+    <ApiProvider>
   <AuthProvider>
     <BrowserRouter>
       <Routes>
@@ -71,6 +73,7 @@ function App() {
       </Routes>
     </BrowserRouter>
   </AuthProvider>
+  </ApiProvider>
   );
 }
 

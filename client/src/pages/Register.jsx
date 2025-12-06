@@ -4,6 +4,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { useContext } from "react";
+import { ApiContext } from "../ApiContext";
 function Register() {
 
   const [username, setUsername] = useState("");
@@ -15,7 +17,7 @@ function Register() {
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab]=useState("student")
-
+  const {apiUrl}=useContext(ApiContext)
     
   const navigate=useNavigate()
   const handleRegister = async (e) => {
@@ -33,8 +35,9 @@ function Register() {
       setError("Qaydalar və şərtləri qəbul edin");
       return;
     }
+    
     try {
-    const res= await axios.post( "http://localhost/cothink1/cothink/server/register.php", activeTab==="student" ? { username, email, password} : { username, email, password, subject, linkedin},
+    const res= await axios.post( `${apiUrl}/server/register.php`, activeTab==="student" ? { username, email, password} : { username, email, password, subject, linkedin},
         {headers:{"Content-Type":"application/json"}}
       );  
 

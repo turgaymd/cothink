@@ -1,9 +1,10 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import {  useNavigate } from "react-router-dom";
 import {toast, ToastContainer} from "react-toastify"
+import { ApiContext } from "../ApiContext";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ function Login() {
   const [error, setError] = useState("");
   const [rememberMe,setRememberMe]=useState(false)
   const navigate=useNavigate()
+    const {apiUrl}=useContext(ApiContext)
   
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ function Login() {
       return;
     }
       try {
-        const res = await axios.post("http://localhost/cothink/server/login.php", {
+        const res = await axios.post(`${apiUrl}/server/login.php`, {
           email,
           password
         },
