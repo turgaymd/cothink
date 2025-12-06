@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 // CORS header-ləri
 require_once "../db.php";
 
@@ -21,7 +20,7 @@ if (!isset($data['mentor_id'])) {
     exit;
 }
 
-$mentor_id = intval($data['mentor_id']);
+$mentor_id = $_GET['id'] ?? null;
 
 try {
 
@@ -52,29 +51,3 @@ try {
         'message' => $e->getMessage()
     ]);
 }
-=======
-require_once "../db.php";
-session_start();
-
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json");
- 
-// MENTOR ID SESSION-DAN
-if (!isset($_SESSION['mentor_id'])) {
-    echo json_encode(["status" => "error", "message" => "Mentor not logged in"]);
-    exit;
-}
-
-$mentor_id = $_SESSION['mentor_id'];
- 
-
-// PDO prepare + execute ilə sorğu
-$sql = "SELECT * FROM mentor_books WHERE mentor_id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->execute([$mentor_id]);
-
-$books = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-echo json_encode(['status' => 'success', 'data' => $books]);
-?>
->>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
