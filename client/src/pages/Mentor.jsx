@@ -61,7 +61,7 @@ const Mentor = () => {
                 />
                 <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-700">
                   <div className="like-count flex items-center gap-2">
-                    <HiOutlineUsers fontSize={24} /> {mentor.students} tələbə
+                    <HiOutlineUsers fontSize={24} /> {mentor.students} tələbə"
                   </div>
                     <div className="like-count flex items-center gap-2">
                     <HiOutlineUsers fontSize={24} /> {mentor.comments} Rəy f(100+)
