@@ -50,7 +50,7 @@ const Mentor = () => {
   return (
     <div>
       <section>
-        <h2 className="text-center font-bold text-2xl ">Mentor Profili</h2>
+        <h2 className="text-center font-bold text-2xl ">Mentor Profili </h2>
         <div className="mentor-profile mt-4 ">
           <div className="bg-white shadow-3xl border border-gray-200 rounded-lg px-10 py-4">
             <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
@@ -64,7 +64,7 @@ const Mentor = () => {
                     <HiOutlineUsers fontSize={24} /> {mentor.students} tələbə
                   </div>
                     <div className="like-count flex items-center gap-2">
-                    <HiOutlineUsers fontSize={24} /> {mentor.comments} Rəy(100+)
+                    <HiOutlineUsers fontSize={24} /> {mentor.comments} Rəy  (100+)
                   </div>
                 </div>
               </div>
