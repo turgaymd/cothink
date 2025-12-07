@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { CourseCard } from "../components/Courses";
 import { SlSocialLinkedin } from "react-icons/sl";
@@ -7,6 +7,7 @@ import Articles, { ArticleCard } from "../components/Articles";
 import Posts from "../components/Posts";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { ApiContext } from "../ApiContext";
 
 const Mentor = () => {
   const [activeTab, setActiveTab] = useState("courses");
@@ -14,29 +15,30 @@ const Mentor = () => {
   const [courses, setCourses] = useState([]);
    const [articles, setArticles] = useState([]);
    const [posts,setPosts]=useState([])
+   const {apiUrl}=useContext(ApiContext)
   const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost/cothink1/cothink/server/mentors/mentorDetail.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${id}`)
       .then((res) => {
         setMentor(res.data.data);
       })
       .catch((err) => console.log(err));
          axios
-      .get(`http://localhost/cothink1/cothink/server/mentors/mentorCourses.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorCourses.php?id=${id}`)
       .then((res) => {
         setCourses(res.data);
       })
       .catch((err) => console.log(err));
        axios
-      .get(`http://localhost/cothink1/cothink/server/mentors/mentorPosts.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorPosts.php?id=${id}`)
       .then((res) => {
         setPosts(res.data);
       })
       .catch((err) => console.log(err));
        axios
-      .get(`http://localhost/cothink1/cothink/server/mentors/mentorArticles.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorArticles.php?id=${id}`)
       .then((res) => {
         setArticles(res.data);
       })

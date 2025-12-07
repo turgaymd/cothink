@@ -1,24 +1,25 @@
 
 import Search from "../utils/Search";
 import { FaRegComments } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import axios from "axios";
+import { ApiContext } from "../ApiContext";
 
 const Questions=()=>{
     const [categories,setCategories]=useState([]);
     const [displayedCategories, setDisplayedCategories]=useState([])
     const [visibleCategories, setVisibleCategories]=useState(2)
     const [discussions,setDiscussions]=useState([])
-
+    const {apiUrl}=useContext(ApiContext)
  
 
 useEffect(()=>{
-       axios.get("http://localhost/cothink/server/posts/postsRead.php").then(res=>{
+       axios.get(`${apiUrl}/server/posts/postsRead.php`).then(res=>{
             setDiscussions(res.data)
         })
 
-           axios.get("http://localhost/cothink/server/categories/categoryRead.php").then(res=>{
+           axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{
             setCategories(res.data.data)
             setDisplayedCategories(res.data.data.slice(0,4))
         })

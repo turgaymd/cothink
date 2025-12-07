@@ -1,15 +1,17 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
+import { ApiContext } from "../ApiContext";
 const CourseContent=()=>{
         const { id } = useParams();  
         const [course, setCourse]=useState(null)
+        const {apiUrl}=useContext(ApiContext)
         useEffect(() => {
           axios
-            .get(`http://localhost/cothink1/cothink/server/courses/courseDetails.php?id=${id}`)
+            .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
             .then((res) => {
               setCourse(res.data.data);
               console.log(res.data.data);

@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FiUploadCloud } from "react-icons/fi";
 import Select from "react-select";
+import { ApiContext } from "../ApiContext";
 const AddCourse = ({ setActiveTab }) => {
   const [courseTitle, setCourseTitle] = useState("");
   const [courseFile, setCourseFile] = useState("");
@@ -11,9 +12,9 @@ const AddCourse = ({ setActiveTab }) => {
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState("");
   const [error, setError] = useState("");
-
+  const {apiUrl}=useContext(ApiContext)
   useEffect(() => {
-    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
+    axios.get(`${apiUrl}/server/categories/categoryRead.php`)
       .then((res) => {
         if (res.data.status === "success") {
           setCategories(res.data.data);

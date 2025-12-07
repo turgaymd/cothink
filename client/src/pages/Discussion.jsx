@@ -1,14 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
+import { ApiContext } from "../ApiContext";
 function Discussion(){
   const { id } = useParams();  
   const [post, setPost] = useState(null);
   const [comments, setComments]=useState([])
+  const {apiUrl}=useContext(ApiContext)
   useEffect(() => {
     axios
-      .get(`http://localhost/cothink1/cothink/server/posts/postDetails.php?id=${id}`)
+      .get(`${apiUrl}/server/posts/postDetails.php?id=${id}`)
       .then((res) => {
         setPost(res.data.data);
         console.log(res.data.data);
@@ -18,7 +20,7 @@ function Discussion(){
 
    useEffect(() => {
     axios
-      .get(`http://localhost/cothink1/cothink/server/discussion/getPost.php?id=1`)
+      .get(`${apiUrl}/server/discussion/getPost.php?id=1`)
       .then((res) => {
           const postData=res.data.find((p)=>p.post_id===Number(id))
         setComments(postData.comments);

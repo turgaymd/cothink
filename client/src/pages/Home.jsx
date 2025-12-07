@@ -7,11 +7,12 @@ import { HiOutlineUsers } from "react-icons/hi2";
 import { MdArrowOutward } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { SiReaddotcv } from "react-icons/si";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsInstagram } from "react-icons/bs";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { ApiContext } from "../ApiContext";
 const Home=()=>{
         const [open, setOpen]=useState(  false  )
         const [error, setError]=useState("")
@@ -19,6 +20,7 @@ const Home=()=>{
         const [name, setName]=useState("")
         const [phone, setPhone]=useState("")
         const [message, setMessage]=useState("")
+        const {apiUrl}=useContext(ApiContext)
         const sendEmail=async(e)=>{
                  e.preventDefault()
                 if(!email){
@@ -28,7 +30,7 @@ const Home=()=>{
                     setError('')
                 }
                  try{
-         const res = await axios.post("http://localhost/cothink1/cothink/server/contact.php", 
+         const res = await axios.post(`${apiUrl}/server/contact.php`, 
                  { email},
                   { headers:{ "Content-Type":"application/json" }});
                     if(res.data.success){

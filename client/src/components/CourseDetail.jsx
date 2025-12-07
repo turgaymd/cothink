@@ -5,19 +5,21 @@ import { MdAssignment } from "react-icons/md";
 import { FaRegComments, FaRegFile } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
+import { ApiContext } from "../ApiContext";
 
 
 const CourseDetail=()=>{
   const [course, setCourse]=useState(null)
   const [open, setOpen]=useState(true)
+  const {apiUrl}=useContext(ApiContext)
     const { id } = useParams();  
     useEffect(() => {
       axios
-        .get(`http://localhost/cothink1/cothink/server/courses/courseDetails.php?id=${id}`)
+        .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
         .then((res) => {
           setCourse(res.data.data);
           console.log(res.data.data);

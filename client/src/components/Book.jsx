@@ -1,17 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { LuTableOfContents } from "react-icons/lu";
 import Loading from "../utils/Loading";
+import { ApiContext } from "../ApiContext";
 
 const Book = () => {
   const navigate = useNavigate();
   const { id } = useParams();  
   const [book, setBook] = useState(null);
-
+ const {apiUrl}=useContext(ApiContext)
   useEffect(() => {
     axios
-      .get(`http://localhost/cothink/server/books/bookDetails.php?id=${id}`)
+      .get(`${apiUrl}/server/books/bookDetails.php?id=${id}`)
       .then((res) => {
         setBook(res.data.data);
         console.log(res.data.data);

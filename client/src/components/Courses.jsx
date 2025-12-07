@@ -2,8 +2,9 @@
 // import courses from "../data/CourseData";
 import Search from "../utils/Search";
 import { MdArrowOutward } from "react-icons/md";
-import { useEffect,useState } from "react";
+import { useContext, useEffect,useState } from "react";
 import axios from "axios";
+import { ApiContext } from "../ApiContext";
 export const CourseCard=({item})=>{
 
   return(
@@ -47,9 +48,9 @@ export const CourseCard=({item})=>{
 
 const Courses = () => {
     const [courses, setCourses]=useState([])
-    
+    const apiUrl=useContext(ApiContext)
    useEffect(()=>{
-        axios.get("http://localhost/cothink1/cothink/server/courses/courseRead.php").then(res=>{
+        axios.get(`${apiUrl}/server/courses/courseRead.php"`).then(res=>{
             setCourses(res.data)
         })
      },[])

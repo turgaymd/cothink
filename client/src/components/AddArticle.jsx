@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { ApiContext } from "../ApiContext";
 
 const AddArticle = () => {
   const [articleTitle, setArticleTitle] = useState("");
@@ -16,13 +17,13 @@ const AddArticle = () => {
   const [input, setInput] = useState("");
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
-
+  const {apiUrl}=useContext(ApiContext)
   const fileInputRef = useRef(null);
   const navigate=useNavigate()
 
   useEffect(() => {
     axios
-      .get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
+      .get(`apiUrl/server/categories/categoryRead.php`)
       .then((res) => {
         if (res.data.status === "success") {
           setCategories(res.data.data);
@@ -83,8 +84,7 @@ const AddArticle = () => {
     }
 
     try {
-      const res = await axios.post(
-        "http://localhost/cothink1/cothink/server/articles/articlePost.php",
+      const res = await axios.post(`${apiUrl}/server/articles/articlePost.php`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
