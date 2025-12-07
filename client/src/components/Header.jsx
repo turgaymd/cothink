@@ -16,7 +16,7 @@ function Header(){
                          <img src="/logo.jpg"></img>
                         </Link>
                          <Link to ="/home" className="md:hidden flex">
-                         <img src="mobile_logo.png"></img>
+                         <img src="/mobile_logo.png"></img>
                         </Link>
         </div>
             <ul className="hidden md:flex gap-6 desktop-menu">
