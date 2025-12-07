@@ -10,10 +10,11 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
+import courses from "../data/coursesData";
 
 
 const CourseDetail=()=>{
-  const [course, setCourse]=useState(null)
+  // const [course, setCourse]=useState(null)
   const [open, setOpen]=useState(true)
   const {apiUrl}=useContext(ApiContext)
     const { id } = useParams();  
@@ -27,12 +28,11 @@ const CourseDetail=()=>{
         .catch((err) => console.error(err));
     }, [id])
 
-     if (!course) return <Loading/>;
 
      const handleCollapse=()=>{
       setOpen(!open)
      }
-   
+     const course = courses.find(m => m.course_id == id);
     return(
      <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
@@ -62,7 +62,7 @@ const CourseDetail=()=>{
             <div className="flex items-center gap-3 ">                 
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <button className="bg-blue-800 text-white rounded-md p-2"><BsChatRightText className="text-2xl"/></button>
-                   <button className="text-blue-800 rounded-md px-5 py-2 border border-blue-700">İzlə</button>
+                   <a className="text-blue-800 rounded-md px-5 py-2 border border-blue-700"  href={`/courses/${course.course_id}/content`}>İzlə</a>
             </div>
             
             </div>

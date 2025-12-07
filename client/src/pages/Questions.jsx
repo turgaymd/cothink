@@ -49,10 +49,10 @@ useEffect(()=>{
                         <div className="w-full ">
                     <div className="topic-item mb-2" key={index}>
                     <a>
-                        <img src={item?.category_img}/>
+                        <h4>{item?.category}</h4>
                     </a>   
                         </div> 
-                    <h4 className="font-bold text-center">{item.category}</h4>
+                    {/* <h4 className="font-bold text-center">{item.category}</h4> */}
                 </div>
 
                         </>
@@ -66,7 +66,7 @@ useEffect(()=>{
                 {
                     discussions.map((item, index)=>(
                     <div className="rounded-md shadow-gray-100 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
-                           <div className="flex gap-3 justify-end items-center text-sm">
+                           <div className="flex gap-3 justify-end items-center text-sm pb-3">
                         <span className="text-gray-400">
                             {item.mentor_name}
                         </span>
@@ -75,11 +75,11 @@ useEffect(()=>{
                             {item.created_at}
                         </span>
                         </div>
-                <div className="flex gap-7 ">
-                    <img src={item.img} className="rounded-full w-24 h-24"/>
+                <div className="flex gap-7 md:flex-row flex-col items-center">
+                    <img src="avatarr.svg" className="rounded-full w-24 h-24"/>
                     <div className="flex flex-col gap-3">
                         <h5 className="font-medium">{item.post_title}</h5>
-                    <div className="flex gap-3"> <img src={item.category} className="w-5 h-5"/>  <p className="text-gray-400">{item.subcategory}</p></div>
+                    <div className="flex gap-3"> <h4 className="font-bold">{item.category}</h4>  <p className="text-gray-400">{item.subcategory}</p></div>
                         <div>
                         <a className="rounded-xl border border-gray-300 flex w-40 gap-3 items-center px-3 py-2" href={`/questions/${item.post_id}`}><FaRegComments className="text-blue-500 text-xl"/>Fikrini paylaş</a>
                    </div>

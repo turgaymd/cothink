@@ -26,8 +26,8 @@ const Profile = () => {
   }, [courses]);
   return (
     <section>
-      <div className="flex justify-between">
-        <div className="flex gap-5">
+      <div className="flex md:flex-row flex-col gap-5 justify-between">
+        <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
             <img
               src="rauf.jpg"
@@ -55,12 +55,12 @@ const Profile = () => {
       </div>
       <div className="flex gap-3 mt-3 mb-3">
         <a
-          className="bg-blue-800 text-white rounded-full py-3 px-5"
+          className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5"
           href="/profile/edit"
         >
           Profili redaktə et
         </a>
-        <button className="bg-blue-800 text-white rounded-full px-5 py-3">
+        <button className="flex-1 md:flex-none bg-blue-800 text-white rounded-full px-5 py-3">
           Profili paylaş
         </button>
       </div>
@@ -114,7 +114,16 @@ const Profile = () => {
           )}
         </>
       )}
-      {activeTab === "posts" && <Posts />}
+      {activeTab === "posts" &&
+      <>
+       {articles.length === 0 ? (
+            <p className="text-center text-xl font-bold col-span-3">
+              Məqalə tapılmadı
+            </p> ) :
+    (  <Posts /> 
+    
+    )} 
+      </>}
     </section>
   );
 };

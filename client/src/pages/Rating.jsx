@@ -70,7 +70,7 @@ const Rating=()=>{
                        <img src="medal_gold.svg" className="w-10 h-10"/>
     </div>
                               </div>
-                                         <div className="border border-blue-300 w-full max-w-3xl flex items-center justify-between rounded-full px-8 md:px-4  py-2">
+                                         {/* <div className="border border-blue-300 w-full max-w-3xl flex items-center justify-between rounded-full px-8 md:px-4  py-2">
                         <div className="flex items-center gap-3" >
                         <img src="aysel.png" className=" rounded-full w-15 h-15 bg-gray-400 object-cover"/>       
                         <div>
@@ -82,7 +82,7 @@ const Rating=()=>{
                         <span className="bg-blue-800 text-white rounded-full px-4  py-2">647</span>
                        <img src="medal_gold.svg" className="w-10 h-10"/>
     </div>
-                              </div>
+                              </div> */}
                               </div>
         </div>
     )

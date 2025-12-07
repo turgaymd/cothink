@@ -7,7 +7,7 @@ export const ArticleCard=({item})=>{
           <div className="article-item mb-5">
     <a href={`/library/articles/${item.article_id}`}>
                     <div className="article-content flex justify-between flex-col gap-4">
-                    <div className="article-header flex justify-between items-center">
+                    <div className="article-header flex justify-between items-center md:flex-row flex-col gap-2">
                         <div className="article-author flex items-center gap-2">
                             <img src="/avatar.png"/>
                             <span>{item.mentor_name}</span>

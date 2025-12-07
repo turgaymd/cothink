@@ -14,6 +14,7 @@ const Library=()=>{
   const [visibleCategories, setVisibleCategories]=useState(2)
   const {apiUrl}=useContext(ApiContext)
 
+
  useEffect(() => {
     axios
       .get(`${apiUrl}/server/books/bookRead.php`)
@@ -21,7 +22,6 @@ const Library=()=>{
         setBooks(res.data.data);
       })
       .catch((err) => console.error(err));
-
           axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{
             setCategories(res.data.data) ;
             setDisplayedCategories(res.data.data.slice(0,4))
@@ -60,10 +60,10 @@ const Library=()=>{
                         <div className="w-full ">
                     <div className="topic-item mb-2" key={index}>
                     <a>
-                        <img src={item?.category_img}/>
+                               <h4>{item?.category}</h4>
                     </a>   
                         </div> 
-                    <h4 className="font-bold text-center">{item.category}</h4>
+                    {/* <h4 className="font-bold text-center">{item.category}</h4> */}
                 </div>
 
                         </>

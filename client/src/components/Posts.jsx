@@ -1,11 +1,13 @@
 import { BsThreeDots } from "react-icons/bs";
-import { useEffect,useState } from "react";
+import { useContext, useEffect,useState } from "react";
 import axios from "axios";
+import { ApiContext } from "../ApiContext";
 const Posts=()=>{
         const [posts, setPosts]=useState([])
-
+        const {apiUrl}=useContext(ApiContext)
+        
 useEffect(()=>{
-    axios.get("http://localhost/cothink1/cothink/server/posts/postsRead.php")
+    axios.get(`${apiUrl}/server/posts/postsRead.php`)
         .then(res => {
             setPosts(res.data) // backend JSON-dakı array
         })

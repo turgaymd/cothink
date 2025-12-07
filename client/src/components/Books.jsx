@@ -46,7 +46,7 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
                   <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
                filteredBooks.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-                        <a >
+                        <a href={`/library/books/${item.book_id}`}>
                 <div className="flex items-center gap-3">
                   <img
                     src={item.book_img}
@@ -58,19 +58,20 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
                       {item.book_title}
                     </h4>
                     <p>PDF </p>
-                    <div className="flex items-center gap-5 stats">
-                      <div className="flex items-center gap-2">
-                        <a className="flex gap-3" download href={`item.book_url`}>
+                    <div className="flex gap-5 md:flex-row flex-col stats">
+                      <div className="flex items-center gap-1">
+                        <a className="flex gap-1" download href={`item.book_url`}>
                           <img src="download.svg" />
                           <span>Yüklə</span>
                         </a>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
                         <img src="share.svg" />
                         <span>Paylaş</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        {saved.includes(item.book_id) ? <FaBookmark fontSize={24} onClick={()=>handleUnsave(item)}/> :    <FaRegBookmark fontSize={24} onClick={()=>handleSave(item)}/>}
+                      <div className="flex items-center gap-1">
+                        {saved.includes(item.book_id) ? <FaBookmark fontSize={24} onClick={()=>handleUnsave(item)}/> :  <FaRegBookmark fontSize={24} onClick={()=>handleSave(item)}/>}
+                      Saxla  
                       </div>
                     </div>
                   </div>

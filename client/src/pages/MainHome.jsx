@@ -49,7 +49,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                         <div className="article-item mb-5 p-6" >
     <a href="/library/articles/id">
                     <div className="article-content flex justify-between flex-col gap-4">
-                    <div className="article-header flex justify-between items-center">
+                    <div className="article-header flex justify-between flex-col md:flex-row items-center">
                         <div className="article-author flex items-center gap-2">
                             <img src="/avatar.png"/>
                             <span>Elcan Məmmədov</span>
@@ -70,7 +70,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                    <SwiperSlide>  <div className="article-item mb-5 p-6" >
     <a href="/library/articles/id">
                     <div className="article-content flex justify-between flex-col gap-4">
-                    <div className="article-header flex justify-between items-center">
+                    <div className="article-header flex justify-between flex-col md:flex-row items-center">
                         <div className="article-author flex items-center gap-2">
                             <img src="/avatar.png"/>
                             <span>Elcan Məmmədov</span>
@@ -90,7 +90,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                       <SwiperSlide>  <div className="article-item mb-5 p-6" >
     <a href="/library/articles/id">
                     <div className="article-content flex justify-between flex-col gap-4">
-                    <div className="article-header flex justify-between items-center">
+                    <div className="article-header flex justify-between items-center flex-col md:flex-row ">
                         <div className="article-author flex items-center gap-2">
                             <img src="/avatar.png"/>
                             <span>Elcan Məmmədov</span>
@@ -128,7 +128,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                                 <div className="mentor-item rounded-md">
                                     <a href="/library/articles/:id">
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between md:flex-row flex-col items-center gap-1">
                                         <div className="flex flex-col justify-between">
                                 <div className="flex gap-3 items-center">
                                     <img src="aydan.png"/>
@@ -148,7 +148,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                                 </div>  
                                    <div className="mentor-item rounded-md">
                                     <a href="/library/articles/:id">
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between md:flex-row flex-col items-center gap-1">
                                         <div className="flex flex-col justify-between">
                                 <div className="flex gap-3 items-center">
                                     <img src="aydan.png"/>

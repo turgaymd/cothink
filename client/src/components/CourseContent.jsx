@@ -5,21 +5,23 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
+import courses from "../data/coursesData";
 const CourseContent=()=>{
         const { id } = useParams();  
-        const [course, setCourse]=useState(null)
-        const {apiUrl}=useContext(ApiContext)
-        useEffect(() => {
-          axios
-            .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
-            .then((res) => {
-              setCourse(res.data.data);
-              console.log(res.data.data);
-            })
-            .catch((err) => console.error(err));
-        }, [id])
+        // const [course, setCourse]=useState(null)
+        // const {apiUrl}=useContext(ApiContext)
+        // useEffect(() => {
+        //   axios
+        //     .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
+        //     .then((res) => {
+        //       setCourse(res.data.data);
+        //       console.log(res.data.data);
+        //     })
+        //     .catch((err) => console.error(err));
+        // }, [id])
     
-         if (!course) return <Loading/>;
+        //  if (!course) return <Loading/>;
+        const course = courses.find(m => m.course_id == id);
     return(
         <section>
             <h2 className="font-bold text-2xl">{course.course_title}</h2>
@@ -36,7 +38,8 @@ const CourseContent=()=>{
                 <h4 className="font-semibold text-center text-xl pb-4">{course.lessons[0].lesson_title}</h4>
             <div></div>
             <div className="flex justify-center relative flex-col items-center">
-            <video src={course.video_link} className="md:h-[64vh] h-[40vh] w-full object-cover rounded-md" controls={true}/>
+             
+            <iframe src="https://www.youtube.com/embed/K4HxNNGx9eg" className="md:h-[64vh] h-[40vh] w-full object-cover rounded-md" controls={true}/>
                <div className="w-full flex gap-3 pt-2 pb-2 mt-3 justify-between shadow-sm inset-shadow-sm ">
                 <button className="w-full flex gap-3"><SlArrowLeft className="text-blue-600" fontSize={24}/>Əvvəlki</button>
                 <button className="w-full flex justify-end gap-3">Sonrakı<SlArrowRight className="text-blue-600" fontSize={24}/></button>

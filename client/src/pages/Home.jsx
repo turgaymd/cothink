@@ -152,7 +152,7 @@ CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bili
             <div className="mt-4 mb-4">
                 <h2 className="font-bold text-2xl text-center pb-5">Bizim Üstünlüyümüz</h2>
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-7">
-                <div >
+                <div className="mb-5">
                     <h2 className="font-bold text-2xl">Nə üçün biz Fərqliyik ? </h2>
                     <p className="text-gray-500 pb-4 pt-4">CoThink öyrənmə prosesini tam sistemə çevirir.
 Video izahlar, qısa konspektlər, mövzu qeydləri, mentor dəstəyi və sual–cavab —hamısı bir yerdədir.
