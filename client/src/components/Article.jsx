@@ -11,7 +11,7 @@ const Article = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost/cothink/server/articles/articleDetails.php?article_id=${id}`
+        `http://localhost/cothink1/cothink/server/articles/articleDetails.php?article_id=${id}`
       )
       .then((res) => {
         setArticle(res.data?.data || null);

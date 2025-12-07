@@ -23,7 +23,7 @@ const fileInputRef = useRef(null);
   };
 
   useEffect(() => {
-    axios.get("http://localhost/cothink/server/categories/categoryRead.php")
+    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
       .then((res) => {
         if (res.data.status === "success") {
           setCategories(res.data.data);

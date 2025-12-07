@@ -14,11 +14,11 @@ const Questions=()=>{
  
 
 useEffect(()=>{
-       axios.get("http://localhost/cothink/server/posts/postsRead.php").then(res=>{
+       axios.get("http://localhost/cothink1/cothink/server/posts/postsRead.php").then(res=>{
             setDiscussions(res.data)
         })
 
-           axios.get("http://localhost/cothink/server/categories/categoryRead.php").then(res=>{
+           axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
             setCategories(res.data.data)
             setDisplayedCategories(res.data.data.slice(0,4))
         })

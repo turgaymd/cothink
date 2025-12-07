@@ -11,7 +11,7 @@ const Book = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost/cothink/server/books/bookDetails.php?id=${id}`)
+      .get(`http://localhost/cothink1/cothink/server/books/bookDetails.php?id=${id}`)
       .then((res) => {
         setBook(res.data.data);
         console.log(res.data.data);

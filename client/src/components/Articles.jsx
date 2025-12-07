@@ -31,7 +31,7 @@ const Articles=()=>{
    const  [query, setQuery]=useState("")
    
         useEffect(() => {
-    axios.get("http://localhost/cothink/server/articles/articleRead.php")
+    axios.get("http://localhost/cothink1/cothink/server/articles/articleRead.php")
         .then(res => {
             setArticles(res.data)  // burda gələn datanı görə bilərsən
         })

@@ -15,13 +15,13 @@ const Library=()=>{
 
  useEffect(() => {
     axios
-      .get("http://localhost/cothink/server/books/bookRead.php")
+      .get("http://localhost/cothink1/cothink/server/books/bookRead.php")
       .then((res) => {
         setBooks(res.data.data);
       })
       .catch((err) => console.error(err));
 
-          axios.get("http://localhost/cothink/server/categories/categoryRead.php").then(res=>{
+          axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
             setCategories(res.data.data) ;
             setDisplayedCategories(res.data.data.slice(0,4))
         })
