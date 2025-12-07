@@ -155,7 +155,7 @@ CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bili
                 <div >
                     <h2 className="font-bold text-2xl">Nə üçün biz Fərqliyik ? </h2>
                     <p className="text-gray-500 pb-4 pt-4">CoThink öyrənmə prosesini tam sistemə çevirir.
-Video izahlar, qısa konspektlər, mövzu qeydləri, mentor dəstəyi və sual–cavab — hamısı bir yerdədir.
+Video izahlar, qısa konspektlər, mövzu qeydləri, mentor dəstəyi və sual–cavab —hamısı bir yerdədir.
 AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız həqiqi bilikdə saxlayır.
 İmtahana və dərslərə hazırlıq daha sürətli, daha aydın və daha motivasiyalı olur.</p>
 <button className="bg-blue-800 text-white rounded-full flex items-center justify-center gap-3"> Daha ətraflı <MdArrowOutward  className="text-blue-500 bg-white rounded-full" fontSize={24}/></button>
