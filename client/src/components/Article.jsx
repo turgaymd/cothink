@@ -4,7 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
-
+import { IoIosAdd } from "react-icons/io";
+import { BsThreeDots } from "react-icons/bs";
 const Article = () => {
   const [article, setArticle] = useState(null);
   const { id } = useParams();
@@ -37,8 +38,8 @@ const Article = () => {
             />
             <div className="flex flex-col gap-3">
               <h4>{article.mentor_name}</h4>
-              <button className="bg-blue-800 text-white px-3 py-2 rounded-full">
-                İzlə
+              <button className="bg-blue-800 text-white px-3 py-2 rounded-full flex gap-1">
+                İzlə <IoIosAdd fontSize={24}/>
               </button>
             </div>
           </div>
@@ -48,39 +49,48 @@ const Article = () => {
           </div>
         </div>
 
-        <div className="post-reactions flex gap-5">
+        <div className="post-reactions flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-3 justify-between md:flex-row flex-col items-center">
           <div className="flex gap-3">
             <div className="like-count flex items-center gap-2">
               <img src="/like.svg" alt="like" />
               {article.likes || 0}
             </div>
-            {/* <div className="comment-count flex items-center gap-2">
+            <div className="comment-count flex items-center gap-2">
               <img src="/comment.svg" alt="comment" />
               {article.comments || 0}
-            </div> */}
+            </div>
           </div>
           <div className="post-reactions flex gap-5">
             <div className="share flex items-center gap-2">
-              <img src="/share.svg" alt="share" /> Paylaş
+              <img src="/share.svg" alt="share" /> {article.shared || 0}
             </div>
             <div className="saved-count flex items-center gap-2">
               <img src="/save.svg" alt="saved" />
               {article.saved || 0}
             </div>
+            <div>
+              <BsThreeDots fontSize={24} className="text-gray-500"/>
+            </div>
           </div>
         </div>
 
         <div className="pt-3 mt-3">
-          {article.article_img && (
+          {article.article_img ? (
             <img
               src={`/${article.article_img}`}
               className="rounded-md mb-3"
               alt={article.article_title}
-            />
-          )}
-          <p>{article.article_desc}</p>
+            /> 
+          )  : <img src="/article.jpg" className="h-84 w-full rounded-md"/>
+        
+        }
+          <p className="pt-4">{article.article_desc}</p>
         </div>
-
+<div className="article-tags mt-5 flex flex-col md:flex-row gap-3 items-center">
+  <span className="bg-gray-100  px-5 py-2 rounded-md">Figma</span>
+    <span className="bg-gray-100  px-5 py-2 rounded-md">ShapeTools</span>
+      <span className="bg-gray-100  px-5 py-2 rounded-md">ProductDesign</span>
+</div>
         <div className="comments">
           <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
           <div className="flex gap-2 mb-3 items-center">

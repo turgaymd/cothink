@@ -30,20 +30,19 @@ function Login() {
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
-
+ console.log(res.data)
       if (res.data.success) {
-        const userInfo = {
+        const user = {
           type: res.data.type,          
           id: res.data.type === "student" ? res.data.student_id : res.data.mentor_id,
           email: res.data.email,
           token: res.data.token
         };
 
-        sessionStorage.setItem("user", JSON.stringify(userInfo));
+        localStorage.setItem("user", JSON.stringify(user));
         if (rememberMe) {
-          localStorage.setItem("user", JSON.stringify(userInfo));
+          localStorage.setItem("user", JSON.stringify(user));
         }
-
         toast.success("Giriş uğurla tamamlandı");
         setTimeout(() => navigate("/home"), 1500);
       } else {

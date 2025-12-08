@@ -6,8 +6,8 @@ import { ApiContext } from "../ApiContext";
 const Mentors=()=>{
 const [categories,setCategories]=useState([])
 const [mentorArticles, setMentorArticles]=useState([])
-// const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
-// const  [visibleCategories, setVisibleCategories]=useState(4)
+const  [displayedCategories, setDisplayedCategories]=useState([])
+const  [visibleCategories, setVisibleCategories]=useState(2)
 const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
@@ -21,15 +21,16 @@ const {apiUrl}=useContext(ApiContext)
        
          axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{
             setCategories(res.data)
+            setDisplayedCategories(res.data.data.slice(0,4))
         })
      },[])
 
-    // const handleMore=()=>{
-    //     setVisibleCategories(prev=>{
-    //     const newCount=prev+4
-    //     setDisplayedCategories(categories.slice(0, newCount))
-    //     return newCount;
-    //    })}
+    const handleMore=()=>{
+        setVisibleCategories(prev=>{
+        const newCount=prev+4
+        setDisplayedCategories(categories.slice(0, newCount))
+        return newCount;
+       })}
 
         //   const filteredMentors=mentors.filter((item)=>
         // item.item.toLowerCase().includes(query.toLowerCase()) 
@@ -38,6 +39,7 @@ const {apiUrl}=useContext(ApiContext)
     return (
         <div className="md:col-span-10">
           <section>
+            <h2 className="font-semibold text-center text-xl pb-5">Xoş gəlmisiniz, Şəms</h2>
             <Search query={query} setQuery={setQuery}/>
             <div className="mentor-banner mt-3">
                 <div className="relative flex flex-col md:flex-row items-center justify-between">
@@ -49,28 +51,29 @@ const {apiUrl}=useContext(ApiContext)
                    <img src="mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
                     </div>
                 </div>
-      
-            </div>
-            
-                        <div className="filter mb-5">
+            </div>        
+                        <div className="filter mb-7">
                         <div className=" flex justify-between mb-3">
                 <h4 className="font-bold text-xl">Kategoriyalar</h4>
-                {/* {
+                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
+                
+                 {/* {
                 visibleCategories<categories.length && (
                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
                 )
-            } */}
+            }  */}
             </div>
       <div className="course-filter mt-4 mb-5">
+        
                     <div className="filter-items flex gap-3 flex-col md:flex-row">
-                                            <span className="active rounded-md">Hamısı</span>
-                        {/* {
+                                            <span className="active rounded-md">Hamısı</span>                                          
+                        {
                             displayedCategories.map((item, index)=>(
 
-                    <span className="rounded-md" key={index}>{item.name}</span>
+                    <span className="rounded-md" key={index}>{item.category}</span>
                             ))
                         }
-                    */}
+                     
                 </div>
             </div>
             </div>
