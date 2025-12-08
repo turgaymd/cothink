@@ -12,8 +12,8 @@ const Article = () => {
   const {apiUrl}=useContext(ApiContext)
 
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/server/articles/articleDetails.php?article_id=${id}`
+    axios 
+      .get(`${apiUrl}/server/articles/articleDetails.php?article_id=${id}` 
       )
       .then((res) => {
         setArticle(res.data?.data || null);

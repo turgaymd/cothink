@@ -24,8 +24,8 @@ const fileInputRef = useRef(null);
     fileInputRef.current.click();
   };
 
-  useEffect(() => {
-    axios.get(`${apiUrl}/server/categories/categoryRead.php`)
+  useEffect(() => { 
+    axios.get(`${apiUrl}/server/categories/categoryRead.php`) 
       .then((res) => {
         if (res.data.status === "success") {
           setCategories(res.data.data);

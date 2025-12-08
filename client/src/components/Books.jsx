@@ -19,7 +19,7 @@ const handleSave=async(item)=>{
     formData.append("book_url", item.book_url)
 
       const res = await axios.post(
-        "http://localhost/cothink/server/bookSave/saveBook.php",
+        "http://localhost/cothink1/cothink/server/books/bookRead.php",
          formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

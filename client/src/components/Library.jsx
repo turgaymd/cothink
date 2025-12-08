@@ -16,13 +16,13 @@ const Library=()=>{
 
 
  useEffect(() => {
-    axios
-      .get(`${apiUrl}/server/books/bookRead.php`)
+    axios 
+      .get(`${apiUrl}/server/books/bookRead.php`) 
       .then((res) => {
         setBooks(res.data.data);
       })
-      .catch((err) => console.error(err));
-          axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{
+      .catch((err) => console.error(err)); 
+          axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
             setCategories(res.data.data) ;
             setDisplayedCategories(res.data.data.slice(0,4))
         })

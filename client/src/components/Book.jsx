@@ -11,8 +11,8 @@ const Book = () => {
   const [book, setBook] = useState(null);
  const {apiUrl}=useContext(ApiContext)
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/server/books/bookDetails.php?book_id=${id}`)
+    axios 
+      .get(`${apiUrl}/server/books/bookDetails.php?book_id=${id}`) 
       .then((res) => {
         setBook(res.data.data);
         console.log(res.data.data);

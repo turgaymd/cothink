@@ -14,11 +14,11 @@ const Questions=()=>{
     const {apiUrl}=useContext(ApiContext)
  
 
-useEffect(()=>{
+useEffect(()=>{ 
        axios.get(`${apiUrl}/server/posts/postsRead.php`).then(res=>{
             setDiscussions(res.data)
         })
-           axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{
+           axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
             setCategories(res.data.data)
             setDisplayedCategories(res.data.data.slice(0,4))
         })

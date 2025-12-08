@@ -32,8 +32,8 @@ const Articles=()=>{
    const  [query, setQuery]=useState("")
    const {apiUrl}=useContext(ApiContext)
    
-        useEffect(() => {
-    axios.get(`${apiUrl}/server/articles/articleRead.php`)
+        useEffect(() => { 
+    axios.get(`${apiUrl}/server/articles/articleRead.php`) 
         .then(res => {
             setArticles(res.data)  
               console.log(res.data)
