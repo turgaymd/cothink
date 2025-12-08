@@ -43,12 +43,11 @@ const EditProfile = () => {
   };
 
   return (
+    <section>
     <div className="max-w-lg mx-auto">
       <h2 className="font-bold text-2xl text-center mb-5 pb-3">
         Profili redaktə et
       </h2>
-
-      {/* FORM SUBMIT BURDADIR */}
       <form onSubmit={submitForm} className="space-y-4 mt-5 mb-5">
 
         <div className="flex gap-3 items-center">
@@ -163,7 +162,7 @@ const EditProfile = () => {
         </div>
 
         {/* Submit */}
-        <div className="flex justify-center gap-5">
+        <div className="flex md:flex-row flex-col justify-center gap-5">
           <button
             type="submit"
             className="bg-blue-800 rounded-md text-white px-4 py-2"
@@ -178,6 +177,7 @@ const EditProfile = () => {
 
       </form>
     </div>
+    </section>
   );
 };
 

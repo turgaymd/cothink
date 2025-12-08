@@ -47,7 +47,7 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
                filteredBooks.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
                         <a href={`/library/books/${item.book_id}`}>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col md:flex-row justify-between gap-3">
                   <img
                     src={item.book_img}
                     className="w-20 h-25 object-cover"

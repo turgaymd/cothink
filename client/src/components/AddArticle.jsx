@@ -23,7 +23,7 @@ const AddArticle = () => {
 
   useEffect(() => {
     axios
-      .get(`apiUrl/server/categories/categoryRead.php`)
+      .get(`${apiUrl}/server/categories/categoryRead.php`)
       .then((res) => {
         if (res.data.status === "success") {
           setCategories(res.data.data);

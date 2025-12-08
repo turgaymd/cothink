@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { MdOutlineEdit } from "react-icons/md";
 
 const About=()=>{
   const [name, setName]=useState("Şəms")
@@ -29,21 +30,22 @@ const About=()=>{
   }
     return(
         <section>
- <div className="flex justify-center">
-      <div className="card w-[90%] max-w-[500px]">
-        <div className="card-body">
+          <h2 className="font-bold text-2xl text-center mb-3">Haqqımda</h2>
+ <div className="flex justify-center p-5">
+      <div className="card w-full ">
+        <div className="card-body ">
          
              {error && (
           <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
             {error}
           </p>
         )}
-            <div  className="flex justify-end text-blue-600 cursor-pointer"><button type="submit">Redaktə et</button></div>
-             <form className="login-form mx-auto" onSubmit={handleEdit}>
+            <div  className="flex justify-end text-blue-800 cursor-pointer"><button type="submit" className="flex gap-2"><MdOutlineEdit fontSize={24}/>Redaktə et</button></div>
+             <form className="login-form mx-auto p-12" onSubmit={handleEdit}>
               <div className="mb-5">
               <label
                 htmlFor="name"
-                className="text-gray-900 font-medium mb-4"
+                className="text-gray-900 font-semibold mb-4"
               >
                Ad
               </label>
@@ -61,7 +63,7 @@ const About=()=>{
               <div className="mb-5">
               <label
                 htmlFor="lastName"
-                className="text-gray-900 font-medium mb-4"
+                className="font-semibold mb-4"
               >
                Soyad
               </label>
@@ -79,7 +81,7 @@ const About=()=>{
             <div className="mb-5">
               <label
                 htmlFor="email"
-                className="text-gray-900 font-medium mb-4"
+                className="font-semibold mb-4"
               >
                 E-mail
               </label>
@@ -97,7 +99,7 @@ const About=()=>{
              <div className="mb-5">
               <label
                 htmlFor="phone"
-                className="text-gray-900 font-medium mb-4"
+                className="font-semibold mb-4"
               >
                 Telefon nömrəsi
               </label>

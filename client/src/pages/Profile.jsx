@@ -60,7 +60,7 @@ const Profile = () => {
         >
           Profili redaktə et
         </a>
-        <button className="flex-1 md:flex-none bg-blue-800 text-white rounded-full px-5 py-3">
+        <button className="flex-1 md:flex-none bg-blue-800 text-white rounded-full  py-3">
           Profili paylaş
         </button>
       </div>
