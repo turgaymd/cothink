@@ -48,7 +48,7 @@ const CourseDetail=()=>{
             <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>
             <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{course?.saved}</div>
         </div>
-        <div className="flex justify-between mt-5 mb-5">
+        <div className="flex md:flex-row flex-col gap-3 justify-between mt-5 mb-5 w-full">
             <div className="flex gap-3">
             <img src={course?.profile_img} className="object-cover w-10 h-10"/>
             <div className="flex flex-col">

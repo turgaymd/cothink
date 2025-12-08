@@ -41,7 +41,7 @@ const About=()=>{
           </p>
         )}
             <div  className="flex justify-end text-blue-800 cursor-pointer"><button type="submit" className="flex gap-2"><MdOutlineEdit fontSize={24}/>Redaktə et</button></div>
-             <form className="login-form mx-auto p-12" onSubmit={handleEdit}>
+             <form className="login-form mx-auto " onSubmit={handleEdit}>
               <div className="mb-5">
               <label
                 htmlFor="name"

@@ -3,7 +3,7 @@ import { IoAddCircleOutline } from "react-icons/io5";
 import { IoMenu } from "react-icons/io5";
 import { CourseCard } from "../components/Courses";
 import { ArticleCard } from "../components/Articles";
-import Posts from "../components/Posts";
+import Posts, { PostCard } from "../components/Posts";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
 
@@ -11,29 +11,28 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState("courses");
   const [courses, setCourses] = useState([]);
   const [articles, setArticles] = useState([]);
-  const [mentor, setMentor]=useState(null)
+  const [posts, setPosts]=useState([])
   const {apiUrl}= useContext(ApiContext)
-  useEffect(() => {
-    axios
-      .get(`${apiUrl}/server/mentors/mentorDetail.php`)
+    const user=JSON.parse(localStorage.getItem("user"))
+   useEffect(()=>{
+          axios.get(`${apiUrl}/server/mentors/mentorCourses.php?id=${user.mentor_id}`)
       .then((res) => {
-        setMentor(res.data);
-        console.log(mentor);
-      });
-          axios
-      .get(`${apiUrl}/server/mentors/mentorCourses.php`)
-      .then((res) => {
-        setCourses(res.data);
+        setCourses(res.data.data);
         console.log(courses);
       });
       
-      axios.get(`${apiUrl}/server/mentors/mentorArticles.php`)
+      axios.get(`${apiUrl}/server/mentors/mentorArticles.php?id=${user.mentor_id}`)
         .then(res => {
             setArticles(res.data)
-            console.log(res.data) // burda gələn datanı görə bilərsən
+            console.log(res.data) 
+        })
+         axios.get(`${apiUrl}/server/mentors/mentorPosts.php?id=${user.mentor_id}`)
+        .then(res => {
+            setPosts(res.data)
+            console.log(res.data) 
         })
   }, []);
-  const user=JSON.parse(localStorage.getItem("user"))
+
   return (
     <section>
       <div className="flex md:flex-row flex-col gap-5 justify-between">
@@ -45,7 +44,7 @@ const Profile = () => {
             />
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <h4 className="font-bold text-xl">{user.name}</h4>
+            {/* <h4 className="font-bold text-xl">{user?.name}</h4> */}
             <div className="flex gap-5">
               <span>2.6k tələbə</span>
               <span>38 post</span>
@@ -102,14 +101,14 @@ const Profile = () => {
           </button>
         </div>
       </div>
-      {/* {activeTab === "courses" && (
+      {activeTab === "courses" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {courses.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
               Kurs tapılmadı.
             </p>
           ) : (
-            courses.map((item) => <CourseCard key={item._id} item={item} />)
+            courses.map((item) => <CourseCard key={item.course_id} item={item} />)
           )}
         </div>
       )}
@@ -126,14 +125,14 @@ const Profile = () => {
       )}
       {activeTab === "posts" &&
       <>
-       {articles.length === 0 ? (
+       {posts.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
               Məqalə tapılmadı
             </p> ) :
-    (  <Posts /> 
+    (   posts.map((item) => <PostCard  key={item._id} item={item} />)
     
     )} 
-      </>} */}
+      </>}
     </section>
   );
 };

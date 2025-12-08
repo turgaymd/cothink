@@ -14,9 +14,9 @@ const Rating=()=>{
                 </div>
         <div className="flex flex-col items-center gap-4">
             <h2 className="text-2xl font-bold">Reytinq Cədvəli</h2>
-            <p className="text-gray-400 pb-5">Sual verən,cavablayan,bəyənilən və paylaşım edənlər əsasında sıralama</p>
-        <div className="flex gap-3 mb-5 mt-5">
-            <div className="relative pt-5">
+            <p className="text-gray-400 pb-5 mb-5">Sual verən,cavablayan,bəyənilən və paylaşım edənlər əsasında sıralama</p>
+        <div className="flex flex-col md:flex-row gap-5 mb-5 mt-5">
+            <div className="relative pt-5 md:mb-0 mb-5 order-2 md:order-1">
          <img src="elvin.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
 
 <div className="absolute bottom-0 bg-blue-800 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 badge">
@@ -26,7 +26,7 @@ const Rating=()=>{
     </div>
 </div>
       </div>
-       <div className="relative mb-2">
+       <div className="relative mb-2 order-1 md:order-2">
         
         <img src="winner_cap.svg" className="absolute right-7 bottom-30"/>
          <img src="həcər.jpg" className="w-28 h-28 rounded-full border-[5px] border-amber-300 object-cover"/>
@@ -37,7 +37,7 @@ const Rating=()=>{
     </div>
 </div>
       </div>
-<div className="relative pt-5">
+<div className="relative md:pt-5 pt-2 order-3 md:order-3">
  <img src="emil.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
 <div className="absolute bottom-0 bg-blue-800 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 badge">
    <div className="flex flex-col items-center">
@@ -57,9 +57,35 @@ const Rating=()=>{
              </div>
             </section>
             <div className="flex flex-col gap-3 justify-center items-center mt-2">
-                <div className="border border-blue-300 w-full max-w-3xl flex items-center justify-between rounded-full px-8 md:px-4  py-2">
-                        <div className="flex items-center gap-3" >
-                        <img src="aysel.png" className=" rounded-full w-15 h-15 bg-gray-400 object-cover"/>       
+                <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col items-center justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
+                        <div className="flex  items-center gap-3 md:flex-row flex-col" >
+                        <img src="aysel.png" className="w-15 h-15 rounded-full  bg-gray-400 object-cover"/>       
+                        <div>
+                        <h4 className="font-bold">Aysel Hacıyeva</h4>
+                        <p className="text-gray-400">Tələbə – Proseslərin Avtomatlaşdırılması Mühəndisliyi </p>
+                       </div>
+                        </div>
+                    <div className="flex items-center gap-3">
+                        <span className="bg-blue-800 text-white rounded-full px-4  py-2">647</span>
+                       <img src="medal_gold.svg" className="w-10 h-10"/>
+    </div>
+                              </div>
+                                 <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col items-center justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
+                        <div className="flex  items-center gap-3 md:flex-row flex-col" >
+                        <img src="aysel.png" className=" w-15 h-15 rounded-full  bg-gray-400 object-cover"/>       
+                        <div>
+                        <h4 className="font-bold">Aysel Hacıyeva</h4>
+                        <p className="text-gray-400">Tələbə – Proseslərin Avtomatlaşdırılması Mühəndisliyi </p>
+                       </div>
+                        </div>
+                    <div className="flex items-center gap-3">
+                        <span className="bg-blue-800 text-white rounded-full px-4  py-2">647</span>
+                       <img src="medal_gold.svg" className="w-10 h-10"/>
+    </div>
+                              </div>
+                                 <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col items-center justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
+                        <div className="flex  items-center gap-3 md:flex-row flex-col" >
+                        <img src="aysel.png" className="w-15 h-15 rounded-full  bg-gray-400 object-cover"/>       
                         <div>
                         <h4 className="font-bold">Aysel Hacıyeva</h4>
                         <p className="text-gray-400">Tələbə – Proseslərin Avtomatlaşdırılması Mühəndisliyi </p>
