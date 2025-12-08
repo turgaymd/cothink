@@ -7,11 +7,12 @@ import { HiOutlineUsers } from "react-icons/hi2";
 import { MdArrowOutward } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { SiReaddotcv } from "react-icons/si";
-import { useState } from "react";
-import { BsInstagram } from "react-icons/bs";
+import { useContext, useState } from "react";
+import { BsBook, BsInstagram } from "react-icons/bs";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { ApiContext } from "../ApiContext";
 const Home=()=>{
         const [open, setOpen]=useState(  false  )
         const [error, setError]=useState("")
@@ -19,6 +20,7 @@ const Home=()=>{
         const [name, setName]=useState("")
         const [phone, setPhone]=useState("")
         const [message, setMessage]=useState("")
+        const {apiUrl}=useContext(ApiContext)
         const sendEmail=async(e)=>{
                  e.preventDefault()
                 if(!email){
@@ -28,7 +30,7 @@ const Home=()=>{
                     setError('')
                 }
                  try{
-         const res = await axios.post("http://localhost/cothink1/cothink/server/contact.php", 
+         const res = await axios.post(`${apiUrl}/server/contact.php`, 
                  { email},
                   { headers:{ "Content-Type":"application/json" }});
                     if(res.data.success){
@@ -82,10 +84,10 @@ const Home=()=>{
                         </Link>
                     </div>
                         <ul className="hidden md:flex gap-6 desktop-menu">
-                            <li className="nav-item"><a className={({isActive})=> isActive ? "active" : "" } href="#home">Ana Səhifə</a></li>
-                            <li className="nav-item"><a className={({isActive})=> isActive ? "active" : "" } href="#services">Xidmətlərimiz</a></li>
-                            <li className="nav-item"><a className="" href="#about">Haqqımızda</a></li>
-                            <li className="nav-item"><a className="" href="#contact">Əlaqə</a></li>
+                            <li className="nav-item"><a className="active" href="#home">Ana Səhifə</a></li>
+                            <li className="nav-item"><a  href="#services">Xidmətlərimiz</a></li>
+                            <li className="nav-item"><a  href="#about">Haqqımızda</a></li>
+                            <li className="nav-item"><a href="#contact">Əlaqə</a></li>
                         </ul>
                            <div className=" md:flex actions items-center gap-3 ">                 
                                <a className="border border-blue-800 text-blue-800 rounded-full px-7 py-3" href="/register">Qeydiyyat</a>
@@ -110,14 +112,16 @@ const Home=()=>{
                     </header>
                       <ToastContainer/>
                      <section id="home">
-            <div className="grid md:grid-cols-2  grid-cols-1">
-                <div className="flex flex-col justify-center ">
+            <div className="grid md:grid-cols-2 gap-6  grid-cols-1">
+                <div className="flex flex-col justify-center order-2 md:order-1">
                     <h2 className="font-bold text-2xl">Bilik paylaşdıqca artır </h2>
                     <p className="text-gray-500 pb-4 pt-4">Öyrənməni daha ağıllı, daha sadə və daha əlçatan edən yeni nəsil təhsil platforması.
 CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bilikləri bir araya gətirir.</p>
-<button className="bg-blue-800 text-white rounded-full w-64 flex items-center justify-center gap-3"> Kəşfə başlayın <MdArrowOutward  className="text-blue-500 bg-white rounded-full" fontSize={24}/></button>
+<div className="flex justify-between">
+<button className="bg-blue-800 text-white rounded-full flex items-center justify-center gap-3"> Kəşfə başlayın <MdArrowOutward  className="text-blue-500 bg-white rounded-full" fontSize={24}/></button>
+       </div>
                 </div>
-                <div className="flex justify-center items-center mt-3">
+                <div className="flex justify-center items-center mt-3 order-1 md:order-2">
                     <img src="home_banner.jpg" className="rounded-md"/>
                 </div>
             </div>
@@ -149,18 +153,18 @@ CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bili
             <section >
             <div className="mt-4 mb-4">
                 <h2 className="font-bold text-2xl text-center pb-5">Bizim Üstünlüyümüz</h2>
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-7">
-                <div >
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-7">
+                <div className="mb-5">
                     <h2 className="font-bold text-2xl">Nə üçün biz Fərqliyik ? </h2>
                     <p className="text-gray-500 pb-4 pt-4">CoThink öyrənmə prosesini tam sistemə çevirir.
-Video izahlar, qısa konspektlər, mövzu qeydləri, mentor dəstəyi və sual–cavab — hamısı bir yerdədir.
+Video izahlar, qısa konspektlər, mövzu qeydləri, mentor dəstəyi və sual–cavab —hamısı bir yerdədir.
 AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız həqiqi bilikdə saxlayır.
 İmtahana və dərslərə hazırlıq daha sürətli, daha aydın və daha motivasiyalı olur.</p>
-<button className="bg-blue-800 text-white rounded-full flex items-center justify-center gap-3"> Daha ətraflı <MdArrowOutward  className="text-blue-500 bg-white rounded-full" fontSize={24}/></button>
+<button className="bg-blue-800 w-full md:w-auto text-white rounded-full flex items-center justify-center gap-3"> Daha ətraflı <MdArrowOutward  className="hidden md:inline-flex text-blue-500 bg-white rounded-full" fontSize={24}/></button>
                 </div>
                 <div className="flex justify-center">
 
-                  <div className="bg-blue-700 w-64 h-32 rounded-[50%/50%] relative">
+                  <div className="bg-blue-700 w-64 h-32 rounded-[50%/50%] relative md:mt-5 mt-5">
                                     <img src="macbook_.png" className="absolute bottom-2 object-cover" />
                   </div>
   
@@ -174,67 +178,157 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                <div className="grid md:grid-cols-2 grid-cols-1 gap-3 mt-5">
                 <div className="flex border border-gray-200 rounded-md service-item">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
-                     <img src="library.svg"/>
+                        <div className="service-icon rounded-full flex justify-center items-center px-5 py-5">
+                    <BsBook fontSize={26} className="text-blue-800"/>
                         </div>
-                     <div>
-                     
+                     <div>                  
                         <h5 className="font-bold text-xl">Dərs izahları</h5>
-                        <p>Fənlər üzrə hazırlanan qısa, aydın və sistemli video izahlar.</p>
+                        <p className="text-gray-500">Fənlər üzrə hazırlanan qısa, aydın və sistemli video izahlar.</p>
                      </div>
                     </div>
                 </div>
-                                <div className="flex border border-gray-200 rounded-md service-item">
+                                <div className="flex border border-gray-200 rounded-md service-item ">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
+                        <div className="service-icon rounded-full flex justify-center items-center px-5 py-5">
                      <HiOutlineUsers fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
                      
                         <h5 className="font-bold text-xl">Mentor dəstəyi</h5>
-                        <p>Sualını göndər və mövzunu izah etməyini mentorlarımızdan istə.</p>
+                        <p className="text-gray-500">Sualını göndər və mövzunu izah etməyini mentorlarımızdan istə.</p>
                      </div>
                     </div>
                 </div>
-                           <div className="flex border border-gray-200 rounded-md service-item">
+                           <div className="flex border border-gray-200 rounded-md service-item ">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
+                        <div className="service-icon rounded-full flex justify-center items-center px-5 py-5">
                     <LuBookText fontSize={28} className="text-blue-800"/>                        </div>
                      <div>
                      
                         <h5 className="font-bold text-xl">Akademik resurslar</h5>
-                        <p>PDF-lər, konspektlər, xülasələr və sınaq sualları — hamısı əlçatan.</p>
+                        <p className="text-gray-500">PDF-lər, konspektlər, xülasələr və sınaq sualları — hamısı əlçatan.</p>
                      </div>
                     </div>
                 </div>
-                                <div className="flex border border-gray-200 rounded-md service-item">
+                                <div className="flex border border-gray-200 rounded-md service-item ">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
+                        <div className="service-icon rounded-full flex justify-center items-center px-5 py-5">
                      <RiQuestionnaireLine fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
                         <h5 className="font-bold text-xl">Sual–Cavab</h5>
-                        <p>Tələbələr və mentorlar tərəfindən verilən real cavablar; ən faydalıları önə çıxır.</p>
+                        <p className="text-gray-500">Tələbələr və mentorlar tərəfindən verilən real cavablar; ən faydalıları önə çıxır.</p>
                      </div>
                     </div>
                 </div>
                </div>
-                 <div className="flex border border-gray-200 mt-4  rounded-md service-item">
+                 <div className="flex border border-gray-200 mt-4  rounded-md service-item ">
                     <div className="flex justify-between items-center gap-7">
-                        <div className="bg-blue-300 rounded-full flex justify-center items-center w-30 md:w-20 h-20">
+                        <div className="service-icon rounded-full flex justify-center items-center px-5 py-5">
                      <SiReaddotcv fontSize={28} className="text-blue-800"/>
                         </div>
                      <div>
                      
                         <h5 className="font-bold text-xl">Fənn icmaları</h5>
-                        <p>Mövzu müzakirələrinə qoşul, başqalarından öyrən, öz biliklərini paylaş.</p>
+                        <p className="text-gray-500">Mövzu müzakirələrinə qoşul, başqalarından öyrən, öz biliklərini paylaş.</p>
                      </div>
                     </div>
                 </div>
             </div>
       
             </section>
-            <section id="contact">
+       
+            <section>
+  
+                  <div className="mt-5 mb-5 rounded-2xl one-platform">
+                <div className="flex md:flex-row flex-col justify-between items-center gap-12 px-5 py-3"> 
+                    <div className="flex relative">
+                    <div className="absolute -top-15 left-0  w-48 h-48 md:w-84 md:h-80  z-0 bg-blue-300   rounded-full  "> </div>
+                         <img src="laptop.png" className=" relative  w-40 md:w-80 h-auto object-cover z-9"/>    
+                         <div className="absolute -bottom-15 -right-25 w-48 h-48 md:w-64 md:h-64  z-0 bg-blue-300   rounded-full">  </div>
+                        <img src="articles.jpg" className="absolute pt-2 md:pt-12 w-30 md:w-60 h-auto top-20 z-10 -right-15 md:-right-25 "/>
+                    </div>
+                     <div>
+                  <h2 className="font-bold text-2xl pb-4 mt-7 md:mt-0" > Hər ehtiyacın — bir platformada</h2> 
+                  <p>CoThink öyrənməni asanlaşdıran tam akademik mühit yaradır.
+Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
+</p> 
+</div>
+            </div>
+            </div>
+                          </section>
+                          <section className="testimonal">
+                            <div className="grid grid-cols-1 gap-12 md:grid-cols-3 ">
+                                   <div className="relative md:rotate-10  student-box   md:skew-x-10 z-10  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-3xl flex flex-col items-center justify-center px-7 py-7">
+                                   <div className="absolute -top-8">
+                                    <img src="aysel_avatar.png" className="w-15 h-15 object-cover"/>
+                                    </div>
+                                    <h4 className="font-bold text-xl">Aysel Qasımova</h4>
+                                    <p className="text-gray-500">Tələbə</p>
+                                    <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
+                                    <p className="text-gray-600 pb-12 pt-5">CoThink izahları çox anlaşılandır və tələbənin dərsi qavramasını əhəmiyyətli dərəcədə sürətləndirir.
+Platformanın interaktivliyi öyrənməni daha maraqlı edir.</p>
+                            
+                                </div>
+                                    <div className="relative developer-box  bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
+                                     <div className="absolute -top-8">
+                                    <img src="lale_avatar.png" className="w-15 h-15 object-cover"/>
+                                    </div>
+                                    <h4 className="font-bold text-xl">Lalə Yaqubova</h4>
+                                    <p className="text-gray-500">Developer</p>
+                                <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
+                                    <p className="text-gray-600 pb-12 pt-5">Məzmunun strukturlaşdırılmış şəkildə verilməsi öyrənmə prosesini yüngülləşdirir.
+CoThink tələbənin motivasiyasını artıran real bir sistem təqdim edir.</p>
+                                </div>
+                                    <div className=" designer-box md:rotate-5 rotate-0  md:-skew-y-10 skew-0  relative  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
+                                     <div className="absolute -top-8">
+                                    <img src="emill_avatar.png" className="w-15 h-15 object-cover"/>
+                                    </div>
+                                    <h4 className="font-bold text-xl">Emil Məmmədli</h4>
+                                    <p className="text-gray-500">Qrafik dizayner</p>
+                                 <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
+                                    <p className="text-gray-600 pb-12 pt-5">Sual–cavab bölməsi çox aktivdir və tələbələr bir-birinə faydalı olur.
+Sadə interfeys və aydın məzmun platformanı daha effektiv edir.</p>
+                                </div>
+                            </div>
+                          </section>
+            <section>
+            <div >
+          <h2 className="font-bold text-2xl text-center pb-12 mt-5"> Tez-tez Soruşulan Suallar</h2>   
+     <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
+        <div className="border border-gray-200 px-5 py-2 rounded-md">
+         <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
+            <h6 className="font-medium">CoThink-də dərsləri necə tapa bilərəm?</h6>
+            <IoMdAdd fontSize={24}/>
+         </div>
+                  <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
+            <h6 className="font-medium">Məzmunu kim hazırlayır?</h6>
+            <IoMdAdd fontSize={24}/>
+         </div>
+                  <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
+            <h6 className="font-medium">Sual verdikdə nə qədər vaxta cavab gəlir?</h6>
+            <IoMdAdd fontSize={24}/>
+         </div>
+              <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
+            <h6 className="font-medium">Platformadan istifadə ödənişlidir?</h6>
+            <IoMdAdd fontSize={24}/>
+         </div>
+                  <div className="flex justify-between pt-3 pb-3">
+            <h6 className="font-medium">Məzmunun düzgünlüyü necə yoxlanılır?</h6>
+            <IoMdAdd fontSize={24}/>
+         </div>
+        </div>
+             <div className="flex flex-col gap-5 items-center justify-center">
+                <img src="faq.png" className="object-cover"/>
+                <h6 className="font-bold text-2xl pt-4 pb-4">Başqa sualınız var ?</h6>
+                <button className="rounded-full contact-btn">Əlaqə saxlayın</button>
+            
+        </div>
+     </div>
+          </div>
+                          
+            </section>
+                 <section id="contact">
                 <h2 className="font-bold text-center text-3xl mb-7 ">Əlaqə</h2>
              <div className="grid grid-cols-1 gap-1 md:grid-cols-3 text-white mt-5 mb-5 ">
                     <div className="flex flex-col rounded-md">
@@ -295,96 +389,6 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                 </div>
                 </section>
 
-            <section>
-  
-                  <div className="mt-5 mb-5 rounded-2xl one-platform">
-                <div className="flex md:flex-row flex-col justify-between items-center gap-4 px-5 py-3"> 
-                    <div className="flex relative">
-                    <div className="absolute -top-15 left-0 md:w-84 md:h-80  z-0 bg-blue-300   rounded-full  "> </div>
-                         <img src="laptop.png" className=" relative  w-40 md:w-80 h-auto object-cover z-9"/>    
-                         <div className="absolute -bottom-15 -right-25 w-48 h-48 md:w-64 md:h-64  z-0 bg-blue-300   rounded-full">  </div>
-                        <img src="articles.jpg" className="absolute pt-2 md:pt-12 w-30 md:w-60 h-auto top-20 z-10 -right-15 md:-right-25 "/>
-                    </div>
-                     <div>
-                  <h2 className="font-bold text-2xl pb-4 mt-7 md:mt-0" > Hər ehtiyacın — bir platformada</h2> 
-                  <p>CoThink öyrənməni asanlaşdıran tam akademik mühit yaradır.
-Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
-</p> 
-</div>
-            </div>
-            </div>
-                          </section>
-                          <section className="testimonal">
-                            <div className="grid grid-cols-1 gap-12 md:grid-cols-3 ">
-                                   <div className="relative md:rotate-10  student-box   md:skew-x-10 z-10  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-3xl flex flex-col items-center justify-center px-7 py-7">
-                                   <div className="absolute -top-8">
-                                    <img src="aysel_avatar.png" className="w-15 h-15 object-cover"/>
-                                    </div>
-                                    <h4 className="font-bold text-xl">Aysel Qasımova</h4>
-                                    <p className="text-gray-500">Tələbə</p>
-                                    <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
-                                    <p className="text-gray-600 pb-12 pt-5">CoThink izahları çox anlaşılandır və tələbənin dərsi qavramasını əhəmiyyətli dərəcədə sürətləndirir.
-Platformanın interaktivliyi öyrənməni daha maraqlı edir.</p>
-                            
-                                </div>
-                                    <div className="relative developer-box  bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
-                                     <div className="absolute -top-8">
-                                    <img src="lale_avatar.png" className="w-15 h-15 object-cover"/>
-                                    </div>
-                                    <h4 className="font-bold text-xl">Lalə Yaqubova</h4>
-                                    <p className="text-gray-500">Developer</p>
-                                <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
-                                    <p className="text-gray-600 pb-12 pt-5">Məzmunun strukturlaşdırılmış şəkildə verilməsi öyrənmə prosesini yüngülləşdirir.
-CoThink tələbənin motivasiyasını artıran real bir sistem təqdim edir.</p>
-                                </div>
-                                    <div className=" designer-box md:rotate-5 rotate-0  md:-skew-y-10 skew-0  relative  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
-                                     <div className="absolute -top-8">
-                                    <img src="emill_avatar.png" className="w-15 h-15 object-cover"/>
-                                    </div>
-                                    <h4 className="font-bold text-xl">Emil Məmmədli</h4>
-                                    <p className="text-gray-500">Qrafik dizayner</p>
-                                 <RiDoubleQuotesL fontSize={24} className="text-blue-500"/>
-                                    <p className="text-gray-600 pb-12 pt-5">Sual–cavab bölməsi çox aktivdir və tələbələr bir-birinə faydalı olur.
-Sadə interfeys və aydın məzmun platformanı daha effektiv edir.</p>
-                                </div>
-                            </div>
-                          </section>
-            <section>
-            <div >
-          <h2 className="font-bold text-2xl text-center pb-12 mt-5"> Tez-tez Soruşulan Suallar</h2>   
-     <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
-        <div className="border border-gray-200 px-5 py-2 rounded-md">
-         <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
-            <h6 className="font-bold">CoThink-də dərsləri necə tapa bilərəm?</h6>
-            <IoMdAdd fontSize={24}/>
-         </div>
-                  <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
-            <h6 className="font-bold">Məzmunu kim hazırlayır?</h6>
-            <IoMdAdd fontSize={24}/>
-         </div>
-                  <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
-            <h6 className="font-bold">Sual verdikdə nə qədər vaxta cavab gəlir?</h6>
-            <IoMdAdd fontSize={24}/>
-         </div>
-              <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
-            <h6 className="font-bold">Platformadan istifadə ödənişlidir?</h6>
-            <IoMdAdd fontSize={24}/>
-         </div>
-                  <div className="flex justify-between pt-3 pb-3">
-            <h6 className="font-bold">Məzmunun düzgünlüyü necə yoxlanılır?</h6>
-            <IoMdAdd fontSize={24}/>
-         </div>
-        </div>
-             <div className="flex flex-col gap-5 items-center justify-center">
-                <img src="faq.png" className="object-cover"/>
-                <h6 className="font-bold text-2xl pt-4 pb-4">Başqa sualınız var ?</h6>
-                <button className="bg-blue-300 rounded-full">Əlaqə saxlayın</button>
-            
-        </div>
-     </div>
-          </div>
-                          
-            </section>
             <footer>
                 <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
                     <div>

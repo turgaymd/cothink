@@ -1,19 +1,25 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
 import Search from "../utils/Search";
 import axios from "axios";
+import { ApiContext } from "../ApiContext";
 
 const Mentors=()=>{
 const [categories,setCategories]=useState([])
+const [mentorArticles, setMentorArticles]=useState([])
 // const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
 // const  [visibleCategories, setVisibleCategories]=useState(4)
 const  [query, setQuery]=useState("")
 const [mentors, setMentors]=useState([])
 
+const {apiUrl}=useContext(ApiContext)
+
      useEffect(()=>{
-        axios.get("http://localhost/cothink1/cothink/server/mentors/mentors.php").then(res=>{
+        axios.get(`${apiUrl}/server/mentors/mentors.php`).then(res=>{
             setMentors(res.data)
+            console.log(res.data)
         })
-         axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
+       
+         axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{
             setCategories(res.data)
         })
      },[])
@@ -25,10 +31,10 @@ const [mentors, setMentors]=useState([])
     //     return newCount;
     //    })}
 
-          const filteredMentors=mentors.filter((item)=>
-        item.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+        //   const filteredMentors=mentors.filter((item)=>
+        // item.item.toLowerCase().includes(query.toLowerCase()) 
         // item.category.toLowerCase().includes(query.toLowerCase())
-    )
+    // )
     return (
         <div className="md:col-span-10">
           <section>
@@ -73,13 +79,17 @@ const [mentors, setMentors]=useState([])
                 <button className="text-blue-500" >Hamısına bax</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 pt-4">
-                  {filteredMentors.length===0 ? 
+                  {mentors.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
-                  (filteredMentors.map((item,index)=>(
+                  (mentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
                     <a href={`/mentors/mentor/${item.mentor_id}`} className="block">
                     <div className="mentor-title gap-5 flex">          
-                            <img src={item.img} className="avatar rounded-full object-cover" alt="mentor"/>
+                          <img 
+  src={"avatarr.svg"} 
+  className="avatar rounded-full object-cover" 
+  alt="mentor" 
+/>
                             <div className="flex flex-col w-full">
                                 <h4 className="font-bold text-lg">{item.mentor_name}</h4>
                         <p>{item.category_id} </p>

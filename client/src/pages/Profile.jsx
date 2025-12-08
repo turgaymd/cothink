@@ -1,33 +1,43 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { IoMenu } from "react-icons/io5";
 import { CourseCard } from "../components/Courses";
 import { ArticleCard } from "../components/Articles";
 import Posts from "../components/Posts";
 import axios from "axios";
+import { ApiContext } from "../ApiContext";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("courses");
   const [courses, setCourses] = useState([]);
   const [articles, setArticles] = useState([]);
-
+  const [mentor, setMentor]=useState(null)
+  const {apiUrl}= useContext(ApiContext)
   useEffect(() => {
     axios
-      .get("http://localhost/cothink1/cothink/server/mentors/mentorCourses.php")
+      .get(`${apiUrl}/server/mentors/mentorDetail.php`)
+      .then((res) => {
+        setMentor(res.data);
+        console.log(mentor);
+      });
+          axios
+      .get(`${apiUrl}/server/mentors/mentorCourses.php`)
       .then((res) => {
         setCourses(res.data);
         console.log(courses);
       });
-      axios.get("http://localhost/cothink1/cothink/server/mentors/mentorArticles.php")
+      
+      axios.get(`${apiUrl}/server/mentors/mentorArticles.php`)
         .then(res => {
             setArticles(res.data)
             console.log(res.data) // burda gələn datanı görə bilərsən
         })
-  }, [courses]);
+  }, []);
+  const user=JSON.parse(localStorage.getItem("user"))
   return (
     <section>
-      <div className="flex justify-between">
-        <div className="flex gap-5">
+      <div className="flex md:flex-row flex-col gap-5 justify-between">
+        <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
             <img
               src="rauf.jpg"
@@ -35,7 +45,7 @@ const Profile = () => {
             />
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <h4 className="font-bold text-xl">Rauf Quliyev</h4>
+            <h4 className="font-bold text-xl">{user.name}</h4>
             <div className="flex gap-5">
               <span>2.6k tələbə</span>
               <span>38 post</span>
@@ -55,12 +65,12 @@ const Profile = () => {
       </div>
       <div className="flex gap-3 mt-3 mb-3">
         <a
-          className="bg-blue-800 text-white rounded-full py-3 px-5"
+          className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5"
           href="/profile/edit"
         >
           Profili redaktə et
         </a>
-        <button className="bg-blue-800 text-white rounded-full px-5 py-3">
+        <button className="flex-1 md:flex-none bg-blue-800 text-white rounded-full  py-3">
           Profili paylaş
         </button>
       </div>
@@ -92,7 +102,7 @@ const Profile = () => {
           </button>
         </div>
       </div>
-      {activeTab === "courses" && (
+      {/* {activeTab === "courses" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {courses.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
@@ -114,7 +124,16 @@ const Profile = () => {
           )}
         </>
       )}
-      {activeTab === "posts" && <Posts />}
+      {activeTab === "posts" &&
+      <>
+       {articles.length === 0 ? (
+            <p className="text-center text-xl font-bold col-span-3">
+              Məqalə tapılmadı
+            </p> ) :
+    (  <Posts /> 
+    
+    )} 
+      </>} */}
     </section>
   );
 };

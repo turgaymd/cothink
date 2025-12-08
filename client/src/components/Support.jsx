@@ -5,9 +5,10 @@ import { BsChatLeftQuote, BsEnvelope } from "react-icons/bs";
 const Support=()=>{
     return (
         <section>
-        <div>
+        <div >
          <h2 className="text-center text-2xl font-bold pb-5">Kömək və dəstək</h2>
-               <div className="features_card shadow-sm inset-shadow-sm">
+         <div className="p-5">
+               <div className="features_card shadow-sm inset-shadow-sm ">
                          <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                         <div className="flex items-center gap-3">
                              <div className="icons">
@@ -57,6 +58,7 @@ const Support=()=>{
                        <button><SlArrowRight /></button> 
                     </div>
                             
+                    </div>
                     </div>
         </div>
          <div className="text-center mt-5">

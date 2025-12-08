@@ -1,14 +1,15 @@
 import { useState, useRef } from "react";
 
 const EditProfile = () => {
-  const [name, setName] = useState("Rauf");
-  const [username, setUsername] = useState("Rauf_123");
-  const [email, setEmail] = useState("");
+   const user=JSON.parse(localStorage.getItem("user"))
+  const [name, setName] = useState(user.name);
+  const [username, setUsername] = useState(user.username);
+  const [email, setEmail] = useState(user.email);
   const [about, setAbout] = useState("");
   const [phone, setPhone] = useState("+994 971");
   const [gender, setGender] = useState("Kişi");
   const [password, setPassword] = useState("");
-  const [linkedin, setLinkedin] = useState("");
+  const [linkedin, setLinkedin] = useState();
 
   const fileInputRef = useRef(null);
 
@@ -43,12 +44,11 @@ const EditProfile = () => {
   };
 
   return (
+    <section>
     <div className="max-w-lg mx-auto">
       <h2 className="font-bold text-2xl text-center mb-5 pb-3">
         Profili redaktə et
       </h2>
-
-      {/* FORM SUBMIT BURDADIR */}
       <form onSubmit={submitForm} className="space-y-4 mt-5 mb-5">
 
         <div className="flex gap-3 items-center">
@@ -59,7 +59,7 @@ const EditProfile = () => {
             />
           </div>
           <div className="flex flex-col">
-            <h4 className="font-bold flex justify-center">Rauf Quliyev</h4>
+            <h4 className="font-bold flex justify-center">{user.name}</h4>
 
             <input
               ref={fileInputRef}
@@ -73,8 +73,6 @@ const EditProfile = () => {
             </button>
           </div>
         </div>
-
-        {/* Ad */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Ad</label>
           <input
@@ -85,7 +83,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* Username */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">İstifadəçi adı</label>
           <input
@@ -95,8 +92,6 @@ const EditProfile = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-
-        {/* Email */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Email</label>
           <input
@@ -106,8 +101,6 @@ const EditProfile = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
-        {/* Bio */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Bio</label>
           <textarea
@@ -117,8 +110,6 @@ const EditProfile = () => {
             onChange={(e) => setAbout(e.target.value)}
           />
         </div>
-
-        {/* Telefon */}
         <div className="flex gap-5 items-center">
           <label className="font-bold w-40 shrink-0">Telefon nömrəsi</label>
           <input
@@ -128,8 +119,6 @@ const EditProfile = () => {
             onChange={(e) => setPhone(e.target.value)}
           />
         </div>
-
-        {/* Cinsi */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Cinsi</label>
           <input
@@ -140,7 +129,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* Parol */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Şifrə</label>
           <input
@@ -151,7 +139,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* LinkedIn */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">LinkedIn</label>
           <input
@@ -161,9 +148,7 @@ const EditProfile = () => {
             onChange={(e) => setLinkedin(e.target.value)}
           />
         </div>
-
-        {/* Submit */}
-        <div className="flex justify-center gap-5">
+        <div className="flex md:flex-row flex-col justify-center gap-5">
           <button
             type="submit"
             className="bg-blue-800 rounded-md text-white px-4 py-2"
@@ -178,6 +163,7 @@ const EditProfile = () => {
 
       </form>
     </div>
+    </section>
   );
 };
 

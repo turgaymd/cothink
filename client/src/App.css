@@ -242,6 +242,7 @@ padding: 25px 25px;
 footer{
   background-color: #E2E2FB;
   padding: 40px 25px;
+  margin-top: 3rem;
 }
 footer h4{
   padding-bottom: 1rem;
@@ -273,4 +274,10 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
 }
 .Toastify{
   padding: 0;
+}
+.contact-btn{
+  background-color: #BEC7F6;
+}
+.service-icon{
+  background-color: #CEE2FF;
 }

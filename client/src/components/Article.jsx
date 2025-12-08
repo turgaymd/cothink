@@ -1,17 +1,18 @@
 import { IoMdTime } from "react-icons/io";
 import { FaRegCalendar } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { ApiContext } from "../ApiContext";
 
 const Article = () => {
   const [article, setArticle] = useState(null);
   const { id } = useParams();
+  const {apiUrl}=useContext(ApiContext)
 
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost/cothink1/cothink/server/articles/articleDetails.php?article_id=${id}`
+    axios 
+      .get(`${apiUrl}/server/articles/articleDetails.php?article_id=${id}` 
       )
       .then((res) => {
         setArticle(res.data?.data || null);

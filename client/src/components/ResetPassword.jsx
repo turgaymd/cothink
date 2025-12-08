@@ -64,10 +64,10 @@ const ResetPassword=()=>{
     return (
         <>
         <h2 className="text-center font-bold text-2xl pb-5">Şifrəni dəyiş</h2>
- <div className="flex justify-center">
-      <div className="card w-[90%] max-w-[500px]">
-        <div className="card-body">
-          <form className="login-form mx-auto" onSubmit={handleReset}>
+ <div className=" p-12">
+      <div className="card w-full pb-5">
+        <div className="card-body pb-5">
+          <form className="login-form mx-auto max-w-4xl px-5 py-3" onSubmit={handleReset}>
           {error && <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">{error}</p>}
             
             <PasswordInput
@@ -99,10 +99,10 @@ const ResetPassword=()=>{
                 Şifrəni unutdum
               </a>
             </div>
-            <div className="gap-3">
+            <div className="gap-3 pb-5 mt-12">
               <button
                 type="submit"
-                className="text-white bg-blue-800 w-full outline-none"
+                className="text-white bg-blue-800 w-full outline-none rounded-md"
 >
                 Daxil ol
               </button>
@@ -111,7 +111,7 @@ const ResetPassword=()=>{
         </div>
       </div>     
     </div>
-      <div className="text-center mt-5">
+      <div className="text-center mt-5 ">
                   <a className="bg-blue-700 text-white px-5 py-3 rounded-md" href="/settings">Geri</a>
     </div>
     </>

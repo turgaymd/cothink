@@ -1,12 +1,13 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
 import axios from "axios";
+import { ApiContext } from "../ApiContext";
 
 export const ArticleCard=({item})=>{
     return(
           <div className="article-item mb-5">
     <a href={`/library/articles/${item.article_id}`}>
                     <div className="article-content flex justify-between flex-col gap-4">
-                    <div className="article-header flex justify-between items-center">
+                    <div className="article-header flex justify-between items-center md:flex-row flex-col gap-2">
                         <div className="article-author flex items-center gap-2">
                             <img src="/avatar.png"/>
                             <span>{item.mentor_name}</span>
@@ -29,11 +30,13 @@ const Articles=()=>{
 
    const [articles,setArticles]=useState([])
    const  [query, setQuery]=useState("")
+   const {apiUrl}=useContext(ApiContext)
    
-        useEffect(() => {
-    axios.get("http://localhost/cothink1/cothink/server/articles/articleRead.php")
+        useEffect(() => { 
+    axios.get(`${apiUrl}/server/articles/articleRead.php`) 
         .then(res => {
-            setArticles(res.data)  // burda gələn datanı görə bilərsən
+            setArticles(res.data)  
+              console.log(res.data)
         })
         .catch(err => console.error(err))
 }, []);

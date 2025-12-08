@@ -1,9 +1,10 @@
 
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
 import Search from "../utils/Search";
 import Articles from "./Articles";
 import axios from "axios";
 import Books from "./Books";
+import { ApiContext } from "../ApiContext";
 const Library=()=>{
   const [activeTab, setActiveTab]=useState("books")
   const [books, setBooks]=useState([])
@@ -11,17 +12,17 @@ const Library=()=>{
   const [categories,setCategories]=useState([])
   const [displayedCategories, setDisplayedCategories]=useState([])
   const [visibleCategories, setVisibleCategories]=useState(2)
+  const {apiUrl}=useContext(ApiContext)
 
 
  useEffect(() => {
-    axios
-      .get("http://localhost/cothink1/cothink/server/books/bookRead.php")
+    axios 
+      .get(`${apiUrl}/server/books/bookRead.php`) 
       .then((res) => {
         setBooks(res.data.data);
       })
-      .catch((err) => console.error(err));
-
-          axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php").then(res=>{
+      .catch((err) => console.error(err)); 
+          axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
             setCategories(res.data.data) ;
             setDisplayedCategories(res.data.data.slice(0,4))
         })
@@ -59,10 +60,10 @@ const Library=()=>{
                         <div className="w-full ">
                     <div className="topic-item mb-2" key={index}>
                     <a>
-                        <img src={item?.category_img}/>
+                               <h4>{item?.category}</h4>
                     </a>   
                         </div> 
-                    <h4 className="font-bold text-center">{item.category}</h4>
+                    {/* <h4 className="font-bold text-center">{item.category}</h4> */}
                 </div>
 
                         </>

@@ -4,7 +4,9 @@ import { BsChatLeftQuote, BsEnvelope } from "react-icons/bs";
 const TwoFactorAuth=()=>{
     return (
         <section>
-              <div className="features_card shadow-sm inset-shadow-sm">
+                     <h2 className="text-center text-2xl font-bold pb-5">İki mərhələli təsdiq</h2>
+                     <div className="p-5">
+                                      <div className="features_card shadow-sm inset-shadow-sm">
                                  <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                                 <div className="flex items-center gap-3">
                                      <div className="icons">
@@ -14,11 +16,11 @@ const TwoFactorAuth=()=>{
                                 <h4 className="font-bold">SMS vasitəsilə təsdiqləmə</h4>
                                 </div>
                                 </div>
-                                <button><SlArrowRight /></button> 
-                                {/* <label className="relative flex justify-between items-center group px-2">
-                               <input type="checkbox" value={''} className="sr-only peer" checked/>
-                               <div className="relative w-9 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-500"></div>
-                            </label> */}
+                               
+                             <label className="bg-blue-800 relative w-20 h-10 rounded-full cursor-pointer" for="check">
+                              <input type="checkbox" id="check" className="sr-only peer"></input>
+                              <span className="w-2/5 h-4/5 left-1 top-1 bg-white peer-checked:bg-red absolute rounded-full"></span>
+                            </label>
                             </div>
                             <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                                 <div className="flex items-center gap-3">
@@ -29,10 +31,15 @@ const TwoFactorAuth=()=>{
                                 <h4 className="font-bold">E-poçt vasitəsilə təsdiqləmə</h4>
                                 </div>
                                 </div>
-                               <button><SlArrowRight /></button> 
+                                <label className="bg-gray-200 relative w-20 h-10 rounded-full cursor-pointer" for="check">
+                              <input type="checkbox" id="check" className="sr-only peer"></input>
+                              <span className="w-2/5 h-4/5 left-1 top-1 bg-gray-600 peer-checked:bg-red absolute rounded-full"></span>
+                            </label>
                             </div>     
                                           
                             </div>
+                     </div>
+
                                <div className="text-center mt-5">
                   <a className="bg-blue-700 text-white px-5 py-3 rounded-md" href="/settings">Geri</a>
     </div>

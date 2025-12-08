@@ -1,8 +1,9 @@
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect,useRef, useContext } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
+import { ApiContext } from "../ApiContext";
 const AddPost=({setActiveTab})=>{
     const [postTitle, setPostTitle]=useState("")
     const [postDesc,setPostDesc]=useState("")
@@ -13,6 +14,7 @@ const AddPost=({setActiveTab})=>{
     const [preview, setPreview] = useState(null);
     const [categoryId, setCategoryId] = useState("");
     const [categories, setCategories]=useState([])
+    const {apiUrl}=useContext(ApiContext)
     
     
 const fileInputRef = useRef(null);
@@ -22,8 +24,8 @@ const fileInputRef = useRef(null);
     fileInputRef.current.click();
   };
 
-  useEffect(() => {
-    axios.get("http://localhost/cothink1/cothink/server/categories/categoryRead.php")
+  useEffect(() => { 
+    axios.get(`${apiUrl}/server/categories/categoryRead.php`) 
       .then((res) => {
         if (res.data.status === "success") {
           setCategories(res.data.data);
@@ -54,7 +56,7 @@ const fileInputRef = useRef(null);
     formData.append('category_id',categoryId);
 
         try{
-      const res= await axios.post("http://localhost/cothink1/cothink/server/studentPosts/postsPost.php", formData,
+      const res= await axios.post(`${apiUrl}/server/studentPosts/postsPost.php`, formData,
                { headers: { "Content-Type": "multipart/form-data" } })
          if(res.data.success){
             toast.success("Post uğurla əlavə olundu")
