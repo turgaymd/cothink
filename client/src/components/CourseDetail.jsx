@@ -10,11 +10,10 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
-import courses from "../data/coursesData";
 
 
 const CourseDetail=()=>{
-  // const [course, setCourse]=useState(null)
+  const [course, setCourse]=useState(null)
   const [open, setOpen]=useState(true)
   const {apiUrl}=useContext(ApiContext)
     const { id } = useParams();  
@@ -22,8 +21,9 @@ const CourseDetail=()=>{
       axios
         .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
         .then((res) => {
+             console.log(res.data.data)
           setCourse(res.data.data);
-          console.log(res.data.data);
+       
         })
         .catch((err) => console.error(err));
     }, [id])
@@ -32,28 +32,27 @@ const CourseDetail=()=>{
      const handleCollapse=()=>{
       setOpen(!open)
      }
-     const course = courses.find(m => m.course_id == id);
     return(
      <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
     
             <div className="">
-                <img src={course.course_img} className="w-full"/>
+                <img src={course?.course_img} className="w-full"/>
             <div className="flex justify-between items-center mt-4">
-                <p className="text-gray-500">{course.course_title}</p>
-                <a className="bg-blue-800 text-white px-4 py-2 rounded-md" href={`/courses/${course.course_id}/content`}>Kursu əldə et</a>
+                <p className="text-gray-500">{course?.course_title}</p>
+                <a className="bg-blue-800 text-white px-4 py-2 rounded-md" href={`/courses/${course?.course_id}/content`}>Kursu əldə et</a>
             </div>
             <p className="text-blue-500">#Fizika</p>
                 <div className="flex  gap-5 mt-5">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{course.likes}</div>
+            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{course?.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>
-            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{course.saved}</div>
+            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{course?.saved}</div>
         </div>
         <div className="flex justify-between mt-5 mb-5">
             <div className="flex gap-3">
-            <img src={course.profile_img} className="object-cover w-10 h-10"/>
+            <img src={course?.profile_img} className="object-cover w-10 h-10"/>
             <div className="flex flex-col">
-                <h4 className="font-bold">{course.mentor_name}</h4>
+                <h4 className="font-bold">{course?.mentor_name}</h4>
                 <p className="text-gray-400">Abunəçilər 11.2k</p>
                 </div>
                 
@@ -62,7 +61,7 @@ const CourseDetail=()=>{
             <div className="flex items-center gap-3 ">                 
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <button className="bg-blue-800 text-white rounded-md p-2"><BsChatRightText className="text-2xl"/></button>
-                   <a className="text-blue-800 rounded-md px-5 py-2 border border-blue-700"  href={`/courses/${course.course_id}/content`}>İzlə</a>
+                   <a className="text-blue-800 rounded-md px-5 py-2 border border-blue-700"  href={`/courses/${course?.course_id}/content`}>İzlə</a>
             </div>
             
             </div>

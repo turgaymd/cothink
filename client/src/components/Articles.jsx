@@ -36,6 +36,7 @@ const Articles=()=>{
     axios.get(`${apiUrl}/server/articles/articleRead.php`)
         .then(res => {
             setArticles(res.data)  
+              console.log(res.data)
         })
         .catch(err => console.error(err))
 }, []);

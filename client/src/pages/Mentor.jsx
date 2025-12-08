@@ -8,45 +8,45 @@ import Posts from "../components/Posts";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
-import mentors from "../data/MentorsData";
-import courses from "../data/coursesData";
 
 const Mentor = () => {
   const [activeTab, setActiveTab] = useState("courses");
-  // const [mentor, setMentor] = useState(null);
-  // const [courses, setCourses] = useState([]);
+  const [mentor, setMentor] = useState(null);
+  const [courses, setCourses] = useState([]);
    const [articles, setArticles] = useState([]);
    const [posts,setPosts]=useState([])
    const {apiUrl}=useContext(ApiContext)
   const { id } = useParams();
 
   useEffect(() => {
-    // axios
-    //   .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${id}`)
-    //   .then((res) => {
-    //     setMentor(res.data.data);
-    //   })
-    //   .catch((err) => console.log(err));
-    //      axios
-    //   .get(`${apiUrl}/server/mentors/mentorCourses.php?id=${id}`)
-    //   .then((res) => {
-    //     setCourses(res.data);
-    //   })
-      // .catch((err) => console.log(err));
+    axios
+      .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${id}`)
+      .then((res) => {
+        setMentor(res.data.data);
+      })
+      .catch((err) => console.log(err));
+         axios
+      .get(`${apiUrl}/server/mentors/mentorCourses.php?id=${id}`)
+      .then((res) => {
+        console.log(res.data)
+        setCourses(res.data);
+
+      })
+      .catch((err) => console.log(err));
        axios
-      .get(`${apiUrl}/server/books/bookRead.php`)
+      .get(`${apiUrl}/server/mentors/mentorPosts.php?id=${id}`)
       .then((res) => {
         setPosts(res.data);
       })
       .catch((err) => console.log(err));
        axios
-      .get(`${apiUrl}/server/articles/articleRead.php`)
+      .get(`${apiUrl}/server/mentors/mentorArticles.php?id=${id}`)
       .then((res) => {
         setArticles(res.data);
       })
       .catch((err) => console.log(err));
   }, [id]);
-  const mentor = mentors.find(m => m.mentor_id == id);
+
 
   if (!mentor) {
     return <p className="text-center text-xl mt-8">Mentor tapılmadı</p>;
@@ -129,7 +129,7 @@ const Mentor = () => {
                 </p>
               ) : (
                 courses.map((item) => (
-                  <CourseCard key={item._id} item={item} />
+                  <CourseCard key={item.course_id} item={item} />
                 ))
               )}
             </div>

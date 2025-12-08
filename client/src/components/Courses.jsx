@@ -1,11 +1,10 @@
 
-// import courses from "../data/CourseData";
+// import courses from "../data/CoursesData";
 import Search from "../utils/Search";
 import { MdArrowOutward } from "react-icons/md";
 import { useContext, useEffect,useState } from "react";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
-import courses from "../data/coursesData";
 export const CourseCard=({item})=>{
 
   return(
@@ -48,15 +47,15 @@ export const CourseCard=({item})=>{
 }
 
 const Courses = () => {
-    // const [courses, setCourses]=useState([])
-    // const apiUrl=useContext(ApiContext)
+    const [courses, setCourses]=useState([])
+    const {apiUrl}=useContext(ApiContext)
     
-  //  useEffect(()=>{
-  //       axios.get(`${apiUrl}/server/courses/courseRead.php`).then(res=>{
-  //         console.log(res.data)
-  //           setCourses(res.data)
-  //       })
-  //    },[])
+   useEffect(()=>{
+        axios.get(`${apiUrl}/server/courses/courseRead.php`).then(res=>{
+          console.log(res.data)
+            setCourses(res.data)
+        })
+     },[])
   return (
     <>
       <section>
@@ -68,7 +67,7 @@ const Courses = () => {
                 </div>
             </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
-            {Array.isArray(courses) &&
+{
   courses.map((item)=>(
     <CourseCard key={item.course_id} item={item}/>
 ))}

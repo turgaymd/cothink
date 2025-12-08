@@ -1,11 +1,11 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { ApiContext } from "../ApiContext";
-
+import Select from "react-select";
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -17,6 +17,7 @@ function Register() {
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState("student");
   const {apiUrl}=useContext(ApiContext)
+  const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -37,9 +38,8 @@ function Register() {
       setError("Qaydalar və şərtləri qəbul edin");
       return;
     }
-    const payload =
-      activeTab === "student"
-        ? {
+   const formData=  activeTab === "student"
+      ? {
             type: "student",
             username,
             email,
@@ -51,12 +51,12 @@ function Register() {
             email,
             password,
             linkedinLink: linkedin,
-            category: parseInt(subject) || 0, 
+            category_id: subject, 
           };
 
     try {
       const res = await axios.post(`${apiUrl}/server/register.php`,
-        payload,
+        formData,
         { headers: { "Content-Type": "application/json" } }
       );
 
@@ -70,6 +70,22 @@ function Register() {
       const msg = err.response?.data?.error || "Xəta baş verdi";
       toast.error(msg);
     }
+  };
+
+  
+    useEffect(() => {
+      axios
+        .get(`${apiUrl}/server/categories/categoryRead.php`)
+        .then((res) => {
+          if (res.data.status === "success") {
+            setCategories(res.data.data);
+          }
+        })
+        .catch(() => toast.error("Category yüklənmədi"));
+    }, []);
+
+  const handleSelect = (selectedCategory) => {
+    setSubject(selectedCategory.value);
   };
 
   return (
@@ -130,14 +146,15 @@ function Register() {
                   </div>
 
                   <div className="mb-2">
-                    <label htmlFor="subject" className="text-sm font-bold mb-2">Fənn / Category ID</label>
-                    <input
-                      type="number"
-                      id="subject"
-                      placeholder="Category ID daxil edin"
-                      className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
-                      onChange={(e) => setSubject(e.target.value)}
-                    />
+                    <label htmlFor="subject" className="text-sm font-bold mb-2">Fənn</label>
+                     <Select
+            options={categories.map((item) => ({
+              value: item.category_id,
+              label: item.category,
+            }))}
+            onChange={handleSelect}
+            placeholder="Kategoriya seçin"
+          />
                   </div>
                 </>
               )}

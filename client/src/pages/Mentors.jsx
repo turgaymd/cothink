@@ -2,21 +2,23 @@ import { useState,useEffect, useContext } from "react";
 import Search from "../utils/Search";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
-import mentors from "../data/MentorsData";
 
 const Mentors=()=>{
 const [categories,setCategories]=useState([])
-
+const [mentorArticles, setMentorArticles]=useState([])
 // const  [displayedCategories, setDisplayedCategories]=useState(categories.slice(0, 4))
 // const  [visibleCategories, setVisibleCategories]=useState(4)
 const  [query, setQuery]=useState("")
+const [mentors, setMentors]=useState([])
 
-const apiUrl=useContext(ApiContext)
+const {apiUrl}=useContext(ApiContext)
 
      useEffect(()=>{
-        // axios.get(`${apiUrl}/server/mentors/mentors.php`).then(res=>{
-        //     setMentors(res.data)
-        // })
+        axios.get(`${apiUrl}/server/mentors/mentors.php`).then(res=>{
+            setMentors(res.data)
+            console.log(res.data)
+        })
+       
          axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{
             setCategories(res.data)
         })

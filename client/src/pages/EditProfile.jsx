@@ -72,8 +72,6 @@ const EditProfile = () => {
             </button>
           </div>
         </div>
-
-        {/* Ad */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Ad</label>
           <input
@@ -84,7 +82,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* Username */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">İstifadəçi adı</label>
           <input
@@ -94,8 +91,6 @@ const EditProfile = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-
-        {/* Email */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Email</label>
           <input
@@ -105,8 +100,6 @@ const EditProfile = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
-        {/* Bio */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Bio</label>
           <textarea
@@ -116,8 +109,6 @@ const EditProfile = () => {
             onChange={(e) => setAbout(e.target.value)}
           />
         </div>
-
-        {/* Telefon */}
         <div className="flex gap-5 items-center">
           <label className="font-bold w-40 shrink-0">Telefon nömrəsi</label>
           <input
@@ -127,8 +118,6 @@ const EditProfile = () => {
             onChange={(e) => setPhone(e.target.value)}
           />
         </div>
-
-        {/* Cinsi */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Cinsi</label>
           <input
@@ -139,7 +128,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* Parol */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Şifrə</label>
           <input
@@ -150,7 +138,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* LinkedIn */}
         <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">LinkedIn</label>
           <input
@@ -160,8 +147,6 @@ const EditProfile = () => {
             onChange={(e) => setLinkedin(e.target.value)}
           />
         </div>
-
-        {/* Submit */}
         <div className="flex md:flex-row flex-col justify-center gap-5">
           <button
             type="submit"
