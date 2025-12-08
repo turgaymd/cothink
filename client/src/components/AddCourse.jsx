@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { FiUploadCloud } from "react-icons/fi";
 import Select from "react-select";
 import { ApiContext } from "../ApiContext";
@@ -43,9 +43,27 @@ const AddCourse = ({ setActiveTab }) => {
     formData.append("category_id", categoryId);
     formData.append("lesson_title", lessonTitle);
     formData.append("video_link", courseLink);
-    formData.append("course_file", courseFile); // FAYL BURADADIR
-    formData.append("mentor_id", 7); // test üçün, sonra localStorage-dən götürərsən
-
+    formData.append("course_file", courseFile); 
+    formData.append("mentor_id", 7); 
+    try
+    {
+const res= await axios.post(`${apiUrl}/server/courses/coursePost.php`, formData,
+               { headers: { "Content-Type": "multipart/form-data" } })
+         if(res.data.success==="success"){
+            toast.success("Course uğurla əlavə olundu")
+            setCourseTitle("");
+            setCourseFile("")
+            setLessonTitle("")
+            setCategoryId("")
+            setError("");
+         }
+         else{
+            setError(res.data.error)
+         }
+    }
+ catch(err){
+   console.log(err.message)
+ }
    
   };
 
@@ -53,6 +71,8 @@ const AddCourse = ({ setActiveTab }) => {
     setCategoryId(selectedCategory.value);
   };
   return (
+    <>
+    <ToastContainer/>
     <div className="research-form">
       <h2 className="text-center font-bold text-3xl">Kurs əlavə et</h2>
       <p className="text-center text-gray-400 pb-3">
@@ -165,6 +185,7 @@ const AddCourse = ({ setActiveTab }) => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 
