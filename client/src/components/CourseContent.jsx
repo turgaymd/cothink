@@ -8,7 +8,9 @@ import { ApiContext } from "../ApiContext";
 const CourseContent=()=>{
         const { id } = useParams();  
         const [course, setCourse]=useState(null)
+        const [currentIndex, setCurrentIndex]=useState(0)
         const {apiUrl}=useContext(ApiContext)
+
         useEffect(() => {
           axios
             .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
@@ -18,7 +20,23 @@ const CourseContent=()=>{
             })
             .catch((err) => console.error(err));
         }, [id])
-    
+
+    const handleNext=()=>{
+        if(currentIndex<course.lessons.length-1){
+          setCurrentIndex(currentIndex+1)
+        }
+    }
+           const handlePrev=()=>{
+        if(currentIndex>0){
+          setCurrentIndex(currentIndex-1)
+        }
+
+    }
+    const getEmbedUrl=(url)=>{
+        const videoUrl=url.split("youtu.be/")[1].split("?")[0]
+            return `https://www.youtube.com/embed/${videoUrl}`;
+    }
+
     return(
         <section>
             <h2 className="font-bold text-2xl">{course?.course_title}</h2>
@@ -35,11 +53,10 @@ const CourseContent=()=>{
                 <h4 className="font-semibold text-center text-xl pb-4">{course?.lessons[0].lesson_title}</h4>
             <div></div>
             <div className="flex justify-center relative flex-col items-center">
-             
-            <iframe src="https://www.youtube.com/embed/K4HxNNGx9eg" className="md:h-[64vh] h-[40vh] w-full object-cover rounded-md" controls={true}/>
+            <iframe src={course && getEmbedUrl(course.lessons[currentIndex].video_link)} className="md:h-[64vh] h-[40vh] w-full object-cover rounded-md" controls={true}/>
                <div className="w-full flex gap-3 pt-2 pb-2 mt-3 justify-between shadow-sm inset-shadow-sm ">
-                <button className="w-full flex gap-3"><SlArrowLeft className="text-blue-600" fontSize={24}/>Əvvəlki</button>
-                <button className="w-full flex justify-end gap-3">Sonrakı<SlArrowRight className="text-blue-600" fontSize={24}/></button>
+                <button className="w-full flex gap-3" onClick={handlePrev} disabled={currentIndex===0}><SlArrowLeft className="text-blue-600" fontSize={24} />Əvvəlki</button>
+                <button className="w-full flex justify-end gap-3"  onClick={handleNext}>Sonrakı<SlArrowRight className="text-blue-600" fontSize={24}/></button>
             </div>
             </div>
                </div>

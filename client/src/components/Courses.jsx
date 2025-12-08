@@ -11,7 +11,7 @@ export const CourseCard=({item})=>{
   <div className="course-item shadow-lg rounded-2xl">
                         <article>
             <a>
-              <img src={`${item.course_img.trim()}`}></img>
+              <img src={`${item?.course_img?.trim()}`}></img>
             </a>
             </article>
             <div className="course-category mt-3 text-blue-600">{item.category}</div>

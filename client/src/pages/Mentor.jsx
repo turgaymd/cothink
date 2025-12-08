@@ -4,7 +4,7 @@ import { CourseCard } from "../components/Courses";
 import { SlSocialLinkedin } from "react-icons/sl";
 import { TbWorld } from "react-icons/tb";
 import Articles, { ArticleCard } from "../components/Articles";
-import Posts from "../components/Posts";
+import Posts, { PostCard } from "../components/Posts";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
@@ -30,14 +30,16 @@ const Mentor = () => {
       .get(`${apiUrl}/server/mentors/mentorCourses.php?id=${id}`)
       .then((res) => {
         console.log(res.data)
-        setCourses(res.data);
+        setCourses(res.data.data);
 
       })
       .catch((err) => console.log(err));
        axios
       .get(`${apiUrl}/server/mentors/mentorPosts.php?id=${id}`)
       .then((res) => {
+        console.log(res.data)
         setPosts(res.data);
+        console.log(res.data)
       })
       .catch((err) => console.log(err));
        axios
@@ -123,7 +125,7 @@ const Mentor = () => {
         </div>
 
         <div>
-          {/* {activeTab === "courses" && (
+          {activeTab === "courses" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {courses.length === 0 ? (
                 <p className="text-center text-xl font-bold col-span-3">
@@ -135,7 +137,7 @@ const Mentor = () => {
                 ))
               )}
             </div>
-          )} */}
+          )}
            {activeTab === "articles" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {articles.length === 0 ? (
@@ -151,11 +153,19 @@ const Mentor = () => {
           )}
 
           {
-             activeTab === "posts" &&  <Posts />
-          }
-                 
-            
-        
+             activeTab === "posts" &&  (
+             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {posts.length === 0 ? (
+                <p className="text-center text-xl font-bold col-span-3">
+                  Kurs tapılmadı
+                </p>
+              ) : (
+                posts.map((item) => (
+                  <ArticleCard key={item._id} item={item} />
+                ))
+              )}
+            </div>
+          )})     
         </div>
       </section>
     </div>

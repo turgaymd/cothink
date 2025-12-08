@@ -19,9 +19,7 @@ const Book = () => {
       })
       .catch((err) => console.error(err));
   }, [id]);
-  // if (!book) {
-  //   return <Loading/>;
-  // }
+
   return (
     <section>
       <div>
