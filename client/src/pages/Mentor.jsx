@@ -8,6 +8,7 @@ import Posts from "../components/Posts";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
+import Loading from "../utils/Loading";
 
 const Mentor = () => {
   const [activeTab, setActiveTab] = useState("courses");
@@ -42,6 +43,7 @@ const Mentor = () => {
        axios
       .get(`${apiUrl}/server/mentors/mentorArticles.php?id=${id}`)
       .then((res) => {
+        console.log(res.data)
         setArticles(res.data);
       })
       .catch((err) => console.log(err));
@@ -49,7 +51,7 @@ const Mentor = () => {
 
 
   if (!mentor) {
-    return <p className="text-center text-xl mt-8">Mentor tapılmadı</p>;
+    return <Loading/>
   }
   return (
     <div>
@@ -121,7 +123,7 @@ const Mentor = () => {
         </div>
 
         <div>
-          {activeTab === "courses" && (
+          {/* {activeTab === "courses" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {courses.length === 0 ? (
                 <p className="text-center text-xl font-bold col-span-3">
@@ -133,7 +135,7 @@ const Mentor = () => {
                 ))
               )}
             </div>
-          )}
+          )} */}
            {activeTab === "articles" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {articles.length === 0 ? (

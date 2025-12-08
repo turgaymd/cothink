@@ -1,25 +1,9 @@
 import { BsThreeDots } from "react-icons/bs";
-import { useContext, useEffect,useState } from "react";
-import axios from "axios";
-import { ApiContext } from "../ApiContext";
-const Posts=()=>{
-        const [posts, setPosts]=useState([])
-        const {apiUrl}=useContext(ApiContext)
-        
-useEffect(()=>{
-    axios.get(`${apiUrl}/server/posts/postsRead.php`)
-        .then(res => {
-            setPosts(res.data) // backend JSON-dakı array
-        })
-     },[posts])
+import {useState } from "react";
 
-    return (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center mx-auto">
-                    {
-                        posts.length===0 ?       
-                         <p className="font-bold col-span-4 text-center text-2xl">Post tapılmadı</p>   : (
-    posts.map((item, index)=>(
-        <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4" key={index}>
+export const PostCard=({item})=>{
+    return(
+          <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
     <div className="flex justify-between items-center">
         <div className="flex gap-4">
         <img src="/həcər.jpg" className="rounded-full w-24 h-24"/>
@@ -40,6 +24,18 @@ useEffect(()=>{
             <div className="share flex items-center gap-2"><img src="/share.svg"></img>Paylaş</div>
         </div>
             </div>
+    )
+}
+const Posts=()=>{
+        const [posts, setPosts]=useState([])
+        
+    return (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center mx-auto">
+                    {
+                        posts.length===0 ?       
+                         <p className="font-bold col-span-4 text-center text-2xl">Post tapılmadı</p>   : (
+    posts.map((item, index)=>(
+      <PostCard item={item} key={index}/>
     )))}
         </div>
     )

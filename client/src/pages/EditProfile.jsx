@@ -1,14 +1,15 @@
 import { useState, useRef } from "react";
 
 const EditProfile = () => {
-  const [name, setName] = useState("Rauf");
-  const [username, setUsername] = useState("Rauf_123");
-  const [email, setEmail] = useState("");
+   const user=JSON.parse(localStorage.getItem("user"))
+  const [name, setName] = useState(user.name);
+  const [username, setUsername] = useState(user.username);
+  const [email, setEmail] = useState(user.email);
   const [about, setAbout] = useState("");
   const [phone, setPhone] = useState("+994 971");
   const [gender, setGender] = useState("Kişi");
   const [password, setPassword] = useState("");
-  const [linkedin, setLinkedin] = useState("");
+  const [linkedin, setLinkedin] = useState();
 
   const fileInputRef = useRef(null);
 
@@ -58,7 +59,7 @@ const EditProfile = () => {
             />
           </div>
           <div className="flex flex-col">
-            <h4 className="font-bold flex justify-center">Rauf Quliyev</h4>
+            <h4 className="font-bold flex justify-center">{user.name}</h4>
 
             <input
               ref={fileInputRef}

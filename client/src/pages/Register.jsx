@@ -59,10 +59,8 @@ function Register() {
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
-
       if (res.data.success) {
         toast.success("Qeydiyyat uğurla tamamlandı");
-
         localStorage.setItem("user", JSON.stringify(res.data));
         setTimeout(() => navigate("/home"), 1500);
       }
