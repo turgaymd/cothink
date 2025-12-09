@@ -47,7 +47,7 @@ const {apiUrl}=useContext(ApiContext)
                 <p className="font-medium text-xl">Sizə ən uyğun mentor profillərini kəşf edin.</p>
                 </div>
                 <div className="flex md:justify-end justify-center">
-                   <img src="mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
+                   <img src="/images/mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
                     </div>
                 </div>
             </div>        

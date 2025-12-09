@@ -8,7 +8,7 @@ function Discussion(){
   const [post, setPost] = useState(null);
   const [comments, setComments]=useState([])
   const {apiUrl}=useContext(ApiContext)
-  
+
   useEffect(() => {
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?id=${id}`)
@@ -67,10 +67,11 @@ function Discussion(){
 
 </div>
 <div className="comments">
-    <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
+ 
               {  comments.map((comment)=>{
                 return(
                     <>
+                       <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
     <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
                     <div className="comment-header flex items-center ">
             <img  className="rounded-md avatar" src={comment.profile_img}></img>

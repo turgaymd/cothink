@@ -64,7 +64,7 @@ const Mentor = () => {
             <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
               <div className="profil-img flex flex-col justify-center items-center">
                 <img
-                  src="/images/emil.jpg"
+                  src={mentor.profile_img}
                   className="mentor-avatar rounded-full object-cover"
                 />
                 <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-700">

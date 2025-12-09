@@ -117,18 +117,19 @@ function Login() {
                 <button type="submit" className="text-white bg-blue-800 w-full outline-none">
                   Daxil ol
                 </button>
-                <p className="text-center">Və ya</p>
-                <button className="w-full border border-gray-300 flex items-center justify-center gap-2">
-                  <FcGoogle fontSize={28} /> Google ilə daxil ol
-                </button>
               </div>
+            
+            </form>
               <p className="text-center mt-4">
                 Hələ də hesabınız yoxdur ?{" "}
                 <a href="/register" className="text-blue-700">
                   Qeydiyyat
                 </a>
               </p>
-            </form>
+              <p className="text-center pt-3 pb-3">Və ya</p>
+                <button className="w-full border border-gray-300 flex items-center justify-center gap-2 pb-5">
+                  <FcGoogle fontSize={28} /> Google ilə daxil ol
+                </button>
           </div>
         </div>
       </div>

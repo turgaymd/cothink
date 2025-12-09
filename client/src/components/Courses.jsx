@@ -10,7 +10,7 @@ export const CourseCard=({item})=>{
   return(
   <div className="course-item shadow-lg rounded-2xl">
                         <article>
-            <a>
+            <a href={`/courses/${item.course_id}`}>
               <img src={`${item?.course_img?.trim()}`}></img>
             </a>
             </article>

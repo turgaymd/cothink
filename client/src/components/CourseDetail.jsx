@@ -33,7 +33,7 @@ const CourseDetail=()=>{
             .get(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`)
             .then((res) => {
               setComments(res.data);
-              console.log(res.data);
+              // console.log(res.data);
             })
 
      const handleCollapse=()=>{
@@ -49,7 +49,7 @@ const CourseDetail=()=>{
                 <p className="text-gray-500">{course?.course_title}</p>
                 <a className="bg-blue-800 text-white px-4 py-2 rounded-md" href={`/courses/${course?.course_id}/content`}>Kursu əldə et</a>
             </div>
-            <p className="text-blue-500">#Fizika</p>
+            <p className="text-blue-500">{course?.category_name}</p>
                 <div className="flex  gap-5 mt-5">
             <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{course?.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>26</div>
