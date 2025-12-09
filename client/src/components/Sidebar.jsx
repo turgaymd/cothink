@@ -15,7 +15,7 @@ function Sidebar({setOpen}){
                   <form className="w-full">
                     <input type="text" placeholder="Axtarış..." className="w-full border border-gray-300 rounded-md p-2"/>
                   </form>
-                                                        <li><NavLink  className="md:hidden flex gap-2  md:p-3 md:pl-7" to={"/share"}  onClick={()=>setOpen(false)}><img src="/new_share.svg" className="hidden md:flex"/>Yeni paylaşım</NavLink></li>
+                                                        <li><NavLink  className="md:hidden flex gap-2  md:p-3 md:pl-7" to={"/share"}  onClick={()=>setOpen(false)}><img src="/images/new_share.svg" className="hidden md:flex"/>Yeni paylaşım</NavLink></li>
                   <li className="nav-item"><NavLink className="flex gap-2 md:p-3 md:pl-7 " to="/home" onClick={()=>setOpen(false)}>Ana Səhifə</NavLink></li>
                 <li className="nav-item"><NavLink  className="flex gap-2 md:p-3 md:pl-7 " to="/questions" onClick={()=>setOpen(false)}>Sual-Cavab</NavLink></li>
                 <li className="nav-item"><NavLink className="flex gap-2 md:p-3 md:pl-7 " to="/mentors" onClick={()=>setOpen(false)}>Mentorlar</NavLink></li>
@@ -23,11 +23,11 @@ function Sidebar({setOpen}){
                 </div>
               )
             }                     
-             <li><NavLink  className="flex gap-2 md:p-3 md:pl-7 " to={"/courses"} onClick={()=>setOpen(false)}><img src="/courses.svg" className="hidden md:flex"/><p >Kurslar</p></NavLink></li>
-             <li ><NavLink  className="flex gap-2  md:p-3 md:pl-7 " to={"/library"} onClick={()=>setOpen(false)}><img src="/library.svg" className="hidden md:flex"/><p >Kitabxana</p></NavLink></li>
-             <li ><NavLink className="flex gap-2  md:p-3  md:pl-7 " to={"/saved"} onClick={()=>setOpen(false)}><img src="/save.svg" className="hidden md:flex"/><p >Yadda saxlanılanlar</p></NavLink></li>
-             <li><NavLink  className="flex gap-2  md:p-3 md:pl-7 " to={"/settings"} onClick={()=>setOpen(false)} ><img src="/settings.svg" className="hidden md:flex"/><p >Parametrlər</p></NavLink></li>
-                                       <li><NavLink  className="hidden md:flex gap-2  md:p-3 md:pl-7" to={"/share"}  onClick={()=>setOpen(false)}><img src="/new_share.svg" className="hidden md:flex"/><p >Yeni paylaşım</p></NavLink></li>
+             <li><NavLink  className="flex gap-2 md:p-3 md:pl-7 " to={"/courses"} onClick={()=>setOpen(false)}><img src="/images/courses.svg" className="hidden md:flex"/><p >Kurslar</p></NavLink></li>
+             <li ><NavLink  className="flex gap-2  md:p-3 md:pl-7 " to={"/library"} onClick={()=>setOpen(false)}><img src="/images/library.svg" className="hidden md:flex"/><p >Kitabxana</p></NavLink></li>
+             <li ><NavLink className="flex gap-2  md:p-3  md:pl-7 " to={"/saved"} onClick={()=>setOpen(false)}><img src="/images/save.svg" className="hidden md:flex"/><p >Yadda saxlanılanlar</p></NavLink></li>
+             <li><NavLink  className="flex gap-2  md:p-3 md:pl-7 " to={"/settings"} onClick={()=>setOpen(false)} ><img src="/images/settings.svg" className="hidden md:flex"/><p >Parametrlər</p></NavLink></li>
+                                       <li><NavLink  className="hidden md:flex gap-2  md:p-3 md:pl-7" to={"/share"}  onClick={()=>setOpen(false)}><img src="/images/new_share.svg" className="hidden md:flex"/><p >Yeni paylaşım</p></NavLink></li>
                                                         <li className="nav-item"><NavLink className="md:hidden text-red-500 flex gap-2 md:p-3 md:pl-7" to="/login" onClick={()=>setOpen(false)}>Hesabdan çıxış</NavLink></li>
            </ul>
            </div>

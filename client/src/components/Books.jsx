@@ -65,12 +65,12 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
                     <div className="flex gap-5 md:flex-row stats ">
                       <div className="flex items-center gap-1">
                         <a className="flex gap-1" download href={`item.book_url`}>
-                          <img src="download.svg" />
+                          <img src="/images/download.svg" />
                           <span>Yüklə</span>
                         </a>
                       </div>
                       <div className="flex items-center gap-1">
-                        <img src="share.svg" />
+                        <img src="/images/share.svg" />
                         <span>Paylaş</span>
                       </div>
                       <div className="flex items-center gap-1">

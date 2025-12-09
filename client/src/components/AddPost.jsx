@@ -120,7 +120,7 @@ label:item.category
      <label htmlFor="title" className="block title font-semibold pb-2">Şəkillər</label>
      <div className="flex justify-center items-center flex-col gap-3 border border-gray-300 p-5 rounded-2xl">
          {preview && <img src={preview} alt="Preview" className="w-32 h-32" />}
-    <img src="image_icon.png"/>
+    <img src="/images/image_icon.png"/>
 <input  ref={fileInputRef} type="file" className="sr-only" accept="image/*"  onChange={(e) => {
                 const file = e.target.files[0];
                 if (file) {

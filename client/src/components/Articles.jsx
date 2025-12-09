@@ -4,12 +4,12 @@ import { ApiContext } from "../ApiContext";
 
 export const ArticleCard=({item})=>{
     return(
-          <div className="article-item mb-5">
+          <div className="article-item mb-5 text-black">
     <a href={`/library/articles/${item.article_id}`}>
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center md:flex-row flex-col gap-2">
                         <div className="article-author flex items-center gap-2">
-                            <img src="/avatar.png"/>
+                            <img src="/images/avatar.png"/>
                             <span>{item.mentor_name}</span>
                             <span>•</span>
                             <span>{item.created_at}</span>
@@ -26,10 +26,9 @@ export const ArticleCard=({item})=>{
             </div>   
     )
 }
-const Articles=()=>{
+const Articles=({query})=>{
 
    const [articles,setArticles]=useState([])
-   const  [query, setQuery]=useState("")
    const {apiUrl}=useContext(ApiContext)
    
         useEffect(() => { 
@@ -42,7 +41,7 @@ const Articles=()=>{
 }, []);
 
           const filteredArticles=articles.filter((item)=>
-        item.article_title.toLowerCase().includes(query.toLowerCase())
+        item?.article_title?.toLowerCase().includes(query.toLowerCase())
     ) 
     return(
         <>

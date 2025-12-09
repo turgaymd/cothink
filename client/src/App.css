@@ -139,7 +139,7 @@ section{
 }
 
 .article-item{
-  background-image: url("../public/article.jpg");
+  background-image: url("../public/images/article.jpg");
   background-position: center;
   border-radius: 16px;
   padding: 15px 25px;

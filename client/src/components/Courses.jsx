@@ -48,6 +48,7 @@ export const CourseCard=({item})=>{
 
 const Courses = () => {
     const [courses, setCourses]=useState([])
+    const [query ,setQuery]=useState("")
     const {apiUrl}=useContext(ApiContext)
     
    useEffect(()=>{
@@ -56,10 +57,15 @@ const Courses = () => {
             setCourses(res.data)
         })
      },[])
+
+       const filteredCourses=courses.filter((item)=>
+        item.course_title.toLowerCase().includes(query.toLowerCase()) ||
+        item?.mentor_name?.toLowerCase().includes(query.toLowerCase()) 
+    )
   return (
     <>
       <section>
-       <Search/>
+       <Search query={query} setQuery={setQuery}/>
                     <div className="course-filter mt-5 mb-5">
                     <div className="filter-items flex md:flex-row flex-col gap-3">
                     <span className="active rounded-full">Fizika</span>
@@ -68,7 +74,7 @@ const Courses = () => {
             </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
 {
-  courses.map((item)=>(
+  filteredCourses.map((item)=>(
     <CourseCard key={item.course_id} item={item}/>
 ))}
                   

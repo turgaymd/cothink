@@ -52,20 +52,20 @@ const Article = () => {
         <div className="post-reactions flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-3 justify-between md:flex-row flex-col items-center">
           <div className="flex gap-3">
             <div className="like-count flex items-center gap-2">
-              <img src="/like.svg" alt="like" />
+              <img src="/images/like.svg" alt="like" />
               {article.likes || 0}
             </div>
             <div className="comment-count flex items-center gap-2">
-              <img src="/comment.svg" alt="comment" />
+              <img src="/images/comment.svg" alt="comment" />
               {article.comments || 0}
             </div>
           </div>
           <div className="post-reactions flex gap-5">
             <div className="share flex items-center gap-2">
-              <img src="/share.svg" alt="share" /> {article.shared || 0}
+              <img src="/images/share.svg" alt="share" /> {article.shared || 0}
             </div>
             <div className="saved-count flex items-center gap-2">
-              <img src="/save.svg" alt="saved" />
+              <img src="/images/save.svg" alt="saved" />
               {article.saved || 0}
             </div>
             <div>
@@ -81,7 +81,7 @@ const Article = () => {
               className="rounded-md mb-3"
               alt={article.article_title}
             /> 
-          )  : <img src="/article.jpg" className="h-84 w-full rounded-md"/>
+          )  : <img src="/images/article.jpg" className="h-84 w-full rounded-md"/>
         
         }
           <p className="pt-4">{article.article_desc}</p>
@@ -94,7 +94,7 @@ const Article = () => {
         <div className="comments">
           <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
           <div className="flex gap-2 mb-3 items-center">
-            <img src="/avatarr.svg" className="w-15 h-15" alt="avatar" />
+            <img src="/images/avatarr.svg" className="w-15 h-15" alt="avatar" />
             <p>Username</p>
           </div>
           <input
@@ -107,7 +107,7 @@ const Article = () => {
             <div className="comment-header flex md:flex-row flex-col items-center">
               <img
                 className="rounded-md avatar"
-                src="/həcər.jpg"
+                src="/images/həcər.jpg"
                 alt="comment author"
               />
               <div className="pl-4">
@@ -122,10 +122,10 @@ const Article = () => {
             </div>
             <div className="flex justify-end gap-5 comment-reactions pt-3">
               <div className="like-count flex items-center gap-2">
-                <img src="/like.svg" alt="like" />52
+                <img src="/images/like.svg" alt="like" />52
               </div>
               <div className="comment-count flex items-center gap-2">
-                <img src="/comment.svg" alt="comment" />26
+                <img src="/images/comment.svg" alt="comment" />26
               </div>
             </div>
           </div>

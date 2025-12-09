@@ -71,7 +71,7 @@ const CourseContent=()=>{
                </div>
                <div className="shadow-sm inset-shadow-sm mt-4 px-4 py-3 rounded-md">
                 <div className="flex items-center gap-3">
-                    <img src="/library.svg" className="w-10 h-10"/>
+                    <img src="/images/library.svg" className="w-10 h-10"/>
                     <div>
                 <h5>16 dərs</h5>
                 <p className="text-gray-500">Ümumi 52 saat</p>
@@ -100,7 +100,10 @@ const CourseContent=()=>{
                     <div className="comments">
                         <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…"/>
     <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
-           {  comments.map((comment)=>{
+       {
+              comments.length > 0 && (
+                <>
+   {  comments.map((comment)=>{
                 return(
                     <>
     <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
@@ -119,8 +122,9 @@ const CourseContent=()=>{
                     </div>
                     </>
          )
-            })
-        }   
+            })}
+            </>
+        )}  
                     </div>
         </section>
     )

@@ -21,7 +21,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                 <p className="font-medium text-xl">Sənə uyğun öyrənmə metodları ilə tanış ol.</p>
                 </div>
                 <div className="flex md:justify-end justify-center">
-                   <img src="mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
+                   <img src="/images/mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
                     </div>
                 </div>
       
@@ -51,7 +51,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between flex-col md:flex-row items-center">
                         <div className="article-author flex items-center gap-2">
-                            <img src="/avatar.png"/>
+                            <img src="/images/avatar.png"/>
                             <span>Elcan Məmmədov</span>
                             <span>•</span>
                             <span>10 saat əvvəl</span>
@@ -72,7 +72,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between flex-col md:flex-row items-center">
                         <div className="article-author flex items-center gap-2">
-                            <img src="/avatar.png"/>
+                            <img src="/images/avatar.png"/>
                             <span>Elcan Məmmədov</span>
                             <span>•</span>
                             <span>10 saat əvvəl</span>
@@ -92,7 +92,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center flex-col md:flex-row ">
                         <div className="article-author flex items-center gap-2">
-                            <img src="/avatar.png"/>
+                            <img src="/images/avatar.png"/>
                             <span>Elcan Məmmədov</span>
                             <span>•</span>
                             <span>10 saat əvvəl</span>
@@ -131,7 +131,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                                     <div className="flex justify-between md:flex-row flex-col items-center gap-1">
                                         <div className="flex flex-col justify-between">
                                 <div className="flex gap-3 items-center">
-                                    <img src="aydan.png"/>
+                                    <img src="/images/aydan.png"/>
                                     <h5>Ayan Əlizadə</h5>
                                     <span>•</span>
                                     <p>6 saat əvvəl</p>
@@ -141,7 +141,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                                 </div>
                                 </div>
                                 <div>
-                                    <img src="most_liked.jpg"/>
+                                    <img src="/images/most_liked.jpg"/>
                                 </div>
                                   </div>
                                   </a>
@@ -151,7 +151,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                                     <div className="flex justify-between md:flex-row flex-col items-center gap-1">
                                         <div className="flex flex-col justify-between">
                                 <div className="flex gap-3 items-center">
-                                    <img src="aydan.png"/>
+                                    <img src="/images/aydan.png"/>
                                     <h5>Ayan Əlizadə</h5>
                                      <span>•</span>
                                     <p>6 saat əvvəl</p>
@@ -161,7 +161,7 @@ const  [visibleCategories, setVisibleCategories]=useState(4)
                                 </div>
                                 </div>
                                 <div>
-                                    <img src="most_liked.jpg"/>
+                                    <img src="/images/most_liked.jpg"/>
                                 </div>
                                   </div>
                                   </a>

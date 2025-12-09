@@ -30,10 +30,10 @@ const Book = () => {
           <h4 className="font-bold text-xl">{book?.mentor_name}</h4>
           <div className="post-reactions flex justify-center gap-5 w-full max-w-md">
             <div className="like-count flex items-center gap-2">
-              <img src="/like.svg" alt="like" /> {book?.likes}
+              <img src="/images/like.svg" alt="like" /> {book?.likes}
             </div>
             <div className="saved-count flex items-center gap-2">
-              <img src="/save.svg" alt="saved" /> {book?.saved}
+              <img src="/images/save.svg" alt="saved" /> {book?.saved}
             </div>
             <div className="share flex items-center gap-2">
               <LuTableOfContents fontSize={24}/>{book?.chapters}

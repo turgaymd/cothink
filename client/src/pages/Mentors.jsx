@@ -32,10 +32,9 @@ const {apiUrl}=useContext(ApiContext)
         return newCount;
        })}
 
-        //   const filteredMentors=mentors.filter((item)=>
-        // item.item.toLowerCase().includes(query.toLowerCase()) 
-        // item.category.toLowerCase().includes(query.toLowerCase())
-    // )
+          const filteredMentors=mentors.filter((item)=>
+        item.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+    )
     return (
         <div className="md:col-span-10">
           <section>
@@ -82,14 +81,14 @@ const {apiUrl}=useContext(ApiContext)
                 <button className="text-blue-500" >Hamısına bax</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 pt-4">
-                  {mentors.length===0 ? 
+                  {filteredMentors.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
-                  (mentors.map((item,index)=>(
+                  (filteredMentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
                     <a href={`/mentors/mentor/${item.mentor_id}`} className="block">
                     <div className="mentor-title gap-5 flex">          
                           <img 
-  src={"avatarr.svg"} 
+  src={"/images/avatarr.svg"} 
   className="avatar rounded-full object-cover" 
   alt="mentor" 
 />
@@ -99,17 +98,17 @@ const {apiUrl}=useContext(ApiContext)
                          <div className="flex justify-between gap-5 items-center pt-4">
                         <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
-                          <img src="users.svg" className="w-5 h-5"/>
+                          <img src="/images/users.svg" className="w-5 h-5"/>
                           <span>{item.students} tələbə</span>
                                </div>
                          <div className="flex items-center gap-2">  
-                        <img src="comment.svg" className="w-5 h-5"/>
+                        <img src="/images/comment.svg" className="w-5 h-5"/>
                         <span>{item.comments}</span>
                              </div>
                         </div>                               
                        <div className="flex flex-col items-center gap-2">
                         <span>{item.rating}</span>
-                      <img src="stars.svg"/>
+                      <img src="/images/stars.svg"/>
                         </div>
                        
                                    </div>

@@ -76,7 +76,7 @@ const Library=()=>{
                     <span className="filter-item rounded-md bg-blue-800">Hamısı</span>
                 </div>
             </div>
-            {activeTab==="articles" ? <Articles/> : <>  
+            {activeTab==="articles" ? <Articles query={query}/> : <>  
                    <Books books={books} query={query}/>
                  </>} 
      </section>

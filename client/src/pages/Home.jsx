@@ -77,10 +77,10 @@ const Home=()=>{
             </button>
                     <div className="logo">
                         <Link to ="/home" className="hidden md:flex">
-                         <img src="/logo.jpg"></img>
+                         <img src="/images/logo.jpg"></img>
                         </Link>
                          <Link to ="/home" className="md:hidden flex">
-                         <img src="mobile_logo.png"></img>
+                         <img src="/images/mobile_logo.png"></img>
                         </Link>
                     </div>
                         <ul className="hidden md:flex gap-6 desktop-menu">
@@ -122,7 +122,7 @@ CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bili
        </div>
                 </div>
                 <div className="flex justify-center items-center mt-3 order-1 md:order-2">
-                    <img src="home_banner.jpg" className="rounded-md"/>
+                    <img src="/images/home_banner.png" className="rounded-md"/>
                 </div>
             </div>
             </section>
@@ -165,7 +165,7 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                 <div className="flex justify-center">
 
                   <div className="bg-blue-700 w-64 h-32 rounded-[50%/50%] relative md:mt-5 mt-5">
-                                    <img src="macbook_.png" className="absolute bottom-2 object-cover" />
+                                    <img src="/images/macbook_.png" className="absolute bottom-2 object-cover" />
                   </div>
   
                     </div>
@@ -244,9 +244,9 @@ AI filtrasiyası lazımsız məlumatı aradan qaldırır və diqqəti yalnız h�
                 <div className="flex md:flex-row flex-col justify-between items-center gap-12 px-5 py-3"> 
                     <div className="flex relative">
                     <div className="absolute -top-15 left-0  w-48 h-48 md:w-84 md:h-80  z-0 bg-blue-300   rounded-full  "> </div>
-                         <img src="laptop.png" className=" relative  w-40 md:w-80 h-auto object-cover z-9"/>    
+                         <img src="/images/laptop.png" className=" relative  w-40 md:w-80 h-auto object-cover z-9"/>    
                          <div className="absolute -bottom-15 -right-25 w-48 h-48 md:w-64 md:h-64  z-0 bg-blue-300   rounded-full">  </div>
-                        <img src="articles.jpg" className="absolute pt-2 md:pt-12 w-30 md:w-60 h-auto top-20 z-10 -right-15 md:-right-25 "/>
+                        <img src="/images/articles.jpg" className="absolute pt-2 md:pt-12 w-30 md:w-60 h-auto top-20 z-10 -right-15 md:-right-25 "/>
                     </div>
                      <div>
                   <h2 className="font-bold text-2xl pb-4 mt-7 md:mt-0" > Hər ehtiyacın — bir platformada</h2> 
@@ -261,7 +261,7 @@ Hazırlığınızı daha planlı, ardıcıl və effektiv edin.
                             <div className="grid grid-cols-1 gap-12 md:grid-cols-3 ">
                                    <div className="relative md:rotate-10  student-box   md:skew-x-10 z-10  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-3xl flex flex-col items-center justify-center px-7 py-7">
                                    <div className="absolute -top-8">
-                                    <img src="aysel_avatar.png" className="w-15 h-15 object-cover"/>
+                                    <img src="/images/aysel_avatar.png" className="w-15 h-15 object-cover"/>
                                     </div>
                                     <h4 className="font-bold text-xl">Aysel Qasımova</h4>
                                     <p className="text-gray-500">Tələbə</p>
@@ -272,7 +272,7 @@ Platformanın interaktivliyi öyrənməni daha maraqlı edir.</p>
                                 </div>
                                     <div className="relative developer-box  bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
                                      <div className="absolute -top-8">
-                                    <img src="lale_avatar.png" className="w-15 h-15 object-cover"/>
+                                    <img src="/images/lale_avatar.png" className="w-15 h-15 object-cover"/>
                                     </div>
                                     <h4 className="font-bold text-xl">Lalə Yaqubova</h4>
                                     <p className="text-gray-500">Developer</p>
@@ -282,7 +282,7 @@ CoThink tələbənin motivasiyasını artıran real bir sistem təqdim edir.</p>
                                 </div>
                                     <div className=" designer-box md:rotate-5 rotate-0  md:-skew-y-10 skew-0  relative  mt-12 bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-7 py-7">
                                      <div className="absolute -top-8">
-                                    <img src="emill_avatar.png" className="w-15 h-15 object-cover"/>
+                                    <img src="/images/emill_avatar.png" className="w-15 h-15 object-cover"/>
                                     </div>
                                     <h4 className="font-bold text-xl">Emil Məmmədli</h4>
                                     <p className="text-gray-500">Qrafik dizayner</p>
@@ -319,7 +319,7 @@ Sadə interfeys və aydın məzmun platformanı daha effektiv edir.</p>
          </div>
         </div>
              <div className="flex flex-col gap-5 items-center justify-center">
-                <img src="faq.png" className="object-cover"/>
+                <img src="/images/faq.png" className="object-cover"/>
                 <h6 className="font-bold text-2xl pt-4 pb-4">Başqa sualınız var ?</h6>
                 <button className="rounded-full contact-btn">Əlaqə saxlayın</button>
             
@@ -393,7 +393,7 @@ Sadə interfeys və aydın məzmun platformanı daha effektiv edir.</p>
                 <div className="grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2">
                     <div>
                     <a>
-                        <img src="footer_logo.png" />
+                        <img src="/images/footer_logo.png" />
                     </a>
                     <p className="pb-4 pt-4 text-gray-600">CoThink — tələbələrin öyrəndiyi, paylaşdığı və birlikdə inkişaf etdiyi sosial təhsil platformasıdır.
 Məqsədimiz öyrənmə prosesini daha aydın, əlçatan və effektiv etməkdir.</p>

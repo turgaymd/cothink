@@ -2,11 +2,11 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
-import Sidebar from "./Sidebar";
 import { useState } from "react";
 
 function Header({open, setOpen}){
     const [search, setSearch]=useState(false)
+
     return(
       <header className="w-full top-0 z-50 navbar items-center">
         <div className=" flex justify-between items-center">
@@ -15,10 +15,10 @@ function Header({open, setOpen}){
             </button>
         <div className="logo">
             <Link to ="/home" className="hidden md:flex">
-                         <img src="/logo.jpg"></img>
+                         <img src="/images/logo.jpg"></img>
                         </Link>
                          <Link to ="/home" className="md:hidden flex">
-                         <img src="/mobile_logo.png"></img>
+                         <img src="/images/mobile_logo.png"></img>
                         </Link>
         </div>
             <ul className="hidden md:flex gap-6 desktop-menu">
@@ -46,7 +46,7 @@ function Header({open, setOpen}){
                 }      
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <Link className="w-full profile-img rounded-full pl-2" to={"/profile"}>
-                    <img src="/avatarr.svg"></img>
+                    <img src="/images/avatarr.svg"></img>
                    </Link>            
             </div>
         </div>

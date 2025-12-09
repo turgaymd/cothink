@@ -11,6 +11,7 @@ const Questions=()=>{
     const [displayedCategories, setDisplayedCategories]=useState([])
     const [visibleCategories, setVisibleCategories]=useState(2)
     const [discussions,setDiscussions]=useState([])
+    const [query, setQuery]=useState("")
     const {apiUrl}=useContext(ApiContext)
  
 
@@ -29,10 +30,15 @@ useEffect(()=>{
         setDisplayedCategories(categories.slice(0, newCount))
         return newCount;
        })}
+       
+        const filteredDiscussions=discussions.filter((item)=>
+        item.post_title.toLowerCase().includes(query.toLowerCase()) ||
+        item?.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+    )
 
     return (
         <section>
-            <Search/>
+            <Search query={query} setQuery={setQuery}/>
              <div className="flex justify-between mb-3">
                 <h4 className="font-semibold text-xl">Mövzular</h4>
                   {
@@ -63,7 +69,7 @@ useEffect(()=>{
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 {
-                    discussions.map((item, index)=>(
+                    filteredDiscussions.map((item, index)=>(
                     <div className="rounded-md shadow-gray-100 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
                            <div className="flex gap-3 justify-end items-center text-sm pb-3">
                         <span className="text-gray-400">
@@ -75,7 +81,7 @@ useEffect(()=>{
                         </span>
                         </div>
                 <div className="flex gap-7 md:flex-row flex-col items-center">
-                    <img src="avatarr.svg" className="rounded-full w-24 h-24"/>
+                    <img src="/images/avatarr.svg" className="rounded-full w-24 h-24"/>
                     <div className="flex flex-col gap-3">
                         <h5 className="font-medium">{item.post_title}</h5>
                     <div className="flex gap-3"> <h4 className="font-bold">{item.category}</h4>  <p className="text-gray-400">{item.subcategory}</p></div>

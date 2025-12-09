@@ -51,9 +51,9 @@ const CourseDetail=()=>{
             </div>
             <p className="text-blue-500">#Fizika</p>
                 <div className="flex  gap-5 mt-5">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{course?.likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>
-            <div className="saved-count flex items-center gap-2"><img src="/save.svg"></img>{course?.saved}</div>
+            <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{course?.likes}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>26</div>
+            <div className="saved-count flex items-center gap-2"><img src="/images/save.svg"></img>{course?.saved}</div>
         </div>
         <div className="flex md:flex-row flex-col gap-3 justify-between mt-5 mb-5 w-full">
             <div className="flex gap-3">
@@ -143,7 +143,10 @@ const CourseDetail=()=>{
                         }   
                         </div>
              </div>
-             {  comments.map((comment)=>{
+             {
+              comments.length > 0 && (
+                <>
+   {  comments.map((comment)=>{
                 return(
                     <>
     <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
@@ -162,8 +165,12 @@ const CourseDetail=()=>{
                     </div>
                     </>
          )
-            })
-        }  
+            })}
+            </>
+        )}  
+              
+             
+          
         </div>
      </section>
     )

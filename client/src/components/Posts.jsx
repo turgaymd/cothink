@@ -28,11 +28,12 @@ export const PostCard=({item})=>{
 }
 const Posts=()=>{
         const [posts, setPosts]=useState([])
-        
+     
+
     return (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-center mx-auto">
                     {
-                        posts.length===0 ?       
+                       posts.length===0 ?       
                          <p className="font-bold col-span-4 text-center text-2xl">Post tapılmadı</p>   : (
     posts.map((item, index)=>(
       <PostCard item={item} key={index}/>

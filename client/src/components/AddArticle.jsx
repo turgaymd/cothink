@@ -175,7 +175,7 @@ const AddArticle = () => {
           </label>
           <div className="flex flex-col items-center border border-gray-300 p-5 rounded-2xl gap-3">
             {preview && <img src={preview} alt="Preview" className="w-32 h-32" />}
-               <img src="image_icon.png"/>
+               <img src="/images/image_icon.png"/>
                            <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
             <button
               type="button"

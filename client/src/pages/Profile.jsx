@@ -53,14 +53,14 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="actions flex gap-3">
+        {/* <div className="actions flex gap-3">
           <button>
             <IoAddCircleOutline fontSize={24} />
           </button>
           <button>
             <IoMenu fontSize={24} />
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="flex gap-3 mt-3 mb-3">
         <a

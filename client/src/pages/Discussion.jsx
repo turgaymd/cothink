@@ -8,6 +8,7 @@ function Discussion(){
   const [post, setPost] = useState(null);
   const [comments, setComments]=useState([])
   const {apiUrl}=useContext(ApiContext)
+  
   useEffect(() => {
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?id=${id}`)
