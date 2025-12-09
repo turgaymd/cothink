@@ -5,34 +5,61 @@ import { CourseCard } from "../components/Courses";
 import { ArticleCard } from "../components/Articles";
 import Posts, { PostCard } from "../components/Posts";
 import axios from "axios";
+import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
+import { CommentCard } from "../components/Comments";
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState("courses");
+  const {apiUrl}= useContext(ApiContext)
+  const user=JSON.parse(localStorage.getItem("user"))
+  const [activeTab, setActiveTab] = useState(user.type==="mentor" ? "courses" : "studentPosts");
   const [courses, setCourses] = useState([]);
   const [articles, setArticles] = useState([]);
-  const [posts, setPosts]=useState([])
-  const {apiUrl}= useContext(ApiContext)
-    const user=JSON.parse(localStorage.getItem("user"))
+  const [mentorPosts, setMentorPosts]=useState([])
+  const [studentPosts, setStudentPosts]=useState([]);
+  const [postComments, setPostComments]=useState([])
+
    useEffect(()=>{
-          axios.get(`${apiUrl}/server/mentors/mentorCourses.php?id=${user.mentor_id}`)
+
+    if(user?.type==="mentor"){
+ axios.get(`${apiUrl}/server/mentors/mentorCourses.php?id=${user.mentor_id}`)
       .then((res) => {
         setCourses(res.data.data);
         console.log(courses);
       });
-      
-      axios.get(`${apiUrl}/server/mentors/mentorArticles.php?id=${user.mentor_id}`)
+         axios.get(`${apiUrl}/server/mentors/mentorArticles.php?id=${user.mentor_id}`)
         .then(res => {
             setArticles(res.data)
             console.log(res.data) 
         })
-         axios.get(`${apiUrl}/server/mentors/mentorPosts.php?id=${user.mentor_id}`)
+            axios.get(`${apiUrl}/server/mentors/mentorPosts.php?id=${user.mentor_id}`)
         .then(res => {
-            setPosts(res.data)
+            setMentorPosts(res.data)
             console.log(res.data) 
         })
+          }  
+          axios.get(`${apiUrl}/server/studentPosts/postsRead.php?id=${user.student_id}`)
+        .then(res => {
+            setStudentPosts(res.data)
+            console.log(res.data) 
+        })
+          .catch(()=>{
+          setStudentPosts([])
+          return <Loading/>})
+         axios.get(`${apiUrl}/server/posts/postComments.php?id=${user.student_id}`)
+        .then(res => {
+            setPostComments(res.data)
+            console.log(res.data) 
+        })
+        .catch(()=>{
+          setPostComments([])
+        })
   }, []);
-
+  console.log(studentPosts)
+ if(studentPosts.length===0){
+  return <Loading/>
+ }
+    console.log(studentPosts)
   return (
     <section>
       <div className="flex md:flex-row flex-col gap-5 justify-between">
@@ -74,7 +101,9 @@ const Profile = () => {
         </button>
       </div>
       <div className="flex justify-center mb-5 mt-5">
-        <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
+      {
+        user.type==="mentor" ? <>
+           <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
           <button
             className={`rounded-full w-full ${
               activeTab === "courses" ? "bg-blue-800 text-white" : ""
@@ -85,9 +114,9 @@ const Profile = () => {
           </button>
           <button
             className={` rounded-full w-full ${
-              activeTab === "posts" ? "bg-blue-800 text-white" : ""
+              activeTab === "mentorPosts" ? "bg-blue-800 text-white" : ""
             }`}
-            onClick={() => setActiveTab("posts")}
+            onClick={() => setActiveTab("mentorPosts")}
           >
             Postlar
           </button>
@@ -100,6 +129,29 @@ const Profile = () => {
             Məqalələr
           </button>
         </div>
+        </> :
+
+            <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
+          <button
+            className={`rounded-full w-full ${
+              activeTab === "studentPosts" ? "bg-blue-800 text-white" : ""
+            }`}
+            onClick={() => setActiveTab("studentPosts")}
+          >
+          Paylaşılan suallar
+          </button>
+          <button
+            className={` rounded-full w-full ${
+              activeTab === "postComments" ? "bg-blue-800 text-white" : ""
+            }`}
+            onClick={() => setActiveTab("postComments")}
+          >
+            Cavablar
+          </button>
+
+        </div>
+      }
+     
       </div>
       {activeTab === "courses" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -123,13 +175,37 @@ const Profile = () => {
           )}
         </>
       )}
-      {activeTab === "posts" &&
+      {activeTab === "mentorPosts" &&
       <>
-       {posts.length === 0 ? (
+       {mentorPosts.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
               Məqalə tapılmadı
             </p> ) :
-    (   posts.map((item) => <PostCard  key={item._id} item={item} />)
+    (   mentorPosts.map((item) => <PostCard  key={item._id} item={item} />)
+    
+    )} 
+      </>}
+        {activeTab === "studentPosts" &&
+      <>
+   
+       {  studentPosts.length >0 ? (    
+             studentPosts.map((item) =>( <PostCard  key={item._id} item={item} />
+          ))) :
+    ( 
+      <p className="text-center text-xl font-bold col-span-3">
+              Postlar tapılmadı
+            </p>
+    )
+  } 
+      </>
+}
+            {activeTab === "postComments" &&
+      <>
+       {postComments.length === 0 ? (
+            <p className="text-center text-xl font-bold col-span-3">
+              Cavablar tapılmadı
+            </p> ) :
+    (   postComments.map((item) => <CommentCard  key={item._id} item={item} />)
     
     )} 
       </>}

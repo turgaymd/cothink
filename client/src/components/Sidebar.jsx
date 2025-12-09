@@ -9,7 +9,7 @@ function Sidebar({setOpen}){
               open && (
                 <div className="md:hidden flex flex-col gap-5 transition-all duration-300 ease-in-out">
                         <NavLink className="profile-img rounded-full pl-2 flex justify-between" to={"/profile"} onClick={()=>setOpen(false)}>
-                    <img src="/avatarr.svg"></img> 
+                    <img src="/images/avatarr.svg"></img> 
                       <button className=" rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    </NavLink>  
                   <form className="w-full">

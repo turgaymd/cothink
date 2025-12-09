@@ -5,7 +5,7 @@ const TwoFactorAuth=()=>{
     return (
         <section>
                      <h2 className="text-center text-2xl font-bold pb-5">İki mərhələli təsdiq</h2>
-                     <div className="p-5">
+                     <div className="md:p-5 p-0">
                                       <div className="features_card shadow-sm inset-shadow-sm">
                                  <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                                 <div className="flex items-center gap-3">
@@ -22,7 +22,7 @@ const TwoFactorAuth=()=>{
                               <span className="w-2/5 h-4/5 left-1 top-1 bg-white peer-checked:bg-red absolute rounded-full"></span>
                             </label>
                             </div>
-                            <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
+                            <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 gap-2">
                                 <div className="flex items-center gap-3">
                                      <div className="icons">
                                   <span className="text-blue-500 rounded-full"><BsEnvelope fontSize={24}/></span>  

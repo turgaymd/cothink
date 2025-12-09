@@ -33,7 +33,7 @@ const About=()=>{
     return(
         <section>
           <h2 className="font-bold text-2xl text-center mb-3">Haqqımda</h2>
- <div className="flex justify-center p-5">
+ <div className="flex justify-center md:p-5 p-0">
       <div className="card w-full ">
         <div className="card-body ">
          
@@ -122,7 +122,7 @@ const About=()=>{
         </div>
       </div>
     </div>
-    <div className="text-center mt-5">
+    <div className="text-center mt-4">
                   <a className="bg-blue-700 text-white px-5 py-3 rounded-md" href="/settings">Geri</a>
     </div>
 
