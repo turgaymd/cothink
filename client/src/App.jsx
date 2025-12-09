@@ -1,79 +1,101 @@
+// App.jsx - Düzəldilmiş routing strukturu
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Auth
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgetPassword";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import Discussion from "./pages/Discussion";
-import AuthProvider from "./AuthProvider";
-import Mentors from "./pages/Mentors";
-import Rating from "./pages/Rating";
-import Course from "./components/Courses";
-import Library from "./components/Library";
-import MainLayout from "./MainLayout";
-import AddArticle from "./components/AddArticle";
 import SentCode from "./pages/SentCode";
+
+// Contexts
+import AuthProvider from "./AuthProvider";
+import ApiProvider from "./ApiContext";
+
+// Layouts
+import MainLayout from "./MainLayout";
+import LandingLayout from "./pages/Home_pages/LandingLayout";
+
+// Landing Pages
+import Home from "./pages/Home_pages/Home";
+import Services from "./pages/Home_pages/Services";
+import About from "./pages/Home_pages/About";
+import Contact from "./pages/Home_pages/Contact";
+
+// Main App Pages
+import MainHome from "./pages/MainHome";
+import Discussion from "./pages/Discussion";
+import Questions from "./pages/Questions";
+import Saved from "./pages/Saved";
+import Share from "./pages/Share";
+import Mentors from "./pages/Mentors";
 import Mentor from "./pages/Mentor";
+import Rating from "./pages/Rating";
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
-import Profile from "./pages/Profile";
-import Book from "./components/Book";
-import Questions from "./pages/Questions";
-import EditProfile from "./pages/EditProfile";
+
+// Components
+import Course from "./components/Courses";
 import CourseDetail from "./components/CourseDetail";
-import Saved from "./pages/Saved";
-import BookView from "./components/BookView";
 import CourseContent from "./components/CourseContent";
-import Home from "./pages/Home";
+import Library from "./components/Library";
+import Book from "./components/Book";
+import BookView from "./components/BookView";
 import Article from "./components/Article";
-import MainHome from "./pages/MainHome";
-import Share from "./pages/Share";
-import ApiProvider from "./ApiContext";
+import AddArticle from "./components/AddArticle";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <ApiProvider>
-  <AuthProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot" element={<ForgotPassword />} />
-        <Route path="/confirm" element={<SentCode/>} />
-        
-        <Route path="/*" element={<NotFound/>} />
-        <Route element={<MainLayout/>}>
-       <Route path="/home" element={<MainHome/>} />
-        
-        <Route path="/questions/:id" element={<Discussion/>} />
-        <Route path="/questions" element={<Questions/>} />
-        <Route path="/saved" element={<Saved/>} />
-        <Route path="/share" element={<Share/>} />
-      
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Landing Pages - Navbar ilə */}
+            <Route element={<LandingLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+            </Route>
 
-        <Route path="/mentors" element={<Mentors/>} />
-        <Route path="/mentors/mentor/:id" element={<Mentor/>} />
+            {/* Auth Pages */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forgot" element={<ForgotPassword />} />
+            <Route path="/confirm" element={<SentCode />} />
 
-        <Route path="/library" element={<Library/>} />
-        <Route path="/library/books/:id" element={<Book/>} />
-        <Route path="/library/articles/:id" element={<Article/>} />
-        <Route path="/library/books/:id/read" element={<BookView/>} />
-        <Route path="/addarticle" element={<AddArticle/>} />
-        <Route path="/courses" element={<Course/>} />
-        <Route path="/courses/:id" element={<CourseDetail/>} />
-  
-        <Route path="/courses/:id/content" element={<CourseContent/>} />
-        <Route path="/rating" element={<Rating/>} />
-        <Route path="/profile" element={<Profile/>} />      
-        <Route path="/profile/edit" element={<EditProfile/>} />
-        <Route path="/settings" element={<Settings/>} />
-  
+            {/* Main App - Daxil olandan sonra */}
+            <Route element={<MainLayout />}>
+              <Route path="/home" element={<MainHome />} />
+              <Route path="/questions/:id" element={<Discussion />} />
+              <Route path="/questions" element={<Questions />} />
+              <Route path="/saved" element={<Saved />} />
+              <Route path="/share" element={<Share />} />
+              <Route path="/mentors" element={<Mentors />} />
+              <Route path="/mentors/mentor/:id" element={<Mentor />} />
+              <Route path="/library" element={<Library />} />
+              <Route path="/library/books/:id" element={<Book />} />
+              <Route path="/library/articles/:id" element={<Article />} />
+              <Route path="/library/books/:id/read" element={<BookView />} />
+              <Route path="/addarticle" element={<AddArticle />} />
+              <Route path="/courses" element={<Course />} />
+              <Route path="/courses/:id" element={<CourseDetail />} />
+              <Route path="/courses/:id/content" element={<CourseContent />} />
+              <Route path="/rating" element={<Rating />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/edit" element={<EditProfile />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
 
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </AuthProvider>
-  </ApiProvider>
+            {/* 404 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
+    </ApiProvider>
   );
 }
 

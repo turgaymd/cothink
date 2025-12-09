@@ -71,13 +71,13 @@ const Home=()=>{
         <>
       
                 <header className="w-full top-0 z-50 navbar items-center">
-                    <div className=" flex justify-between items-center">
+                    <div className=" flex justify-between items-center p-7">
                              <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
                 { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
             </button>
                     <div className="logo">
                         <Link to ="/home" className="hidden md:flex">
-                         <img src="/images/logo.jpg"></img>
+                         <img src="/images/logo.svg"></img>
                         </Link>
                          <Link to ="/home" className="md:hidden flex">
                          <img src="/images/mobile_logo.png"></img>
@@ -90,7 +90,7 @@ const Home=()=>{
                             <li className="nav-item"><a href="#contact">Əlaqə</a></li>
                         </ul>
                            <div className=" md:flex actions items-center gap-3 ">                 
-                               <a className="border border-blue-800 text-blue-800 rounded-full px-7 py-3" href="/register">Qeydiyyat</a>
+                               <a className="border border-blue-800 text-blue-800 rounded-full px-10 py-2" href="/register">Qeydiyyat</a>
                         </div>
                   
             
@@ -112,17 +112,17 @@ const Home=()=>{
                     </header>
                       <ToastContainer/>
                      <section id="home">
-            <div className="grid md:grid-cols-2 gap-6  grid-cols-1">
-                <div className="flex flex-col justify-center order-2 md:order-1">
+            <div className="grid md:grid-cols-2 grid-cols-1 max-w-[80vw] items-center m-auto ">
+                <div className="flex flex-col justify-center order-2 md:order-1 max-w-[33vw]">
                     <h2 className="font-bold text-2xl">Bilik paylaşdıqca artır </h2>
-                    <p className="text-gray-500 pb-4 pt-4">Öyrənməni daha ağıllı, daha sadə və daha əlçatan edən yeni nəsil təhsil platforması.
+                    <p className="text-gray-500 pb-4 pt-4">Öyrənməni daha ağıllı, daha sadə və daha əlçatan edən yeni nəsil təhsil platforması. <br />
 CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bilikləri bir araya gətirir.</p>
 <div className="flex justify-between">
 <button className="bg-blue-800 text-white rounded-full flex items-center justify-center gap-3"> Kəşfə başlayın <MdArrowOutward  className="text-blue-500 bg-white rounded-full" fontSize={24}/></button>
        </div>
                 </div>
-                <div className="flex justify-center items-center mt-3 order-1 md:order-2">
-                    <img src="/images/home_banner.png" className="rounded-md"/>
+                <div className="flex justify-center items-center mt-3  order-1 md:order-2">
+                    <img src="/images/home_banner.png" className="rounded-md scale-130 ml-30"/>
                 </div>
             </div>
             </section>
