@@ -35,10 +35,11 @@ const {apiUrl}=useContext(ApiContext)
           const filteredMentors=mentors.filter((item)=>
         item.mentor_name.toLowerCase().includes(query.toLowerCase()) 
     )
+    const user=JSON.parse(localStorage.getItem("user"))
     return (
         <div className="md:col-span-10">
           <section>
-            <h2 className="font-semibold text-center text-xl pb-5">Xoş gəlmisiniz, Şəms</h2>
+            <h2 className="font-semibold text-center text-xl pb-5">Xoş gəlmisiniz, {user.name}</h2>
             <Search query={query} setQuery={setQuery}/>
             <div className="mentor-banner mt-3">
                 <div className="relative flex flex-col md:flex-row items-center justify-between">
@@ -47,7 +48,7 @@ const {apiUrl}=useContext(ApiContext)
                 <p className="font-medium text-xl">Sizə ən uyğun mentor profillərini kəşf edin.</p>
                 </div>
                 <div className="flex md:justify-end justify-center">
-                   <img src="mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
+                   <img src="/images/mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover"/>
                     </div>
                 </div>
             </div>        

@@ -6,14 +6,16 @@ import { PiKey } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaRegComments } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TwoFactorAuth from "../components/TwoFactorAuth";
 import Support from "../components/Support";
 import ResetPassword from "../components/ResetPassword";
 import About from "../components/About";
+import { AuthContext } from "../AuthContext";
 
 const Settings=()=>{
     const navigate=useNavigate()
+    const {user}=useContext(AuthContext)
     const [activeTab, setActiveTab]=useState("")
     const handleLogout=()=>{
         navigate("/")
@@ -30,7 +32,7 @@ const Settings=()=>{
     if(activeTab=="support"){
       return <Support/>
     }
-      
+ 
     return (
         <section className="pt-4">
            {
@@ -38,9 +40,9 @@ const Settings=()=>{
    <div className="flex flex-col justify-center items-center mb-4">
                 
             <div>
-                <img src="avatarr.svg" className="rounded-full h-24 w-24 bg-blue-600"/>
+                <img src="/images/avatarr.svg" className="rounded-full h-24 w-24 bg-blue-600"/>
             </div>
-            <h2 className="font-medium text-xl pt-3">Gülarə Nəsirova</h2>
+            <h2 className="font-medium text-xl pt-3">{user?.name}</h2>
             </div>
         <div className="features_card px-3 py-2 mb-5 mt-4 shadow-sm inset-shadow-sm">
         <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("about")}>

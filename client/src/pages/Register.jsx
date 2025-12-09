@@ -204,18 +204,20 @@ function Register() {
                 <button type="submit" className="text-white bg-blue-800 w-full outline-none">
                   Qeydiyyat
                 </button>
-                <p className="text-center">Və ya</p>
+                    </div>
+              
+            </form>
+              <p className="text-center pb-4 pt-4">Və ya</p>
                 <button className="w-full border border-gray-300 flex items-center justify-center gap-2">
                   <FcGoogle fontSize={28} />
                   Google ilə daxil ol
                 </button>
-              </div>
+          
 
               <p className="text-center mt-2">
                 Mövcud hesabınız var idi?{" "}
                 <a href="/login" className="text-blue-700">Daxil ol</a>
               </p>
-            </form>
           </div>
         </div>
       </div>

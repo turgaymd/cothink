@@ -10,7 +10,7 @@ export const CourseCard=({item})=>{
   return(
   <div className="course-item shadow-lg rounded-2xl">
                         <article>
-            <a>
+            <a href={`/courses/${item.course_id}`}>
               <img src={`${item?.course_img?.trim()}`}></img>
             </a>
             </article>
@@ -38,8 +38,8 @@ export const CourseCard=({item})=>{
                 </div>
               </div>
               <div className="flex items-center gap-3 ">
-                <img src="/star.svg" /> <span>4.8</span>
-                <img src="/users.svg" /> <span>3.2k</span>
+                <img src="/images/star.svg" /> <span>4.8</span>
+                <img src="/images/users.svg" /> <span>3.2k</span>
               </div>
             </div>
           </div>  

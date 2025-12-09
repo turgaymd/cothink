@@ -64,7 +64,7 @@ const ResetPassword=()=>{
     return (
         <>
         <h2 className="text-center font-bold text-2xl pb-5">Şifrəni dəyiş</h2>
- <div className=" p-12">
+ <div className="md:p-12 p-2">
       <div className="card w-full pb-5">
         <div className="card-body pb-5">
           <form className="login-form mx-auto max-w-4xl px-5 py-3" onSubmit={handleReset}>
