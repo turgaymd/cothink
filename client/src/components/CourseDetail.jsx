@@ -14,6 +14,7 @@ import { ApiContext } from "../ApiContext";
 
 const CourseDetail=()=>{
   const [course, setCourse]=useState(null)
+   const [comments, setComments]=useState([])
   const [open, setOpen]=useState(true)
   const {apiUrl}=useContext(ApiContext)
     const { id } = useParams();  
@@ -28,6 +29,12 @@ const CourseDetail=()=>{
         .catch((err) => console.error(err));
     }, [id])
 
+     axios
+            .get(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`)
+            .then((res) => {
+              setComments(res.data);
+              console.log(res.data);
+            })
 
      const handleCollapse=()=>{
       setOpen(!open)
@@ -136,20 +143,27 @@ const CourseDetail=()=>{
                         }   
                         </div>
              </div>
-                <div className="comment-item pt-3 mt-5">
-          <div className="comment-header flex md:flex-row flex-col items-center">
-            <img  className="rounded-md avatar" src="/həcər.jpg"></img>
+             {  comments.map((comment)=>{
+                return(
+                    <>
+    <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
+                    <div className="comment-header flex items-center ">
+            <img  className="rounded-md avatar" src={comment.profile_img}></img>
             <div className="pl-4">
-           <h4 className="font-semibold">Həcər Quliyeva</h4>
-            <p className="text-gray-500">Tələbə – Kompüter Mühəndisliyi</p>
-            <p className="mt-3 text-black">Çox aydın izah olunub. Xüsusilə Enerji və İş anlayışları arasındakı fərqlərin real nümunələrlə göstərilməsi xoşuma gəldi</p>
+           <h4 className="font-semibold">{comment.mentor_name}</h4>
+            <p className="text-gray-500">{comment.mentor_position}</p>
+            <p className="mt-3 text-black">{comment.comment_text}</p>
             </div>
-                    </div>
-            <div className="flex justify-end gap-5 comment-reactions pt-3">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>52</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>
+                    </div> 
+                        <div className="flex justify-end gap-5 comment-reactions pt-3">
+            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{comment?.likes}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{comment?.comments}</div>
     </div>
-</div>
+                    </div>
+                    </>
+         )
+            })
+        }  
         </div>
      </section>
     )

@@ -2,13 +2,15 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
+import Sidebar from "./Sidebar";
 import { useState } from "react";
-function Header(){
-    const [open, setOpen]=useState(  false  )
+
+function Header({open, setOpen}){
+    const [search, setSearch]=useState(false)
     return(
       <header className="w-full top-0 z-50 navbar items-center">
         <div className=" flex justify-between items-center">
-                 <button className="md:hidden text-3xl" onClick={()=>setOpen(!open)}>
+                 <button className="md:hidden text-3xl" onClick={()=>setOpen(true)}>
                 { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
             </button>
         <div className="logo">
@@ -25,32 +27,30 @@ function Header(){
                 <li className="nav-item"><NavLink className="" to="/mentors">Mentorlar</NavLink></li>
                 <li className="nav-item"><NavLink className="" to="/rating">Reytinq</NavLink></li>
             </ul>
-               <div className="hidden md:flex actions items-center gap-3 ">                 
-                   <button className="bg-gray-300 rounded-md p-2"><CiSearch className="text-2xl"/></button>
+               <div className="hidden md:flex actions items-center gap-3 shrink-0">     
+                {
+                    search ?
+                     (
+   <form className="w-full">
+                    <input type="text" placeholder="Axtarış..." className="w-56 border border-gray-300 rounded-md p-2 outline-none"/>
+                  </form>
+                     )
+                  : 
+                  (
+<>
+ <button className="bg-gray-300 rounded-md p-2">
+                    <CiSearch className="text-2xl" onClick={()=>setSearch(true)}/></button>
+                
+</>
+                  )
+                }      
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
-                   <Link className="profile-img rounded-full pl-2" to={"/profile"}>
+                   <Link className="w-full profile-img rounded-full pl-2" to={"/profile"}>
                     <img src="/avatarr.svg"></img>
                    </Link>            
             </div>
         </div>
-            {
-                open && (
-                <ul className="md:hidden bg-white shadow-md flex flex-col gap-5 px-6 py-4 nav">
-                <li className="nav-item"><NavLink onClick={()=> setOpen(false) } to="/home">Ana Səhifə</NavLink></li>
-                <li className="nav-item"><NavLink onClick={()=> setOpen(false) } to="/questions">Sual-Cavab</NavLink></li>
-                <li className="nav-item"><NavLink onClick={()=> setOpen(false) } to="/mentors">Mentorlar</NavLink></li>
-                <li className="nav-item"><NavLink onClick={()=> setOpen(false) } to="/rating">Reytinq</NavLink></li>
-                  <div className="flex items-center gap-3 ">                 
-                   <button className="bg-gray-300 rounded-md p-2"><CiSearch className="text-2xl"/></button>
-                   <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
-                   <Link className="profile-img rounded-full pl-2" to={"/profile"}>
-                    <img src="/avatarr.svg"></img>
-                   </Link>            
-            </div>
-            </ul>   
-                )
-
-            }
+        
          
         </header>
 

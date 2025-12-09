@@ -19,6 +19,11 @@ font-size: 8px;
 .nav-item a.active{
   background-color: #3052B9;
 }
+@media(max-width: 768px){
+.nav-item a.active{
+  background-color: none !important;
+}
+}
 section{
   padding: 30px;
 }
@@ -66,14 +71,18 @@ section{
   width: 24px;
   height: 24px;
 }
-/* .sidebar ul li a{
-  padding: 15px;
- 
-} */
+
 
 .sidebar ul li a.active{
    color: white;
    background: #3663C5;
+}
+@media (max-width:768px) {
+  .sidebar ul li a.active{
+   background: none !important; 
+           color: black;
+}
+  
 }
 .research-form{
   padding: 2rem;

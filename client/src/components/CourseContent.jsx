@@ -10,6 +10,7 @@ const CourseContent=()=>{
         const [course, setCourse]=useState(null)
         const [currentIndex, setCurrentIndex]=useState(0)
         const {apiUrl}=useContext(ApiContext)
+        const [comments, setComments]=useState([])
 
         useEffect(() => {
           axios
@@ -17,6 +18,14 @@ const CourseContent=()=>{
             .then((res) => {
               setCourse(res.data.data);
               console.log(res.data.data);
+            })
+            .catch((err) => console.error(err));
+
+             axios
+            .get(`${apiUrl}/server/courses/courseComments.php?id=${id}`)
+            .then((res) => {
+              setComments(res.data);
+              console.log(res.data);
             })
             .catch((err) => console.error(err));
         }, [id])
@@ -33,7 +42,7 @@ const CourseContent=()=>{
 
     }
     const getEmbedUrl=(url)=>{
-        const videoUrl=url.split("youtu.be/")[1].split("?")[0]
+        const videoUrl=url?.split("youtu.be/")[1].split("?")[0]
             return `https://www.youtube.com/embed/${videoUrl}`;
     }
 
@@ -50,10 +59,10 @@ const CourseContent=()=>{
             </div>
             <button className="text-white bg-blue-800 rounded-md py-3">Öyrənməyə davam edin</button>
             <div className="features_card shadow-sm inset-shadow-sm mt-4">
-                <h4 className="font-semibold text-center text-xl pb-4">{course?.lessons[0].lesson_title}</h4>
+                <h4 className="font-semibold text-center text-xl pb-4">{course?.lessons[0]?.lesson_title}</h4>
             <div></div>
             <div className="flex justify-center relative flex-col items-center">
-            <iframe src={course && getEmbedUrl(course.lessons[currentIndex].video_link)} className="md:h-[64vh] h-[40vh] w-full object-cover rounded-md" controls={true}/>
+            <iframe src={course && getEmbedUrl(course?.lessons[currentIndex]?.video_link)} className="md:h-[64vh] h-[40vh] w-full object-cover rounded-md" controls={true}/>
                <div className="w-full flex gap-3 pt-2 pb-2 mt-3 justify-between shadow-sm inset-shadow-sm ">
                 <button className="w-full flex gap-3" onClick={handlePrev} disabled={currentIndex===0}><SlArrowLeft className="text-blue-600" fontSize={24} />Əvvəlki</button>
                 <button className="w-full flex justify-end gap-3"  onClick={handleNext}>Sonrakı<SlArrowRight className="text-blue-600" fontSize={24}/></button>
@@ -91,20 +100,27 @@ const CourseContent=()=>{
                     <div className="comments">
                         <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…"/>
     <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
-        <div className="comment-item pt-3 mt-5">
-          <div className="comment-header flex md:flex-row flex-col items-center">
-            <img  className="rounded-md avatar" src="/həcər.jpg"></img>
+           {  comments.map((comment)=>{
+                return(
+                    <>
+    <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
+                    <div className="comment-header flex items-center ">
+            <img  className="rounded-md avatar" src={comment.profile_img}></img>
             <div className="pl-4">
-           <h4 className="font-semibold">Həcər Quliyeva</h4>
-            <p className="text-gray-500">Tələbə – Kompüter Mühəndisliyi</p>
-            <p className="mt-3 text-black">Çox aydın izah olunub. Xüsusilə Enerji və İş anlayışları arasındakı fərqlərin real nümunələrlə göstərilməsi xoşuma gəldi</p>
+           <h4 className="font-semibold">{comment.mentor_name}</h4>
+            <p className="text-gray-500">{comment.mentor_position}</p>
+            <p className="mt-3 text-black">{comment.comment_text}</p>
             </div>
-                    </div>
-            <div className="flex justify-end gap-5 comment-reactions pt-3">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>52</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>26</div>
+                    </div> 
+                        <div className="flex justify-end gap-5 comment-reactions pt-3">
+            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{comment?.likes}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{comment?.comments}</div>
     </div>
-</div>
+                    </div>
+                    </>
+         )
+            })
+        }   
                     </div>
         </section>
     )
