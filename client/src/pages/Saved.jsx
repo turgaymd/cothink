@@ -7,12 +7,13 @@ import Books from "../components/Books";
 import Posts from "../components/Posts";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
+import { AuthContext } from "../AuthContext";
 const Saved=()=>{
       const [activeTab, setActiveTab]=useState("articles")
       const [articles, setArticles]=useState([])
       const [courses, setCourses]=useState([])
       const {apiUrl}=useContext(ApiContext)
-
+       const {user}=useContext(AuthContext)
               useEffect(() => {
           axios.get(`${apiUrl}/server/articles/articleRead.php`)
               .then(res => {
@@ -28,7 +29,7 @@ const Saved=()=>{
  
     return (
         <section>
-          <h2 className="text-center font-bold text-2xl pb-5">Xoş gəlmisiniz, Şəms</h2>
+          <h2 className="text-center font-bold text-2xl pb-5">Xoş gəlmisiniz, {user?.name}</h2>
             <Search/>
                  <h4 className="font-bold text-xl mt-5">Kategoriyalar</h4>
               <div className="course-filter mt-5 mb-5 flex flex-col md:flex-row justify-between">

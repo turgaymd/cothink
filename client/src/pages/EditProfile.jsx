@@ -1,17 +1,27 @@
-import { useState, useRef } from "react";
+import axios from "axios";
+import { useState, useRef, useContext, useEffect } from "react";
+import { ApiContext } from "../ApiContext";
+import { AuthContext } from "../AuthContext";
 
 const EditProfile = () => {
-   const user=JSON.parse(localStorage.getItem("user"))
-  const [name, setName] = useState(user.name);
-  const [username, setUsername] = useState(user.username);
-  const [email, setEmail] = useState(user.email);
+   const {user}=useContext(AuthContext)
+  const {apiUrl}=useContext(ApiContext)
+  const [name, setName] = useState(user?.name);
+  const [username, setUsername] = useState(user?.username);
+  const [email, setEmail] = useState(user?.email);
   const [about, setAbout] = useState("");
   const [phone, setPhone] = useState("+994 971");
   const [gender, setGender] = useState("Kişi");
   const [password, setPassword] = useState("");
-  const [linkedin, setLinkedin] = useState();
+  const [linkedin, setLinkedin] = useState("");
 
   const fileInputRef = useRef(null);
+useEffect(()=>{
+  if(user){
+    setName(user.name)
+    setEmail(user.email)
+  }
+},[user])
 
   const handleUpload = (e) => {
     e.preventDefault();
@@ -22,7 +32,7 @@ const EditProfile = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("mentor_id", 5);
+    formData.append("mentor_id", user.mentor_id);
     formData.append("mentor_name", name);
     formData.append("mentor_username", username);
     formData.append("mentor_email", email);
@@ -33,14 +43,14 @@ const EditProfile = () => {
     if (fileInputRef.current.files[0]) {
       formData.append("profile_img", fileInputRef.current.files[0]);
     }
+try{
+   const res = await axios.post(`${apiUrl}server/profile/updateProfile.php`,  formData)
+    console.log(res.data)
+}
+catch(err){
+  console.log(err)
+}
 
-    const res = await fetch("http://localhost/cothink1/cothink/server/profile/updateProfile.php", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await res.json();
-    console.log(data);
   };
 
   return (
@@ -54,12 +64,12 @@ const EditProfile = () => {
         <div className="flex gap-3 items-center">
           <div>
             <img
-              src="/emil.jpg"
+              src="/images/emil.jpg"
               className="rounded-full w-24 h-24 object-cover"
             />
           </div>
           <div className="flex flex-col">
-            <h4 className="font-bold flex justify-center">{user.name}</h4>
+            <h4 className="font-bold flex justify-center">{user?.name}</h4>
 
             <input
               ref={fileInputRef}
@@ -78,7 +88,7 @@ const EditProfile = () => {
           <input
             type="text"
             value={name}
-            className="w-full px-3 py-2 border border-gray-300"
+            className="w-full px-3 py-2 border border-gray-300 outline-none"
             onChange={(e) => setName(e.target.value)}
           />
         </div>
@@ -88,7 +98,7 @@ const EditProfile = () => {
           <input
             type="text"
             value={username}
-            className="w-full px-3 py-2 border border-gray-300"
+            className="w-full px-3 py-2 border border-gray-300 outline-none"
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
@@ -97,7 +107,7 @@ const EditProfile = () => {
           <input
             type="text"
             value={email}
-            className="w-full px-3 py-2 border border-gray-300"
+            className="w-full px-3 py-2 border border-gray-300 outline-none"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -106,7 +116,7 @@ const EditProfile = () => {
           <textarea
             rows={3}
             value={about}
-            className="w-full px-3 py-2 border border-gray-300"
+            className="w-full px-3 py-2 border border-gray-300 outline-none"
             onChange={(e) => setAbout(e.target.value)}
           />
         </div>
@@ -115,7 +125,7 @@ const EditProfile = () => {
           <input
             type="text"
             value={phone}
-            className="w-full px-3 py-2 border border-gray-300"
+            className="w-full px-3 py-2 border border-gray-300 outline-none"
             onChange={(e) => setPhone(e.target.value)}
           />
         </div>
@@ -124,7 +134,7 @@ const EditProfile = () => {
           <input
             type="text"
             value={gender}
-            className="w-full px-3 py-2 border border-gray-300"
+            className="w-full px-3 py-2 border border-gray-300 outline-none"
             onChange={(e) => setGender(e.target.value)}
           />
         </div>
@@ -133,8 +143,8 @@ const EditProfile = () => {
           <label className="block font-bold w-40 shrink-0">Şifrə</label>
           <input
             type="password"
-            value={password}
-            className="w-full px-3 py-2 border border-gray-300"
+            value={password} 
+            className="w-full px-3 py-2 border border-gray-300 outline-none"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
@@ -144,11 +154,11 @@ const EditProfile = () => {
           <input
             type="text"
             value={linkedin}
-            className="w-full px-3 py-2 border border-gray-300"
+            className="w-full px-3 py-2 border border-gray-300 outline-none"
             onChange={(e) => setLinkedin(e.target.value)}
           />
         </div>
-        <div className="flex md:flex-row flex-col justify-center gap-5">
+        <div className="flex md:flex-row flex-col justify-center gap-5 ">
           <button
             type="submit"
             className="bg-blue-800 rounded-md text-white px-4 py-2"

@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { MdOutlineEdit } from "react-icons/md";
+import { AuthContext } from "../AuthContext";
 
 const About=()=>{
-  const [name, setName]=useState("Şəms")
-  const [lastName, setLastName]=useState("Məmmədzadə")
-  const [email, setEmail]=useState("shamsmemmedzade@gmail.com")
+  const {user}=useContext(AuthContext)
+  const [name, setName]=useState(user?.name)
+  const [lastName, setLastName]=useState("")
+  const [email, setEmail]=useState(user?.email)
   const [phone, setPhone]=useState("+994  055-123-45-67")
   const [error, setError] = useState("");
 

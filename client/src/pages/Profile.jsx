@@ -39,12 +39,12 @@ const Profile = () => {
         <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
             <img
-              src="rauf.jpg"
+              src="/images/rauf.jpg"
               className="rounded-full h-24 w-24 object-cover"
             />
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            {/* <h4 className="font-bold text-xl">{user?.name}</h4> */}
+            <h4 className="font-bold text-xl">{user?.name}</h4>
             <div className="flex gap-5">
               <span>2.6k tələbə</span>
               <span>38 post</span>

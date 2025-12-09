@@ -36,6 +36,7 @@ function Login() {
           type: res.data.type,          
           id: res.data.type === "student" ? res.data.student_id : res.data.mentor_id,
           email: res.data.email,
+          name:res.data.name,
           token: res.data.token
         };
 
