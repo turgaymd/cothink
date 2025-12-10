@@ -1,5 +1,4 @@
 <?php
-// CORS header-ləri
 require_once "../db.php";
 
 header("Access-Control-Allow-Origin: http://localhost:5173");
@@ -12,18 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// FRONTEND-DƏN mentor_id QƏBUL ET
-$data = json_decode(file_get_contents("php://input"), true);
+// GET-dən mentor_id götür
+if (!isset($_GET['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "mentor_id missing"]);
+    exit;
+}
 
-// if (!isset($data['mentor_id'])) {
-//     echo json_encode(["status" => "error", "message" => "mentor_id missing"]);
-//     exit;
-// }
-
-$mentor_id = $_GET['id'] ?? null;
+$mentor_id = intval($_GET['mentor_id']);
 
 try {
-    $stmt = $conn->prepare("
+    $stmt = $pdo->prepare("
         SELECT 
             ma.article_id,
             ma.article_title,
@@ -44,13 +41,12 @@ try {
 
     $stmt->execute([$mentor_id]);
 
-    $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($articles);
+    echo json_encode($stmt->fetchAll());
 
 } catch (PDOException $e) {
-
     echo json_encode([
         'status' => 'error',
         'message' => $e->getMessage()
     ]);
 }
+?>

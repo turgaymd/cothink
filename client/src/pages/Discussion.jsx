@@ -11,7 +11,7 @@ function Discussion(){
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/server/posts/postDetails.php?id=${id}`)
+      .get(`${apiUrl}/server/posts/postDetails.php?post_id=${id}`)
       .then((res) => {
         setPost(res.data.data);
         console.log(res.data.data);
@@ -21,7 +21,7 @@ function Discussion(){
 
    useEffect(() => {
     axios
-      .get(`${apiUrl}/server/discussion/getPost.php?id=1`)
+      .get(`${apiUrl}/server/discussion/getPost.php?id=${id}`)
       .then((res) => {
           const postData=res.data.find((p)=>p.post_id===Number(id))
         setComments(postData.comments);
@@ -76,7 +76,7 @@ function Discussion(){
                     <div className="comment-header flex items-center ">
             <img  className="rounded-md avatar" src={comment.profile_img}></img>
             <div className="pl-4">
-           <h4 className="font-semibold">{comment.mentor_name}</h4>
+           <h4 className="font-semibold">{comment.student_name}</h4>
             <p className="text-gray-500">{comment.mentor_position}</p>
             <p className="mt-3 text-black">{comment.comment_text}</p>
             </div>

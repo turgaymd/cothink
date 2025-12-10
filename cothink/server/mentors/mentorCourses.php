@@ -15,8 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // JSON body-ni oxu
 $data = json_decode(file_get_contents("php://input"), true);
  
+ 
+if (!isset($_GET['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "mentor_id missing"]);
+    exit;
+}
 
-$mentor_id = $_GET['id'] ?? null;
+$mentor_id = intval($_GET['mentor_id']);
 
 try {
 

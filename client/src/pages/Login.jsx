@@ -34,7 +34,7 @@ function Login() {
       if (res.data.success) {
         const user = {
           type: res.data.type,          
-          id: res.data.type === "student" ? res.data.student_id : res.data.mentor_id,
+          id: res.data.id,
           email: res.data.email,
           name:res.data.name,
           token: res.data.token

@@ -26,21 +26,7 @@ if (!$id) {
 try {
     $sql = "
         SELECT 
-            b.book_id,
-            b.book_title,
-            b.book_img,
-            b.book_file,
-            b.description,
-            b.mentor_id,
-            b.category_id,
-            b.created_at,
-<<<<<<< HEAD
-            b.likes,
-            b.saved,
-            
-=======
-
->>>>>>> 93ce575b66fa678a15fc6a8d8735e8c0f67daffd
+            b. *,
             m.mentor_name, 
 
             c.category AS category 
