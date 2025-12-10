@@ -17,24 +17,24 @@ $student_id = intval($_GET['student_id']);
 
 try {
     $sql = "SELECT 
-                sb.id AS saved_id,
-                sb.student_id,
-                sb.book_id,
-                sb.saved_at,
+                sp.id AS saved_id,
+                sp.student_id,
+                sp.post_id,
+                sp.saved_at,
 
-                mb.book_title,
-                mb.description,
-                mb.book_img,
-                mb.likes,
-                mb.saved,
-                mb.category_id, 
+                mp.post_title,
+                mp.post_desc,
+                mp.post_img,
+                mp.likes,
+                mp.saved,
+                mp.category_id, 
                 c.category
 
-            FROM saved_books sb
-            JOIN mentor_books mb ON sb.book_id = mb.book_id
-            JOIN categories c ON mb.category_id = c.category_id
-            WHERE sb.student_id = ?
-            ORDER BY sb.saved_at DESC";
+            FROM saved_posts sp
+            JOIN mentor_post mb ON sp.post_id = mp.post_id
+            JOIN categories c ON mp.category_id = c.category_id
+            WHERE sp.student_id = ?
+            ORDER BY sp.saved_at DESC";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([$student_id]);
