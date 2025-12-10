@@ -1,28 +1,27 @@
-// App.jsx - Düzəldilmiş routing strukturu
+
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Auth
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgetPassword";
 import SentCode from "./pages/SentCode";
 
-// Contexts
+
 import AuthProvider from "./AuthProvider";
 import ApiProvider from "./ApiContext";
 
-// Layouts
+
 import MainLayout from "./MainLayout";
 import LandingLayout from "./pages/Home_pages/LandingLayout";
 
-// Landing Pages
+
 import Home from "./pages/Home_pages/Home";
 import Services from "./pages/Home_pages/Services";
 import About from "./pages/Home_pages/About";
 import Contact from "./pages/Home_pages/Contact";
 
-// Main App Pages
 import MainHome from "./pages/MainHome";
 import Discussion from "./pages/Discussion";
 import Questions from "./pages/Questions";
@@ -36,7 +35,6 @@ import EditProfile from "./pages/EditProfile";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
-// Components
 import Course from "./components/Courses";
 import CourseDetail from "./components/CourseDetail";
 import CourseContent from "./components/CourseContent";
@@ -45,7 +43,7 @@ import Book from "./components/Book";
 import BookView from "./components/BookView";
 import Article from "./components/Article";
 import AddArticle from "./components/AddArticle";
-import Navbar from "./components/Navbar";
+
 
 function App() {
   return (
@@ -53,7 +51,6 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            {/* Landing Pages - Navbar ilə */}
             <Route element={<LandingLayout />}>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
@@ -61,13 +58,13 @@ function App() {
               <Route path="/contact" element={<Contact />} />
             </Route>
 
-            {/* Auth Pages */}
+
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot" element={<ForgotPassword />} />
             <Route path="/confirm" element={<SentCode />} />
 
-            {/* Main App - Daxil olandan sonra */}
+           
             <Route element={<MainLayout />}>
               <Route path="/home" element={<MainHome />} />
               <Route path="/questions/:id" element={<Discussion />} />
@@ -90,7 +87,7 @@ function App() {
               <Route path="/settings" element={<Settings />} />
             </Route>
 
-            {/* 404 */}
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

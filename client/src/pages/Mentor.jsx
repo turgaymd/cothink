@@ -99,7 +99,7 @@ const Mentor = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-5 mt-5">
           <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
             <button
               className={`rounded-full w-full ${activeTab === "courses" ? "bg-blue-700 text-white" : ""}`}
