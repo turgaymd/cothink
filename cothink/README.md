@@ -1,2 +1,0 @@
-# cothink
-Cothink Educational Platform
