@@ -1,9 +1,17 @@
 import { useState,useEffect, useContext } from "react";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
+import { BsThreeDotsVertical } from "react-icons/bs";
+
 
 export const ArticleCard=({item})=>{
+    // const [showMore, setShowMore]=useState(false)
+        // const  handleMore=(e)=>{
+        //     e.preventDefault()
+        //         setShowMore(!showMore)
+        //   }
     return(
+  
           <div className="article-item mb-5 text-black">
     <a href={`/library/articles/${item.article_id}`}>
                     <div className="article-content flex justify-between flex-col gap-4">
@@ -15,11 +23,22 @@ export const ArticleCard=({item})=>{
                             <span>{item.created_at}</span>
                         </div>
                         <div className="category">
-                            <span className="bg-blue-800 rounded-md px-5 py-2">{item.category}</span>
+                            <span className="bg-blue-800 rounded-md px-5 py-2">{item.category_id}</span>
                         </div>
                     </div>
                     <div className="article-title">
-                        <p className="text-white">{item.article_topic}</p>
+                        {
+                            item?.article_topic?.length>90 ? (
+                                <div className="flex flex-col items-center">
+                                <p className="md:hidden flex text-white">
+                                {item?.article_topic.substring(0,90) }  ... 
+                                                          
+                                </p>
+                             <p className="hidden md:flex text-white">{item?.article_topic} </p>
+                             </div>) :
+                             <p className="hidden md:flex text-white">{item?.article_topic}</p>
+                        }
+                       
                     </div>
                 </div>
                 </a>

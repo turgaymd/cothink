@@ -18,6 +18,7 @@ const Settings=()=>{
     const {user}=useContext(AuthContext)
     const [activeTab, setActiveTab]=useState("")
     const handleLogout=()=>{
+      localStorage.removeItem("user")
         navigate("/")
     }
      if(activeTab=="about"){

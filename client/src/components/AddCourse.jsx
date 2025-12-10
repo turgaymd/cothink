@@ -44,7 +44,7 @@ const AddCourse = ({ setActiveTab }) => {
     const mentor_id = user?.id;
 
     if (!mentor_id) {
-      toast.error("LocalStorage-də user tapılmadı!");
+      toast.error("Mentor kimi daxil olun");
       return;
     }
 
@@ -127,6 +127,7 @@ const AddCourse = ({ setActiveTab }) => {
               type="text"
               className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg"
               placeholder="Kursun adını daxil edin"
+              value={courseTitle}
               onChange={(e) => setCourseTitle(e.target.value)}
             />
           </div>
@@ -140,6 +141,7 @@ const AddCourse = ({ setActiveTab }) => {
             <input
               className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg dark:bg-gray-700 dark:text-white dark:border-none"
               placeholder="Dərsin başlığını daxil edin"
+              value={lessonTitle}
               onChange={(e) => setLessonTitle(e.target.value)}
             />
           </div>
@@ -154,6 +156,7 @@ const AddCourse = ({ setActiveTab }) => {
               type="text"
               className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg"
               placeholder="YouTube, Vimeo və ya digər video linkini daxil edin"
+              value={courseLink}
               onChange={(e) => setCourseLink(e.target.value)}
             />
           </div>
@@ -185,7 +188,6 @@ const AddCourse = ({ setActiveTab }) => {
                 }
               }}
             />
-
           </div>
         </div>
           <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">

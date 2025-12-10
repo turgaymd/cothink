@@ -188,9 +188,7 @@ border: 1px solid #ccc;
   color:#444444;
   font-weight: bold;
 }
-.discussion{
-  padding:2rem;
-}
+
 .discussion-item, .comment-item{
     padding: 2em;
   border-radius: 15px;

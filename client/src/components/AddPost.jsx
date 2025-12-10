@@ -75,7 +75,8 @@ const AddPost = ({ setActiveTab }) => {
         setPreview(null);
         setError("");
       } else {
-        setError(res.data.error);
+                toast.error(res.data.message);
+          
       }
     } catch (err) {
       console.log(err.message);
@@ -117,6 +118,7 @@ const AddPost = ({ setActiveTab }) => {
                 className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg dark:bg-gray-700 dark:text-white dark:border-none"
                 cols={5}
                 rows={3}
+                  value={postTitle}
                 placeholder="Post başlığı əlavə edin"
                 onChange={(e) => setPostTitle(e.target.value)}
               />
@@ -132,6 +134,7 @@ const AddPost = ({ setActiveTab }) => {
                 className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg"
                 cols={5}
                 rows={3}
+                value={postDesc}
                 placeholder="Post haqqında 1–2 cümləlik açıqlama"
                 onChange={(e) => setPostDesc(e.target.value)}
               />

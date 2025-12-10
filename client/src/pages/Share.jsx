@@ -8,6 +8,7 @@ import { AuthContext } from "../AuthContext";
 const Share=()=>{
       const [activeTab, setActiveTab]=useState("nothing")
       const {user}=useContext(AuthContext)
+      console.log(user)
       if(user?.type==="student"){
         return <AddPost/>
       }

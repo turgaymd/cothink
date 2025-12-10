@@ -30,7 +30,7 @@ export const CourseCard=({item})=>{
             <div className="flex justify-between pb-3 mt-4 flex-col md:flex-row gap-2">
               <div className="flex gap-5 items-center">
                 <div>
-                <img src={`${item.profile_img}`} className=" rounded-full object-cover"/>
+                <img src={`${item.profile_img}`} className="w-15 h-15 rounded-full object-cover"/>
                 </div>
                 <div className="flex flex-col">
                   <h4 className="font-bold">{item.mentor_name}</h4>

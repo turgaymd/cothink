@@ -7,7 +7,7 @@ const Support=()=>{
         <section>
         <div >
          <h2 className="text-center text-2xl font-bold pb-5">Kömək və dəstək</h2>
-         <div className="p-5">
+         <div className="p-0 md:pt-5">
                <div className="features_card shadow-sm inset-shadow-sm ">
                          <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                         <div className="flex items-center gap-3">

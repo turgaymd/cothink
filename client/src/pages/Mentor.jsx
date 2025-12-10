@@ -161,11 +161,11 @@ const Mentor = () => {
                 </p>
               ) : (
                 posts.map((item) => (
-                  <ArticleCard key={item._id} item={item} />
+                  <PostCard key={item._id} item={item} />
                 ))
               )}
             </div>
-          )})     
+          )}
         </div>
       </section>
     </div>

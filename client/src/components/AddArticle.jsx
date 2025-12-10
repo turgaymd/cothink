@@ -62,7 +62,7 @@ const AddArticle = () => {
     const mentor_id = user?.id;
 
     if (!mentor_id) {
-      toast.error("LocalStorage-də user tapılmadı!");
+      toast.error("Mentor kimi daxil olun");
       return;
     }
 
