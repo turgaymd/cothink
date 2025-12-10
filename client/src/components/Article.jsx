@@ -4,12 +4,15 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
+import {AuthContext} from "../AuthContext"
 import { IoIosAdd } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 const Article = () => {
   const [article, setArticle] = useState(null);
+  const [comments,setComments]=useState([])
   const { id } = useParams();
   const {apiUrl}=useContext(ApiContext)
+  const {user}=useContext(AuthContext)
 
   useEffect(() => {
     axios 
@@ -20,8 +23,16 @@ const Article = () => {
         console.log(res.data?.data);
       })
       .catch((err) => console.error(err));
-  }, [id]);
+       axios .get(`${apiUrl}/server/articles/articleComments.php?article_id=${id}` 
+      )
+      .then((res) => {
+        setComments(res.data.comments);
+        console.log(res.data);
+      })
+      .catch((err) => console.error(err));
 
+  }, [id]);
+  
   if (!article) {
     return <p className="text-center text-xl mt-8">Məqalə tapılmadı</p>;
   }
@@ -95,7 +106,7 @@ const Article = () => {
           <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
           <div className="flex gap-2 mb-3 items-center">
             <img src="/images/avatarr.svg" className="w-15 h-15" alt="avatar" />
-            <p>Username</p>
+            <p>{user?.username}</p>
           </div>
           <input
             type="text"
@@ -103,8 +114,13 @@ const Article = () => {
             placeholder="Fikirlərinizi yazın…"
           />
 
-          <div className="comment-item pt-3 mt-5">
-            <div className="comment-header flex md:flex-row flex-col items-center">
+          
+            {
+              comments.length>0 ? (
+                comments.map((comment)=>{
+                return(
+               <div className="comment-item pt-3 mt-5">
+             <div className="comment-header flex md:flex-row flex-col items-center">
               <img
                 className="rounded-md avatar"
                 src="/images/həcər.jpg"
@@ -114,21 +130,25 @@ const Article = () => {
                 <h4 className="font-semibold">Həcər Quliyeva</h4>
                 <p className="text-gray-500">Tələbə – Kompüter Mühəndisliyi</p>
                 <p className="mt-3 text-black">
-                  Çox aydın izah olunub. Xüsusilə Enerji və İş anlayışları
-                  arasındakı fərqlərin real nümunələrlə göstərilməsi xoşuma
-                  gəldi
+                 {comment.comment_text}
                 </p>
               </div>
             </div>
             <div className="flex justify-end gap-5 comment-reactions pt-3">
               <div className="like-count flex items-center gap-2">
-                <img src="/images/like.svg" alt="like" />52
+                <img src="/images/like.svg" alt="like" />{comment.likes}
               </div>
               <div className="comment-count flex items-center gap-2">
                 <img src="/images/comment.svg" alt="comment" />26
               </div>
             </div>
           </div>
+                )
+              }
+            ))
+            : <p className="font-bold col-span-4 text-center text-xl mt-4">Rəy yoxdur</p>
+          }
+ 
         </div>
       </div>
     </section>

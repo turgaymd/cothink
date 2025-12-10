@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
+import { WhatsappShareButton } from "react-share";
 function Discussion(){
   const { id } = useParams();  
   const [post, setPost] = useState(null);
@@ -62,7 +63,9 @@ function Discussion(){
             <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{post?.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{post?.comments}</div>
             <div className="saved-count flex items-center gap-2"><img src="/images/save.svg"></img>{post?.saved}</div>
-            <div className="share flex items-center gap-2"><img src="/images/share.svg"></img>Paylaş</div>
+            <div className="share flex items-center gap-2"><img src="/images/share.svg"></img>
+            <WhatsappShareButton url={window.location.href} title={post?.post_title}>Paylaş</WhatsappShareButton>
+            </div>
         </div>
     </div>
 
