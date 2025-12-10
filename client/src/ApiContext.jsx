@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 export const ApiContext = createContext(null);
 
-const apiUrl = "https://localhost/cothink1/cothink"; 
+const apiUrl = "http://cothink.az"; 
 
 const ApiProvider = (props) => {
   return (

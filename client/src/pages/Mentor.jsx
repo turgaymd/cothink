@@ -27,15 +27,15 @@ const Mentor = () => {
       })
       .catch((err) => console.log(err));
          axios
-      .get(`${apiUrl}/server/mentors/mentorCourses.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${id}`)
       .then((res) => {
         console.log(res.data)
-        setCourses(res.data.data);
+        setCourses(res.data);
 
       })
       .catch((err) => console.log(err));
        axios
-      .get(`${apiUrl}/server/mentors/mentorPosts.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${id}`)
       .then((res) => {
         console.log(res.data)
         setPosts(res.data);
@@ -43,7 +43,7 @@ const Mentor = () => {
       })
       .catch((err) => console.log(err));
        axios
-      .get(`${apiUrl}/server/mentors/mentorArticles.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${id}`)
       .then((res) => {
         console.log(res.data)
         setArticles(res.data);

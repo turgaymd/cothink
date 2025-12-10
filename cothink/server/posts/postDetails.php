@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // URL-dən id götür
-$id = $_GET['id'] ?? null;
+$id = $_GET['post_id'] ?? null;
 
 if (!$id) {
     echo json_encode([
@@ -43,7 +43,7 @@ try {
         FROM mentor_post p
         LEFT JOIN mentors m ON p.mentor_id = m.mentor_id
         LEFT JOIN categories c ON p.category_id = c.category_id
-        WHERE p.id = ?
+        WHERE p.post_id = ?
     ";
 
     $stmt = $conn->prepare($sql);

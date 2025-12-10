@@ -15,8 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // JSON body-ni oxu
 $data = json_decode(file_get_contents("php://input"), true);
  
-
-// GET-dən mentor_id götür
+ 
 if (!isset($_GET['mentor_id'])) {
     echo json_encode(["status" => "error", "message" => "mentor_id missing"]);
     exit;
