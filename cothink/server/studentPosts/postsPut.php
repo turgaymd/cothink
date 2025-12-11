@@ -12,12 +12,26 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$post_id      = $data["post_id"] ?? null;
-$post_title   = $data["post_title"] ?? null;
-$post_desc    = $data["post_desc"] ?? null;
-$post_img     = $data["post_img"] ?? null;
-$category_id  = $data["category_id"] ?? null;
-$post_tags    = $data["post_tags"] ?? null;
+$post_id      = $_POST["post_id"] ?? null;
+$student_id   = $_POST['student_id'] ?? null;
+$category_id = $_POST['category_id'] ?? null;
+$post_title  = $_POST['post_title'] ?? null;
+$post_desc   = $_POST['post_desc'] ?? null;
+$post_tags   = $_POST['post_tags'] ?? null;
+
+$post_img = null;
+if (isset($_FILES['post_img']) && $_FILES['post_img']['error'] === 0) {
+    $targetDir = "../uploads/posts/";
+    if (!is_dir($targetDir)) mkdir($targetDir, 0777, true);
+
+    $filename = time() . "_" . basename($_FILES['post_img']['name']);
+    $targetFile = $targetDir . $filename;
+
+    if (move_uploaded_file($_FILES['post_img']['tmp_name'], $targetFile)) {
+        $post_img = $filename;
+    }
+}
+
 
 if (!$post_id) {
     echo json_encode(["status"=>"error","message"=>"Post ID required"]);

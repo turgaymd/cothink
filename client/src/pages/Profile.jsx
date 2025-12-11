@@ -30,8 +30,7 @@ const Profile = () => {
       });
          axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`)
         .then(res => {
-            setArticles(res.data)
-            // console.log(res.data) 
+            setArticles(res.data) 
         })
             axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`)
         .then(res => {
@@ -39,15 +38,15 @@ const Profile = () => {
             console.log(res.data) 
         })
           }  
-          axios.get(`${apiUrl}/server/studentPosts/postsRead.php?id=${user.student_id}`)
+          axios.get(`${apiUrl}/server/students/studentPost.php?student_id=${user.id}`)
         .then(res => {
-            setStudentPosts(res.data)
+            setStudentPosts(res.data.posts)
 
         })
           .catch(()=>{
           setStudentPosts([])
           return <Loading/>})
-         axios.get(`${apiUrl}/server/posts/postComments.php?id=${user.student_id}`)
+         axios.get(`${apiUrl}/server/students/studentcomments.php?student_id=${user.id}`)
         .then(res => {
             setPostComments(res.data)
 
@@ -191,7 +190,7 @@ const Profile = () => {
       <>
    
        {!Array.isArray ||  studentPosts?.length >0 ? (    
-             studentPosts.map((item) =>( <PostCard  key={item._id} item={item} />
+             studentPosts.map((item) =>( <PostCard  key={item.post_id} item={item} />
           ))) :
     ( 
       <p className="text-center text-xl font-bold col-span-3">
@@ -207,7 +206,7 @@ const Profile = () => {
             <p className="text-center text-xl font-bold col-span-3">
               Cavablar tapılmadı
             </p> ) :
-    (   postComments.map((item) => <CommentCard  key={item._id} item={item} />)
+    (   postComments.map((item) => <CommentCard  key={item.id} item={item} />)
     
     )} 
       </>}

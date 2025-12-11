@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "GET") {
 try {
     $stmt = $conn->query("SELECT sp.*, c.category 
                           FROM student_post sp 
-                          LEFT JOIN category c ON sp.category_id = c.category_id");
+                          LEFT JOIN categories c ON sp.category_id = c.category_id");
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode(["status"=>"success", "data"=>$posts]);

@@ -2,7 +2,7 @@ import { useState } from "react"
 
    export const CommentCard=({comment})=>{
         return(
-    <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
+    <div className="comment-item mt-4 mb-4" key={comment.id} >
                     <div className="comment-header flex items-center ">
             <img  className="rounded-md avatar" src={comment.profile_img}></img>
             <div className="pl-4">
