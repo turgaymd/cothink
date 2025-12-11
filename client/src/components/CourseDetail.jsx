@@ -8,7 +8,6 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
 
 
@@ -57,7 +56,7 @@ const CourseDetail=()=>{
         </div>
         <div className="flex md:flex-row flex-col gap-3 justify-between mt-5 mb-5 w-full">
             <div className="flex gap-3">
-            <img src={course?.profile_img} className="object-cover w-10 h-10"/>
+            <img src={course?.profile_img || "/images/admin.png"} className="object-cover w-10 h-10 rounded-full"/>
             <div className="flex flex-col">
                 <h4 className="font-bold">{course?.mentor_name}</h4>
                 <p className="text-gray-400">Abunəçilər 11.2k</p>

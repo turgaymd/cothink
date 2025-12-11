@@ -19,7 +19,8 @@ const Profile = () => {
   const [mentorPosts, setMentorPosts]=useState([])
   const [studentPosts, setStudentPosts]=useState([]);
   const [postComments, setPostComments]=useState([])
-
+  const [mentor, setMentor]=useState(null)
+   const [student, setStudent]=useState(null)
    useEffect(()=>{
 
     if(user?.type==="mentor"){
@@ -27,6 +28,11 @@ const Profile = () => {
       .then((res) => {
         setCourses(res.data);
         console.log(courses);
+      });
+       axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user?.id}`)
+      .then((res) => {
+        setMentor(res.data.data);
+        console.log(mentor);
       });
          axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`)
         .then(res => {
@@ -38,7 +44,14 @@ const Profile = () => {
             setMentorPosts(res.data)
             console.log(res.data) 
         })
-          }  
+
+          }
+              axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user?.id}`)
+      .then((res) => {
+        setStudent(res.data.data);
+        console.log(student);
+      });
+
           axios.get(`${apiUrl}/server/studentPosts/postsRead.php?id=${user.student_id}`)
         .then(res => {
             setStudentPosts(res.data)
@@ -67,12 +80,12 @@ const Profile = () => {
         <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
             <img
-              src="/images/rauf.jpg"
+              src={mentor?.profile_img || "/images/admin.png"}
               className="rounded-full h-24 w-24 object-cover"
             />
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <h4 className="font-bold text-xl">{user?.name}</h4>
+            <h4 className="font-bold text-xl text-center md:text-left">{user?.name}</h4>
             <div className="flex gap-5">
               <span>2.6k tələbə</span>
               <span>38 post</span>
@@ -90,7 +103,7 @@ const Profile = () => {
           </button>
         </div> */}
       </div>
-      <div className="flex gap-3 mt-3 mb-3">
+      <div className="flex md:flex-row flex-col gap-3 mt-3 mb-3">
         <a
           className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5"
           href="/profile/edit"

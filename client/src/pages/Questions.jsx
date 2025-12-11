@@ -81,7 +81,7 @@ useEffect(()=>{
                         </span>
                         </div>
                 <div className="flex gap-7 md:flex-row flex-col items-center">
-                    <img src="/images/avatarr.svg" className="rounded-full w-24 h-24"/>
+                    <img src={item.profile_img || "/images/admin.png"} className="rounded-full w-24 h-24"/>
                     <div className="flex flex-col gap-3">
                         <h5 className="font-medium">{item.post_title}</h5>
                     <div className="flex gap-3"> <h4 className="font-bold">{item.category}</h4>  <p className="text-gray-400">{item.subcategory}</p></div>

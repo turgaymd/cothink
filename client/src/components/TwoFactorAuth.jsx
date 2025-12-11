@@ -1,9 +1,13 @@
 
 import { SlArrowRight } from "react-icons/sl";
 import { BsChatLeftQuote, BsEnvelope } from "react-icons/bs";
-const TwoFactorAuth=()=>{
+import { MdOutlineArrowBackIosNew } from "react-icons/md";
+const TwoFactorAuth=({setActiveTab})=>{
     return (
         <section>
+                  <div className="back md:hidden flex">
+                      <button onClick={()=>setActiveTab("")}><MdOutlineArrowBackIosNew fontSize={24}/></button>
+                    </div>
                      <h2 className="text-center text-2xl font-bold pb-5">İki mərhələli təsdiq</h2>
                      <div className="md:p-5 p-0">
                                       <div className="features_card shadow-sm inset-shadow-sm">
@@ -40,9 +44,7 @@ const TwoFactorAuth=()=>{
                             </div>
                      </div>
 
-                               <div className="text-center mt-5">
-                  <a className="bg-blue-700 text-white px-5 py-3 rounded-md" href="/settings">Geri</a>
-    </div>
+                    
         </section>
     )
 }

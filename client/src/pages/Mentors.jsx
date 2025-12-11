@@ -89,8 +89,8 @@ const {apiUrl}=useContext(ApiContext)
                     <a href={`/mentors/mentor/${item.mentor_id}`} className="block">
                     <div className="mentor-title gap-5 flex">          
                           <img 
-  src={"/images/avatarr.svg"} 
-  className="avatar rounded-full object-cover" 
+  src={item.profile_img || "/images/admin.png"} 
+  className=" rounded-full aspect-square  h-24 w-24 object-cover" 
   alt="mentor" 
 />
                             <div className="flex flex-col w-full">

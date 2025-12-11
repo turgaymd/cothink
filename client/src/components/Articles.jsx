@@ -17,13 +17,13 @@ export const ArticleCard=({item})=>{
                     <div className="article-content flex justify-between flex-col gap-4">
                     <div className="article-header flex justify-between items-center md:flex-row flex-col gap-2">
                         <div className="article-author flex items-center gap-2">
-                            <img src="/images/avatar.png"/>
+                            <img src={item.profile_img || "/images/admin.png"}/>
                             <span>{item.mentor_name}</span>
                             <span>•</span>
                             <span>{item.created_at}</span>
                         </div>
                         <div className="category">
-                            <span className="bg-blue-800 rounded-md px-5 py-2">{item.category_id}</span>
+                            <span className="bg-blue-800 rounded-md px-5 py-2">{item.category}</span>
                         </div>
                     </div>
                     <div className="article-title">
