@@ -6,46 +6,37 @@ import { PiKey } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaRegComments } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import TwoFactorAuth from "../components/TwoFactorAuth";
-import Support from "../components/Support";
-import ResetPassword from "../components/ResetPassword";
-import About from "../components/About";
+import { useContext} from "react";
 import { AuthContext } from "../AuthContext";
+import { MdOutlineArrowBackIosNew } from "react-icons/md";
 
-const Settings=()=>{
+const Settings=({setActiveTab, setSettings})=>{
     const navigate=useNavigate()
     const {user}=useContext(AuthContext)
-    const [activeTab, setActiveTab]=useState("")
+
     const handleLogout=()=>{
       localStorage.removeItem("user")
         navigate("/")
     }
-     if(activeTab=="about"){
-      return <About/>
-    }
-    if( activeTab==="changePassword"){
-       return <ResetPassword/>
-    }
-    if(activeTab=="twofactorauth"){
-      return <TwoFactorAuth/>
-    }
-    if(activeTab=="support"){
-      return <Support/>
-    }
  
     return (
-        <section className="pt-4">
+        <section className="p-4">
            {
                      <>
+                           <div className="back hidden md:flex justify-start">
+                     <button onClick={()=>{setSettings("")
+
+                        navigate("/courses")}
+                     }><MdOutlineArrowBackIosNew fontSize={24}/></button>
+               </div>
    <div className="flex flex-col justify-center items-center mb-4">
                 
-            <div>
-                <img src="/images/avatarr.svg" className="rounded-full h-24 w-24 bg-blue-600"/>
+                 <div className="profiles-img">
+                <img src="/images/admin.png" className="rounded-full w-24 h-24"/>
             </div>
-            <h2 className="font-medium text-xl pt-3">{user?.name}</h2>
+            <h2 className="font-medium text-xl">{user?.name}</h2>
             </div>
-        <div className="features_card px-3 py-2 mb-5 mt-4 shadow-sm inset-shadow-sm">
+        <div className=" px-3 py-2 mb-5 mt-4 shadow-sm inset-shadow-sm">
         <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("about")}>
             <div className="flex items-center gap-3">
                  <div className="icons">
@@ -58,8 +49,8 @@ const Settings=()=>{
             </div>
            <button><SlArrowRight /></button> 
         </div>
-          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={()=>setActiveTab("changePassword")}>
+          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3" onClick={()=>setActiveTab("changePassword")}>
+            <div className="flex items-center gap-3 cursor-pointer" >
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><PiKey fontSize={24}/></span>  
             </div>
@@ -70,8 +61,8 @@ const Settings=()=>{
             </div>
            <button><SlArrowRight /></button> 
         </div>
-          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-            <div className="flex items-center gap-3 cursor-pointer" onClick={()=>setActiveTab("twofactorauth")}>
+          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3" onClick={()=>setActiveTab("twofactorauth")}>
+            <div className="flex items-center gap-3 cursor-pointer" >
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
             </div>
@@ -82,7 +73,7 @@ const Settings=()=>{
             </div>
            <button><SlArrowRight /></button> 
         </div>
-          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
+          {/* <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
             <div className="flex items-center gap-3">
                  <div className="icons">
               <span className="text-blue-500 rounded-full "><BiBlock fontSize={24}/></span>  
@@ -93,7 +84,7 @@ const Settings=()=>{
             </div>
             </div>
            <button><SlArrowRight /></button> 
-        </div>
+        </div> */}
          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
             <div className="flex items-center gap-3 cursor-pointer" onClick={handleLogout}>
                  <div className="icons">

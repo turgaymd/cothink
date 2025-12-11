@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { useState } from "react";
 
-function Header({open, setOpen}){
+function Header({open, setOpen,setSettings}){
     const [search, setSearch]=useState(false)
 
     return(
@@ -23,7 +23,7 @@ function Header({open, setOpen}){
         </div>
             <ul className="hidden md:flex gap-6 desktop-menu">
                 <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/home">Ana Səhifə</NavLink></li>
-                <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } to="/questions">Sual-Cavab</NavLink></li>
+                <li className="nav-item"><NavLink className={({isActive})=> isActive ? "active" : "" } onClick={()=>setSettings(false)} to="/questions">Sual-Cavab</NavLink></li>
                 <li className="nav-item"><NavLink className="" to="/mentors">Mentorlar</NavLink></li>
                 <li className="nav-item"><NavLink className="" to="/rating">Reytinq</NavLink></li>
             </ul>
@@ -46,7 +46,7 @@ function Header({open, setOpen}){
                 }      
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <Link className="w-full profile-img rounded-full pl-2" to={"/profile"}>
-                    <img src="/images/avatarr.svg"></img>
+                    <img src="/images/admin.png"></img>
                    </Link>            
             </div>
         </div>

@@ -2,8 +2,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { toast } from "react-toastify";
-const ResetPassword=()=>{
+const ResetPassword=({setActiveTab})=>{
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword]=useState("")
   const [confirmPassword,setConfirmPassword]=useState('')
@@ -63,6 +64,9 @@ const ResetPassword=()=>{
     }
     return (
         <>
+             <div className="back md:hidden flex">
+                                       <button onClick={()=>setActiveTab("")}><MdOutlineArrowBackIosNew fontSize={24}/></button>
+                                     </div>
         <h2 className="text-center font-bold text-2xl pb-5">Şifrəni dəyiş</h2>
  <div className="md:p-12 p-2">
       <div className="card w-full pb-5">
@@ -111,9 +115,7 @@ const ResetPassword=()=>{
         </div>
       </div>     
     </div>
-      <div className="text-center mt-5 ">
-                  <a className="bg-blue-700 text-white px-5 py-3 rounded-md" href="/settings">Geri</a>
-    </div>
+
     </>
     )
 }

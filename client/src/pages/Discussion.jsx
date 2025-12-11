@@ -45,7 +45,7 @@ function Discussion(){
     <div className="discussion-item">
         <div className="post-header flex md:flex-row flex-col gap-3 justify-between items-center">
             <div className="flex post-img items-center">
-  <img className="rounded avatar" src={post?.profile_img}></img>
+  <img className="rounded avatar" src={post?.profile_img || "/images/admin.png"}></img>
            <div className="pl-3">
            <h4 className="font-semibold">{post?.mentor_name}</h4>
             <p className="text-gray-400">{post?.mentor_position}</p>
