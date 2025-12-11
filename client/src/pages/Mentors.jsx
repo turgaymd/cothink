@@ -5,7 +5,8 @@ import { ApiContext } from "../ApiContext";
 
 const Mentors=()=>{
 const [categories,setCategories]=useState([])
-const [mentorArticles, setMentorArticles]=useState([])
+const [selectedCategory,setSelectedCategory]=useState(null)
+console.log(selectedCategory)
 const  [displayedCategories, setDisplayedCategories]=useState([])
 const  [visibleCategories, setVisibleCategories]=useState(2)
 const  [query, setQuery]=useState("")
@@ -32,8 +33,11 @@ const {apiUrl}=useContext(ApiContext)
         return newCount;
        })}
 
-          const filteredMentors=mentors.filter((item)=>
-        item.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+          const filteredMentors=mentors.filter((item)=>{
+        const searchedQuery=item.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+        const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
+        return searchedQuery && matchedCategories
+          }
     )
     const user=JSON.parse(localStorage.getItem("user"))
     return (
@@ -65,15 +69,14 @@ const {apiUrl}=useContext(ApiContext)
             </div>
       <div className="course-filter mt-4 mb-5">
         
-                    <div className="filter-items flex gap-3 flex-col md:flex-row">
-                                            <span className="active rounded-md">Hamısı</span>                                          
+                    <div className="filtered-items flex gap-3 flex-col md:flex-row">
+                                            {/* <span className="active rounded-md">Hamısı</span>                                           */}
                         {
                             displayedCategories.map((item, index)=>(
 
-                    <span className="rounded-md" key={index}>{item.category}</span>
+                    <button className="rounded-md " key={index} onClick={()=>setSelectedCategory(item.category_id)}>{item.category}</button>
                             ))
-                        }
-                     
+                        }                    
                 </div>
             </div>
             </div>
@@ -88,8 +91,7 @@ const {apiUrl}=useContext(ApiContext)
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
                     <a href={`/mentors/mentor/${item.mentor_id}`} className="block">
                     <div className="mentor-title gap-5 flex">          
-                          <img 
-  src={item.profile_img || "/images/admin.png"} 
+                          <img  src={item.profile_img || "/images/admin.png"} 
   className=" rounded-full aspect-square  h-24 w-24 object-cover" 
   alt="mentor" 
 />

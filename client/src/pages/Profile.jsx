@@ -54,7 +54,8 @@ const Profile = () => {
 
           axios.get(`${apiUrl}/server/studentPosts/postsRead.php?id=${user.student_id}`)
         .then(res => {
-            setStudentPosts(res.data)
+            setStudentPosts(res.data.data)
+            console.log(res.data)
 
         })
           .catch(()=>{

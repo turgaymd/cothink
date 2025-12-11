@@ -2,14 +2,22 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {WhatsappShareButton} from "react-share"
-const Books = ({books, query}) => {
-     const filteredBooks=books.filter((item)=>
-      item.book_title.toLowerCase().includes(query.toLowerCase())
+import { ApiContext } from "../ApiContext";
+const Books = ({books, query, selectedCategory ,setSelectedCategory}) => {
+
+  const [saved,setSaved]=useState([])
+  const {apiUrl}=useContext(ApiContext)
+     const filteredBooks=books.filter((item)=>{
+      const searchedQuery=  item.book_title.toLowerCase().includes(query.toLowerCase())
+      const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
+        return searchedQuery && matchedCategories
+     }
   )
 
-const [saved,setSaved]=useState([])
+
+
 const handleSave=async(item)=>{
    try {
     const formData=new FormData();
@@ -19,7 +27,7 @@ const handleSave=async(item)=>{
     formData.append("book_url", item.book_url)
 
       const res = await axios.post(
-        "http://localhost/cothink1/cothink/server/books/bookRead.php",
+        `${apiUrl}/server/books/bookRead.php`,
          formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

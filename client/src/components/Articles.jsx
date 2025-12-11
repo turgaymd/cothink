@@ -45,7 +45,7 @@ export const ArticleCard=({item})=>{
             </div>   
     )
 }
-const Articles=({query})=>{
+const Articles=({query,selectedCategory})=>{
 
    const [articles,setArticles]=useState([])
    const {apiUrl}=useContext(ApiContext)
@@ -59,8 +59,12 @@ const Articles=({query})=>{
         .catch(err => console.error(err))
 }, []);
 
-          const filteredArticles=articles.filter((item)=>
-        item?.article_title?.toLowerCase().includes(query.toLowerCase())
+          const filteredArticles=articles.filter((item)=>{
+       const searchedQuery= item?.article_title?.toLowerCase().includes(query.toLowerCase())
+        const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
+        return searchedQuery && matchedCategories
+     }
+     
     ) 
     return(
         <>
