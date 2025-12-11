@@ -14,12 +14,12 @@ function Sidebar({setOpen, setSettings, setActiveTab}){
   }
     return (
         <div className="sidebar w-full md:p-0 px-2">
-           <ul className="w-full flex flex-col md:gap-3 gap-5 md:pl-0 pl-7 mt-5">
+           <ul className="w-full flex flex-col md:gap-3 gap-5 md:pl-0 pl-7 mt-5"onClick={setSettings(false)} >
             {
               open && (
                 <div className="md:hidden flex flex-col gap-5 transition-all duration-300 ease-in-out" onClick={()=>setOpen(false)}>
                         <NavLink className="profile-img rounded-full pl-2 flex justify-between" to={"/profile"} onClick={()=>setOpen(false)}>
-                    <img src="/images/avatarr.svg"></img> 
+                    <img src="/images/admin.png"></img> 
                       <button className=" rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    </NavLink>  
                   <form className="w-full">

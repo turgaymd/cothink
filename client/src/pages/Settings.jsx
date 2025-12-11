@@ -6,7 +6,7 @@ import { PiKey } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaRegComments } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../AuthContext";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 
