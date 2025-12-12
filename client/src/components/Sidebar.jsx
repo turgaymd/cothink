@@ -15,10 +15,10 @@ function Sidebar({open, setOpen}){
                 <div className="flex justify-between mt-10 ">
                     <div className="flex gap-3">
                     <NavLink className="profile-img rounded-full flex-shrink-0" to={"/profile"} onClick={()=>setOpen(false)}>
-                      <img src="/images/avatarr.svg" className="w-10 h-10" alt="Profile"/>
+                      <img src="/images/admin.png" className="w-10 h-10" alt="Profile"/>
                     </NavLink>  
                     <button className="bg-gray-300 rounded-md p-2 flex-shrink-0">
-                      <IoIosNotificationsOutline className="text-2xl"/>
+                      <IoIosNotificationsOutline  fontSize={32}/>
                     </button>
                   </div>
 

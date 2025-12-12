@@ -60,7 +60,7 @@ function Header({open, setOpen,setSettings}){
               <IoIosNotificationsOutline className="text-2xl"/>
             </button>
             <Link className="profile-img rounded-full pl-2" to="/profile">
-              <img src="/images/avatarr.svg" className="w-10 h-10" alt="Profile"/>
+              <img src="/images/admin.png" className="w-10 h-10" alt="Profile"/>
             </Link>            
           </div>
         </div>

@@ -147,8 +147,9 @@ section{
 }
 
 .article-item{
-  background-image: url("../public/images/article_bg.svg");
-  background-position: object-cover;
+  background-image: url("../public/images/article_bg.svg");;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 16px;
   padding: 15px 25px;
   color: white;
