@@ -51,7 +51,7 @@ function Register() {
             email,
             password,
             linkedinLink: linkedin,
-            category_id: subject, 
+            category: subject, 
           };
 
     try {
@@ -70,7 +70,6 @@ function Register() {
     }
   };
 
-  
     useEffect(() => {
       axios
         .get(`${apiUrl}/server/categories/categoryRead.php`)

@@ -26,6 +26,14 @@ const CourseDetail=()=>{
        
         })
         .catch((err) => console.error(err));
+         axios
+        .post(`${apiUrl}/server/courses/postComments.php?id=${id}`)
+        .then((res) => {
+             console.log(res.data.data)
+          setCourse(res.data.data);
+       
+        })
+        .catch((err) => console.error(err));
     }, [id])
 
      axios

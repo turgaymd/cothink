@@ -59,7 +59,7 @@ const CourseContent=()=>{
             </div>
             <button className="text-white bg-blue-800 rounded-md py-3">Öyrənməyə davam edin</button>
             <div className="features_card shadow-sm inset-shadow-sm mt-4">
-                <h4 className="font-semibold text-center text-xl pb-4">{course?.lessons[0]?.lesson_title}</h4>
+                <h4 className="font-semibold text-center text-xl pb-4">{course?.lessons[currentIndex]?.lesson_title}</h4>
             <div></div>
             <div className="flex justify-center relative flex-col items-center">
             <iframe src={course && getEmbedUrl(course?.lessons[currentIndex]?.video_link)} className="md:h-[64vh] h-[40vh] w-full object-cover rounded-md" controls={true}/>
@@ -76,8 +76,7 @@ const CourseContent=()=>{
                 <h5>16 dərs</h5>
                 <p className="text-gray-500">Ümumi 52 saat</p>
                     </div>
-                    </div>
-                 
+                    </div>                
                </div>
                   <div className="features_card shadow-sm inset-shadow-sm mt-4 px-4 py-3  rounded-md">
                         <p className="text-gray-400 pb-4">Enerji, İstilik və İş” fizika mövzusu enerji növlərinin, istilik proseslərinin və mexaniki iş anlayışının öyrənilməsi üçün hazırlanmış dərs bölməsidir. </p>
