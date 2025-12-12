@@ -33,8 +33,8 @@ useEffect(()=>{
        })}
      
         const filteredDiscussions=discussions.filter((item)=>{
-        const searchedQuery= item.post_title.toLowerCase().includes(query.toLowerCase()) ||
-        item?.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+        const searchedQuery= item?.post_title?.toLowerCase().includes(query.toLowerCase()) ||
+        item?.mentor_name?.toLowerCase().includes(query.toLowerCase()) 
         const matchedCategories=!selectedCategory ||  item?.category.toLowerCase()===selectedCategory.toLowerCase()
         return searchedQuery && matchedCategories
         }
