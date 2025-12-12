@@ -5,13 +5,18 @@ import { FaRegBookmark } from "react-icons/fa";
 import { useContext, useState } from "react";
 import {WhatsappShareButton} from "react-share"
 import { ApiContext } from "../ApiContext";
-const Books = ({books, query}) => {
-     const filteredBooks=books.filter((item)=>
-      item.book_title.toLowerCase().includes(query.toLowerCase())
-  )
+ 
+const Books = ({books, query, selectedCategory ,setSelectedCategory}) => {
 
-const [saved,setSaved]=useState([])
-const {apiUrl}=useContext(ApiContext)
+  const [saved,setSaved]=useState([])
+  const {apiUrl}=useContext(ApiContext)
+     const filteredBooks=books.filter((item)=>{
+      const searchedQuery=  item.book_title.toLowerCase().includes(query.toLowerCase())
+      const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
+        return searchedQuery && matchedCategories
+     }
+  )
+ 
 const handleSave=async(item)=>{
    try {
     const formData=new FormData();

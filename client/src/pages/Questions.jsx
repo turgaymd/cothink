@@ -11,6 +11,7 @@ const Questions=()=>{
     const [displayedCategories, setDisplayedCategories]=useState([])
     const [visibleCategories, setVisibleCategories]=useState(2)
     const [discussions,setDiscussions]=useState([])
+    const [selectedCategory,setSelectedCategory]=useState(null)
     const [query, setQuery]=useState("")
     const {apiUrl}=useContext(ApiContext)
  
@@ -30,10 +31,13 @@ useEffect(()=>{
         setDisplayedCategories(categories.slice(0, newCount))
         return newCount;
        })}
-       
-        const filteredDiscussions=discussions.filter((item)=>
-        item.post_title.toLowerCase().includes(query.toLowerCase()) ||
+     
+        const filteredDiscussions=discussions.filter((item)=>{
+        const searchedQuery= item.post_title.toLowerCase().includes(query.toLowerCase()) ||
         item?.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+        const matchedCategories=!selectedCategory ||  item?.category.toLowerCase()===selectedCategory.toLowerCase()
+        return searchedQuery && matchedCategories
+        }
     )
 
     return (
@@ -52,9 +56,9 @@ useEffect(()=>{
                     displayedCategories.map((item, index)=>(
                         <>
                         <div className="w-full ">
-                    <div className="topic-item mb-2" key={index}>
+                    <div className={`${selectedCategory===item.category ? "bg-blue-800 text-white topic-item  mb-2" : "bg-gray-200 topic-item mb-2"}`} key={index} onClick={()=>setSelectedCategory(item?.category)}>
                     <a>
-                        <h4>{item?.category}</h4>
+                        <button  >{item?.category}</button>
                     </a>   
                         </div> 
                     {/* <h4 className="font-bold text-center">{item.category}</h4> */}

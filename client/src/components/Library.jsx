@@ -10,6 +10,7 @@ const Library=()=>{
   const [books, setBooks]=useState([])
   const  [query, setQuery]=useState("")
   const [categories,setCategories]=useState([])
+  const [selectedCategory,setSelectedCategory]=useState(null)
   const [displayedCategories, setDisplayedCategories]=useState([])
   const [visibleCategories, setVisibleCategories]=useState(2)
   const {apiUrl}=useContext(ApiContext)
@@ -20,6 +21,7 @@ const Library=()=>{
       .get(`${apiUrl}/server/books/bookRead.php`) 
       .then((res) => {
         setBooks(res.data.data);
+        console.log(res.data.data)
       })
       .catch((err) => console.error(err)); 
           axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
@@ -58,9 +60,9 @@ const Library=()=>{
                     displayedCategories.map((item, index)=>(
                         <>
                         <div className="w-full ">
-                    <div className="topic-item mb-2" key={index}>
+                    <div className={`${selectedCategory===item.category_id ? "bg-blue-800 text-white topic-item  mb-2" : "bg-gray-200 topic-item mb-2"}`} key={index} onClick={()=>setSelectedCategory(item?.category_id)}>
                     <a>
-                               <h4>{item?.category}</h4>
+                               <button >{item?.category}</button>
                     </a>   
                         </div> 
                     {/* <h4 className="font-bold text-center">{item.category}</h4> */}
@@ -76,8 +78,8 @@ const Library=()=>{
                     <span className="filter-item rounded-md bg-blue-800">Hamısı</span>
                 </div>
             </div>
-            {activeTab==="articles" ? <Articles query={query}/> : <>  
-                   <Books books={books} query={query}/>
+            {activeTab==="articles" ? <Articles query={query} selectedCategory={selectedCategory}/> : <>  
+                   <Books books={books} query={query} selectedCategory={selectedCategory}/>
                  </>} 
      </section>
                   </>

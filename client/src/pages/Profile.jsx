@@ -26,9 +26,10 @@ useEffect(() => {
 
     axios.get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${user.id}`)
       .then(res => setCourses(res.data));
-
+ 
     axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
       .then(res => setMentor(res.data.data));
+ 
 
     axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`)
       .then(res => setArticles(res.data));
