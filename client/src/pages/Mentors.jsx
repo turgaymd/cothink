@@ -59,13 +59,13 @@ const {apiUrl}=useContext(ApiContext)
                         <div className="filter mb-7">
                         <div className=" flex justify-between mb-3">
                 <h4 className="font-bold text-xl">Kategoriyalar</h4>
-                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
+                 {/* <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button> */}
                 
-                 {/* {
+                 {
                 visibleCategories<categories.length && (
                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
                 )
-            }  */}
+            } 
             </div>
       <div className="course-filter mt-4 mb-5">
         

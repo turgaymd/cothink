@@ -202,7 +202,7 @@ const Profile = () => {
     )} 
       </div>}
         {activeTab === "studentPosts" &&
-      <>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
    
        {!Array.isArray ||  studentPosts?.length >0 ? (    
              studentPosts.map((item) =>( <PostCard  key={item._id} item={item} />
@@ -213,7 +213,7 @@ const Profile = () => {
             </p>
     )
   } 
-      </>
+      </div>
 }
             {activeTab === "postComments" &&
       <>

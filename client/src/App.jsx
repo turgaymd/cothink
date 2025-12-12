@@ -43,6 +43,7 @@ import Book from "./components/Book";
 import BookView from "./components/BookView";
 import Article from "./components/Article";
 import AddArticle from "./components/AddArticle";
+import PrivateRouter from "./PrivateRoute";
 
 
 function App() {
@@ -64,7 +65,7 @@ function App() {
             <Route path="/forgot" element={<ForgotPassword />} />
             <Route path="/confirm" element={<SentCode />} />
 
-           
+           <Route element={<PrivateRouter/>}>
             <Route element={<MainLayout />}>
               <Route path="/home" element={<MainHome />} />
               <Route path="/questions/:id" element={<Discussion />} />
@@ -85,6 +86,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/edit" element={<EditProfile />} />
               <Route path="/settings" element={<Settings />} />
+            </Route>
             </Route>
 
 

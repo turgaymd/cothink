@@ -67,7 +67,7 @@ const CourseDetail=()=>{
             <div className="flex items-center gap-3 ">                 
                    <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <button className="bg-blue-800 text-white rounded-md p-2"><BsChatRightText className="text-2xl"/></button>
-                   <a className="text-blue-800 rounded-md px-5 py-2 border border-blue-700"  href={`/courses/${course?.course_id}/content`}>İzlə</a>
+                   <a className="text-blue-800 rounded-md px-5 py-2 border border-blue-700"  >İzlə</a>
             </div>
             
             </div>

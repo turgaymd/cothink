@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { ApiContext } from "../ApiContext";
+import { AuthContext } from "../AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -12,6 +13,7 @@ function Login() {
   const [hide, setHide] = useState(false);
   const [error, setError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const {setUser}=useContext(AuthContext)
   const {apiUrl}=useContext(ApiContext)
   const navigate = useNavigate();
 
@@ -39,7 +41,7 @@ function Login() {
           name:res.data.name,
           token: res.data.token
         };
-
+          setUser(user)
         localStorage.setItem("user", JSON.stringify(user));
         if (rememberMe) {
           localStorage.setItem("user", JSON.stringify(user));
