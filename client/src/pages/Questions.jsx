@@ -35,7 +35,7 @@ useEffect(()=>{
         const filteredDiscussions=discussions.filter((item)=>{
         const searchedQuery= item?.post_title?.toLowerCase().includes(query.toLowerCase()) ||
         item?.mentor_name?.toLowerCase().includes(query.toLowerCase()) 
-        const matchedCategories=!selectedCategory ||  item?.category.toLowerCase()===selectedCategory.toLowerCase()
+        const matchedCategories=!selectedCategory ||  item?.category?.toLowerCase()===selectedCategory?.toLowerCase()
         return searchedQuery && matchedCategories
         }
     )
@@ -56,12 +56,13 @@ useEffect(()=>{
                     displayedCategories.map((item, index)=>(
                         <>
                         <div className="w-full ">
-                    <div className={`${selectedCategory===item.category ? "bg-blue-800 text-white topic-item  mb-2" : "bg-gray-200 topic-item mb-2"}`} key={index} onClick={()=>setSelectedCategory(item?.category)}>
+                    <div className={`${selectedCategory===item.category ? "bg-gray-200 text-white topic-item  h-20 mb-2" : "bg-gray-100 topic-item h-20 mb-2"}`} key={index} onClick={()=>setSelectedCategory(item?.category)}>
                     <a>
-                        <button  >{item?.category}</button>
+                        {/* <button  >{item?.category}</button> */}
+                            <img src={item?.category_img}/>
                     </a>   
                         </div> 
-                    {/* <h4 className="font-bold text-center">{item.category}</h4> */}
+                     <span className="flex justify-center font-semibold">{item?.category}</span>
                 </div>
 
                         </>

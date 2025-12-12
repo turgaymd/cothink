@@ -16,10 +16,21 @@ if (!isset($_GET['course_id'])) {
 $course_id = intval($_GET['course_id']);
 
 try {
-    $sql = "SELECT `id`, `course_id`, `comment_text`, `parent_id`, `student_id`, `created_at`, `likes`
-            FROM `course_comment`
-            WHERE `course_id` = ?
-            ORDER BY `created_at` ASC";
+ $sql = "SELECT 
+            cc.id,
+            cc.course_id,
+            cc.comment_text,
+            cc.parent_id,
+            cc.student_id,
+            cc.created_at,
+            cc.likes,
+            s.student_name,
+            s.profile_img
+        FROM course_comment cc
+        LEFT JOIN student_table s ON cc.student_id = s.student_id
+        WHERE cc.course_id = ?
+        ORDER BY cc.created_at ASC";
+
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([$course_id]);

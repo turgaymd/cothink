@@ -19,57 +19,34 @@ const Profile = () => {
   const [mentorPosts, setMentorPosts]=useState([])
   const [studentPosts, setStudentPosts]=useState([]);
   const [postComments, setPostComments]=useState([])
-  const [mentor, setMentor]=useState(null)
-   const [student, setStudent]=useState(null)
-   useEffect(()=>{
+  const [mentor, setMentor]=useState(null) 
 
-    if(user?.type==="mentor"){
- axios.get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id?=${user?.id}`)
-      .then((res) => {
-        setCourses(res.data);
-        console.log(courses);
-      });
-       axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user?.id}`)
-      .then((res) => {
-        setMentor(res.data.data);
-        console.log(mentor);
-      });
-         axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`)
-        .then(res => {
-            setArticles(res.data)
-            // console.log(res.data) 
-        })
-            axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`)
-        .then(res => {
-            setMentorPosts(res.data)
-            console.log(res.data) 
-        })
+useEffect(() => {
+  if (user?.type === "mentor") {
 
-          }
-              axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user?.id}`)
-      .then((res) => {
-        setStudent(res.data.data);
-        console.log(student);
-      });
+    axios.get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${user.id}`)
+      .then(res => setCourses(res.data));
+ 
+    axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
+      .then(res => setMentor(res.data.data));
+ 
 
-          axios.get(`${apiUrl}/server/studentPosts/postsRead.php?id=${user.student_id}`)
-        .then(res => {
-            setStudentPosts(res.data.data)
-            console.log(res.data)
+    axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`)
+      .then(res => setArticles(res.data));
 
-        })
-          .catch(()=>{
-          setStudentPosts([])
-          return <Loading/>})
-         axios.get(`${apiUrl}/server/posts/postComments.php?id=${user.student_id}`)
-        .then(res => {
-            setPostComments(res.data)
+    axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`)
+      .then(res => setMentorPosts(res.data));
+  }
+ 
+  axios.get(`${apiUrl}/server/students/studentPost.php?student_id=${user.id}`)
+    .then(res => setStudentPosts(res.data.data))
+    .catch(() => setStudentPosts([])); 
+ 
+  axios.get(`${apiUrl}/server/students/studentcomments.php?student_id=${user.id}`)
+    .then(res => setPostComments(res.data))
+    .catch(() => setPostComments([]));
 
-        })
-        .catch(()=>{
-          setPostComments([])
-        })
-  }, []);
+}, []);
 
  if(studentPosts.length===0){
   return <Loading/>
@@ -205,7 +182,7 @@ const Profile = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
    
        {!Array.isArray ||  studentPosts?.length >0 ? (    
-             studentPosts.map((item) =>( <PostCard  key={item._id} item={item} />
+             studentPosts.map((item) =>( <PostCard  key={item.post_id} item={item} />
           ))) :
     ( 
       <p className="text-center text-xl font-bold col-span-3">
@@ -221,7 +198,7 @@ const Profile = () => {
             <p className="text-center text-xl font-bold col-span-3">
               Cavablar tapılmadı
             </p> ) :
-    (   postComments.map((item) => <CommentCard  key={item._id} item={item} />)
+    (   postComments.map((item) => <CommentCard  key={item.id} item={item} />)
     
     )} 
       </>}

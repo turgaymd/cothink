@@ -16,7 +16,7 @@ if (!isset($_GET['post_id'])) {
 $post_id = intval($_GET['post_id']);
 
 try {
-  $sql = "SELECT 
+$sql = "SELECT 
             c.id,
             c.post_id,
             c.comment_text,
@@ -26,7 +26,7 @@ try {
             c.likes,
             s.student_name,
             s.profile_img
-        FROM commentss c
+        FROM comments c
         LEFT JOIN student_table s ON c.student_id = s.student_id
         WHERE c.post_id = ?
         ORDER BY c.created_at ASC";

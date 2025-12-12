@@ -122,7 +122,7 @@ const AddPost = ({ setActiveTab }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block title font-semibold pb-2" htmlFor="title">
-                Post əlavə et
+                Post başlığı
               </label>
               <textarea
                 className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg dark:bg-gray-700 dark:text-white dark:border-none"
@@ -229,14 +229,14 @@ const AddPost = ({ setActiveTab }) => {
 
           <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
             <button
-              className="border w-64 border-blue-800 text-blue-800 px-7 py-4"
+              className="border w-64 border-blue-800 text-blue-800 px-7 py-4 rounded-md"
               onClick={() => setActiveTab("nothing")}
             >
               Ləğv et
             </button>
             <button
               type="submit"
-              className="w-64 text-white bg-blue-800 px-7 py-4"
+              className="w-64 text-white bg-blue-800 px-7 py-4 rounded-md"
             >
               Yadda Saxla
             </button>

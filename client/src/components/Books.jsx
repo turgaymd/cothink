@@ -5,6 +5,7 @@ import { FaRegBookmark } from "react-icons/fa";
 import { useContext, useState } from "react";
 import {WhatsappShareButton} from "react-share"
 import { ApiContext } from "../ApiContext";
+ 
 const Books = ({books, query, selectedCategory ,setSelectedCategory}) => {
 
   const [saved,setSaved]=useState([])
@@ -15,9 +16,7 @@ const Books = ({books, query, selectedCategory ,setSelectedCategory}) => {
         return searchedQuery && matchedCategories
      }
   )
-
-
-
+ 
 const handleSave=async(item)=>{
    try {
     const formData=new FormData();
