@@ -5,13 +5,26 @@ import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
+import { AuthContext } from "../AuthContext";
+import { toast, ToastContainer } from "react-toastify";
 const CourseContent=()=>{
         const { id } = useParams();  
         const [course, setCourse]=useState(null)
         const [currentIndex, setCurrentIndex]=useState(0)
         const {apiUrl}=useContext(ApiContext)
+        const {user}=useContext(AuthContext)
+        const [error,setError]=useState('')
         const [comments, setComments]=useState([])
+        const [comment, setComment]=useState("")
 
+   const fetchComments=async()=>{ 
+     axios.get(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`)
+            .then((res) => {
+              setComments(res.data.comments);
+              console.log(res.data);
+            })
+            .catch((err) => console.error(err));
+        }
         useEffect(() => {
           axios
             .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
@@ -20,15 +33,9 @@ const CourseContent=()=>{
               console.log(res.data.data);
             })
             .catch((err) => console.error(err));
+                fetchComments()
+        }, [id,])
 
-             axios
-            .get(`${apiUrl}/server/courses/courseComments.php?id=${id}`)
-            .then((res) => {
-              setComments(res.data);
-              console.log(res.data);
-            })
-            .catch((err) => console.error(err));
-        }, [id])
 
     const handleNext=()=>{
         if(currentIndex<course.lessons.length-1){
@@ -45,8 +52,29 @@ const CourseContent=()=>{
         const videoUrl=url?.split("youtu.be/")[1]?.split("?")[0]
             return `https://www.youtube.com/embed/${videoUrl}`;
     }
+const handleComments=async (e)=>{
+    e.preventDefault()
+    if(comment===""){
+        setError("Komment daxil edin")
+        return;
+    }
+   const res=  await axios.post(`${apiUrl}/server/courses/postComments.php?course_id=${id}`,
+     {
+        student_id:user?.id, comment_text:comment}
+    )
+    if(res.data.status==="success"){
+        setComment("")
+        toast.success("Rəy paylaşıldı")
+        fetchComments()
+}
+              
+             
+    
+}
 
     return(
+        <>
+        <ToastContainer/>
         <section>
             <h2 className="font-bold text-2xl">{course?.course_title}</h2>
             <p className="text-gray-400">{course?.category}</p>
@@ -97,26 +125,35 @@ const CourseContent=()=>{
                                 
                     </div>
                     <div className="comments">
-                        <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…"/>
-    <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
+                        <form onSubmit={handleComments}>
+                            {error && (
+                <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
+                  {error}
+                </p>
+                            )}
+  <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
+                    
+                        </form>
+                      
+    <h4 className="mb-3 mt-3 font-bold text-lg" >Rəylər</h4>
        {
               comments.length > 0 && (
                 <>
    {  comments.map((comment)=>{
                 return(
                     <>
-    <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
-                    <div className="comment-header flex items-center ">
-            <img  className="rounded-md avatar" src={comment.profile_img}></img>
+    <div className="comment-item mt-4 mb-4" key={comment?.comment_id} >
+                    <div className="comment-header flex md:flex-row flex-col items-center ">
+            <img  className="rounded-md w-30 h-30" src={comment?.profile_img || "/images/admin.png"}></img>
             <div className="pl-4">
-           <h4 className="font-semibold">{comment.mentor_name}</h4>
-            <p className="text-gray-500">{comment.mentor_position}</p>
-            <p className="mt-3 text-black">{comment.comment_text}</p>
+           <h4 className="font-semibold">{comment?.mentor_name}</h4>
+            <p className="text-gray-500">{comment?.mentor_position}</p>
+            <p className="mt-3 text-black">{comment?.comment_text}</p>
             </div>
                     </div> 
                         <div className="flex justify-end gap-5 comment-reactions pt-3">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{comment?.likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{comment?.comments}</div>
+            <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{comment?.likes}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments}</div>
     </div>
                     </div>
                     </>
@@ -126,6 +163,7 @@ const CourseContent=()=>{
         )}  
                     </div>
         </section>
+        </>
     )
 }
 export default CourseContent;

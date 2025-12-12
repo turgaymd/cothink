@@ -26,14 +26,7 @@ const CourseDetail=()=>{
        
         })
         .catch((err) => console.error(err));
-         axios
-        .post(`${apiUrl}/server/courses/postComments.php?id=${id}`)
-        .then((res) => {
-             console.log(res.data.data)
-          setCourse(res.data.data);
-       
-        })
-        .catch((err) => console.error(err));
+        
     }, [id])
 
      axios
@@ -46,6 +39,7 @@ const CourseDetail=()=>{
      const handleCollapse=()=>{
       setOpen(!open)
      }
+ 
     return(
      <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
