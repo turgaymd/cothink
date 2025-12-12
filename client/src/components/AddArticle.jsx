@@ -229,7 +229,7 @@ const AddArticle = () => {
         <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
           <button
             type="reset"
-            className="border border-blue-800 text-blue-800 px-7 py-4 rounded"
+            className="border border-blue-800 text-blue-800 px-7 py-4 rounded-md"
             onClick={() => {
               setArticleTitle("");
               setArticleDesc("");
@@ -244,7 +244,7 @@ const AddArticle = () => {
           >
             Ləğv et
           </button>
-          <button type="submit" className="bg-blue-800 text-white px-7 py-4 rounded">
+          <button type="submit" className="bg-blue-800 text-white px-7 py-4 rounded-md">
             Yadda Saxla
           </button>
         </div>

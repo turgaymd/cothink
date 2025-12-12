@@ -88,7 +88,7 @@ const {apiUrl}=useContext(ApiContext)
                   {filteredMentors.length===0 ? 
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
                   (filteredMentors.map((item,index)=>(
-                   <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
+                   <div className="mentor-item shadow-xl rounded-xl" key={index}>
                     <a href={`/mentors/mentor/${item?.mentor_id}`} className="block">
                     <div className="mentor-title gap-5 flex">          
                           <img  src={item?.profile_img || "/images/admin.png"} 

@@ -60,11 +60,13 @@ const Library=()=>{
                     displayedCategories.map((item, index)=>(
                         <>
                         <div className="w-full ">
-                    <div className={`${selectedCategory===item.category_id ? "bg-blue-800 text-white topic-item  mb-2" : "bg-gray-200 topic-item mb-2"}`} key={index} onClick={()=>setSelectedCategory(item?.category_id)}>
+                    <div className={`${selectedCategory===item.category_id ? "bg-gray-200 text-white topic-item h-20 mb-2" : "bg-gray-100 topic-item mb-2 h-20"}`} key={index} onClick={()=>setSelectedCategory(item?.category_id)}>
                     <a>
-                               <button >{item?.category}</button>
+                        <img src={item.category_img}/>
+                           
                     </a>   
                         </div> 
+                            <span className="flex justify-center font-semibold">{item?.category}</span>
                     {/* <h4 className="font-bold text-center">{item.category}</h4> */}
                 </div>
 
@@ -74,8 +76,8 @@ const Library=()=>{
             </div>
                     <div className="course-filter mt-5">
                     <div className="filter-items flex gap-3">
-                    <span className="filter-item active rounded-md bg-blue-800">Ən çox bəyənilənlər</span>
-                    <span className="filter-item rounded-md bg-blue-800">Hamısı</span>
+                    <span className="filter-item active rounded-md">Ən çox bəyənilənlər</span>
+                    <span className="filter-item rounded-md">Hamısı</span>
                 </div>
             </div>
             {activeTab==="articles" ? <Articles query={query} selectedCategory={selectedCategory}/> : <>  

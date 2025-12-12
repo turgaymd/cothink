@@ -133,8 +133,11 @@ const Article = () => {
     <span className="bg-gray-100  px-5 py-2 rounded-md">ShapeTools</span>
       <span className="bg-gray-100  px-5 py-2 rounded-md">ProductDesign</span>
 </div>
-        <div className="comments">
-           <img src="/images/admin.png" className="w-25 h-25" alt="avatar" />
+        <div className="comments ">
+          <div className="flex gap-3 md:flex-row flex-col  items-center border-t border-t-gray-300 pt-3">
+     <img src="/images/admin.png" className="w-25 h-25" alt="avatar" /> 
+     <h4 className="font-bold text-xl">{user?.name}</h4>
+          </div>
             <form onSubmit={handleComments}>
                             {error && (
                 <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
