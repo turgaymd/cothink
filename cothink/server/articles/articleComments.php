@@ -16,10 +16,20 @@ if (!isset($_GET['article_id'])) {
 $article_id = intval($_GET['article_id']);
 
 try {
-    $sql = "SELECT `id`, `article_id`, `comment_text`, `parent_id`, `student_id`, `created_at`, `likes`
-            FROM `article_comment`
-            WHERE `article_id` = ?
-            ORDER BY `created_at` ASC";
+ $sql = "SELECT 
+            ac.id,
+            ac.article_id,
+            ac.comment_text,
+            ac.parent_id,
+            ac.student_id,
+            ac.created_at,
+            ac.likes,
+            s.student_name,
+            s.profile_img
+        FROM article_comment ac
+        LEFT JOIN student_table s ON ac.student_id = s.student_id
+        WHERE ac.article_id = ?
+        ORDER BY ac.created_at ASC";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([$article_id]);
