@@ -7,7 +7,7 @@ import { ApiContext } from "../ApiContext";
 import {AuthContext} from "../AuthContext"
 import { IoIosAdd } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 const Article = () => {
   const [article, setArticle] = useState(null);
   const [comments,setComments]=useState([])
@@ -24,7 +24,6 @@ const Article = () => {
       )
       .then((res) => {
         setComments(res.data.comments);
-        console.log(res.data);
       })
       .catch((err) => console.error(err));
 
@@ -35,7 +34,6 @@ const Article = () => {
       )
       .then((res) => {
         setArticle(res.data?.data || null);
-        console.log(res.data?.data);
       })
       .catch((err) => console.error(err));
       fetchComments()
@@ -46,15 +44,13 @@ const Article = () => {
     return <p className="text-center text-xl mt-8">Məqalə tapılmadı</p>;
   }
 
-
-
   const handleComments=async (e)=>{
       e.preventDefault()
       if(comment===""){
           setError("Komment daxil edin")
           return;
       }
-     const res=  await axios.post(`${apiUrl}/server/articles/postComments.php?course_id=${id}`,
+     const res=  await axios.post(`${apiUrl}/server/articles/postComments.php?article_id=${id}`,
        {
           student_id:user?.id, comment_text:comment}
       )
@@ -62,6 +58,7 @@ const Article = () => {
           setComment("")
           toast.success("Rəy paylaşıldı")
           fetchComments()
+          console.log(res.data)
   }
                 
                
@@ -69,6 +66,8 @@ const Article = () => {
   }
 
   return (
+    <>
+    <ToastContainer/>
     <section>
       <div>
         <h2 className="font-bold text-2xl">{article.article_title}</h2>
@@ -126,7 +125,8 @@ const Article = () => {
           )  : <img src="/images/article.jpg" className="h-84 w-full rounded-md"/>
         
         }
-          <p className="pt-4">{article.article_desc}</p>
+          <h4 className="font-bold pt-4 text-xl">{article.article_desc}</h4>
+          <p className="pt-4">{article.article_topic}</p>
         </div>
 <div className="article-tags mt-5 flex flex-col md:flex-row gap-3 items-center">
   <span className="bg-gray-100  px-5 py-2 rounded-md">Figma</span>
@@ -134,18 +134,21 @@ const Article = () => {
       <span className="bg-gray-100  px-5 py-2 rounded-md">ProductDesign</span>
 </div>
         <div className="comments">
+           <img src="/images/admin.png" className="w-25 h-25" alt="avatar" />
             <form onSubmit={handleComments}>
                             {error && (
                 <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
                   {error}
                 </p>
+          
                             )}
   <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
-                    
+
                         </form>
+                        
           <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
           <div className="flex gap-2 mb-3 items-center">
-            <img src="/images/avatarr.svg" className="w-15 h-15" alt="avatar" />
+           
             <p>{user?.username}</p>
           </div>
           {/* <input
@@ -153,36 +156,24 @@ const Article = () => {
             className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md"
             placeholder="Fikirlərinizi yazın…"
           /> */}
-
-          
             {
               comments.length>0 ? (
                 comments.map((comment)=>{
                 return(
-               <div className="comment-item pt-3 mt-5">
-             <div className="comment-header flex md:flex-row flex-col items-center">
-              <img
-                className="rounded-md avatar"
-                src="/images/həcər.jpg"
-                alt="comment author"
-              />
-              <div className="pl-4">
-                <h4 className="font-semibold">Həcər Quliyeva</h4>
-                <p className="text-gray-500">Tələbə – Kompüter Mühəndisliyi</p>
-                <p className="mt-3 text-black">
-                 {comment.comment_text}
-                </p>
-              </div>
+              <div className="comment-item mt-4 mb-4" key={comment?.comment_id} >
+                    <div className="comment-header flex md:flex-row flex-col items-center ">
+            <img  className="rounded-md w-30 h-30" src={comment?.profile_img || "/images/admin.png"}></img>
+            <div className="pl-4">
+           <h4 className="font-semibold">{comment?.mentor_name}</h4>
+            <p className="text-gray-500">{comment?.mentor_position}</p>
+            <p className="mt-3 text-black">{comment?.comment_text}</p>
             </div>
-            <div className="flex justify-end gap-5 comment-reactions pt-3">
-              <div className="like-count flex items-center gap-2">
-                <img src="/images/like.svg" alt="like" />{comment.likes}
-              </div>
-              <div className="comment-count flex items-center gap-2">
-                <img src="/images/comment.svg" alt="comment" />26
-              </div>
-            </div>
-          </div>
+                    </div> 
+                        <div className="flex justify-end gap-5 comment-reactions pt-3">
+            <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{comment?.likes}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments}</div>
+    </div>
+                    </div>
                 )
               }
             ))
@@ -192,6 +183,7 @@ const Article = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
