@@ -16,7 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 $data = json_decode(file_get_contents("php://input"), true);
  
 
-$mentor_id = $_GET['id'] ?? null;
+// GET-dən mentor_id götür
+if (!isset($_GET['mentor_id'])) {
+    echo json_encode(["status" => "error", "message" => "mentor_id missing"]);
+    exit;
+}
+
+$mentor_id = intval($_GET['mentor_id']);
 
 try {
 

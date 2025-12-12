@@ -27,7 +27,7 @@ try {
 
     $sql = "
         SELECT 
-            p.id,
+            p.post_id,
             p.post_title, 
             p.post_desc, 
             p.post_img,

@@ -12,27 +12,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// FRONTEND-DƏN mentor_id QƏBUL ET
-$data = json_decode(file_get_contents("php://input"), true);
-
-if (!isset($data['mentor_id'])) {
+// GET-dən mentor_id götür
+if (!isset($_GET['mentor_id'])) {
     echo json_encode(["status" => "error", "message" => "mentor_id missing"]);
     exit;
 }
 
-$mentor_id = $_GET['id'] ?? null;
+$mentor_id = intval($_GET['mentor_id']);
 
 try {
 
     $stmt = $conn->prepare("
         SELECT 
             b.book_id,
-            b.book_title,
-            b.book_author,
-            b.book_price,
+            b.book_title,  
+            b.book_img,  
             b.created_at,
 
-            m.mentor_name
+            m.mentor_name,
+            m.profile_img
         FROM mentor_books AS b
         LEFT JOIN mentors AS m
             ON b.mentor_id = m.mentor_id
