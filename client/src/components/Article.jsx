@@ -7,13 +7,28 @@ import { ApiContext } from "../ApiContext";
 import {AuthContext} from "../AuthContext"
 import { IoIosAdd } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
+import { toast } from "react-toastify";
 const Article = () => {
   const [article, setArticle] = useState(null);
   const [comments,setComments]=useState([])
+  const [comment, setComment]=useState("")
+  const [error,setError]=useState('')
   const { id } = useParams();
   const {apiUrl}=useContext(ApiContext)
   const {user}=useContext(AuthContext)
 
+
+
+    const fetchComments=async(e)=>{
+  axios .get(`${apiUrl}/server/articles/articleComments.php?article_id=${id}` 
+      )
+      .then((res) => {
+        setComments(res.data.comments);
+        console.log(res.data);
+      })
+      .catch((err) => console.error(err));
+
+  }
   useEffect(() => {
     axios 
       .get(`${apiUrl}/server/articles/articleDetails.php?article_id=${id}` 
@@ -23,18 +38,34 @@ const Article = () => {
         console.log(res.data?.data);
       })
       .catch((err) => console.error(err));
-       axios .get(`${apiUrl}/server/articles/articleComments.php?article_id=${id}` 
-      )
-      .then((res) => {
-        setComments(res.data.comments);
-        console.log(res.data);
-      })
-      .catch((err) => console.error(err));
-
+      fetchComments()
+     
   }, [id]);
   
   if (!article) {
     return <p className="text-center text-xl mt-8">Məqalə tapılmadı</p>;
+  }
+
+
+
+  const handleComments=async (e)=>{
+      e.preventDefault()
+      if(comment===""){
+          setError("Komment daxil edin")
+          return;
+      }
+     const res=  await axios.post(`${apiUrl}/server/articles/postComments.php?course_id=${id}`,
+       {
+          student_id:user?.id, comment_text:comment}
+      )
+      if(res.data.status==="success"){
+          setComment("")
+          toast.success("Rəy paylaşıldı")
+          fetchComments()
+  }
+                
+               
+      
   }
 
   return (
@@ -103,16 +134,25 @@ const Article = () => {
       <span className="bg-gray-100  px-5 py-2 rounded-md">ProductDesign</span>
 </div>
         <div className="comments">
+            <form onSubmit={handleComments}>
+                            {error && (
+                <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
+                  {error}
+                </p>
+                            )}
+  <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
+                    
+                        </form>
           <h4 className="mb-3 mt-3 font-bold text-lg">Rəylər</h4>
           <div className="flex gap-2 mb-3 items-center">
             <img src="/images/avatarr.svg" className="w-15 h-15" alt="avatar" />
             <p>{user?.username}</p>
           </div>
-          <input
+          {/* <input
             type="text"
             className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md"
             placeholder="Fikirlərinizi yazın…"
-          />
+          /> */}
 
           
             {

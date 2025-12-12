@@ -97,7 +97,7 @@ const {apiUrl}=useContext(ApiContext)
 />
                             <div className="flex flex-col w-full">
                                 <h4 className="font-bold text-lg">{item?.mentor_name}</h4>
-                        <p>{item?.category_id} </p>
+                        <p>{item?.category} </p>
                          <div className="flex justify-between gap-5 items-center pt-4">
                         <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">

@@ -4,6 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
 import { ApiContext } from "../ApiContext";
+import { TbChevronsDownLeft } from "react-icons/tb";
+import { AuthContext } from "../AuthContext";
 const AddPost = ({ setActiveTab }) => {
   const [postTitle, setPostTitle] = useState("");
   const [postDesc, setPostDesc] = useState("");
@@ -15,7 +17,7 @@ const AddPost = ({ setActiveTab }) => {
   const [categoryId, setCategoryId] = useState("");
   const [categories, setCategories] = useState([]);
   const { apiUrl } = useContext(ApiContext);
-
+  const {user}=useContext(AuthContext);
   const fileInputRef = useRef(null);
 
   const handleUpload = (e) => {
@@ -34,13 +36,13 @@ const AddPost = ({ setActiveTab }) => {
       .catch(() => toast.error("Category yüklənmədi"));
   }, []);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+
+  const student_id=user?.id
   const mentor_id = user?.id;
-  console.log(mentor_id || "no mentor id");
 
   const handlePost = async (e) => {
     e.preventDefault();
-    if (!mentor_id) {
+    if (!user) {
       toast.error("LocalStorage-də user tapılmadı!");
       return;
     }
@@ -49,7 +51,12 @@ const AddPost = ({ setActiveTab }) => {
       return;
     }
     const formData = new FormData();
+    if(user.type==="mentor"){
     formData.append("mentor_id", mentor_id);
+    }
+    else{
+    formData.append("student_id", student_id);
+    }
     formData.append("category_id", categoryId);
     formData.append("post_title", postTitle);
     formData.append("post_desc", postDesc); 
@@ -60,12 +67,13 @@ const AddPost = ({ setActiveTab }) => {
     }
 
     try {
-      const res = await axios.post(
-        `${apiUrl}/server/posts/postsPost.php`,
-        formData,
+    const url=user.type==="mentor" ? `${apiUrl}/server/posts/postsPost.php` : `${apiUrl}/server/studentPosts/postsPost.php`;
+   const res = await axios.post(url,formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      if (res.data.success) {
+      console.log(res.data)
+     
+      if (res.data.status==="success") {
         toast.success("Post uğurla əlavə olundu");
         setPostTitle("");
         setPostDesc("");
@@ -73,7 +81,9 @@ const AddPost = ({ setActiveTab }) => {
         setPostTags([]);
         setCategoryId("");
         setPreview(null);
+        setInput("")
         setError("");
+        console.log(res.data)
       } else {
                 toast.error(res.data.message);
           
