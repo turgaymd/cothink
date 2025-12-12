@@ -9,7 +9,7 @@ body{
   padding: 20px 20px;
 }
 .navbar .desktop-menu li a{
-  padding: 15px 25px;
+  padding: 15px 20px;
   font-weight: 400;
 
 }
@@ -139,8 +139,8 @@ section{
 }
 
 .article-item{
-  background-image: url("../public/images/article.jpg");
-  background-position: center;
+  background-image: url("../public/images/article_bg.svg");
+  background-position: object-cover;
   border-radius: 16px;
   padding: 15px 25px;
   color: white;
