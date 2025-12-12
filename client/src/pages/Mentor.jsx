@@ -27,15 +27,15 @@ const Mentor = () => {
       })
       .catch((err) => console.log(err));
          axios
-      .get(`${apiUrl}/server/mentors/mentorCourses.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${id}`)
       .then((res) => {
         console.log(res.data)
-        setCourses(res.data.data);
+        setCourses(res.data);
 
       })
       .catch((err) => console.log(err));
        axios
-      .get(`${apiUrl}/server/mentors/mentorPosts.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${id}`)
       .then((res) => {
         console.log(res.data)
         setPosts(res.data);
@@ -43,7 +43,7 @@ const Mentor = () => {
       })
       .catch((err) => console.log(err));
        axios
-      .get(`${apiUrl}/server/mentors/mentorArticles.php?id=${id}`)
+      .get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${id}`)
       .then((res) => {
         console.log(res.data)
         setArticles(res.data);
@@ -99,7 +99,7 @@ const Mentor = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center mb-5 mt-5">
           <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
             <button
               className={`rounded-full w-full ${activeTab === "courses" ? "bg-blue-700 text-white" : ""}`}
@@ -161,11 +161,11 @@ const Mentor = () => {
                 </p>
               ) : (
                 posts.map((item) => (
-                  <ArticleCard key={item._id} item={item} />
+                  <PostCard key={item._id} item={item} />
                 ))
               )}
             </div>
-          )})     
+          )}
         </div>
       </section>
     </div>

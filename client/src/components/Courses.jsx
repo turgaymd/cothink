@@ -10,14 +10,14 @@ export const CourseCard=({item})=>{
   return(
   <div className="course-item shadow-lg rounded-2xl">
                         <article>
-            <a href={`/courses/${item.course_id}`}>
+            <a href={`/courses/${item?.course_id}`}>
               <img src={`${item?.course_img?.trim()}`}></img>
             </a>
             </article>
-            <div className="course-category mt-3 text-blue-600">{item.category}</div>
+            <div className="course-category mt-3 text-blue-600">{item?.category}</div>
             <div className="course-title mb-3 mt-3 flex justify-between">
               <h4 className="font-bold text-2xl">
-                 {item.course_title}
+                 {item?.course_title}
               </h4>
               <a href={`/courses/${item.course_id}`}><MdArrowOutward fontSize={24}/></a>
             </div>
@@ -25,16 +25,16 @@ export const CourseCard=({item})=>{
               <span className="font-medium skills text-black">
                 Əldə Edəcəyin Bacarıqlar:
               </span>
-             {item.course_desc}
+             {item?.course_desc}
             </p>
             <div className="flex justify-between pb-3 mt-4 flex-col md:flex-row gap-2">
               <div className="flex gap-5 items-center">
                 <div>
-                <img src={`${item.profile_img}`} className=" rounded-full object-cover"/>
+                <img src={`${item?.profile_img}`} className="w-15 h-15 rounded-full object-cover"/>
                 </div>
                 <div className="flex flex-col">
-                  <h4 className="font-bold">{item.mentor_name}</h4>
-                  <p>{item.created_at}</p>
+                  <h4 className="font-bold">{item?.mentor_name}</h4>
+                  <p>{item?.created_at}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 ">
@@ -48,6 +48,7 @@ export const CourseCard=({item})=>{
 
 const Courses = () => {
     const [courses, setCourses]=useState([])
+    const [selectedCategory,setSelectedCategory]=useState(null)
     const [query ,setQuery]=useState("")
     const {apiUrl}=useContext(ApiContext)
     
@@ -58,9 +59,12 @@ const Courses = () => {
         })
      },[])
 
-       const filteredCourses=courses.filter((item)=>
-        item.course_title.toLowerCase().includes(query.toLowerCase()) ||
+       const filteredCourses=courses.filter((item)=>{
+       const searchedQuery= item?.course_title?.toLowerCase().includes(query.toLowerCase()) ||
         item?.mentor_name?.toLowerCase().includes(query.toLowerCase()) 
+        const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
+        return searchedQuery && matchedCategories
+       }
     )
   return (
     <>

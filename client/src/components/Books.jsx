@@ -2,14 +2,22 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import {WhatsappShareButton} from "react-share"
+import { ApiContext } from "../ApiContext";
+const Books = ({books, query, selectedCategory ,setSelectedCategory}) => {
 
-const Books = ({books, query}) => {
-     const filteredBooks=books.filter((item)=>
-      item.book_title.toLowerCase().includes(query.toLowerCase())
+  const [saved,setSaved]=useState([])
+  const {apiUrl}=useContext(ApiContext)
+     const filteredBooks=books.filter((item)=>{
+      const searchedQuery=  item.book_title.toLowerCase().includes(query.toLowerCase())
+      const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
+        return searchedQuery && matchedCategories
+     }
   )
 
-const [saved,setSaved]=useState([])
+
+
 const handleSave=async(item)=>{
    try {
     const formData=new FormData();
@@ -19,7 +27,7 @@ const handleSave=async(item)=>{
     formData.append("book_url", item.book_url)
 
       const res = await axios.post(
-        "http://localhost/cothink1/cothink/server/books/bookRead.php",
+        `${apiUrl}/server/books/bookRead.php`,
          formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -41,13 +49,14 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
 }
     return (
         <>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
                {filteredBooks.length===0 ? 
                   <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
                filteredBooks.map((item, index)=>(
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-                        <a href={`/library/books/${item.book_id}`}>
+
                 <div className="flex flex-col md:flex-row gap-5">
+                                          <a href={`/library/books/${item.book_id}`}>
                   <div className="flex items-center justify-center">
 
                   <img
@@ -57,6 +66,7 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
                   ></img>
                                       
                   </div>
+                  </a>
                   <div className="mentor-title flex flex-col gap-3">
                     <h4 className="font-bold text-lg break-all">
                       {item.book_title}
@@ -71,7 +81,7 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
                       </div>
                       <div className="flex items-center gap-1">
                         <img src="/images/share.svg" />
-                        <span>Paylaş</span>
+                        <WhatsappShareButton url={window.location.href} title={item.book_title}>Paylaş</WhatsappShareButton>
                       </div>
                       <div className="flex items-center gap-1">
                         {saved.includes(item.book_id) ? <FaBookmark fontSize={24} onClick={()=>handleUnsave(item)}/> :  <FaRegBookmark fontSize={24} onClick={()=>handleSave(item)}/>}
@@ -80,7 +90,7 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
                     </div>
                   </div>
                 </div>
-              </a>
+
             </div>
           ))
         )}

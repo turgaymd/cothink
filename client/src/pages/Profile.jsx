@@ -8,6 +8,7 @@ import axios from "axios";
 import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
 import { CommentCard } from "../components/Comments";
+import { WhatsappShareButton } from "react-share";
 
 const Profile = () => {
   const {apiUrl}= useContext(ApiContext)
@@ -18,30 +19,44 @@ const Profile = () => {
   const [mentorPosts, setMentorPosts]=useState([])
   const [studentPosts, setStudentPosts]=useState([]);
   const [postComments, setPostComments]=useState([])
-
+  const [mentor, setMentor]=useState(null)
+   const [student, setStudent]=useState(null)
    useEffect(()=>{
 
     if(user?.type==="mentor"){
- axios.get(`${apiUrl}/server/mentors/mentorCourses.php?id=${user.mentor_id}`)
+ axios.get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id?=${user?.id}`)
       .then((res) => {
-        setCourses(res.data.data);
+        setCourses(res.data);
         console.log(courses);
       });
-         axios.get(`${apiUrl}/server/mentors/mentorArticles.php?id=${user.mentor_id}`)
+       axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user?.id}`)
+      .then((res) => {
+        setMentor(res.data.data);
+        console.log(mentor);
+      });
+         axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`)
         .then(res => {
             setArticles(res.data)
-            console.log(res.data) 
+            // console.log(res.data) 
         })
-            axios.get(`${apiUrl}/server/mentors/mentorPosts.php?id=${user.mentor_id}`)
+            axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`)
         .then(res => {
             setMentorPosts(res.data)
             console.log(res.data) 
         })
-          }  
+
+          }
+              axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user?.id}`)
+      .then((res) => {
+        setStudent(res.data.data);
+        console.log(student);
+      });
+
           axios.get(`${apiUrl}/server/studentPosts/postsRead.php?id=${user.student_id}`)
         .then(res => {
-            setStudentPosts(res.data)
-            console.log(res.data) 
+            setStudentPosts(res.data.data)
+            console.log(res.data)
+
         })
           .catch(()=>{
           setStudentPosts([])
@@ -49,29 +64,29 @@ const Profile = () => {
          axios.get(`${apiUrl}/server/posts/postComments.php?id=${user.student_id}`)
         .then(res => {
             setPostComments(res.data)
-            console.log(res.data) 
+
         })
         .catch(()=>{
           setPostComments([])
         })
   }, []);
-  console.log(studentPosts)
+
  if(studentPosts.length===0){
   return <Loading/>
  }
-    console.log(studentPosts)
+
   return (
     <section>
       <div className="flex md:flex-row flex-col gap-5 justify-between">
         <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
             <img
-              src="/images/rauf.jpg"
+              src={mentor?.profile_img || "/images/admin.png"}
               className="rounded-full h-24 w-24 object-cover"
             />
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <h4 className="font-bold text-xl">{user?.name}</h4>
+            <h4 className="font-bold text-xl text-center md:text-left">{user?.name}</h4>
             <div className="flex gap-5">
               <span>2.6k tələbə</span>
               <span>38 post</span>
@@ -89,7 +104,7 @@ const Profile = () => {
           </button>
         </div> */}
       </div>
-      <div className="flex gap-3 mt-3 mb-3">
+      <div className="flex md:flex-row flex-col gap-3 mt-3 mb-3">
         <a
           className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5"
           href="/profile/edit"
@@ -97,7 +112,8 @@ const Profile = () => {
           Profili redaktə et
         </a>
         <button className="flex-1 md:flex-none bg-blue-800 text-white rounded-full  py-3">
-          Profili paylaş
+          <WhatsappShareButton url={window.location.href} title={user?.name}>    Profili paylaş</WhatsappShareButton>
+      
         </button>
       </div>
       <div className="flex justify-center mb-5 mt-5">
@@ -155,9 +171,9 @@ const Profile = () => {
       </div>
       {activeTab === "courses" && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {courses.length === 0 ? (
+          {!Array.isArray(courses) ||  courses?.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
-              Kurs tapılmadı.
+              Kurs yoxdur hazırda
             </p>
           ) : (
             courses.map((item) => <CourseCard key={item.course_id} item={item} />)
@@ -166,9 +182,9 @@ const Profile = () => {
       )}
       {activeTab === "articles" && (
         <>
-          {articles.length === 0 ? (
+          {!Array.isArray(articles) ||  articles?.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
-              Məqalə tapılmadı
+              Məqalə yoxdur hazırda
             </p>
           ) : (
             articles.map((item) => <ArticleCard key={item._id} item={item} />)
@@ -176,19 +192,19 @@ const Profile = () => {
         </>
       )}
       {activeTab === "mentorPosts" &&
-      <>
-       {mentorPosts.length === 0 ? (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+       {!Array.isArray(mentorPosts) || mentorPosts?.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
-              Məqalə tapılmadı
+              Post yoxdur hazırda
             </p> ) :
     (   mentorPosts.map((item) => <PostCard  key={item._id} item={item} />)
     
     )} 
-      </>}
+      </div>}
         {activeTab === "studentPosts" &&
       <>
    
-       {  studentPosts.length >0 ? (    
+       {!Array.isArray ||  studentPosts?.length >0 ? (    
              studentPosts.map((item) =>( <PostCard  key={item._id} item={item} />
           ))) :
     ( 
@@ -201,7 +217,7 @@ const Profile = () => {
 }
             {activeTab === "postComments" &&
       <>
-       {postComments.length === 0 ? (
+       {!Array.isArray(postComments) || postComments?.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
               Cavablar tapılmadı
             </p> ) :

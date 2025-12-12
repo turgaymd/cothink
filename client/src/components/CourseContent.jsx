@@ -42,7 +42,7 @@ const CourseContent=()=>{
 
     }
     const getEmbedUrl=(url)=>{
-        const videoUrl=url?.split("youtu.be/")[1].split("?")[0]
+        const videoUrl=url?.split("youtu.be/")[1]?.split("?")[0]
             return `https://www.youtube.com/embed/${videoUrl}`;
     }
 

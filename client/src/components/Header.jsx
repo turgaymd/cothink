@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { useState } from "react";
 
-function Header({open, setOpen}){
+function Header({open, setOpen,setSettings}){
     const [search, setSearch]=useState(false)
 
     return(

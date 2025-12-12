@@ -58,13 +58,13 @@ const AddArticle = () => {
   const handleArticle = async (e) => {
     e.preventDefault();
 
-    // const user = JSON.parse(localStorage.getItem("user"));
-    // const mentor_id = user?.mentor_id;
+    const user = JSON.parse(localStorage.getItem("user"));
+    const mentor_id = user?.id;
 
-    // if (!mentor_id) {
-    //   toast.error("LocalStorage-də user tapılmadı!");
-    //   return;
-    // }
+    if (!mentor_id) {
+      toast.error("Mentor kimi daxil olun");
+      return;
+    }
 
     if (!articleTitle || !articleDesc || !articleContent || !articleTags || !categoryId) {
       setError("Bütün xanaları doldurun");
@@ -72,7 +72,7 @@ const AddArticle = () => {
     }
 
     const formData = new FormData();
-    // formData.append("mentor_id", mentor_id);
+    formData.append("mentor_id", mentor_id);
     formData.append("article_title", articleTitle);
     formData.append("article_desc", articleDesc);
     formData.append("article_topic", articleContent);

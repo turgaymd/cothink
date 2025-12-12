@@ -23,7 +23,7 @@ $lesson_title = $_POST['lesson_title'] ?? null;
 $video_link   = $_POST['video_link'] ?? null; 
 
 // Mentor ID (localStorage-dən gələcək)
-// $mentor_id = $_POST['mentor_id'] ?? null;
+$mentor_id = $_POST['mentor_id'] ?? null;
 
 // Fayl upload
 $course_img = null;
@@ -31,32 +31,23 @@ if (isset($_FILES['course_img'])) {
     $file = $_FILES['course_img'];
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $filename = time() . "_course." . $ext;
-    $upload_dir = "../../client/uploads/course_files/";
+    $upload_dir = "../../client/uploads/course_img/";
     if (!file_exists($upload_dir)) mkdir($upload_dir, 0777, true);
 
     if (move_uploaded_file($file['tmp_name'], $upload_dir . $filename)) {
-        $course_file = "uploads/course_files/" . $filename;
+        $course_img = "uploads/course_files/" . $filename;
     }
 }
 
-// ===============================
-//    VALIDATION
-// ===============================
-// if ( !$course_title || !$category_id || !$lesson_title || !$video_link) {
-//     echo json_encode([
-//         "status" => "error",
-//         "message" => "Bütün məlumatları doldurun"
-//     ]);
-//     exit;
-// }
+ 
 
 // ===============================
 //    DB INSERT
 // ===============================
 // Əvvəl mentor_course cədvəlinə kurs əlavə et
-$sql = "INSERT INTO mentor_course ( course_title, category_id, course_img) VALUES (?, ?, ?)";
+$sql = "INSERT INTO mentor_course (mentor_id, course_title, category_id, course_img) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$success = $stmt->execute([  $course_title, $category_id, $course_img]);
+$success = $stmt->execute([ $mentor_id,  $course_title, $category_id, $course_img]);
 
 if (!$success) {
     echo json_encode(["status" => "error", "message" => "Kurs əlavə olunmadı"]);
@@ -67,9 +58,9 @@ if (!$success) {
 $course_id = $conn->lastInsertId();
 
 // Dərsi course_video cədvəlinə əlavə et
-$sql2 = "INSERT INTO course_video ( lesson_title, video_link) VALUES (?, ?)";
+$sql2 = "INSERT INTO course_video (course_id, category_id, lesson_title, video_link) VALUES (?, ?, ?, ?)";
 $stmt2 = $conn->prepare($sql2);
-$success2 = $stmt2->execute([  $lesson_title, $video_link]);
+$success2 = $stmt2->execute([ $course_id, $category_id, $lesson_title, $video_link]);
 
 if ($success2) {
     echo json_encode([

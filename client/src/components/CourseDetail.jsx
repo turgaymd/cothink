@@ -8,7 +8,6 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
 
 
@@ -57,7 +56,7 @@ const CourseDetail=()=>{
         </div>
         <div className="flex md:flex-row flex-col gap-3 justify-between mt-5 mb-5 w-full">
             <div className="flex gap-3">
-            <img src={course?.profile_img} className="object-cover w-10 h-10"/>
+            <img src={course?.profile_img || "/images/admin.png"} className="object-cover w-10 h-10 rounded-full"/>
             <div className="flex flex-col">
                 <h4 className="font-bold">{course?.mentor_name}</h4>
                 <p className="text-gray-400">Abunəçilər 11.2k</p>
@@ -77,67 +76,31 @@ const CourseDetail=()=>{
              <div className="">
                 <button className="w-full bg-blue-800 text-xl text-white rounded-full">Kurs planı</button>
                     <div className="features_card shadow-white-200 shadow-xl px-3 py-2 mb-5">
-                        <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer">
-                            <div className="flex items-center gap-3">
-                                 <div className="icons">
-                              <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
-                            </div>
-                            <div className="flex flex-col">
-                            <h4 className="font-bold">Enerji, istilik və iş anlayışları</h4>
-                            <p className="text-gray-400">4 dərs</p>
-                            </div>
-                            </div>
-                           <button  onClick={handleCollapse}>
-                            {open ? <SlArrowUp/>  : <SlArrowDown/>} 
-                            </button> 
-                        </div>
+  
                         {
                           open && (
-                            <>
+                            <> 
+                                {course?.lessons && course?.lessons?.length>0 ?(
+                        course?.lessons.map((lesson, index)=>(
+                           <>
                             <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-                            <div className="flex items-center gap-3 cursor-pointer" >
+  <div className="flex items-center gap-3 cursor-pointer" >
                                  <div className="icons">
                               <span className="text-blue-500 rounded-full"><FaRegCirclePlay fontSize={24}/></span>  
                             </div>
                             <div className="flex flex-col">
-                            <h4 className="font-bold">“Enerji nədir?”</h4>
+                            <h4 className="font-bold">{lesson.lesson_title}</h4>
                             <p className="text-gray-400">3 dəq 45 san</p>
                             </div>
-                            </div> 
+                            </div>          
                         </div>
-                          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-                            <div className="flex items-center gap-3">
-                                 <div className="icons">
-                              <span className="text-blue-500 rounded-full"><FaRegFile fontSize={24}/></span>  
-                            </div>
-                            <div className="flex flex-col">
-                            <h4 className="font-bold">“Enerjinin formaları və çevrilməsi”</h4>
-                            <p className="text-gray-400">PDF</p>
-                            </div>
-                            </div>
-                        </div>
-                          <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-                            <div className="flex items-center gap-3">
-                                 <div className="icons">
-                              <span className="text-blue-500 rounded-full "><FaRegComments fontSize={24}/></span>  
-                            </div>
-                            <div className="flex flex-col">
-                            <h4 className="font-bold">“Enerjinin gündəlik istifadəsi”</h4>
-                            <p className="text-gray-400">Forum</p>
-                            </div>
-                            </div>
-                        </div>
-                     <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3">
-                            <div className="flex items-center gap-3">
-                                 <div className="icons">
-                              <span className="text-blue-500 rounded-full "><MdAssignment fontSize={24}/></span>  
-                            </div>
-                            <div className="flex flex-col">
-                            <h4 className="font-bold">“Enerji haqqında əsas anlayışlar”</h4>
-                            <p className="text-gray-400">20 sual</p>
-                            </div>
-                            </div>
-                        </div>
+                        </>
+                          ))
+                        )
+                          : (
+                            <p className="font-bold col-span-4 text-center text-xl">Dərs tapılmadı</p>
+                          )
+                        }
                             </>
                           )
                         }   

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 // ===============================
 $data = json_decode(file_get_contents("php://input"), true);
 
-// $mentor_id     = $_POST['mentor_id'] ?? null;
+$mentor_id     = $_POST['mentor_id'] ?? null;
 $article_title = $_POST['article_title'] ?? null;
 $article_topic = $_POST['article_topic'] ?? null;
 $article_desc  = $_POST['article_desc'] ?? null;
@@ -38,25 +38,8 @@ if (isset($_FILES['article_img'])) {
         $article_img = "uploads/images/" . $filename;
     }
 }
-// ===============================
-//     VALIDATION
-// ===============================
-
-// if (!$article_title || !$article_desc) {
-//     echo json_encode([
-//         "status" => "error",
-//         "message" => "Title və description tələb olunur"
-//     ]);
-//     exit;
-// }
-
-// if (!$category_id) {
-//     echo json_encode([
-//         "status" => "error",
-//         "message" => "Category seçilməlidir"
-//     ]);
-//     exit;
-// }
+ 
+ 
 
 // ===============================
 //       DB INSERT SORĞUSU
@@ -64,14 +47,14 @@ if (isset($_FILES['article_img'])) {
 
 $sql = "
     INSERT INTO mentor_article 
-    ( article_title, article_topic,  article_desc, article_img, category_id, article_tags)
-    VALUES ( ?, ?, ?, ?, ?, ?)
+    ( mentor_id, article_title, article_topic,  article_desc, article_img, category_id, article_tags)
+    VALUES ( ?, ?, ?, ?, ?, ?, ?)
 ";
 
 $stmt = $conn->prepare($sql);
 
 $success = $stmt->execute([
-    // $mentor_id,
+    $mentor_id,
     $article_title,
     $article_topic,
     $article_desc,

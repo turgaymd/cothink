@@ -5,7 +5,8 @@ import { ApiContext } from "../ApiContext";
 
 const Mentors=()=>{
 const [categories,setCategories]=useState([])
-const [mentorArticles, setMentorArticles]=useState([])
+const [selectedCategory,setSelectedCategory]=useState(null)
+console.log(selectedCategory)
 const  [displayedCategories, setDisplayedCategories]=useState([])
 const  [visibleCategories, setVisibleCategories]=useState(2)
 const  [query, setQuery]=useState("")
@@ -32,14 +33,17 @@ const {apiUrl}=useContext(ApiContext)
         return newCount;
        })}
 
-          const filteredMentors=mentors.filter((item)=>
-        item.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+          const filteredMentors=mentors.filter((item)=>{
+        const searchedQuery=item?.mentor_name.toLowerCase().includes(query.toLowerCase()) 
+        const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
+        return searchedQuery && matchedCategories
+          }
     )
     const user=JSON.parse(localStorage.getItem("user"))
     return (
         <div className="md:col-span-10">
           <section>
-            <h2 className="font-semibold text-center text-xl pb-5">Xoş gəlmisiniz, {user.name}</h2>
+            <h2 className="font-semibold text-center text-xl pb-5">Xoş gəlmisiniz, {user?.name}</h2>
             <Search query={query} setQuery={setQuery}/>
             <div className="mentor-banner mt-3">
                 <div className="relative flex flex-col md:flex-row items-center justify-between">
@@ -65,15 +69,14 @@ const {apiUrl}=useContext(ApiContext)
             </div>
       <div className="course-filter mt-4 mb-5">
         
-                    <div className="filter-items flex gap-3 flex-col md:flex-row">
-                                            <span className="active rounded-md">Hamısı</span>                                          
+                    <div className="filtered-items flex gap-3 flex-col md:flex-row">
+                                            {/* <span className="active rounded-md">Hamısı</span>                                           */}
                         {
                             displayedCategories.map((item, index)=>(
 
-                    <span className="rounded-md" key={index}>{item.category}</span>
+                    <button className="rounded-md " key={index} onClick={()=>setSelectedCategory(item?.category_id)}>{item?.category}</button>
                             ))
-                        }
-                     
+                        }                    
                 </div>
             </div>
             </div>
@@ -86,29 +89,28 @@ const {apiUrl}=useContext(ApiContext)
                   <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>   : 
                   (filteredMentors.map((item,index)=>(
                    <div className="mentor-item shadow-xl rounded-xl bg-white" key={index}>
-                    <a href={`/mentors/mentor/${item.mentor_id}`} className="block">
+                    <a href={`/mentors/mentor/${item?.mentor_id}`} className="block">
                     <div className="mentor-title gap-5 flex">          
-                          <img 
-  src={"/images/avatarr.svg"} 
-  className="avatar rounded-full object-cover" 
+                          <img  src={item?.profile_img || "/images/admin.png"} 
+  className=" rounded-full aspect-square  h-24 w-24 object-cover" 
   alt="mentor" 
 />
                             <div className="flex flex-col w-full">
-                                <h4 className="font-bold text-lg">{item.mentor_name}</h4>
-                        <p>{item.category_id} </p>
+                                <h4 className="font-bold text-lg">{item?.mentor_name}</h4>
+                        <p>{item?.category_id} </p>
                          <div className="flex justify-between gap-5 items-center pt-4">
                         <div className="flex items-center gap-3">
                         <div className="flex items-center gap-2">
                           <img src="/images/users.svg" className="w-5 h-5"/>
-                          <span>{item.students} tələbə</span>
+                          <span>{item?.students} tələbə</span>
                                </div>
                          <div className="flex items-center gap-2">  
                         <img src="/images/comment.svg" className="w-5 h-5"/>
-                        <span>{item.comments}</span>
+                        <span>{item?.comments} 0</span>
                              </div>
                         </div>                               
                        <div className="flex flex-col items-center gap-2">
-                        <span>{item.rating}</span>
+                        <span>{item?.rating}</span>
                       <img src="/images/stars.svg"/>
                         </div>
                        
