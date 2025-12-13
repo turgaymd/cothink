@@ -9,10 +9,11 @@ import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
 import { CommentCard } from "../components/Comments";
 import { WhatsappShareButton } from "react-share";
+import { AuthContext } from "../AuthContext";
 
 const Profile = () => {
   const {apiUrl}= useContext(ApiContext)
-  const user=JSON.parse(localStorage.getItem("user"))
+  const {user}=useContext(AuthContext)
   const [activeTab, setActiveTab] = useState(user.type==="mentor" ? "courses" : "studentPosts");
   const [courses, setCourses] = useState([]);
   const [articles, setArticles] = useState([]);
@@ -48,9 +49,9 @@ useEffect(() => {
 
 }, []);
 
- if(studentPosts.length===0){
-  return <Loading/>
- }
+//  if(studentPosts.length===0){
+//   return <Loading/>
+//  }
 
   return (
     <section>
