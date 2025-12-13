@@ -7,7 +7,7 @@ import {WhatsappShareButton} from "react-share"
 import { ApiContext } from "../ApiContext";
 import { AuthContext } from "../AuthContext";
  
-const Books = ({books, query, selectedCategory ,setSelectedCategory}) => {
+const Books = ({books, query, selectedCategory}) => {
 
   const [savedBooks,setSavedBooks]=useState([])
   const {apiUrl}=useContext(ApiContext)
@@ -56,8 +56,14 @@ const handleSave=async(item)=>{
     }
 }
 
-const handleUnsave=(item)=>{
-setSavedBooks((prev)=>prev.filter((id)=>id!==item.book_id))
+const handleUnsave=async(item)=>{
+
+  setSavedBooks((prev)=>prev.filter((id)=>id!==item.book_id))
+  await axios.delete(`${apiUrl}/server/savedPages/savedBooks/getSaveBooks.php?student_id=${user.id}`,
+           {data:{book_id:item.book_id, student_id:user?.student_id}},
+          { headers: { "Content-Type": "application/json" } },
+  )
+
 }
     return (
       <>
