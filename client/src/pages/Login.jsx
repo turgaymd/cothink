@@ -104,7 +104,7 @@ function Login() {
                 </div>
               </div>
               <div className="flex mb-3 justify-between items-center">
-                <div>
+                <div className="flex items-center">
                   <input type="checkbox" onChange={() => setRememberMe(!rememberMe)} />
                   <label htmlFor="rememberMe" className="text-gray-500 ms-2">
                     Xatırla
