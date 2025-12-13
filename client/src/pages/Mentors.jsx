@@ -91,13 +91,13 @@ const Mentors = () => {
                         filteredMentors.map((item, index) => (
                             <div className="mentor-item shadow-xl rounded-xl" key={index}>
                                 <a href={`/mentors/mentor/${item?.mentor_id}`} className="block">
-                                    <div className="mentor-title gap-5 flex">
+                                    <div className="mentor-title gap-5 items-center flex md:flex-row flex-col">
                                         <img
                                             src={item?.profile_img || "/images/admin.png"}
                                             className="rounded-full aspect-square h-24 w-24 object-cover"
                                             alt="mentor"
                                         />
-                                        <div className="flex flex-col w-full">
+                                        <div className="flex flex-col w-full text-center sm:text-left ">
                                             <h4 className="font-bold text-lg">{item?.mentor_name}</h4>
                                             <p>{item?.category}</p>
                                             <div className="flex justify-between gap-5 items-center pt-4">
