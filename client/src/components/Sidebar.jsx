@@ -1,8 +1,11 @@
 
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
-import { IoClose } from "react-icons/io5";
-
+import { IoClose, IoSettingsOutline } from "react-icons/io5";
+import { AiFillVideoCamera } from "react-icons/ai";
+import { FiBookmark } from "react-icons/fi";
+import { GoPlusCircle } from "react-icons/go";
+import { BsCameraVideo } from "react-icons/bs";
 function Sidebar({open, setOpen, setSettings, setActiveTab}){
   const handleSettings=()=>{
     setSettings(true) 
@@ -112,18 +115,19 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
             
             <li>
               <NavLink 
-                className="flex gap-2 md:p-3 md:justify-center lg:justify-start lg:pl-7 text-sm md:text-base" 
+                className="flex gap-3 md:p-3 md:justify-center items-center lg:justify-start lg:pl-7 text-sm md:text-base" 
                 to={"/courses"} 
                 onClick={handleNavigate}
               >
-                <img src="/images/courses.svg" className="hidden md:flex w-5 h-5" alt=""/>
+                <BsCameraVideo fontSize={26} className="hidden md:flex"/>
+                {/* <img src="/images/courses.svg" className="hidden md:flex w-5 h-5" alt=""/> */}
                 <p className="md:hidden lg:block">Kurslar</p>
               </NavLink>
             </li>
             
             <li>
               <NavLink 
-                className="flex gap-2 md:p-3 md:justify-center lg:justify-start lg:pl-7 text-sm md:text-base" 
+                className="flex gap-2 md:p-3 md:justify-center items-center lg:justify-start lg:pl-7 text-sm md:text-base" 
                 to={"/library"} 
                 onClick={handleNavigate}
               >
@@ -134,20 +138,21 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
             
             <li>
               <NavLink 
-                className="flex gap-2 md:p-3 md:justify-center lg:justify-start lg:pl-7 text-sm md:text-base" 
+                className="flex gap-2 md:p-3 md:justify-center items-center lg:justify-start lg:pl-7 text-sm md:text-base" 
                 to={"/saved"} 
                 onClick={handleNavigate}
               >
-                <img src="/images/save.svg" className="hidden md:flex w-5 h-5" alt=""/>
+                <FiBookmark fontSize={24} className="hidden md:flex"/>
                 <p className="md:hidden lg:block">Yadda saxlanılanlar</p>
               </NavLink>
             </li>
             
             <li>
               <a
-                className="flex gap-2 md:p-3 md:justify-center lg:justify-start lg:pl-7 text-sm md:text-base cursor-pointer" 
+                className="flex gap-2 md:p-3 md:justify-center items-center lg:justify-start lg:pl-7 text-sm md:text-base cursor-pointer" 
                 onClick={handleSettings}
               >
+                {/* <IoSettingsOutline fontSize={32}/> */}
                 <img src="/images/settings.svg" className="hidden md:flex w-5 h-5 " alt=""/>
                 <p className="md:hidden lg:block">Parametrlər</p>
               </a>
@@ -155,11 +160,11 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
             
             <li>
               <NavLink 
-                className="hidden md:flex gap-2 md:p-3 md:justify-center lg:justify-start lg:pl-7 text-sm md:text-base" 
+                className="hidden md:flex gap-2 md:p-3 md:justify-center items-center lg:justify-start lg:pl-7 text-sm md:text-base" 
                 to={"/share"} 
                 onClick={handleNavigate}
               >
-                <img src="/images/new_share.svg" className="w-5 h-5" alt=""/>
+                <GoPlusCircle fontSize={24} className="hidden md:flex"/>
                 <p className="md:hidden lg:block">Yeni paylaşım</p>
               </NavLink>
             </li>
