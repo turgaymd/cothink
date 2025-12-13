@@ -71,19 +71,19 @@ const MainHome = () => {
             `}</style>
 
             <div className="mentor-banner mt-3 overflow-hidden">
-                <div className="relative flex flex-col md:flex-row items-center justify-between">
+                <div className="relative flex flex-col md:flex-row r justify-between">
                     <div className="">
                         <h2 className="text-3xl font-medium pb-3">Daha məqsədli öyrən, daha az əziyyət çək.</h2>
                         <p className="font-medium text-xl">Sənə uyğun öyrənmə metodları ilə tanış ol.</p>
                     </div>
-                    <div className="flex md:justify-end justify-center mb-1 ">
+                    <div className="flex justify-end  mb-1 ">
                         <img src="/images/image 5.svg" className="md:scale-x-130 md:rounded-2xl  w-32 h-32 md:w-40 md:size-45 scale-140   shadow-2xs" />
                     </div>
                 </div>
             </div>
 
             <div>
-                <h2 className="font-bold text-3xl text-center mb-8 mt-18">Ən Çox Bəyənilən Məqalələr</h2>
+                <h2 className="font-bold text-2xl text-center mb-8 mt-10">Ən Çox Bəyənilən Məqalələr</h2>
                 <div className="relative px-8 md:px-16">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}

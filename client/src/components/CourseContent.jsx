@@ -154,7 +154,7 @@ const CourseContent=()=>{
                     </div> 
                         <div className="flex justify-end gap-5 comment-reactions pt-3">
             <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{comment?.likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments || "0"}</div>
     </div>
                     </div>
                     </>

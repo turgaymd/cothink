@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
 import { toast } from "react-toastify";
 import { AuthContext } from "../AuthContext";
+import { WhatsappShareButton } from "react-share";
 
 
 const CourseDetail=()=>{
@@ -80,23 +81,27 @@ const CourseDetail=()=>{
                 <a className="bg-blue-800 text-white px-4 py-2 rounded-md" href={`/courses/${course?.course_id}/content`}>Kursu əldə et</a>
             </div>
             <p className="text-blue-500">{course?.category_name}</p>
-                <div className="flex  gap-5 mt-5">
-            <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{course?.likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>26</div>
-            <div className="saved-count flex items-center gap-2"><img src="/images/save.svg"></img>{course?.saved}</div>
+                <div className="flex  gap-3 mt-5">
+            <div className="like-count flex items-center gap-1"><img src="/images/like.svg"></img>{course?.likes}</div>
+            <div className="comment-count flex items-center gap-1" >
+              <WhatsappShareButton url={window.location.href} title={course?.course_title}>     <img src="/images/share.svg"></img></WhatsappShareButton>
+         
+              
+              26</div>
+            <div className="saved-count flex items-center gap-1"><img src="/images/save.svg"></img>{course?.saved}</div>
         </div>
         <div className="flex md:flex-row flex-col gap-3 justify-between mt-5 mb-5 w-full">
             <div className="flex gap-3">
             <img src={course?.profile_img || "/images/admin.png"} className="object-cover w-10 h-10 rounded-full"/>
             <div className="flex flex-col">
-                <h4 className="font-bold">{course?.mentor_name}</h4>
+                <h4 className="font-medium">{course?.mentor_name}</h4>
                 <p className="text-gray-400">Abunəçilər 11.2k</p>
                 </div>
                 
             </div>
             
             <div className="flex items-center gap-3 ">                 
-                   <button className="bg-gray-300 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
+                   <button className="bg-gray-200 rounded-md p-2"><IoIosNotificationsOutline className="text-2xl"/></button>
                    <button className="bg-blue-800 text-white rounded-md p-2"><BsChatRightText className="text-2xl"/></button>
                    <a className="text-blue-800 rounded-md px-5 py-2 border border-blue-700"  >İzlə</a>
             </div>
@@ -159,7 +164,7 @@ const CourseDetail=()=>{
                     
     <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
                     <div className="comment-header flex items-center ">
-            <img  className="rounded-md avatar" src={comment.profile_img}></img>
+            <img  className="rounded-md w-25 h-25" src={comment.profile_img || "/images/admin.png"}></img>
             <div className="pl-4">
            <h4 className="font-semibold">{comment.mentor_name}</h4>
             <p className="text-gray-500">{comment.mentor_position}</p>
@@ -168,7 +173,7 @@ const CourseDetail=()=>{
                     </div> 
                         <div className="flex justify-end gap-5 comment-reactions pt-3">
             <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{comment?.likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments || "0"}</div>
     </div>
                     </div>
                     </>

@@ -49,24 +49,24 @@ const Mentors = () => {
                 <h2 className="font-semibold text-center text-xl pb-5">Xoş gəlmisiniz, {user?.name}</h2>
                 <Search query={query} setQuery={setQuery} />
                 <div className="mentor-banner mt-3">
-                    <div className="relative flex flex-col md:flex-row items-center justify-between">
+                    <div className="relative flex flex-col md:flex-row  justify-between">
                         <div className="">
                             <h2 className="text-3xl font-medium pb-3">Öyrənmə Yolunuza Uyğun Mentorlar</h2>
                             <p className="font-medium text-xl">Sizə ən uyğun mentor profillərini kəşf edin.</p>
                         </div>
-                        <div className="flex md:justify-end justify-center">
+                        <div className="flex justify-end ">
                             <img src="/images/mentor_banner.jpg" className="w-32 h-32 md:w-40 md:h-40 shadow-2xs rounded-full object-cover" alt="Banner" />
                         </div>
                     </div>
                 </div>
-                <div className="filter mb-7">
-                    <div className="flex justify-between mb-3">
-                        <h4 className="font-bold text-xl">Kategoriyalar</h4>
+                <div className="filter mb-3">
+                    <div className="flex justify-between mb-2">
+                        <h4 className="font-bold text-xl items-center">Kategoriyalar</h4>
                         {visibleCategories < categories.length && (
                             <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
                         )}
                     </div>
-                    <div className="course-filter mt-4 mb-5">
+                    <div className="course-filter mt-2 mb-4">
                         <div className="filtered-items flex gap-3 flex-col md:flex-row">
                             {displayedCategories.map((item, index) => (
                                 <button 
@@ -80,11 +80,11 @@ const Mentors = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-between">
-                    <h4 className="font-bold text-xl">Ən yaxşı mentorlar</h4>
+                <div className="flex justify-between items-center">
+                    <h4 className="font-bold text-xl mt-3 mb-3">Ən yaxşı mentorlar</h4>
                     <button className="text-blue-500">Hamısına bax</button>
                 </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 pt-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 pt-2">
                     {filteredMentors.length === 0 ? (
                         <p className="font-bold col-span-2 text-center text-2xl">Mentor tapılmadı</p>
                     ) : (

@@ -32,14 +32,14 @@ const Saved=()=>{
           <h2 className="text-center font-bold text-2xl pb-5">Xoş gəlmisiniz, {user?.name}</h2>
             <Search/>
                  <h4 className="font-bold text-xl mt-5">Kategoriyalar</h4>
-              <div className="course-filter mt-5 mb-5 flex flex-col md:flex-row justify-between">
+              <div className="course-filter mt-3 mb-5 flex flex-col md:flex-row justify-between">
                     <div className="filter-items grid md:grid-cols-4 grid-cols-1 gap-3">
                     <button className={` flex-1 rounded-md ${activeTab==="books" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
                     <button className={`flex-1 rounded-md ${activeTab==="articles" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
                     <button className={`flex-1 rounded-md ${activeTab==="courses" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("courses")}>Kurslar</button>
                     <button className={` flex-1 rounded-md ${activeTab==="posts" ?  "bg-blue-800 text-white" : 'bg-gray-200'}`} onClick={()=>setActiveTab("posts")}>Postlar</button>           
                 </div>
-                <button className="text-blue-500" >Hamısına bax</button>
+                {/* <button className="text-blue-500" >Hamısına bax</button> */}
             </div>
             {activeTab === "courses" && (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">

@@ -83,8 +83,8 @@ const Courses = () => {
        <Search query={query} setQuery={setQuery}/>
                     <div className="course-filter mt-5 mb-5">
                     <div className="filter-items flex md:flex-row flex-col gap-3">
-                    <span className="active rounded-full md:w-64 w-full text-center">Hamısı</span>
-                    <div className="relative w-64">
+                    <button className="active rounded-full md:w-64 w-full text-center" onClick={()=>setSelectedCategory(null)}>Hamısı</button>
+                    <div className="relative md:w-64 w-full">
                     <select
                     value={selectedCategory || ""}
   className="rounded-full px-5 py-2 bg-blue-800 w-full appearance-none  shadow-md text-white outline-none 

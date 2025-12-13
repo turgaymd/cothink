@@ -47,8 +47,8 @@ const Library=()=>{
         </div> 
                 </div>
 <Search query={query} setQuery={setQuery}/>
-            <div className="flex justify-between mb-3">
-                <h4 className="font-medium text-xl">Mövzular</h4>
+            <div className="flex justify-between items-center mb-3">
+                <h4 className="font-semibold text-xl">Mövzular</h4>
           {
                 visibleCategories<categories.length && (
                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>

@@ -83,7 +83,6 @@ function Login() {
                   placeholder="Email ünvanınızı daxil edin"
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-black placeholder-gray-400 outline-none"
                   onChange={(e) => setEmail(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-5">
@@ -98,7 +97,6 @@ function Login() {
                     placeholder="*******"
                     className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                     onChange={(e) => setPassword(e.target.value)}
-                    required
                   />
                   <i className="btn hide" onClick={() => setHide(!hide)}>
                     {hide ? <FaEyeSlash /> : <FaEye />}
