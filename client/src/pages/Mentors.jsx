@@ -82,7 +82,7 @@ const Mentors = () => {
                 </div>
                 <div className="flex justify-between items-center">
                     <h4 className="font-bold text-xl mt-3 mb-3">Ən yaxşı mentorlar</h4>
-                    <button className="text-blue-500">Hamısına bax</button>
+                    <button className="text-blue-500" onClick={()=>setSelectedCategory(null)}>Hamısına bax</button>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4 pt-2">
                     {filteredMentors.length === 0 ? (

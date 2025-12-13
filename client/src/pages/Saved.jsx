@@ -13,7 +13,7 @@ import { FaBookmark } from "react-icons/fa";
 const Saved=()=>{
       const [activeTab, setActiveTab]=useState("articles")
       const [articles, setArticles]=useState([])
-      // const [courses, setCourses]=useState([])
+      const [courses, setCourses]=useState([])
       const [books, setBooks]=useState([])
       const {apiUrl}=useContext(ApiContext)
        const {user}=useContext(AuthContext)
@@ -29,11 +29,11 @@ const Saved=()=>{
                   setBooks(res.data.saved_books)
                   console.log(books) 
               })
-              //     axios.get(`${apiUrl}/server/savedPages/savedCourse/getSaveCourses.php?student_id=${user?.id}`)
-              // .then(res => {
-              //     setCourses(res.data.data)
-              //     console.log(courses) 
-              // })
+                  axios.get(`${apiUrl}/server/savedPages/savedCourse/getSaveCourses.php?student_id=${user?.id}`)
+              .then(res => {
+                  setCourses(res.data.data)
+                  console.log(courses) 
+              })
                     axios.get(`${apiUrl}/server/savedPages/savedPosts/getSaveArticles.php?student_id=${user?.id}`)
               .then(res => {
                   setArticles(res.data.saved_articles)
@@ -57,9 +57,9 @@ const Saved=()=>{
                 </div>
                 {/* <button className="text-blue-500" >Hamısına bax</button> */}
             </div>
-            {/* {activeTab === "courses" && (
+            {activeTab === "courses" && (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-    {courses.length === 0 ? (
+    {!Array.isArray(courses) || courses?.length === 0 ? (
       <p className="text-center text-xl font-bold col-span-3">Kurs tapılmadı</p>
     ) : (
       courses.map((item) => (
@@ -67,7 +67,7 @@ const Saved=()=>{
       ))
     )}
   </div>
-)} */}
+)}
                   {activeTab==="articles" && 
                   <>
                     {articles.length === 0 ? (

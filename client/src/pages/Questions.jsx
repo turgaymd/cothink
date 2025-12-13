@@ -69,8 +69,9 @@ useEffect(()=>{
                     ))
                 }
             </div>
-            <div className="mt-5 mb-5">
+            <div className="mt-5 mb-5 flex justify-between items-center">
                 <h4 className="font-bold text-xl">Müzakirə formu</h4>
+                <button className="text-blue-500" onClick={()=>setSelectedCategory(null)}>Hamısına bax</button>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 {

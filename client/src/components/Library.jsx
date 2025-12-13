@@ -77,7 +77,7 @@ const Library=()=>{
                     <div className="course-filter mt-5">
                     <div className="filter-items flex gap-3">
                     <button className="filter-item px-8 py-2 active rounded-md md:leading-normal leading-none flex justify-center items-center">Ən çox bəyənilənlər</button>
-                    <button className="filter-item   px-8 py-2 rounded-md md:leading-normal leading-none flex justify-center items-center">Hamısı</button>
+                    <button className="filter-item   px-8 py-2 rounded-md md:leading-normal leading-none flex justify-center items-center" onClick={()=>setSelectedCategory(null)}>Hamısı</button>
                 </div>
             </div>
             {activeTab==="articles" ? <Articles query={query} selectedCategory={selectedCategory}/> : <>  
