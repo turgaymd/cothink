@@ -84,10 +84,9 @@ const Saved=()=>{
                     {books.length === 0 ? (
       <p className="text-center text-xl font-bold col-span-3">Kitab tapılmadı</p>
     ) : (
-      
-   books.map((item, index)=>(
-    <div className="grid grid-cols-1 md:grid-cols-3">
-    
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
+   {books.map((item, index)=>(
+  
                    <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
 
                 <div className="flex flex-col md:flex-row gap-5">
@@ -126,8 +125,9 @@ const Saved=()=>{
                 </div>
 
             </div>
-          </div>
-          ))
+         
+          ))}
+           </div>
         )}
                   </>
                    }

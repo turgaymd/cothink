@@ -1,5 +1,6 @@
 import { BsThreeDots } from "react-icons/bs";
 import {useState } from "react";
+import { WhatsappShareButton } from "react-share";
 
 export const PostCard=({item})=>{
     return(
@@ -21,7 +22,9 @@ export const PostCard=({item})=>{
             <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{item.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{item.post_comments}</div>
             <div className="saved-count flex items-center gap-2"><img src="/images/save.svg"></img>{item.saved}</div>
-            <div className="share flex items-center gap-2"><img src="/images/share.svg"></img>Paylaş</div>
+            <div className="share flex items-center gap-2"><img src="/images/share.svg"></img>
+              <WhatsappShareButton url={window.location.href} title={item.post_title}>Paylaş</WhatsappShareButton>
+            </div>
         </div>
             </div>
     )

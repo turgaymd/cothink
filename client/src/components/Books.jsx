@@ -1,15 +1,17 @@
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {WhatsappShareButton} from "react-share"
 import { ApiContext } from "../ApiContext";
+import { AuthContext } from "../AuthContext";
  
 const Books = ({books, query, selectedCategory ,setSelectedCategory}) => {
 
-  const [saved,setSaved]=useState([])
+  const [savedBooks,setSavedBooks]=useState([])
   const {apiUrl}=useContext(ApiContext)
+  const {user}=useContext(AuthContext)
      const filteredBooks=books.filter((item)=>{
       const searchedQuery=  item.book_title.toLowerCase().includes(query.toLowerCase())
       const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
@@ -17,23 +19,34 @@ const Books = ({books, query, selectedCategory ,setSelectedCategory}) => {
      }
   )
  
+useEffect(()=>{
+ axios.get(
+        `${apiUrl}/server/savedPages/savedBooks/getSaveBooks.php?student_id=${user.id}`)
+         .then(res => {
+          const book_ids=res.data.saved_books.map(book=>book.book_id)
+            setSavedBooks(book_ids)
+             console.log(book_ids)
+        })
+        .catch(err => console.error(err))
+      
+      
+},[])
+
 const handleSave=async(item)=>{
    try {
-    const formData=new FormData();
-    formData.append("book_id", item.book_id)
-    formData.append("book_title", item.book_title)
-    formData.append("book_img", item.book_img)
-    formData.append("book_url", item.book_url)
+
 
       const res = await axios.post(
-        `${apiUrl}/server/books/bookRead.php`,
-         formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        `${apiUrl}/server/savedPages/savedBooks/postsaveBooks.php?book_id=${item.book_id}`,
+         {
+          student_id:user?.id
+         },
+        { headers: { "Content-Type": "application/json" } }
       );
-
+      console.log(res.data)
       if (res.data.status === "success") {
         toast.success("Kitab yadda saxlanıldı");
-        setSaved((prev)=>[...prev, item.book_id])
+        setSavedBooks((prev)=>[...prev, item.book_id])
       } else {
         toast.error(res.data.message);
       }
@@ -44,10 +57,11 @@ const handleSave=async(item)=>{
 }
 
 const handleUnsave=(item)=>{
-setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
+setSavedBooks((prev)=>prev.filter((id)=>id!==item.book_id))
 }
     return (
-        <>
+      <>
+        <ToastContainer/>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
                {filteredBooks.length===0 ? 
                   <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p>   : (
@@ -83,7 +97,9 @@ setSaved((prev)=>prev.filter((id)=>id!==item.book_id))
                         <WhatsappShareButton url={window.location.href} title={item.book_title}>Paylaş</WhatsappShareButton>
                       </div>
                       <div className="flex items-center gap-1">
-                        {saved.includes(item.book_id) ? <FaBookmark fontSize={24} onClick={()=>handleUnsave(item)}/> :  <FaRegBookmark fontSize={24} onClick={()=>handleSave(item)}/>}
+                  {savedBooks.includes(item.book_id) ? 
+                  (<FaBookmark fontSize={24} onClick={()=>handleUnsave(item)}/>) :
+                   (<FaRegBookmark fontSize={24} onClick={()=>handleSave(item)}/>)}
              
                       </div>
                     </div>

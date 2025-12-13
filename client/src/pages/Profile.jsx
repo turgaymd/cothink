@@ -71,10 +71,10 @@ useEffect(() => {
           <div className="flex flex-col gap-3 justify-center">
             <h4 className="font-bold text-xl text-center md:text-left">{user?.name}</h4>
             <div className="flex gap-5">
-              <span>2.6k tələbə</span>
-              <span>38 post</span>
-              <span>120 izləyici</span>
-              <span>45 izlədiklərim</span>
+              <span>0 tələbə</span>
+              <span>{user.type==="mentor" ? mentorPosts.length : studentPosts.length} post</span>
+              <span>0 izləyici</span>
+              <span>0 izlədiklərim</span>
             </div>
           </div>
         </div>
