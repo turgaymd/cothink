@@ -103,7 +103,7 @@ function Login() {
                   </i>
                 </div>
               </div>
-              <div className="flex mb-4 justify-between">
+              <div className="flex mb-3 justify-between items-center">
                 <div>
                   <input type="checkbox" onChange={() => setRememberMe(!rememberMe)} />
                   <label htmlFor="rememberMe" className="text-gray-500 ms-2">
@@ -127,10 +127,10 @@ function Login() {
                   Qeydiyyat
                 </a>
               </p>
-              <p className="text-center pt-3 pb-3">Və ya</p>
+              {/* <p className="text-center pt-3 pb-3">Və ya</p>
                 <button className="w-full border border-gray-300 flex items-center justify-center gap-2 pb-5">
                   <FcGoogle fontSize={28} /> Google ilə daxil ol
-                </button>
+                </button> */}
           </div>
         </div>
       </div>

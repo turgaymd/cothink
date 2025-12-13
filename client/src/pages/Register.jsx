@@ -218,11 +218,11 @@ function Register() {
                     </div>
               
             </form>
-              <p className="text-center pb-4 pt-4">Və ya</p>
+              {/* <p className="text-center pb-4 pt-4">Və ya</p>
                 <button className="w-full border border-gray-300 flex items-center justify-center gap-2">
                   <FcGoogle fontSize={28} />
                   Google ilə daxil ol
-                </button>
+                </button> */}
           
 
               <p className="text-center mt-2">
