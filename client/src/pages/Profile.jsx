@@ -14,7 +14,7 @@ import { AuthContext } from "../AuthContext";
 const Profile = () => {
   const {apiUrl}= useContext(ApiContext)
   const {user}=useContext(AuthContext)
-  const [activeTab, setActiveTab] = useState(user.type==="mentor" ? "courses" : "studentPosts");
+  const [activeTab, setActiveTab] = useState(user?.type==="mentor" ? "courses" : "studentPosts");
   const [courses, setCourses] = useState([]);
   const [articles, setArticles] = useState([]);
   const [mentorPosts, setMentorPosts]=useState([])
@@ -38,14 +38,19 @@ useEffect(() => {
     axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`)
       .then(res => setMentorPosts(res.data));
   }
- 
+ else{
   axios.get(`${apiUrl}/server/students/studentPost.php?student_id=${user.id}`)
     .then(res => setStudentPosts(res.data.data))
     .catch(() => setStudentPosts([])); 
  
   axios.get(`${apiUrl}/server/students/studentcomments.php?student_id=${user.id}`)
-    .then(res => setPostComments(res.data))
+    .then(res =>{
+ setPostComments(res.data)
+ console.log(res.data)
+    })
     .catch(() => setPostComments([]));
+ }
+
 
 }, []);
 
