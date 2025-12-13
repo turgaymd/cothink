@@ -15,26 +15,26 @@ function Header({open, setOpen,setSettings}){
           </button>
           
           <div className="logo">
-            <Link to="/home" className="hidden md:flex">
+            <Link to="/home" className="hidden md:flex" onClick={()=>setSettings(false)}>
               <img src="/images/logo.jpg" alt="Logo"/>
             </Link>
-            <Link to="/home" className="md:hidden flex">
-              <img src="/images/mobile_logo.png" alt="Mobile Logo"/>
+            <Link to="/home" className="md:hidden flex" onClick={()=>setSettings(false)}>
+              <img src="/images/mobile_logo.png" alt="Mobile Logo" />
             </Link>
           </div>
           
           <ul className="hidden md:flex gap-2 lg:gap-6 desktop-menu text-xs lg:text-base">
             <li className="nav-item whitespace-nowrap">
-              <NavLink className={({isActive})=> isActive ? "active" : "" } to="/home">Ana Səhifə</NavLink>
+              <NavLink className={({isActive})=> isActive ? "active" : "" } to="/home" onClick={()=>setSettings(false)}>Ana Səhifə</NavLink>
             </li>
             <li className="nav-item whitespace-nowrap">
-              <NavLink className={({isActive})=> isActive ? "active" : "" } to="/questions">Sual-Cavab</NavLink>
+              <NavLink className={({isActive})=> isActive ? "active" : "" } to="/questions" onClick={()=>setSettings(false)}>Sual-Cavab</NavLink>
             </li>
             <li className="nav-item whitespace-nowrap">
-              <NavLink className="" to="/mentors">Mentorlar</NavLink>
+              <NavLink className="" to="/mentors" onClick={()=>setSettings(false)}>Mentorlar</NavLink>
             </li>
             <li className="nav-item whitespace-nowrap">
-              <NavLink className="" to="/rating">Reytinq</NavLink>
+              <NavLink className="" to="/rating" onClick={()=>setSettings(false)}>Reytinq</NavLink>
             </li>
           </ul>
           
@@ -59,7 +59,7 @@ function Header({open, setOpen,setSettings}){
             <button className="bg-gray-200 rounded-md p-2">
               <IoIosNotificationsOutline className="text-2xl"/>
             </button>
-            <Link className="profile-img rounded-full pl-2" to="/profile">
+            <Link className="profile-img rounded-full pl-2" to="/profile" onClick={()=>setSettings(false)}>
               <img src="/images/admin.png" className="w-10 h-10" alt="Profile"/>
             </Link>            
           </div>
