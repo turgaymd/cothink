@@ -74,7 +74,7 @@ function Login() {
                 </p>
               )}
               <div className="mb-5">
-                <label htmlFor="email" className="text-sm text-black font-medium mb-2">
+                <label htmlFor="email" className="text-sm font-semibold mb-2">
                   Email
                 </label>
                 <input
@@ -87,7 +87,7 @@ function Login() {
                 />
               </div>
               <div className="mb-5">
-                <label htmlFor="password" className="text-gray-900 font-medium mb-4">
+                <label htmlFor="password" className="font-semibold mb-4">
                   Şifrə
                 </label>
                 <div className="relative">

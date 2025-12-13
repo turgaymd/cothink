@@ -5,6 +5,8 @@ import { MdArrowOutward } from "react-icons/md";
 import { useContext, useEffect,useState } from "react";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
+import Select from "react-select"
+import { PiX } from "react-icons/pi";
 export const CourseCard=({item})=>{
 
   return(
@@ -49,20 +51,29 @@ export const CourseCard=({item})=>{
 const Courses = () => {
     const [courses, setCourses]=useState([])
     const [selectedCategory,setSelectedCategory]=useState(null)
+    const [categories,setCategories]=useState([])
     const [query ,setQuery]=useState("")
     const {apiUrl}=useContext(ApiContext)
     
+      const handleSelect = (value) => {
+    setSelectedCategory(value);
+  };
+
    useEffect(()=>{
         axios.get(`${apiUrl}/server/courses/courseRead.php`).then(res=>{
           console.log(res.data)
             setCourses(res.data)
+        })
+           axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
+            setCategories(res.data.data) ;
+            // setDisplayedCategories(res.data.data.slice(0,4))
         })
      },[])
 
        const filteredCourses=courses.filter((item)=>{
        const searchedQuery= item?.course_title?.toLowerCase().includes(query.toLowerCase()) ||
         item?.mentor_name?.toLowerCase().includes(query.toLowerCase()) 
-        const matchedCategories=!selectedCategory ||  item?.category_id===selectedCategory
+        const matchedCategories=!selectedCategory ||  item?.category===selectedCategory
         return searchedQuery && matchedCategories
        }
     )
@@ -72,15 +83,38 @@ const Courses = () => {
        <Search query={query} setQuery={setQuery}/>
                     <div className="course-filter mt-5 mb-5">
                     <div className="filter-items flex md:flex-row flex-col gap-3">
-                    <span className="active rounded-full">Fizika</span>
-                    <span className="rounded-full">Riyaziyyat</span>
+                    <span className="active rounded-full md:w-64 w-full text-center">Hamısı</span>
+                    <div className="relative w-64">
+                    <select
+                    value={selectedCategory || ""}
+  className="rounded-full px-5 py-2 bg-blue-800 w-full appearance-none  shadow-md text-white outline-none 
+             border  cursor-pointer"
+  onChange={(e) => handleSelect(e.target.value)}
+>
+
+  {categories.map((item) => (
+    <option key={item.category_id} value={item.category} className="bg-white w-full border-none outline-none text-black font-medium">
+      {item.category}
+    </option>
+  ))}
+</select>
+
+<div className="absolute text-white right-3 inset-y-0 flex justify-center items-center"> ▼</div>
+          </div>
                 </div>
             </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-7">
 {
+  filteredCourses.length>0 ? 
   filteredCourses.map((item)=>(
     <CourseCard key={item.course_id} item={item}/>
-))}
+  )) : (
+             <p className="text-center text-xl font-bold col-span-3">
+              Kurs tapılmadı
+            </p>
+  )
+}
+
                   
                   
         </div>

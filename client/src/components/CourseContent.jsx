@@ -52,7 +52,7 @@ const CourseContent=()=>{
         const videoUrl=url?.split("youtu.be/")[1]?.split("?")[0]
             return `https://www.youtube.com/embed/${videoUrl}`;
     }
-const handleComments=async (e)=>{
+  const handleComments=async (e)=>{
     e.preventDefault()
     if(comment===""){
         setError("Komment daxil edin")
@@ -82,9 +82,10 @@ const handleComments=async (e)=>{
              <p>İrəliləyiş</p>
              <p>52%</p>
             </div> 
-            <div className="w-full rounded-full pt-2 mb-5">
-                  <div className="bg-blue-800 progress-bar h-3 rounded-2xl" > </div>
+            <div className="w-full bg-gray-200 rounded-full h-3  mb-5">
+                  <div className="bg-blue-800 progress-bar h-3 rounded-2xl w-3/4 animate-pulse" > </div>
             </div>
+           
             <button className="text-white bg-blue-800 rounded-md py-3">Öyrənməyə davam edin</button>
             <div className="features_card shadow-sm inset-shadow-sm mt-4">
                 <h4 className="font-semibold text-center text-xl pb-4">{course?.lessons[currentIndex]?.lesson_title}</h4>

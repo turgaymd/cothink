@@ -51,7 +51,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Register Button */}
+       <div className="flex gap-3">
         <Link
           to="/register"
           style={{ backgroundColor: blue }}
@@ -59,7 +59,16 @@ const Navbar = () => {
         >
           Qeydiyyat
         </Link>
+           <Link
+          to="/login"
+          style={{ backgroundColor: blue }}
+          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition"
+        >
+          Giriş
+        </Link>
       </div>
+      </div>
+      
 
       {/* ✅ Mobile navbar */}
       <div className="md:hidden flex items-center justify-between px-4 py-4">
@@ -78,7 +87,8 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Mobile register */}
+     <div className="flex gap-3">
+
         <Link
           to="/register"
           style={{ backgroundColor: blue }}
@@ -86,6 +96,14 @@ const Navbar = () => {
         >
           Qeydiyyat
         </Link>
+               <Link
+          to="/login"
+          style={{ backgroundColor: blue }}
+          className="text-white rounded-2xl px-4 py-1.5 text-sm hover:opacity-90 transition"
+        >
+          Giriş
+        </Link>
+        </div>
       </div>
 
       {/* ✅ Mobile dropdown */}

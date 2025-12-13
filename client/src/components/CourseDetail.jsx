@@ -9,37 +9,66 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
+import { toast } from "react-toastify";
+import { AuthContext } from "../AuthContext";
 
 
 const CourseDetail=()=>{
   const [course, setCourse]=useState(null)
-   const [comments, setComments]=useState([])
+  const [comments, setComments]=useState([])
+  const [comment, setComment]=useState("")
+  const [error,setError]=useState('')
   const [open, setOpen]=useState(true)
   const {apiUrl}=useContext(ApiContext)
-    const { id } = useParams();  
+  const {user}=useContext(AuthContext)
+  const { id } = useParams();  
+
+
+   const fetchComments=async()=>{ 
+     axios.get(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`)
+            .then((res) => {
+              setComments(res.data.comments);
+              console.log(res.data);
+            })
+            .catch((err) => console.error(err));
+        }
+
     useEffect(() => {
       axios
         .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
         .then((res) => {
              console.log(res.data.data)
           setCourse(res.data.data);
-       
         })
         .catch((err) => console.error(err));
-        
+        fetchComments()
     }, [id])
 
-     axios
-            .get(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`)
-            .then((res) => {
-              setComments(res.data);
-              // console.log(res.data);
-            })
+
 
      const handleCollapse=()=>{
       setOpen(!open)
      }
- 
+
+  const handleComments=async (e)=>{
+    e.preventDefault()
+    if(comment===""){
+        setError("Komment daxil edin")
+        return;
+    }
+   const res=  await axios.post(`${apiUrl}/server/courses/postComments.php?course_id=${id}`,
+     {
+        student_id:user?.id, comment_text:comment}
+    )
+    if(res.data.status==="success"){
+        setComment("")
+        toast.success("Rəy paylaşıldı")
+        fetchComments()
+}
+              
+             
+    
+}
     return(
      <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
@@ -108,12 +137,26 @@ const CourseDetail=()=>{
                         }   
                         </div>
              </div>
+               <form onSubmit={handleComments}>
+                            {error && (
+                <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
+                  {error}
+                </p>
+                            )}
+  <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
+                    <h4 className=" mt-5 font-bold text-lg" >Rəylər</h4>
+                        </form>
+                      
+
              {
               comments.length > 0 && (
+                
                 <>
+                    <h4 className="mb-3 mt-3 font-bold text-lg" ></h4>
    {  comments.map((comment)=>{
                 return(
                     <>
+                    
     <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
                     <div className="comment-header flex items-center ">
             <img  className="rounded-md avatar" src={comment.profile_img}></img>
@@ -124,8 +167,8 @@ const CourseDetail=()=>{
             </div>
                     </div> 
                         <div className="flex justify-end gap-5 comment-reactions pt-3">
-            <div className="like-count flex items-center gap-2"><img src="/like.svg"></img>{comment?.likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/comment.svg"></img>{comment?.comments}</div>
+            <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{comment?.likes}</div>
+            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments}</div>
     </div>
                     </div>
                     </>

@@ -23,12 +23,19 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
-
-    if (!username || !email || !password) {
+        if(activeTab==="student" ){
+       if ( !username || !email || !password  ) {
       setError("Bütün xanaları doldurun");
       return;
     }
-
+        }
+  
+   if(activeTab==="mentor"){
+    if(!username || !email || !password || !subject){
+        setError("Bütün xanaları doldurun");
+      return;
+    }
+   }  
     if (password.length < 8) {
       setError("Şifrə ən azı 8 simvol olmalıdır");
       return;
@@ -59,11 +66,15 @@ function Register() {
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
-      if (res.data.success) {
+      if(res.data.error){
+        setError(res.data.error)
+      }
+      else if (res.data.success) {
         toast.success("Qeydiyyat uğurla tamamlandı");
         localStorage.setItem("user", JSON.stringify(res.data));
         setTimeout(() => navigate("/home"), 1500);
       }
+
     } catch (err) {
       const msg = err.response?.data?.error || "Xəta baş verdi";
       toast.error(msg);
@@ -116,8 +127,11 @@ function Register() {
             </div>
 
             <form className="login-form mx-auto" onSubmit={handleRegister}>
-              {error && <p className="text-center text-red-600">{error}</p>}
-
+  {error && (
+                <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
+                  {error}
+                </p>
+              )}
               <div className="mb-2">
                 <label htmlFor="name" className="text-sm font-bold mb-2">Ad</label>
                 <input
