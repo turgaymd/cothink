@@ -43,7 +43,7 @@ const Library=()=>{
     <div className="flex justify-center mb-5">
     <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
             <button className={` rounded-full w-full ${activeTab==="books" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
-            <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Məqalələr</button>
+            <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Bloqlar</button>
         </div> 
                 </div>
 <Search query={query} setQuery={setQuery}/>

@@ -90,7 +90,7 @@ const AddArticle = () => {
       );
 
       if (res.data.status === "success") {
-        toast.success("Məqalə uğurla əlavə olundu");
+        toast.success("Bloq uğurla əlavə olundu");
         setArticleTitle("");
         setArticleDesc("");
         setArticleContent("");
@@ -110,7 +110,7 @@ const AddArticle = () => {
 
   return (
     <div className="research-form">
-      <h2 className="text-center font-bold text-3xl pb-5">Məqalə əlavə et</h2>
+      <h2 className="text-center font-bold text-3xl pb-5">Bloq əlavə et</h2>
       <form className="mt-5" onSubmit={handleArticle}>
         {error && (
           <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
@@ -120,26 +120,26 @@ const AddArticle = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block title font-semibold text-gray-900 pb-2">
-              Məqalə başlığı
+              Bloq başlığı
             </label>
             <textarea
               className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg"
               cols={5}
               rows={3}
-              placeholder="Məqalə başlığı əlavə edin"
+              placeholder="Bloq başlığı əlavə edin"
               value={articleTitle}
               onChange={(e) => setArticleTitle(e.target.value)}
             />
           </div>
           <div>
             <label className="block title font-semibold text-gray-900 pb-2">
-              Qısa izah / Məqalə haqqında
+              Qısa izah / Bloq haqqında
             </label>
             <textarea
               className="w-full form-input border border-gray-300 px-3 py-1.5 outline-none rounded-lg"
               cols={5}
               rows={3}
-              placeholder="Məqalənizin mövzusu, məqsədi və kimlər üçün faydalı olduğunu 2–3 cümlə ilə yazın"
+              placeholder="Bloqunuzun mövzusu, məqsədi və kimlər üçün faydalı olduğunu 2–3 cümlə ilə yazın"
               value={articleDesc}
               onChange={(e) => setArticleDesc(e.target.value)}
             />
@@ -158,13 +158,13 @@ const AddArticle = () => {
         </div>
         <div className="mb-4">
           <label className="block title font-semibold text-gray-900 pb-2">
-            Məqalə Məzmunu
+            Bloq Məzmunu
           </label>
           <textarea
             className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg"
             cols={5}
             rows={5}
-            placeholder="Məqalənizin əsas hissəsini burada yazın"
+            placeholder="Bloqun əsas hissəsini burada yazın"
             value={articleContent}
             onChange={(e) => setArticleContent(e.target.value)}
           />

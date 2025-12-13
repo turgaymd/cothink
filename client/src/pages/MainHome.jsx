@@ -83,7 +83,7 @@ const MainHome = () => {
             </div>
 
             <div>
-                <h2 className="font-bold text-2xl text-center mb-8 mt-10">Ən Çox Bəyənilən Məqalələr</h2>
+                <h2 className="font-bold text-2xl text-center mb-8 mt-10">Ən Çox Bəyənilən Bloqlar</h2>
                 <div className="relative px-8 md:px-16">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}

@@ -125,7 +125,7 @@ useEffect(() => {
             }`}
             onClick={() => setActiveTab("articles")}
           >
-            Məqalələr
+            Bloqlar
           </button>
         </div>
         </> :

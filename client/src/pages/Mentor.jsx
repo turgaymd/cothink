@@ -119,7 +119,7 @@ const Mentor = () => {
               className={`rounded-full w-full ${activeTab === "articles" ? "bg-blue-700 text-white" : ""}`}
               onClick={() => setActiveTab("articles")}
             >
-              Məqalələr
+              Bloqlar
             </button>
           </div>
         </div>
@@ -139,10 +139,10 @@ const Mentor = () => {
             </div>
           )}
            {activeTab === "articles" && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
               {articles.length === 0 ? (
                 <p className="text-center text-xl font-bold col-span-3">
-                  Kurs tapılmadı
+                  Bloq tapılmadı
                 </p>
               ) : (
                 articles.map((item) => (
@@ -157,7 +157,7 @@ const Mentor = () => {
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {posts.length === 0 ? (
                 <p className="text-center text-xl font-bold col-span-3">
-                  Kurs tapılmadı
+                  Post tapılmadı
                 </p>
               ) : (
                 posts.map((item) => (
