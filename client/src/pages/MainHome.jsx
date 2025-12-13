@@ -103,7 +103,7 @@ const MainHome = () => {
                                 {/* Qaranlıq overlay */}
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
 
-                                <a href="/library/articles/id" className="relative z-10">
+                                <a className="relative z-10">
                                     <div className="article-content flex justify-between flex-col gap-4">
                                         <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
                                             <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
@@ -132,7 +132,7 @@ const MainHome = () => {
                             <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
 
-                                <a href="/library/articles/id" className="relative z-10">
+                                <a  className="relative z-10">
                                     <div className="article-content flex justify-between flex-col gap-4">
                                         <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
                                             <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
@@ -161,7 +161,7 @@ const MainHome = () => {
                             <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
 
-                                <a href="/library/articles/id" className="relative z-10">
+                                <a  className="relative z-10">
                                     <div className="article-content flex justify-between flex-col gap-4">
                                         <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
                                             <div className="article-author flex flex-col md:flex-row md:items-center gap-2">

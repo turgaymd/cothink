@@ -6,16 +6,16 @@ const Rating=()=>{
         <div className="md:col-span-10 p-5">
             <section>
                 <div className="flex justify-center">
-    <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
-            <button className={`rounded-full w-full ${active==="week" ?  "bg-blue-800 text-white " : ''}`} onClick={()=>setActive("week")}>Həftəlik Reyting</button>
-            <button className={`rounded-full w-full ${active==="month" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActive("month")}>Aylıq Reyting</button>
+    <div className="switch-toogle flex md:flex-row flex-col justify-center rounded-md md:rounded-full items-center mb-5 max-w-3xl w-full bg-white border border-gray-200">
+            <button className={`rounded-md md:rounded-full w-full ${active==="week" ?  "bg-blue-800 text-white " : ''}`} onClick={()=>setActive("week")}>Həftəlik Reyting</button>
+            <button className={`rounded-md md:rounded-full w-full ${active==="month" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActive("month")}>Aylıq Reyting</button>
         </div>
             
                 </div>
         <div className="flex flex-col items-center gap-4">
             <h2 className="text-2xl font-bold">Reytinq Cədvəli</h2>
             <p className="text-gray-400 pb-5 mb-5">Sual verən,cavablayan,bəyənilən və paylaşım edənlər əsasında sıralama</p>
-        <div className="flex flex-col md:flex-row gap-5 mb-5 mt-5">
+        <div className="flex flex-col md:flex-row gap-2 mb-5 mt-5">
             <div className="relative pt-5 md:mb-0 mb-5 order-2 md:order-1">
          <img src="/images/elvin.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
 
@@ -58,41 +58,41 @@ const Rating=()=>{
             </section>
             <div className="flex flex-col gap-3 justify-center items-center mt-2">
             
-                                 <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col md:items-center items-start justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
+                                 <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col md:items-center justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
                         <div className="flex  items-center gap-3 md:flex-row flex-col" >
-                        <img src="/images/aysel.png" className=" w-15 h-15 rounded-full  bg-gray-400 object-cover"/>       
-                        <div>
+                        <img src="/images/aysel.png" className="md:w-16 md:h-16 w-20 h-20 rounded-full  bg-gray-400 object-cover"/>       
+                        <div className="text-center md:text-left">
                         <h4 className="font-bold">Aysel Hacıyeva</h4>
                         <p className="text-gray-400">Tələbə – Proseslərin Avtomatlaşdırılması Mühəndisliyi </p>
                        </div>
                         </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center gap-3">
                         <span className="bg-blue-800 text-white rounded-full px-4  py-2">856</span>
                        <img src="/images/medal_gold.svg" className="w-10 h-10"/>
     </div>
                               </div>
-                                  <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col md:items-center items-start justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
+                                  <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col md:items-center  justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
                         <div className="flex  items-center gap-3 md:flex-row flex-col" >
-                        <img src="/images/elvin.jpg" className="md:w-15 md:h-15 w-25 h-25 rounded-full  bg-gray-400 object-cover"/>       
-                        <div>
+                        <img src="/images/elvin.jpg" className="md:w-16 md:h-16 w-20 h-20 rounded-full  bg-gray-400 object-cover"/>       
+                        <div className="text-center md:text-left">
                         <h4 className="font-bold">Elvin Hacıyev</h4>
                         <p className="text-gray-400">Tələbə – Kompüter Mühəndisliyi  </p>
                        </div>
                         </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center gap-3">
                         <span className="bg-blue-800 text-white rounded-full px-4  py-2">812</span>
                        <img src="/images/medal_silver.svg" className="w-10 h-10"/>
     </div>
                               </div>
-                                  <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col md:items-center items-start justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
-                        <div className="flex  items-center gap-3 md:flex-row flex-col" >
-                        <img src="/images/emil.jpg" className="w-15 h-15 rounded-full  bg-gray-400 object-cover"/>       
-                        <div>
+                                  <div className="border border-blue-300 w-full gap-3 max-w-3xl flex md:flex-row flex-col md:items-center justify-between rounded-md md:rounded-full px-8 md:px-4  py-2">
+                        <div className="flex  items-center gap-3 text-center md:flex-row flex-col" >
+                        <img src="/images/emil.jpg" className="md:w-15 md:h-15 w-20 h-20 rounded-full  bg-gray-400 object-cover"/>       
+                        <div className="text-center md:text-left">
                         <h4 className="font-bold">Emil Həsənov</h4>
                         <p className="text-gray-400">Tələbə – Kompüter Mühəndisliyi  </p>
                        </div>
                         </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-center gap-3">
                         <span className="bg-blue-800 text-white rounded-full px-4  py-2">715</span>
                        <img src="/images/medal_silver.svg" className="w-10 h-10"/>
     </div>
