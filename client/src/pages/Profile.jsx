@@ -96,17 +96,17 @@ useEffect(() => {
       <div className="flex justify-center mb-5 mt-5">
       {
         user.type==="mentor" ? <>
-           <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
+           <div className="switch-toogle flex justify-center items-center mb-5 max-w-3xl w-full bg-white border border-gray-200">
           <button
-            className={`rounded-full w-full ${
+            className={`md:rounded-full rounded-md  w-full ${
               activeTab === "courses" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("courses")}
           >
             Kurslar
-          </button>
+          </button> 
           <button
-            className={` rounded-full w-full ${
+            className={` md:rounded-full rounded-md  w-full ${
               activeTab === "mentorPosts" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("mentorPosts")}
@@ -114,7 +114,7 @@ useEffect(() => {
             Postlar
           </button>
           <button
-            className={`rounded-full w-full ${
+            className={`md:rounded-full rounded-md  w-full ${
               activeTab === "articles" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("articles")}
@@ -124,9 +124,9 @@ useEffect(() => {
         </div>
         </> :
 
-            <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
+            <div className="switch-toogle flex justify-center items-center mb-5  md:rounded-full rounded-md max-w-3xl w-full bg-white border border-gray-200">
           <button
-            className={`rounded-full w-full ${
+            className={`md:rounded-full rounded-md w-full ${
               activeTab === "studentPosts" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("studentPosts")}
@@ -134,7 +134,7 @@ useEffect(() => {
           Paylaşılan suallar
           </button>
           <button
-            className={` rounded-full w-full ${
+            className={` md:rounded-full rounded-md w-full ${
               activeTab === "postComments" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("postComments")}

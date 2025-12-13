@@ -51,12 +51,12 @@ function Header({open, setOpen,setSettings}){
                   />
                 </form>
               ) : (
-                <button className="bg-gray-300 rounded-md p-2">
+                <button className="bg-gray-200 rounded-md p-2">
                   <CiSearch className="text-2xl" onClick={()=>setSearch(true)}/>
                 </button>
               )
             }      
-            <button className="bg-gray-300 rounded-md p-2">
+            <button className="bg-gray-200 rounded-md p-2">
               <IoIosNotificationsOutline className="text-2xl"/>
             </button>
             <Link className="profile-img rounded-full pl-2" to="/profile">
