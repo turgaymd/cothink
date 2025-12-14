@@ -16,18 +16,40 @@ const Contact = () => {
     "/images/Group 9.svg"
   ];
 
-  const handleContact = (e) => {
-    e.preventDefault();
-    if (!email || !phone || !message) {
-      alert("Bütün xanaları doldurun");
-      return;
+const handleContact = async (e) => {
+  e.preventDefault();
+
+  if (!email || !phone || !message) {
+    alert("Bütün xanaları doldurun");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("email", email);
+  formData.append("phone", phone);
+  formData.append("message", message);
+
+  try {
+    const res = await fetch("http://localhost/cothink1/cothink/server/settings/contactEmail.php", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    alert(data.message);
+
+    if (data.status === "success") {
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
     }
-    alert("Mesajınız uğurla göndərildi");
-    setName("");
-    setEmail("");
-    setPhone("");
-    setMessage("");
-  };
+  } catch (err) {
+    alert("Server xətası");
+  }
+};
 
   const handleNextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % logos.length);
