@@ -27,7 +27,7 @@ const MainHome = () => {
 }, []);
     return (
         <section>
- <style>{`
+            <style>{`
      .swiper-button-prev,
 .swiper-button-next {
     background: transparent;
@@ -39,13 +39,18 @@ const MainHome = () => {
     transition: all 0.3s ease;
     top: 50% !important;
     transform: translateY(-50%) !important;
-    display: none;
 }
+                .swiper-button-prev {
+                    left: -35px;
+                }
+                
+                .swiper-button-next {
+                    right: -35px;
+                }
 
-                @media (min-width: 1200px) {
+                @media (min-width: 768px) {
                     .swiper-button-prev,
                     .swiper-button-next {
-                        display: flex;
                         width: 34px;
                         height: 34px;
                     }
@@ -65,7 +70,7 @@ const MainHome = () => {
                     font-weight: normal;
                 }
 
-                @media (min-width: 1200px) {
+                @media (min-width: 768px) {
                     .swiper-button-prev:after,
                     .swiper-button-next:after {
                         font-size: 28px;
@@ -96,7 +101,6 @@ const MainHome = () => {
     margin-top: 0.2rem !important;
     bottom: 0 !important;
 }
-    
                 
                 .swiper-pagination-bullet-active {
    background: #3B82F6;
@@ -117,7 +121,7 @@ const MainHome = () => {
 
             <div>
                 <h2 className="font-bold text-2xl text-center mb-8 mt-10">Ən Çox Bəyənilən Bloqlar</h2>
-                <div className="relative md:px-16">
+                <div className="relative  md:px-16">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         autoplay={{
