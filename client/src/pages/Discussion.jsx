@@ -14,7 +14,7 @@ function Discussion(){
   const [comments, setComments]=useState([])
   const {apiUrl}=useContext(ApiContext)
   const {user}=useContext(AuthContext)
-
+  
   useEffect(() => {
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?post_id=${id}`)

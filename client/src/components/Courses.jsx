@@ -17,11 +17,11 @@ export const CourseCard=({item})=>{
             </a>
             </article>
             <div className="course-category mt-3 text-blue-600">{item?.category}</div>
-            <div className="course-title mb-3 mt-3 flex justify-between">
+            <div className="course-title mb-3 mt-3 flex justify-between items-center">
               <h4 className="font-bold text-2xl">
                  {item?.course_title}
               </h4>
-              <a href={`/courses/${item.course_id}`}><MdArrowOutward fontSize={24}/></a>
+              <a href={`/courses/${item.course_id}`}>{item?.course_price} AZN</a>
             </div>
             <p className="text-gray-500">
               <span className="font-medium skills text-black">

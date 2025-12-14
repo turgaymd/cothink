@@ -103,7 +103,7 @@ const handleSave=async(item)=>{
         <div className="flex flex-col md:flex-row gap-3 justify-between mb-4 mt-4">
           <div className="flex md:flex-row gap-3">
             <img
-              src={`../../client/uploads/images/${article.article_img}`}
+              src={`${article.article_img} || "/images/admin.png"`} 
               className="object-cover w-20 h-20 rounded-full"
             />
             <div className="flex flex-col gap-3">
