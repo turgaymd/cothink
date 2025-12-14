@@ -1,9 +1,9 @@
 <?php
-$host = 'localhost';  
-$db   = 'cothink';   // <-- your database name
- 
-$user = 'root';
-$pass = '';
+$host = 'localhost';
+$db   = 'u680833019_cothink';   // <-- your database name
+
+$user = 'u680833019_root';
+$pass = 'Root@cothink1';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

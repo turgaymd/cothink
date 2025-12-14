@@ -31,7 +31,7 @@ try {
                 c.category
 
             FROM saved_posts sp
-            JOIN mentor_post mb ON sp.post_id = mp.post_id
+            JOIN mentor_post mp ON sp.post_id = mp.post_id
             JOIN categories c ON mp.category_id = c.category_id
             WHERE sp.student_id = ?
             ORDER BY sp.saved_at DESC";

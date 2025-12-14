@@ -18,7 +18,7 @@ $mentor_username = $data["mentor_username"] ?? null;
 $mentor_email   = $data["mentor_email"] ?? null;
 $description    = $data["description"] ?? null;
 $mentor_password = $data["mentor_password"] ?? null;
-$linkedin_link  = $data["linkedin_link"] ?? null;
+$linkedin_link  = $data["linkedn_link"] ?? null;
 
 if (!$mentor_id) {
     echo json_encode([
@@ -35,10 +35,10 @@ $image_url = null;
 
 if (!empty($_FILES['profile_img']['name'])) {
     $img_name = time() . "_" . basename($_FILES['profile_img']['name']);
-    $img_path = "../uploads/" . $img_name;
+    $img_path = "../../client/public" . $img_name;
 
     if (move_uploaded_file($_FILES["profile_img"]["tmp_name"], $img_path)) {
-        $image_url = "uploads/" . $img_name;
+        $image_url = "../../client/public" . $img_name;
     }
 }
 
@@ -52,7 +52,7 @@ $sql = "UPDATE mentors SET
             mentor_email = ?, 
             description = ?, 
             mentor_password = ?, 
-            linkedin_link = ?";
+            linkedn_link = ?";
 
 if ($image_url) {
     $sql .= ", profile_img = '" . $image_url . "'";

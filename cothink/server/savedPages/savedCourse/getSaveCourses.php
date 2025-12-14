@@ -23,16 +23,14 @@ try {
             sc.saved_at,
 
             mc.course_title,
-            mc.description AS course_desc,
-            mc.thumbnail AS course_img,
+            mc.course_desc ,
+            mc.course_img ,
             mc.category_id,
-            cat.category,
-            mc.duration,
-            mc.level,
+            cat.category,  
             mc.price,
             'course' AS type
 
-        FROM saved_courses sc
+        FROM saved_course sc
         JOIN mentor_course mc ON sc.course_id = mc.course_id
         LEFT JOIN categories cat ON c.category_id = cat.category_id
         WHERE sc.student_id = ?
