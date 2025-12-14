@@ -143,7 +143,7 @@ const Home = () => {
       
       <section className="max-w-[95vw] m-auto mt-10 md:mt-14">
         <div className="rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 overflow-hidden">
-          <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-8 md:gap-12 px-4 md:px-8 py-6 md:py-10">
+          <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-8 md:gap-12 px-4 md:px-8 py-6 md:py-2">
 
             {/* Text Content */}
             <div className="flex-1 text-center md:text-left">
@@ -157,7 +157,7 @@ const Home = () => {
             </div>
 
             {/* Images Section */}
-            <div className="flex-1 relative flex flex-col items-center min-h-[250px] md:min-h-[350px]">
+            <div className="flex-1 relative flex flex-col items-center min-h-[250px] md:min-h-[350px] mt-10">
 
               {/* Background Circle 1 */}
               <div className="absolute top-0 left-1/3 
@@ -170,8 +170,8 @@ const Home = () => {
                 className="
                   relative
                   right-15
-                  max-w-70 md:max-w-[300px] lg:max-w-[350px]
-                  w-auto object-contain z-10
+                  max-w-70 md:max-w-[300px] lg:max-w-[500px]
+                  w-auto object-contain z-10 ml-2
                 "
                 alt="Laptop"
               />
@@ -187,7 +187,7 @@ const Home = () => {
                 className="
                   mt-30
                   ml-25
-                  max-w-50 md:max-w-[200px] lg:max-w-[250px]
+                  max-w-50 md:max-w-[200px] lg:max-w-[350px]
                   w-auto object-contain shadow-lg rounded-lg z-20
 
                   /* Tablet (md): absolute positioning */
@@ -197,7 +197,7 @@ const Home = () => {
 
                   /* Desktop (lg+) */
                   lg:translate-x-0
-                  lg:absolute lg:top-2 lg:right-25
+                  lg:absolute lg:top-2 lg:right-0
                 "
                 alt="Articles"
               />

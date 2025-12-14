@@ -85,21 +85,35 @@ const Courses = () => {
                     <div className="filter-items flex md:flex-row flex-col gap-3">
                     <button className="active rounded-full md:w-64 w-full text-center" onClick={()=>setSelectedCategory(null)}>Hamısı</button>
                     <div className="relative md:w-64 w-full">
-                    <select
-                    value={selectedCategory || ""}
-  className="rounded-full px-5 py-2 bg-blue-800 w-full appearance-none  shadow-md text-white outline-none 
-             border  cursor-pointer"
-  onChange={(e) => handleSelect(e.target.value)}
->
-
-  {categories.map((item) => (
-    <option key={item.category_id} value={item.category} className="bg-white w-full border-none outline-none text-black font-medium">
-      {item.category}
+<div className="relative w-full">
+  <select
+    value={selectedCategory || ""}
+    onChange={(e) => handleSelect(e.target.value)}
+    className={`rounded-full px-5 py-2 bg-blue-800 w-full appearance-none shadow-md text-white outline-none 
+               border cursor-pointer ${!selectedCategory ? 'text-center' : 'text-center'}`}
+    style={{ textAlign: 'center', textAlignLast: 'center' }}
+  >
+    <option value="" disabled hidden>
+      Kateqoriya seçin
     </option>
-  ))}
-</select>
 
-<div className="absolute text-white right-3 inset-y-0 flex justify-center items-center"> ▼</div>
+    {categories.map((item) => (
+      <option
+        key={item.category_id}
+        value={item.category}
+        className="bg-white w-full border-none outline-none text-black font-medium"
+        style={{ textAlign: 'left' }}
+      >
+        {item.category}
+      </option>
+    ))}
+  </select>
+
+  <div className="pointer-events-none absolute text-white right-5 inset-y-0 flex justify-center items-center">
+    ▼
+  </div>
+</div>
+
           </div>
                 </div>
             </div>
