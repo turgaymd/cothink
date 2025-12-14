@@ -27,36 +27,54 @@ const MainHome = () => {
 }, []);
     return (
         <section>
-            <style>{`
+ <style>{`
      .swiper-button-prev,
 .swiper-button-next {
     background: transparent;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     color: black !important;
     border: none;
     outline: none;
     transition: all 0.3s ease;
     top: 50% !important;
     transform: translateY(-50%) !important;
+    display: none;
 }
-                .swiper-button-prev {
-                    left: -50px;
-                }
-                
-                .swiper-button-next {
-                    right: -50px;
+
+                @media (min-width: 1200px) {
+                    .swiper-button-prev,
+                    .swiper-button-next {
+                        display: flex;
+                        width: 34px;
+                        height: 34px;
+                    }
+                    
+                    .swiper-button-prev {
+                        left: -50px;
+                    }
+                    
+                    .swiper-button-next {
+                        right: -50px;
+                    }
                 }
                 
                 .swiper-button-prev:after,
                 .swiper-button-next:after {
-                    font-size: 28px;
+                    font-size: 24px;
                     font-weight: normal;
+                }
+
+                @media (min-width: 1200px) {
+                    .swiper-button-prev:after,
+                    .swiper-button-next:after {
+                        font-size: 28px;
+                    }
                 }
                 
                 .swiper-button-prev:hover,
                 .swiper-button-next:hover {
-                    transform: scale(1.2);
+                    transform: translateY(-50%) scale(1.2);
                 }
                 
                 .swiper-button-prev:focus,
@@ -78,6 +96,7 @@ const MainHome = () => {
     margin-top: 0.2rem !important;
     bottom: 0 !important;
 }
+    
                 
                 .swiper-pagination-bullet-active {
    background: #3B82F6;
@@ -87,7 +106,7 @@ const MainHome = () => {
             <div className="mentor-banner mt-3 overflow-hidden">
                 <div className="relative flex flex-col md:flex-row r justify-between">
                     <div className="">
-                        <h2 className="text-3xl font-medium pb-3">Daha məqsədli öyrən, daha az əziyyət çək.</h2>
+                        <h2 className="text-3xl font-medium py-5">Daha məqsədli öyrən, daha az əziyyət çək.</h2>
                         <p className="font-medium text-xl">Sənə uyğun öyrənmə metodları ilə tanış ol.</p>
                     </div>
                     <div className="flex justify-end  mb-1 ">
@@ -98,7 +117,7 @@ const MainHome = () => {
 
             <div>
                 <h2 className="font-bold text-2xl text-center mb-8 mt-10">Ən Çox Bəyənilən Bloqlar</h2>
-                <div className="relative px-8 md:px-16">
+                <div className="relative md:px-16">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         autoplay={{
@@ -117,25 +136,24 @@ const MainHome = () => {
                                 <p className="text-center text-xl font-bold col-span-3">Bloq tapılmadı</p>
                               ) : (
                                 likedArticles.map((item) => (
-                                       <SwiperSlide>
-                                  <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
+                                       <SwiperSlide key={item.id}>
+                                  <div className="article-item mb-5 p-4 md:p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
 
                                 <a className="relative z-10">
                                     <div className="article-content flex justify-between flex-col gap-3">
-                                        <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
-                                            <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
+                                        <div className="article-header flex justify-between items-start gap-3">
+                                            <div className="article-author flex flex-col gap-2 flex-1">
                                                 <div className="flex items-center gap-2">
                                                     <img src={item.profile_img || "/images/admin.png"} className="w-10 h-10 rounded-full" alt="Avatar" />
                                                     <span className="text-white text-sm md:text-base">{item.mentor_name}</span>
                                                 </div>
-                                                <div className="flex items-center gap-2 md:ml-0">
-                                                    <span className="text-gray-300 hidden md:inline">•</span>
-                                                    <span className="text-gray-300 text-sm md:text-base">{item.created_at}</span>
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-gray-300 text-xs md:text-sm">{item.created_at}</span>
                                                 </div>
                                             </div>
-                                            <div className="category">
-                                                <span className="bg-blue-800 rounded-md px-5 py-2 text-white text-sm md:text-base">{item.category}</span>
+                                            <div className="category flex-shrink-0">
+                                                <span className="bg-blue-800 rounded-md px-3 py-1.5 md:px-5 md:py-2 text-white text-xs md:text-sm">{item.category}</span>
                                             </div>
                                         </div>
                                            <div className="article-title">
@@ -145,12 +163,12 @@ const MainHome = () => {
                         {
                             item?.article_topic?.length>90 ? (
                                 <div className="flex flex-col items-center">
-                                <p className="md:hidden flex text-white">
+                                <p className="md:hidden flex text-white text-sm">
                                 {item?.article_topic.substring(0,90) }  ...                                                        
                                 </p>
                              <p className="hidden md:flex text-white">  {item?.article_topic.substring(0,200) }...  </p>
                              </div>) :
-                             <p className="hidden md:flex text-white">{item?.article_topic}</p>
+                             <p className="text-white text-sm md:text-base">{item?.article_topic}</p>
                         }
                     </div>      
                                     </div>

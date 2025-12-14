@@ -9,7 +9,7 @@ body{
   padding: 20px 20px;
 }
 .navbar .desktop-menu li a{
-  padding: 15px 20px;
+  padding: 15px 12px;
   font-weight: 400;
 
 }
@@ -72,6 +72,10 @@ section{
   height: 24px;
 }
 
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    transform: translateY(-50%) scale(1.2);  /* translateY əlavə olundu */
+}
 
 .sidebar ul li a.active{
    color: white;
