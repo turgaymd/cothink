@@ -5,6 +5,7 @@ import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
+import { AuthContext } from "../AuthContext";
 
 const AddArticle = () => {
   const [articleTitle, setArticleTitle] = useState("");
@@ -18,6 +19,7 @@ const AddArticle = () => {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
   const {apiUrl}=useContext(ApiContext)
+  const {user}=useContext(AuthContext)
   const fileInputRef = useRef(null);
   const navigate=useNavigate()
 
@@ -54,12 +56,10 @@ const AddArticle = () => {
   const handleRemove = (removedTag) => {
     setArticleTags(articleTags.filter((tag) => tag !== removedTag));
   };
-
+   const mentor_id = user?.id;
   const handleArticle = async (e) => {
     e.preventDefault();
-
-    const user = JSON.parse(localStorage.getItem("user"));
-    const mentor_id = user?.id;
+ 
 
     if (!mentor_id) {
       toast.error("Mentor kimi daxil olun");

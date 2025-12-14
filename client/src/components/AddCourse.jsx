@@ -66,10 +66,11 @@ const AddCourse = ({ setActiveTab }) => {
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      if (res.data.success === "success") {
+      if (res.data.status === "success") {
         toast.success("Course uğurla əlavə olundu");
         setCourseTitle("");
         setCourseImg("");
+        setCourseLink("")
         setLessonTitle("");
         setCategoryId("");
         setError("");
