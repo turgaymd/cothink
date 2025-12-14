@@ -102,7 +102,7 @@ const CourseContent=()=>{
                 <div className="flex items-center gap-3">
                     <img src="/images/library.svg" className="w-10 h-10"/>
                     <div>
-                <h5>16 dərs</h5>
+                <h5>{course?.lessons?.length} Dərs</h5>
                 <p className="text-gray-500">Ümumi 52 saat</p>
                     </div>
                     </div>                
@@ -113,6 +113,7 @@ const CourseContent=()=>{
                         course?.lessons.map((lesson, index)=>(
    <div className="flex justify-between border-b border-b-gray-200 pb-3 pt-3" key={index}>
                        <div className="flex gap-3">
+                     
                         <RiArrowDownSLine fontSize={24}/>
                         <h4 className="font-bold text-lg">{lesson?.lesson_title}</h4>
                         </div>

@@ -141,7 +141,7 @@ section{
   background: #E9E9E9;
 }
 .filter-items button.active{
-  background: #3052B9;
+  background: #3052B9 ;
   color: white;
 }
 .add-article button{

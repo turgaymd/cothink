@@ -37,7 +37,7 @@ const Share=()=>{
                       <div className="bg-gray-100 rounded-md  share-category">
                     <div className="flex justify-center items-center text-blue-800 gap-5">
                     <PiArticleLight fontSize={32}/>
-                    <a className="text-blue-800" href="/addarticle" >Məqalə</a>
+                    <a className="text-blue-800" href="/addarticle" >Bloq</a>
                     </div>
                 </div>
                       <div className="bg-gray-100 rounded-md  share-category">

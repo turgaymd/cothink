@@ -11,7 +11,7 @@ import { AuthContext } from "../AuthContext";
 import { WhatsappShareButton } from "react-share";
 import { FaBookmark } from "react-icons/fa";
 const Saved=()=>{
-      const [activeTab, setActiveTab]=useState("articles")
+      const [activeTab, setActiveTab]=useState("books")
       const [articles, setArticles]=useState([])
       const [courses, setCourses]=useState([])
       const [books, setBooks]=useState([])
@@ -50,10 +50,10 @@ const Saved=()=>{
                  <h4 className="font-bold text-xl mt-5">Kategoriyalar</h4>
               <div className="course-filter mt-3 mb-5 flex flex-col md:flex-row justify-between">
                     <div className="filter-items grid md:grid-cols-4 grid-cols-1 gap-3">
-                    <button className={` flex-1 rounded-md ${activeTab==="books" ?  "bg-blue-800" : 'bg-gray-200'}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
-                    <button className={`flex-1 rounded-md ${activeTab==="articles" ?  "bg-blue-800" : 'bg-gray-200'}`} onClick={()=>setActiveTab("articles")}>Bloqlar</button>
-                    <button className={`flex-1 rounded-md ${activeTab==="courses" ?  "bg-blue-800 " : 'bg-gray-200'}`} onClick={()=>setActiveTab("courses")}>Kurslar</button>
-                    <button className={` flex-1 rounded-md ${activeTab==="posts" ?  "bg-blue-800 " : 'bg-gray-200'}`} onClick={()=>setActiveTab("posts")}>Postlar</button>           
+                    <button className={` flex-1 rounded-md ${activeTab==="books" ?  "active" : 'bg-gray-200'}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
+                    <button className={`flex-1 rounded-md ${activeTab==="articles" ?  "active" : 'bg-gray-200'}`} onClick={()=>setActiveTab("articles")}>Bloqlar</button>
+                    <button className={`flex-1 rounded-md ${activeTab==="courses" ?  "active " : 'bg-gray-200'}`} onClick={()=>setActiveTab("courses")}>Kurslar</button>
+                    <button className={` flex-1 rounded-md ${activeTab==="posts" ?  "active " : 'bg-gray-200'}`} onClick={()=>setActiveTab("posts")}>Postlar</button>           
                 </div>
                 {/* <button className="text-blue-500" >Hamısına bax</button> */}
             </div>
