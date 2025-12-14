@@ -3,12 +3,12 @@ import { useContext } from "react";
 import { AuthContext } from "./AuthContext";
 const PrivateRouter=()=>{
 const {user, loading}=useContext(AuthContext)
-    console.log(user)
+    
     if(!loading){
       return;
     }
  if(!user){
-       return  <Navigate to={'/login'} replace/>
+       return  <Navigate to={'/home'} replace/>
  }
    return <Outlet/>
 

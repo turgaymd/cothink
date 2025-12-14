@@ -24,6 +24,7 @@ useEffect(()=>{
 axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
       .then(res => {
         const data=res.data.data
+  
     setName(data.mentor_name || "")
     setEmail(data.mentor_email || "")
     setPassword(data.mentor_password || "")
@@ -37,7 +38,7 @@ axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
 axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
       .then(res => {
         const data=res.data.data
-        console.log(data)
+        console.log(res)
     setName(data.student_name || "")
     setEmail(data.student_email || "")
     setPassword(data.student_password || "")
@@ -82,7 +83,7 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
   }
  
     if (fileInputRef.current.files[0]) {
-      formData.append("profile_img", fileInputRef.current.files[0]);
+      formData.append("profile_img", fileInputRef.current.files[0].value);
     }
 try{
   const url= user.type==="mentor" ? 

@@ -4,12 +4,17 @@ import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
 import { WhatsappShareButton } from "react-share";
+import { toast, ToastContainer } from "react-toastify";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { AuthContext } from "../AuthContext";
 function Discussion(){
   const { id } = useParams();  
   const [post, setPost] = useState(null);
+  const [savedPosts, setSavedPosts]=useState([])
   const [comments, setComments]=useState([])
   const {apiUrl}=useContext(ApiContext)
-
+  const {user}=useContext(AuthContext)
+  
   useEffect(() => {
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?post_id=${id}`)
@@ -32,13 +37,41 @@ function Discussion(){
       .catch((err) => console.error(err));
   }, [id]);
 
-  
+    const handleUnsave=async(item)=>{
+  setSavedPosts((prev)=>prev.filter((id)=>id!==item.article_id))
+  await axios.delete(`${apiUrl}/server/savedPages/savedPosts/getSavedPosts.php?student_id=${user.id}`,
+           {data:{post_id:item.post_id, student_id:user?.student_id}},
+          { headers: { "Content-Type": "application/json" } },
+  )
+
+}
+console.log(user.id)
+const handleSave=async(item)=>{
+   try {
+      const res = await axios.post(
+        `${apiUrl}/server/savedPages/savedPosts/postsavePosts.php?post_id=${item.post_id}`,
+         {
+          student_id:user?.id
+         },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      if (res.data.status === "success") {
+        toast.success("Post yadda saxlanıldı");
+        setSavedPosts((prev)=>[...prev, item.post_id])
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+}
   if (!post) {
   return <><Loading/></>;
 }
     return(
         <>
-        
+        <ToastContainer/>
         <section>
 <h2 className="text-center font-medium text-2xl pb-5">Diskussiya</h2>
 <div className="discussion">
@@ -62,7 +95,12 @@ function Discussion(){
         <div className="post-reactions flex justify-end gap-5 pt-3">
             <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{post?.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{post?.comments}</div>
-            <div className="saved-count flex items-center gap-2"><img src="/images/save.svg"></img>{post?.saved}</div>
+            <div className="saved-count flex items-center gap-2">
+                  {savedPosts.includes(post.post_id) ? 
+                                    (<FaBookmark fontSize={24} onClick={()=>handleUnsave(post)}/>) :
+                                     (<FaRegBookmark   fontSize={24} onClick={()=>handleSave(post)}/>)}
+              {/* <img src="/images/save.svg"></img> */}
+            {post?.saved}</div>
             <div className="share flex items-center gap-2"><img src="/images/share.svg"></img>
             <WhatsappShareButton url={window.location.href} title={post?.post_title}>Paylaş</WhatsappShareButton>
             </div>

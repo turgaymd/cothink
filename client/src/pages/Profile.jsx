@@ -21,7 +21,7 @@ const Profile = () => {
   const [studentPosts, setStudentPosts]=useState([]);
   const [postComments, setPostComments]=useState([])
   const [mentor, setMentor]=useState(null) 
-
+     console.log(user.name)
 useEffect(() => {
   if (user?.type === "mentor") {
 

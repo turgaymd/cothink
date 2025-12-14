@@ -1,5 +1,5 @@
 import { IoMdTime } from "react-icons/io";
-import { FaRegCalendar } from "react-icons/fa";
+import { FaBookmark, FaRegBookmark, FaRegCalendar } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -12,6 +12,7 @@ const Article = () => {
   const [article, setArticle] = useState(null);
   const [comments,setComments]=useState([])
   const [comment, setComment]=useState("")
+  const [savedArticles, setSavedArticles]=useState([])
   const [error,setError]=useState('')
   const { id } = useParams();
   const {apiUrl}=useContext(ApiContext)
@@ -64,7 +65,35 @@ const Article = () => {
                
       
   }
+  const handleUnsave=async(item)=>{
+  setSavedArticles((prev)=>prev.filter((id)=>id!==item.article_id))
+  await axios.delete(`${apiUrl}/server/savedPages/savedArticles/getSaveArticles.php?student_id=${user.id}`,
+           {data:{book_id:item.book_id, student_id:user?.student_id}},
+          { headers: { "Content-Type": "application/json" } },
+  )
 
+}
+const handleSave=async(item)=>{
+   try {
+      const res = await axios.post(
+        `${apiUrl}/server/savedPages/savedArticles/postsaveArticles.php?article_id=${item.article_id}`,
+         {
+          student_id:user?.id
+         },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(res.data)
+      if (res.data.status === "success") {
+        toast.success("Məqalə yadda saxlanıldı");
+        setSavedArticles((prev)=>[...prev, item.article_id])
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+}
   return (
     <>
     <ToastContainer/>
@@ -74,7 +103,7 @@ const Article = () => {
         <div className="flex flex-col md:flex-row gap-3 justify-between mb-4 mt-4">
           <div className="flex md:flex-row gap-3">
             <img
-              src={`../../client/uploads/images/${article.article_img}`}
+              src={`${article.article_img} || "/images/admin.png"`} 
               className="object-cover w-20 h-20 rounded-full"
             />
             <div className="flex flex-col gap-3">
@@ -106,7 +135,9 @@ const Article = () => {
               <img src="/images/share.svg" alt="share" /> {article.shared || 0}
             </div>
             <div className="saved-count flex items-center gap-2">
-              <img src="/images/save.svg" alt="saved" />
+    {savedArticles.includes(article.article_id) ? 
+                      (<FaBookmark fontSize={24} onClick={()=>handleUnsave(article)}/>) :
+                       (<FaRegBookmark fontSize={24} onClick={()=>handleSave(article)}/>)}
               {article.saved || 0}
             </div>
             <div>

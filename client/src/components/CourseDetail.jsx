@@ -2,20 +2,21 @@ import {  SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { CiUser } from "react-icons/ci";
 import { BsChatRightText } from "react-icons/bs";
 import { MdAssignment } from "react-icons/md";
-import { FaRegComments, FaRegFile } from "react-icons/fa";
+import { FaBookmark, FaRegBookmark, FaRegComments, FaRegFile } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ApiContext } from "../ApiContext";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../AuthContext";
 import { WhatsappShareButton } from "react-share";
 
 
 const CourseDetail=()=>{
   const [course, setCourse]=useState(null)
+  const [savedCourses, setSavedCourses]=useState([])
   const [comments, setComments]=useState([])
   const [comment, setComment]=useState("")
   const [error,setError]=useState('')
@@ -57,7 +58,7 @@ const CourseDetail=()=>{
         setError("Komment daxil edin")
         return;
     }
-   const res=  await axios.post(`${apiUrl}/server/courses/postComments.php?course_id=${id}`,
+   const res=  await axios.course(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`,
      {
         student_id:user?.id, comment_text:comment}
     )
@@ -70,7 +71,30 @@ const CourseDetail=()=>{
              
     
 }
+const handleSave=async(item)=>{
+   try {
+      const res = await axios.post(
+        `${apiUrl}/server/savedPages/savedCourse/postsaveCourses.php?course_id=${item.course_id}`,
+         {
+          student_id:user?.id
+         },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      if (res.data.status === "success") {
+        toast.success("Kurs yadda saxlanıldı");
+        setSavedCourses((prev)=>[...prev, item.course_id])
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+}
     return(
+      <>
+      
+      <ToastContainer/>
      <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
     
@@ -84,11 +108,20 @@ const CourseDetail=()=>{
                 <div className="flex  gap-3 mt-5">
             <div className="like-count flex items-center gap-1"><img src="/images/like.svg"></img>{course?.likes}</div>
             <div className="comment-count flex items-center gap-1" >
-              <WhatsappShareButton url={window.location.href} title={course?.course_title}>     <img src="/images/share.svg"></img></WhatsappShareButton>
+              <WhatsappShareButton url={window.location.href} title={course?.course_title}>    
+                
+          
+                 <img src="/images/share.svg"></img></WhatsappShareButton>
          
               
               26</div>
-            <div className="saved-count flex items-center gap-1"><img src="/images/save.svg"></img>{course?.saved}</div>
+            <div className="saved-count flex items-center gap-1">
+                         {savedCourses?.includes(course?.course_id) ? 
+                                                    (<FaBookmark fontSize={24} onClick={()=>handleUnsave(course)}/>) :
+                                                     (<FaRegBookmark   fontSize={24} onClick={()=>handleSave(course)}/>)}
+              {/* <img src="/images/save.svg"></img> */}
+              {course?.saved
+              }</div>
         </div>
         <div className="flex md:flex-row flex-col gap-3 justify-between mt-5 mb-5 w-full">
             <div className="flex gap-3">
@@ -186,6 +219,7 @@ const CourseDetail=()=>{
           
         </div>
      </section>
+     </>
     )
 }
 export default CourseDetail;

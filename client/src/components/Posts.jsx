@@ -17,7 +17,10 @@ export const PostCard=({item})=>{
     </div>
                 <h4 className="font-bold text-2xl">{item.post_title}</h4>
                 <p className="text-gray-500">{item.post_desc}</p>
-           <img src={item.post_img} className="w-full h-60 rounded-md"/>
+                {
+                  item.post_img &&  <img src={item.post_img} className="w-full rounded-md"/>
+                }
+          
             <div className="post-reactions flex gap-5">
             <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{item.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{item.post_comments}</div>

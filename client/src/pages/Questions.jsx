@@ -61,14 +61,17 @@ const Questions=()=>{
             <div className="topics grid grid-cols-1 md:grid-cols-4 gap-4">
                 {
                     displayedCategories.map((item, index)=>(
-                        <div className="w-full" key={index}>
-                            <div className={`${selectedCategory===item.category ? "bg-gray-200 text-white topic-item  h-20 mb-2" : "bg-gray-100 topic-item h-20 mb-2"}`} onClick={()=>setSelectedCategory(item?.category)}>
-                                <a>
-                                    <img src={item?.category_img}/>
-                                </a>   
-                            </div> 
-                            <span className="flex justify-center font-semibold">{item?.category}</span>
-                        </div>
+                        <>
+                        <div className="w-full ">
+                    <div className={`${selectedCategory===item.category ? "bg-gray-200 text-white topic-item  h-20 mb-2" : "bg-gray-100 topic-item h-20 mb-2"}`} key={index} onClick={()=>setSelectedCategory(item?.category)}>
+                    <a>
+                            <img src={`${item?.category_img}`}/>
+                    </a>   
+                        </div> 
+                     <span className="flex justify-center font-semibold">{item?.category}</span>
+                </div>
+
+                        </>
                     ))
                 }
             </div>
