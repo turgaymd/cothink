@@ -31,6 +31,8 @@ try {
             ma.article_title,
             ma.article_topic, 
             ma.article_desc, 
+            ma.article_img,
+            ma.article_tags,
             ma.created_at,
             ma.mentor_id,
             ma.category_id,

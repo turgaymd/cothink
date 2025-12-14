@@ -12,18 +12,17 @@ if (!$data) {
     $data = $_POST;
 }
 
-$mentor_id      = $data["mentor_id"] ?? null;
-$mentor_name    = $data["mentor_name"] ?? null;
-$mentor_username = $data["mentor_username"] ?? null;
-$mentor_email   = $data["mentor_email"] ?? null;
+$student_id      = $data["mentor_id"] ?? null;
+$student_name    = $data["mentor_name"] ?? null;
+$student_username = $data["mentor_username"] ?? null;
+$student_email   = $data["mentor_email"] ?? null;
 $description    = $data["description"] ?? null;
-$mentor_password = $data["mentor_password"] ?? null;
-$linkedin_link  = $data["linkedn_link"] ?? null;
+$student_password = $data["mentor_password"] ?? null; 
 
-if (!$mentor_id) {
+if (!$student_id) {
     echo json_encode([
         "status" => "error",
-        "message" => "mentor_id göndərilməyib"
+        "message" => "student_id göndərilməyib"
     ]);
     exit;
 }
@@ -46,36 +45,34 @@ if (!empty($_FILES['profile_img']['name'])) {
 // SQL UPDATE HAZIRLANMASI
 // -------------------------------
 
-$sql = "UPDATE mentors SET 
-            mentor_name = ?, 
-            mentor_username = ?, 
-            mentor_email = ?, 
+$sql = "UPDATE student_table SET 
+            student_name = ?, 
+            student_username = ?, 
+            student_email = ?, 
             description = ?, 
-            mentor_password = ?, 
-            linkedn_link = ?";
+            student_password = ?";
 
 if ($image_url) {
     $sql .= ", profile_img = '" . $image_url . "'";
 }
 
-$sql .= " WHERE mentor_id = ?";
+$sql .= " WHERE student_id = ?";
 
 $stmt = $conn->prepare($sql);
 
 $stmt->execute([
-    $mentor_name,
-    $mentor_username,
-    $mentor_email,
+    $student_name,
+    $student_username,
+    $student_email,
     $description,
-    $mentor_password,
-    $linkedin_link,
-    $mentor_id
+    $student_password, 
+    $student_id
 ]);
 
 if ($stmt->execute()) {
     echo json_encode([
         "status" => "success",
-        "message" => "Mentor profili yeniləndi",
+        "message" => "Student profili yeniləndi",
         "image" => $image_url
     ]);
 } else {
