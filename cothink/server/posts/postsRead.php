@@ -13,10 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // SELECT query
-$sql = "SELECT p.*, m.mentor_name, c.category
+$sql = "SELECT p.*, m.mentor_name, m.profile_img, c.category
         FROM mentor_post p
         LEFT JOIN mentors m ON p.mentor_id = m.mentor_id
-        LEFT JOIN categories c ON p.category_id = c.category_id"; // categories
+        LEFT JOIN categories c ON p.category_id = c.category_id"; 
 
 $result = $conn->query($sql);
 
