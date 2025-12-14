@@ -87,7 +87,7 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
 try{
   const url= user.type==="mentor" ? 
   `${apiUrl}/server/profile/updateProfile.php?mentor_id=${user.id}` 
-  : `${apiUrl}/server/profile/students/updateProfile.php?student_id=${user.id}`
+  : `${apiUrl}/server/students/updateProfile.php?student_id=${user.id}`
    const res = await axios.post(url,  formData)
     console.log(res.data)
     if(res.data.status==="success"){
