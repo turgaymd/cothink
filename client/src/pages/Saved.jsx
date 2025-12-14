@@ -4,7 +4,7 @@ import Search from "../utils/Search";
 import Articles, { ArticleCard } from "../components/Articles";
 import Course, { CourseCard } from "../components/Courses"; 
 import Books from "../components/Books";
-import Posts from "../components/Posts";
+import Posts, { PostCard } from "../components/Posts";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
 import { AuthContext } from "../AuthContext";
@@ -15,6 +15,7 @@ const Saved=()=>{
       const [articles, setArticles]=useState([])
       const [courses, setCourses]=useState([])
       const [books, setBooks]=useState([])
+      const [posts, setPosts]=useState([])
       const {apiUrl}=useContext(ApiContext)
        const {user}=useContext(AuthContext)
               useEffect(() => {
@@ -34,10 +35,10 @@ const Saved=()=>{
                   setCourses(res.data.data)
                   console.log(courses) 
               })
-                    axios.get(`${apiUrl}/server/savedPages/savedPosts/getSaveArticles.php?student_id=${user?.id}`)
+                    axios.get(`${apiUrl}/server/savedPages/savedPosts/getSavedPosts.php?student_id=${user?.id}`)
               .then(res => {
-                  setArticles(res.data.saved_articles)
-                  console.log(articles) 
+                  setPosts(res.data.saved_books)
+                  console.log(posts) 
               })
               .catch(err => console.error(err))
            
@@ -132,7 +133,20 @@ const Saved=()=>{
                   </>
                    }
           
-                    {activeTab==="posts" && <Posts/> } 
+                      {activeTab === "posts" &&
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       
+                           {!Array.isArray(posts) ||  posts?.length >0 ? (    
+                                 posts.map((item) =>( <PostCard  key={item.post_id} item={item} />
+                              ))) :
+                        ( 
+                          <p className="text-center text-xl font-bold col-span-3">
+                                  Postlar tapılmadı
+                                </p>
+                        )
+                      } 
+                          </div>
+                    }
         </section>
     )
 }

@@ -19,7 +19,11 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
   }
   const handleNavigate=()=>{
     setSettings(false)
-    setOpen(false)
+    if(window.innerWidth<=768){
+         setOpen(false)
+    }
+  
+
   }
     return (
         <div className="sidebar w-full md:p-0 px-2">

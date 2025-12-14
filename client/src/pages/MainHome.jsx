@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"
-import categories from "../data/CategoryData";
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,13 +9,20 @@ import { ApiContext } from "../ApiContext";
 import { ArticleCard } from "../components/Articles";
 
 const MainHome = () => {
-
-    const [displayedCategories, setDisplayedCategories] = useState(categories.slice(0, 4))
-    const [visibleCategories, setVisibleCategories] = useState(4)
+    const [categories,setCategories]=useState([]);
+    const [displayedCategories, setDisplayedCategories] = useState([])
+    const [visibleCategories, setVisibleCategories] = useState(4);
+    const [selectedCategory,setSelectedCategory]=useState(null)
+    const [discussions,setDiscussions]=useState([])
     const [likedArticles, setLikedArticles]=useState([])
      const {apiUrl}=useContext(ApiContext)
    
         useEffect(() => { 
+
+             axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
+            setCategories(res.data.data)
+            setDisplayedCategories(res.data.data.slice(0,4))
+        })
     axios.get(`${apiUrl}/server/articles/articleRead.php`) 
         .then(res => {
             const mostLiked=res.data.sort((a, b)=>b.likes-a.likes).slice(0,3)
@@ -24,7 +30,18 @@ const MainHome = () => {
               console.log(mostLiked)
         })
         .catch(err => console.error(err))
+
+             axios.get(`${apiUrl}/server/posts/postsRead.php`).then(res=>{
+            setDiscussions(res.data)
+        })
 }, []);
+
+     const filteredDiscussions=discussions.filter((item)=>{
+   
+        const matchedCategories=!selectedCategory ||  item?.category?.toLowerCase()===selectedCategory?.toLowerCase()
+        return  matchedCategories
+        }
+    )
     return (
         <section>
             <style>{`
@@ -120,7 +137,6 @@ const MainHome = () => {
                                        <SwiperSlide>
                                   <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
-
                                 <a className="relative z-10">
                                     <div className="article-content flex justify-between flex-col gap-3">
                                         <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
@@ -169,20 +185,53 @@ const MainHome = () => {
                     </div>
                     <div className="course-filter mt-4 mb-5">
                         <div className="filter-items flex md:flex-row flex-col gap-3">
-                            <span className="active rounded-md">Sizin üçün</span>
-                            {
-                                displayedCategories.map((item, index) => (
-                                    <span className="rounded-md" key={index}>{item.name}</span>
-                                ))
-                            }
+                            <span className={`rounded-md ${selectedCategory===null ? "active" : ""}`} onClick={()=>setSelectedCategory(null)}>Hamısı</span>
+                            <div className="filtered-items flex gap-3 flex-col md:flex-row">
+                            {displayedCategories.map((item, index) => {
+                                 const isActive=selectedCategory?.toLowerCase()===item?.category?.toLowerCase()
+                                return(
+                                <button 
+                                    className={`rounded-md ${isActive ? "active" : ""} `}
+                                    key={index} 
+                                    onClick={() => setSelectedCategory(item?.category)}
+                                >
+                                    {item?.category}
+                                </button>
+                            )})}
+                        </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-                    <div className="mentor-item rounded-md">
+                    {
+                        filteredDiscussions.map((item)=>(
+  <div className="mentor-item rounded-md">
                         <a href="/library/articles/:id">
-                            <div className="flex justify-between md:flex-row flex-col items-center gap-1">
+                            <div className="flex justify-between md:flex-row flex-col  gap-1">
+                                <div className="flex flex-col justify-between">
+                                    <div className="flex gap-3 items-center">
+                                        <img src={item.profile_img || "images/admin.png"} alt="Aydan" className="w-15 h-15 object-cover rounded-full" />
+                                        <h5>{item.mentor_name}</h5>
+                                        <span>•</span>
+                                        <p>{item.created_at}</p>
+                                    </div>
+                                    <div>
+                                        <p>{item.post_title}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <img src="/images/most_liked.jpg" alt="Article" />
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                        ))
+                    }
+                  
+  {/* <div className="mentor-item rounded-md">
+                        <a href="/library/articles/:id">
+                            <div className="flex justify-between md:flex-row flex-col  gap-1">
                                 <div className="flex flex-col justify-between">
                                     <div className="flex gap-3 items-center">
                                         <img src="/images/aydan.png" alt="Aydan" />
@@ -199,28 +248,8 @@ const MainHome = () => {
                                 </div>
                             </div>
                         </a>
-                    </div>
-
-                    <div className="mentor-item rounded-md">
-                        <a href="/library/articles/:id">
-                            <div className="flex justify-between md:flex-row flex-col items-center gap-1">
-                                <div className="flex flex-col justify-between">
-                                    <div className="flex gap-3 items-center">
-                                        <img src="/images/aydan.png" alt="Aydan" />
-                                        <h5>Ayan Əlizadə</h5>
-                                        <span>•</span>
-                                        <p>6 saat əvvəl</p>
-                                    </div>
-                                    <div>
-                                        <p>C++ Pointers – Sadə Başlanğıc Bələdçisi</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img src="/images/most_liked.jpg" alt="Article" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    </div> */}
+                 
                 </div>
             </div>
         </section>

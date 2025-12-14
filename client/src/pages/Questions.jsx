@@ -58,8 +58,7 @@ useEffect(()=>{
                         <div className="w-full ">
                     <div className={`${selectedCategory===item.category ? "bg-gray-200 text-white topic-item  h-20 mb-2" : "bg-gray-100 topic-item h-20 mb-2"}`} key={index} onClick={()=>setSelectedCategory(item?.category)}>
                     <a>
-                        {/* <button  >{item?.category}</button> */}
-                            <img src={item?.category_img}/>
+                            <img src={`${item?.category_img}`}/>
                     </a>   
                         </div> 
                      <span className="flex justify-center font-semibold">{item?.category}</span>

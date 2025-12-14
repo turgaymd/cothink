@@ -18,7 +18,7 @@ function MainLayout(){
     <div className="grid grid-cols-12">
     
        
-   <div className={`${ settings && open ? "md:col-span-3 col-span-12" : open ? "md:col-span-2  col-span-12" : "md:col-span-1  col-span-12" } hidden md:flex border-r border-r-gray-300 min-h-screen`}>
+   <div className={`${ settings && open ? "md:col-span-3 col-span-12 border-r border-r-gray-300" : open ? "md:col-span-2  col-span-12 border-r border-r-gray-300" : "md:col-span-1  col-span-12" } hidden md:flex  min-h-screen`}>
      { open ? ( 
       settings ? <Settings activeTab={activeTab} setActiveTab={setActiveTab} setSettings={setSettings}/> : <Sidebar setSettings={setSettings} setActiveTab={setActiveTab}/>
      ) :
