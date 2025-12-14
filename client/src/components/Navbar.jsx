@@ -52,19 +52,19 @@ const Navbar = () => {
         </ul>
 
        <div className="flex gap-3">
-        <Link
-          to="/register"
-          style={{ backgroundColor: blue }}
-          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition"
-        >
-          Qeydiyyat
-        </Link>
            <Link
           to="/login"
           style={{ backgroundColor: blue }}
           className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition"
         >
           Giriş
+        </Link>
+        <Link
+          to="/register"
+          style={{ backgroundColor: blue }}
+          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition"
+        >
+          Qeydiyyat
         </Link>
       </div>
       </div>
@@ -89,19 +89,19 @@ const Navbar = () => {
 
      <div className="flex gap-3">
 
-        <Link
-          to="/register"
-          style={{ backgroundColor: blue }}
-          className="text-white rounded-2xl px-4 py-1.5 text-sm hover:opacity-90 transition"
-        >
-          Qeydiyyat
-        </Link>
                <Link
           to="/login"
           style={{ backgroundColor: blue }}
           className="text-white rounded-2xl px-4 py-1.5 text-sm hover:opacity-90 transition"
         >
           Giriş
+        </Link>
+        <Link
+          to="/register"
+          style={{ backgroundColor: blue }}
+          className="text-white rounded-2xl px-4 py-1.5 text-sm hover:opacity-90 transition"
+        >
+          Qeydiyyat
         </Link>
         </div>
       </div>

@@ -7,7 +7,7 @@ const Mentors = () => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [displayedCategories, setDisplayedCategories] = useState([]);
-    const [visibleCategories, setVisibleCategories] = useState(2);
+    const [visibleCategories, setVisibleCategories] = useState(4);
     const [query, setQuery] = useState("");
     const [mentors, setMentors] = useState([]);
 
@@ -20,7 +20,6 @@ const Mentors = () => {
         });
 
         axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res => {
-            // API strukturuna görə dəyişdirin: res.data və ya res.data.data
             const categoriesData = res.data.data || res.data;
             setCategories(categoriesData);
             setDisplayedCategories(categoriesData.slice(0, 4));
@@ -33,6 +32,11 @@ const Mentors = () => {
             setDisplayedCategories(categories.slice(0, newCount));
             return newCount;
         });
+    };
+
+    const handleLess = () => {
+        setVisibleCategories(4);
+        setDisplayedCategories(categories.slice(0, 4));
     };
 
     const filteredMentors = mentors.filter((item) => {
@@ -50,7 +54,7 @@ const Mentors = () => {
                 <Search query={query} setQuery={setQuery} />
                 <div className="mentor-banner mt-3">
                     <div className="relative flex flex-col md:flex-row  justify-between">
-                        <div className="">
+                        <div className="mt-4">
                             <h2 className="text-3xl font-medium pb-3">Öyrənmə Yolunuza Uyğun Mentorlar</h2>
                             <p className="font-medium text-xl">Sizə ən uyğun mentor profillərini kəşf edin.</p>
                         </div>
@@ -62,9 +66,13 @@ const Mentors = () => {
                 <div className="filter mb-3">
                     <div className="flex justify-between mb-2">
                         <h4 className="font-bold text-xl items-center">Kategoriyalar</h4>
-                        {visibleCategories < categories.length && (
-                            <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
-                        )}
+                        {
+                            visibleCategories < categories.length ? (
+                                <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
+                            ) : visibleCategories > 4 ? (
+                                <button className="text-blue-500" onClick={handleLess}>Daha azına bax</button>
+                            ) : null
+                        }
                     </div>
                     <div className="course-filter mt-2 mb-4">
                         <div className="filtered-items flex gap-3 flex-col md:flex-row">

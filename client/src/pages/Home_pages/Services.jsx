@@ -109,28 +109,28 @@ const Services = () => {
         </div>
       </div>
 
-      {/* Desktop view - 3 images side by side */}
-      <div className="hidden md:flex justify-center mt-30 gap-10">
-        <div><img src="/images/Group 7.svg" alt="Feature 1" /></div>
-        <div><img src="/images/Group 10.svg" alt="Feature 2" /></div>
-        <div><img src="/images/Group 9.svg" alt="Feature 3" /></div>
+     {/* Desktop view - 3 images side by side */}
+      <div className="hidden md:flex justify-center mt-30 gap-10 max-w-[85vw] m-auto">
+        <img src="/images/Group 7.svg" alt="Feature 1" className="flex-1 h-auto object-contain" />
+        <img src="/images/Group 10.svg" alt="Feature 2" className="flex-1 h-auto object-contain" />
+        <img src="/images/Group 9.svg" alt="Feature 3" className="flex-1 h-auto object-contain" />
       </div>
 
       {/* Mobile view - Slider with arrow buttons */}
       <div className="md:hidden relative w-full mt-10">
-        <div className="flex items-center justify-between px-4">
+        <div className="flex items-center justify-between">
           {/* Left Arrow */}
           <button 
             onClick={handlePrevSlide}
             disabled={isTransitioning}
-            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50"
+            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50 pl-2"
             aria-label="Previous slide"
           >
             <IoIosArrowBack fontSize={28} />
           </button>
 
           {/* Slider Container */}
-          <div className="flex-1 mx-2 overflow-hidden">
+          <div className="flex-1 mx-1 overflow-hidden">
             <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -140,7 +140,7 @@ const Services = () => {
                   <img 
                     src={logo} 
                     alt={`Feature ${index + 1}`} 
-                    className="max-w-[300px] w-full h-auto object-contain px-4"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               ))}
@@ -151,14 +151,13 @@ const Services = () => {
           <button 
             onClick={handleNextSlide}
             disabled={isTransitioning}
-            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50"
+            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50 pr-2"
             aria-label="Next slide"
           >
             <IoIosArrowForward fontSize={28} />
           </button>
         </div>
       </div>
-
       <section className="max-w-[80vw] m-auto mt-10 mb-10">
         <div>
           <h2 className="text-xl md:text-3xl text-center pb-8 md:pb-12 mt-5">

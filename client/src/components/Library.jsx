@@ -1,10 +1,10 @@
-
 import { useState,useEffect, useContext } from "react";
 import Search from "../utils/Search";
 import Articles from "./Articles";
 import axios from "axios";
 import Books from "./Books";
 import { ApiContext } from "../ApiContext";
+
 const Library=()=>{
   const [activeTab, setActiveTab]=useState("books")
   const [books, setBooks]=useState([])
@@ -12,7 +12,9 @@ const Library=()=>{
   const [categories,setCategories]=useState([])
   const [selectedCategory,setSelectedCategory]=useState(null)
   const [displayedCategories, setDisplayedCategories]=useState([])
-  const [visibleCategories, setVisibleCategories]=useState(2)
+  const [visibleCategories, setVisibleCategories]=useState(4)
+  const [displayedBooks, setDisplayedBooks] = useState([])
+  const [visibleBooks, setVisibleBooks] = useState(3)
   const {apiUrl}=useContext(ApiContext)
 
 
@@ -37,6 +39,19 @@ const Library=()=>{
         return newCount;
        })}
 
+    const handleLess=()=>{
+        setVisibleCategories(4)
+        setDisplayedCategories(categories.slice(0, 4))
+    }
+
+    const handleMoreBooks=()=>{
+        setVisibleBooks(books.length)
+    }
+
+    const handleLessBooks=()=>{
+        setVisibleBooks(3)
+    }
+
     return(
             <>
      <section>
@@ -50,9 +65,11 @@ const Library=()=>{
             <div className="flex justify-between items-center mb-3">
                 <h4 className="font-semibold text-xl">Mövzular</h4>
           {
-                visibleCategories<categories.length && (
+                visibleCategories<categories.length ? (
                 <button className="text-blue-500" onClick={handleMore}>Hamısına bax</button>
-                )
+                ) : visibleCategories>4 ? (
+                <button className="text-blue-500" onClick={handleLess}>Daha azına bax</button>
+                ) : null
             }
             </div>
                      <div className="topics grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -82,7 +99,7 @@ const Library=()=>{
                 </div>
             </div>
             {activeTab==="articles" ? <Articles query={query} selectedCategory={selectedCategory}/> : <>  
-                   <Books books={books} query={query} selectedCategory={selectedCategory}/>
+                   <Books books={books} query={query} selectedCategory={selectedCategory} visibleBooks={visibleBooks} handleMoreBooks={handleMoreBooks} handleLessBooks={handleLessBooks}/>
                  </>} 
      </section>
                   </>

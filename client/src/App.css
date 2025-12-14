@@ -308,3 +308,11 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
 .service-icon{
   background-color: #CEE2FF;
 }
+.sidebar a.active svg,
+.sidebar a.active img {
+  filter: brightness(0) invert(1);
+}
+
+.sidebar a.active {
+  color: white;
+}
