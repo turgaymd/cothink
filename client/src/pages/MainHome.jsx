@@ -1,16 +1,30 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"
 import categories from "../data/CategoryData";
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import axios from "axios";
+import { ApiContext } from "../ApiContext";
+import { ArticleCard } from "../components/Articles";
 
 const MainHome = () => {
 
     const [displayedCategories, setDisplayedCategories] = useState(categories.slice(0, 4))
     const [visibleCategories, setVisibleCategories] = useState(4)
-
+    const [likedArticles, setLikedArticles]=useState([])
+     const {apiUrl}=useContext(ApiContext)
+   
+        useEffect(() => { 
+    axios.get(`${apiUrl}/server/articles/articleRead.php`) 
+        .then(res => {
+            const mostLiked=res.data.sort((a, b)=>b.likes-a.likes).slice(0,3)
+            setLikedArticles(mostLiked)  
+              console.log(mostLiked)
+        })
+        .catch(err => console.error(err))
+}, []);
     return (
         <section>
             <style>{`
@@ -98,93 +112,53 @@ const MainHome = () => {
                             clickable: true
                         }}
                     >
-                        <SwiperSlide>
-                            <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
-                                {/* Qaranlıq overlay */}
+                     
+                                              {likedArticles.length === 0 ? (
+                                <p className="text-center text-xl font-bold col-span-3">Bloq tapılmadı</p>
+                              ) : (
+                                likedArticles.map((item) => (
+                                       <SwiperSlide>
+                                  <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
 
                                 <a className="relative z-10">
-                                    <div className="article-content flex justify-between flex-col gap-4">
+                                    <div className="article-content flex justify-between flex-col gap-3">
                                         <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
                                             <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
                                                 <div className="flex items-center gap-2">
-                                                    <img src="/images/avatar.png" className="w-10 h-10 rounded-full" alt="Avatar" />
-                                                    <span className="text-white text-sm md:text-base">Elcan Məmmədov</span>
+                                                    <img src={item.profile_img || "/images/admin.png"} className="w-10 h-10 rounded-full" alt="Avatar" />
+                                                    <span className="text-white text-sm md:text-base">{item.mentor_name}</span>
                                                 </div>
                                                 <div className="flex items-center gap-2 md:ml-0">
                                                     <span className="text-gray-300 hidden md:inline">•</span>
-                                                    <span className="text-gray-300 text-sm md:text-base">10 saat əvvəl</span>
+                                                    <span className="text-gray-300 text-sm md:text-base">{item.created_at}</span>
                                                 </div>
                                             </div>
                                             <div className="category">
-                                                <span className="bg-blue-800 rounded-md px-5 py-2 text-white text-sm md:text-base">Riyaziyyat</span>
+                                                <span className="bg-blue-800 rounded-md px-5 py-2 text-white text-sm md:text-base">{item.category}</span>
                                             </div>
                                         </div>
-                                        <div className="article-title">
-                                            <p className="text-white font-semibold text-sm md:text-base">3-cü Kurs Tələbəsindən Törəmələri Həqiqətən Anlamaq Üçün Addım-Addım Təlimat</p>
+                                           <div className="article-title">
+                                            <p className="text-white font-semibold text-sm md:text-base">{item.article_title}</p>
                                         </div>
+                                            <div className="article-title">
+                        {
+                            item?.article_topic?.length>90 ? (
+                                <div className="flex flex-col items-center">
+                                <p className="md:hidden flex text-white">
+                                {item?.article_topic.substring(0,90) }  ...                                                        
+                                </p>
+                             <p className="hidden md:flex text-white">  {item?.article_topic.substring(0,200) }...  </p>
+                             </div>) :
+                             <p className="hidden md:flex text-white">{item?.article_topic}</p>
+                        }
+                    </div>      
                                     </div>
                                 </a>
                             </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                            <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
-                                <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
-
-                                <a  className="relative z-10">
-                                    <div className="article-content flex justify-between flex-col gap-4">
-                                        <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
-                                            <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
-                                                <div className="flex items-center gap-2">
-                                                    <img src="/images/avatar.png" className="w-10 h-10 rounded-full" alt="Avatar" />
-                                                    <span className="text-white text-sm md:text-base">Elcan Məmmədov</span>
-                                                </div>
-                                                <div className="flex items-center gap-2 md:ml-0">
-                                                    <span className="text-gray-300 hidden md:inline">•</span>
-                                                    <span className="text-gray-300 text-sm md:text-base">10 saat əvvəl</span>
-                                                </div>
-                                            </div>
-                                            <div className="category">
-                                                <span className="bg-blue-800 rounded-md px-5 py-2 text-white text-sm md:text-base">Riyaziyyat</span>
-                                            </div>
-                                        </div>
-                                        <div className="article-title">
-                                            <p className="text-white font-semibold text-sm md:text-base">3-cü Kurs Tələbəsindən Törəmələri Həqiqətən Anlamaq Üçün Addım-Addım Təlimat</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </SwiperSlide>
-
-                        <SwiperSlide>
-                            <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
-                                <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
-
-                                <a  className="relative z-10">
-                                    <div className="article-content flex justify-between flex-col gap-4">
-                                        <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
-                                            <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
-                                                <div className="flex items-center gap-2">
-                                                    <img src="/images/avatar.png" className="w-10 h-10 rounded-full" alt="Avatar" />
-                                                    <span className="text-white text-sm md:text-base">Elcan Məmmədov</span>
-                                                </div>
-                                                <div className="flex items-center gap-2 md:ml-0">
-                                                    <span className="text-gray-300 hidden md:inline">•</span>
-                                                    <span className="text-gray-300 text-sm md:text-base">10 saat əvvəl</span>
-                                                </div>
-                                            </div>
-                                            <div className="category">
-                                                <span className="bg-blue-800 rounded-md px-5 py-2 text-white text-sm md:text-base">Riyaziyyat</span>
-                                            </div>
-                                        </div>
-                                        <div className="article-title">
-                                            <p className="text-white font-semibold text-sm md:text-base">3-cü Kurs Tələbəsindən Törəmələri Həqiqətən Anlamaq Üçün Addım-Addım Təlimat</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </SwiperSlide>
+                                   </SwiperSlide>
+                                ))
+                              )}
                         <div className="swiper-pagination flex justify-center"></div>
                     </Swiper>
 

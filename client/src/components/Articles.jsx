@@ -34,7 +34,7 @@ export const ArticleCard=({item})=>{
                                 <p className="md:hidden flex text-white">
                                 {item?.article_topic.substring(0,90) }  ...                                                        
                                 </p>
-                             <p className="hidden md:flex text-white">  {item?.article_topic.substring(0,200) }   </p>
+                             <p className="hidden md:flex text-white">  {item?.article_topic.substring(0,200) }...  </p>
                              </div>) :
                              <p className="hidden md:flex text-white">{item?.article_topic}</p>
                         }
