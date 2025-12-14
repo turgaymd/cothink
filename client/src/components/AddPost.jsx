@@ -46,7 +46,7 @@ const AddPost = ({ setActiveTab }) => {
       toast.error("LocalStorage-də user tapılmadı!");
       return;
     }
-    if (!postTitle || !categoryId || !postDesc || !postImg || !postTags) {
+    if (!postTitle || !categoryId || !postDesc || !postTags) {
       setError("Bütün xanaları doldurunn");
       return;
     }

@@ -32,7 +32,7 @@ const Saved=()=>{
               })
                   axios.get(`${apiUrl}/server/savedPages/savedCourse/getSaveCourses.php?student_id=${user?.id}`)
               .then(res => {
-                  setCourses(res.data.data)
+                  setCourses(res.data.saved_courses)
                   console.log(courses) 
               })
                     axios.get(`${apiUrl}/server/savedPages/savedPosts/getSavedPosts.php?student_id=${user?.id}`)
