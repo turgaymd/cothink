@@ -16,11 +16,18 @@ function MainLayout(){
     <>
     <Header open={open} setOpen={setOpen} setSettings={setSettings}/>
     <div className="grid grid-cols-12">
-    <div className={`${ settings ? "md:col-span-3 col-span-11" : "md:col-span-2 col-span-12" } hidden md:flex border-r border-r-gray-300 min-h-screen`}>
-    {
+    
+       
+   <div className={`${ settings && open ? "md:col-span-3 col-span-12" : open ? "md:col-span-2  col-span-12" : "md:col-span-1  col-span-12" } hidden md:flex border-r border-r-gray-300 min-h-screen`}>
+     { open ? ( 
       settings ? <Settings activeTab={activeTab} setActiveTab={setActiveTab} setSettings={setSettings}/> : <Sidebar setSettings={setSettings} setActiveTab={setActiveTab}/>
-    }
+     ) :
+     (
+      <div className=" h-full"></div>
+     )}
     </div>
+  
+ 
     {
       open && (
          <div className="fixed flex inset-0 md:hidden  z-40 w-full">
@@ -32,7 +39,7 @@ function MainLayout(){
     }
    
 
-    <div className={!settings ? "md:col-span-10 col-span-12" : "md:col-span-9 col-span-12"} >
+    <div className={ settings ? "md:col-span-9 col-span-12" : open ?  "md:col-span-10 col-span-12" :"md:col-span-11 col-span-12"  } >
     {
       settings ? 
       <>

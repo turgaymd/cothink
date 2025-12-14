@@ -10,10 +10,13 @@ function Header({open, setOpen,setSettings}){
     return(
       <header className="w-full top-0 z-50 navbar items-center">
         <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
           <button className="md:hidden text-3xl" onClick={()=>setOpen(true)}>
             { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
           </button>
-          
+          <button className="hidden md:flex text-3xl" onClick={()=>setOpen(!open)}>
+            <IoMenu fontSize={28}/>
+          </button>
           <div className="logo">
             <Link to="/home" className="hidden md:flex" onClick={()=>setSettings(false)}>
               <img src="/images/logo.jpg" alt="Logo"/>
@@ -22,7 +25,7 @@ function Header({open, setOpen,setSettings}){
               <img src="/images/mobile_logo.png" alt="Mobile Logo" />
             </Link>
           </div>
-          
+          </div>
           <ul className="hidden md:flex gap-2 lg:gap-6 desktop-menu text-xs lg:text-base">
             <li className="nav-item whitespace-nowrap">
               <NavLink className={({isActive})=> isActive ? "active" : "" } to="/home" onClick={()=>setSettings(false)}>Ana Səhifə</NavLink>
