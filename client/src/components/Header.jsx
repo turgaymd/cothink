@@ -21,11 +21,13 @@ function Header({open, setOpen,setSettings}){
             <Link to="/home" className="hidden md:flex" onClick={()=>setSettings(false)}>
               <img src="/images/logo.jpg" alt="Logo"/>
             </Link>
-            <Link to="/home" className="md:hidden flex" onClick={()=>setSettings(false)}>
+        
+          </div>
+             
+          </div>
+           <Link to="/home" className="md:hidden flex" onClick={()=>setSettings(false)}>
               <img src="/images/mobile_logo.png" alt="Mobile Logo" />
             </Link>
-          </div>
-          </div>
           <ul className="hidden md:flex gap-2 lg:gap-6 desktop-menu text-xs lg:text-base">
             <li className="nav-item whitespace-nowrap">
               <NavLink className={({isActive})=> isActive ? "active" : "" } to="/home" onClick={()=>setSettings(false)}>Ana Səhifə</NavLink>
