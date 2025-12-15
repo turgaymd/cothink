@@ -67,10 +67,10 @@ const Mentors = () => {
                         )}
                     </div>
                     <div className="course-filter mt-2 mb-4">
-                        <div className="filtered-items flex gap-3 flex-col md:flex-row">
+                        <div className="filter-items flex gap-3 flex-col md:flex-row">
                             {displayedCategories.map((item, index) => (
                                 <button 
-                                    className="rounded-md" 
+                                    className={`${selectedCategory===item.category_id ? "active text-white rounded-md " : "bg-gray-100 rounded-md"}`}
                                     key={index} 
                                     onClick={() => setSelectedCategory(item?.category_id)}
                                 >
