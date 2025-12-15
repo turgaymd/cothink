@@ -207,7 +207,7 @@ const MainHome = () => {
                     {
                         filteredDiscussions.map((item)=>(
   <div className="mentor-item rounded-md">
-                        <a href="/library/articles/:id" className="h-full">
+                        <a href={`/questions/${item.post_id}`} className="h-full">
                             <div className="flex justify-between flex-col gap-3 md:flex-row h-full">
                                 <div className="flex flex-col h-full gap-3 justify-between">
                                     <div className="mentor-title flex gap-3  items-center">
