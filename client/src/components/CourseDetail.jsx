@@ -96,9 +96,8 @@ const handleSave=async(item)=>{
       
       <ToastContainer/>
      <section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-    
-            <div className="">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-7">
+            <div className="col-span-7">
                 <img src={course?.course_img} className="w-full"/>
             <div className="flex justify-between items-center mt-4">
                 <p className="text-gray-500">{course?.course_title}</p>
@@ -140,9 +139,9 @@ const handleSave=async(item)=>{
             </div>
             
             </div>
-            
+             
              </div>
-             <div className="">
+             <div className="col-span-5">
                 <button className="w-full bg-blue-800 text-xl text-white rounded-full">Kurs planı</button>
                     <div className="features_card shadow-white-200 shadow-xl px-3 py-2 mb-5">
   
@@ -175,6 +174,9 @@ const handleSave=async(item)=>{
                         }   
                         </div>
              </div>
+                </div>
+            <div className="grid md:grid-cols-12 grid-cols-1">
+              <div className="col-span-7">
                <form onSubmit={handleComments}>
                             {error && (
                 <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
@@ -216,8 +218,8 @@ const handleSave=async(item)=>{
         )}  
               
              
-          
-        </div>
+          </div>
+     </div>
      </section>
      </>
     )

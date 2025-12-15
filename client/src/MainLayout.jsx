@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { Outlet } from "react-router-dom";
@@ -8,10 +8,16 @@ import ResetPassword from "./components/ResetPassword";
 import TwoFactorAuth from "./components/TwoFactorAuth";
 import Support from "./components/Support";
 function MainLayout(){
-  const [open, setOpen]=useState(false)
+  const [open, setOpen]=useState(true)
    const [settings, setSettings] =useState(false)
   const [activeTab, setActiveTab]=useState("about")
  
+  useEffect(()=>{
+  if(window.innerWidth<=768){
+    setOpen(false)
+  }
+  }, [])
+
   return(
     <>
     <Header open={open} setOpen={setOpen} setSettings={setSettings}/>

@@ -207,10 +207,10 @@ const MainHome = () => {
                     {
                         filteredDiscussions.map((item)=>(
   <div className="mentor-item rounded-md">
-                        <a href="/library/articles/:id">
-                            <div className="flex justify-between md:flex-row flex-col  gap-1">
-                                <div className="flex flex-col justify-between">
-                                    <div className="flex gap-3 items-center">
+                        <a href="/library/articles/:id" className="h-full">
+                            <div className="flex justify-between flex-col gap-3 md:flex-row h-full">
+                                <div className="flex flex-col h-full gap-3 justify-between">
+                                    <div className="mentor-title flex gap-3  items-center">
                                         <img src={item.profile_img || "images/admin.png"} alt="Aydan" className="w-15 h-15 object-cover rounded-full" />
                                         <h5>{item.mentor_name}</h5>
                                         <span>•</span>
@@ -221,36 +221,16 @@ const MainHome = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <img src="/images/most_liked.jpg" alt="Article" />
+                                    <img src="/images/most_liked.jpg" className="w-full md:w-32 object-cover" alt="Article" />
                                 </div>
                             </div>
                         </a>
                     </div>
                         ))
                     }
-                  
-  {/* <div className="mentor-item rounded-md">
-                        <a href="/library/articles/:id">
-                            <div className="flex justify-between md:flex-row flex-col  gap-1">
-                                <div className="flex flex-col justify-between">
-                                    <div className="flex gap-3 items-center">
-                                        <img src="/images/aydan.png" alt="Aydan" />
-                                        <h5>Ayan Əlizadə</h5>
-                                        <span>•</span>
-                                        <p>6 saat əvvəl</p>
-                                    </div>
-                                    <div>
-                                        <p>C++ Pointers – Sadə Başlanğıc Bələdçisi</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img src="/images/most_liked.jpg" alt="Article" />
-                                </div>
-                            </div>
-                        </a>
-                    </div> */}
-                 
-                </div>
+                
+                    </div>
+        
             </div>
         </section>
     )

@@ -1,11 +1,13 @@
   import { IoIosNotificationsOutline } from "react-icons/io";
   import { Link, NavLink } from "react-router-dom";
-  import { IoClose, IoSettingsOutline } from "react-icons/io5";
+  import { IoClose, IoHome, IoSettingsOutline ,IoStarOutline } from "react-icons/io5";
   import { AiFillVideoCamera } from "react-icons/ai";
   import { FiBookmark } from "react-icons/fi";
   import { GoPlusCircle } from "react-icons/go";
   import { BsCameraVideo } from "react-icons/bs";
-
+import { IoHomeOutline } from "react-icons/io5";
+import { SiCodementor } from "react-icons/si";
+import { RiQuestionAnswerLine, RiQuestionnaireLine } from "react-icons/ri";
 function Sidebar({open, setOpen, setSettings, setActiveTab}){
   const handleSettings = () => {
     setSettings(true);
@@ -63,6 +65,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                     to="/home" 
                     onClick={handleNavigate}
                   >
+                    <IoHomeOutline fontSize={24}/>
                     Ana Səhifə
                   </NavLink>
                 </li>
@@ -73,6 +76,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                     to="/questions" 
                     onClick={handleNavigate}
                   >
+                    <RiQuestionAnswerLine fontSize={24}/>
                     Sual-Cavab
                   </NavLink>
                 </li>
@@ -83,6 +87,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                     to="/mentors" 
                     onClick={handleNavigate}
                   >
+                    <SiCodementor fontSize={24}/>
                     Mentorlar
                   </NavLink>
                 </li>
@@ -93,6 +98,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                     to="/rating" 
                     onClick={handleNavigate}
                   >
+                    <IoStarOutline fontSize={24}/>
                     Reytinq
                   </NavLink>
                 </li>
@@ -105,6 +111,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                     to={"/share"} 
                     onClick={handleNavigate}
                   >
+                       <GoPlusCircle fontSize={24} className="md:flex"/>
                     Yeni paylaşım
                   </NavLink>
                 </li>
@@ -119,7 +126,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
             to={"/courses"} 
             onClick={handleNavigate}
           >
-            <BsCameraVideo fontSize={26} className="hidden md:flex"/>
+            <BsCameraVideo fontSize={26} className="md:flex"/>
             <p className="md:hidden lg:block">Kurslar</p>
           </NavLink>
         </li>
@@ -130,7 +137,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
             to={"/library"} 
             onClick={handleNavigate}
           >
-            <img src="/images/library.svg" className="hidden md:flex w-5 h-5" alt=""/>
+            <img src="/images/library.svg" className="md:flex w-5 h-5" alt=""/>
             <p className="md:hidden lg:block">Kitabxana</p>
           </NavLink>
         </li>
@@ -141,7 +148,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
             to={"/saved"} 
             onClick={handleNavigate}
           >
-            <FiBookmark fontSize={24} className="hidden md:flex"/>
+            <FiBookmark fontSize={24} className=" md:flex"/>
             <p className="md:hidden lg:block">Yadda saxlanılanlar</p>
           </NavLink>
         </li>
@@ -151,7 +158,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
     className="flex gap-2 md:p-3 md:justify-center items-center lg:justify-start lg:pl-7 text-sm md:text-base cursor-pointer" 
     onClick={handleSettings}
   >
-    <img src="/images/settings.svg" className="hidden md:flex w-5 h-5 " alt=""/>
+    <img src="/images/settings.svg" className=" md:flex w-5 h-5 " alt=""/>
     <p className="md:hidden lg:block">Parametrlər</p>
   </a>
 </li>
@@ -162,7 +169,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
             to={"/share"} 
             onClick={handleNavigate}
           >
-            <GoPlusCircle fontSize={24} className="hidden md:flex"/>
+            <GoPlusCircle fontSize={24} className="md:flex"/>
             <p className="md:hidden lg:block">Yeni paylaşım</p>
           </NavLink>
         </li>
