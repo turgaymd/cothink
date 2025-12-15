@@ -4,7 +4,7 @@ import Articles from "./Articles";
 import axios from "axios";
 import Books from "./Books";
 import { ApiContext } from "../ApiContext";
-
+import Select from "react-select"
 const Library=()=>{
   const [activeTab, setActiveTab]=useState("books")
   const [books, setBooks]=useState([])
@@ -52,6 +52,9 @@ const Library=()=>{
         setVisibleBooks(3)
     }
 
+      const handleSelect = (selectedCategory) => {
+    setSelectedCategory(selectedCategory.value);
+  };
     return(
             <>
      <section>
@@ -72,7 +75,7 @@ const Library=()=>{
                 ) : null
             }
             </div>
-                     <div className="topics grid grid-cols-1 md:grid-cols-4 gap-4">
+                     <div className="topics  grid-cols-4  gap-4 hidden md:grid">
                 {
                     displayedCategories.map((item, index)=>(
                         <>
@@ -86,10 +89,31 @@ const Library=()=>{
                             <span className="flex justify-center font-semibold">{item?.category}</span>
                     {/* <h4 className="font-bold text-center">{item.category}</h4> */}
                 </div>
+                
 
                         </>
                     ))
                 }
+                
+            </div>
+            <div className="md:hidden flex">
+                 <Select className=" w-full outline-none"
+              options={categories.map((item) => ({
+                value: item.category_id,
+                label: item.category,
+              }))}
+              onChange={handleSelect}
+              placeholder="Kategoriya seçin"
+              styles={{
+                control:(base, state)=>({
+                    ...base,
+                    boxShadow:"none",
+                    borderColor:"gray"
+
+                })
+              }}
+              
+            />
             </div>
                     <div className="course-filter mt-5">
                     <div className="filter-items flex gap-3">

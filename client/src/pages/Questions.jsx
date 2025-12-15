@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
-
+import Select from "react-select";
 const Questions=()=>{
     const [categories,setCategories]=useState([]);
     const [displayedCategories, setDisplayedCategories]=useState([])
@@ -45,6 +45,9 @@ const Questions=()=>{
         return searchedQuery && matchedCategories
     })
 
+      const handleSelect = (selectedCategory) => {
+    setSelectedCategory(selectedCategory.value);
+  };
     return (
         <section>
             <Search query={query} setQuery={setQuery}/>
@@ -58,14 +61,14 @@ const Questions=()=>{
                     ) : null
                 }
             </div>
-            <div className="topics grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="topics md:grid hidden grid-cols-2 md:grid-cols-4 gap-4 ">
                 {
                     displayedCategories.map((item, index)=>(
                         <>
                         <div className="w-full ">
                     <div className={`${selectedCategory===item.category ? "bg-gray-200 text-white topic-item  h-20 mb-2" : "bg-gray-100 topic-item h-20 mb-2"}`} key={index} onClick={()=>setSelectedCategory(item?.category)}>
                     <a>
-                            <img src={`${item?.category_img}`}/>
+                            <img src={`${item?.category_img}`} className=""/>
                     </a>   
                         </div> 
                      <span className="flex justify-center font-semibold">{item?.category}</span>
@@ -75,6 +78,25 @@ const Questions=()=>{
                     ))
                 }
             </div>
+             <div className="md:hidden flex">
+                             <Select className=" w-full outline-none"
+                          options={categories.map((item) => ({
+                            value: item.category,
+                            label: item.category,
+                          }))}
+                          onChange={handleSelect}
+                          placeholder="Kategoriya seçin"
+                          styles={{
+                            control:(base, state)=>({
+                                ...base,
+                                boxShadow:"none",
+                                borderColor:"gray"
+            
+                            })
+                          }}
+                          
+                        />
+                        </div>
             <div className="mt-5 mb-5 flex justify-between items-center">
                 <h4 className="font-bold text-xl">Müzakirə formu</h4>
                 <button className="text-blue-500" onClick={()=>setSelectedCategory(null)}>Hamısına bax</button>

@@ -43,62 +43,7 @@ const MainHome = () => {
     )
     return (
         <section>
-            <style>{`
-     .swiper-button-prev,
-.swiper-button-next {
-    background: transparent;
-    width: 34px;
-    height: 34px;
-    color: black !important;
-    border: none;
-    outline: none;
-    transition: all 0.3s ease;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-}
-                .swiper-button-prev {
-                    left: -50px;
-                }
-                
-                .swiper-button-next {
-                    right: -50px;
-                }
-                
-                .swiper-button-prev:after,
-                .swiper-button-next:after {
-                    font-size: 28px;
-                    font-weight: normal;
-                }
-                
-                .swiper-button-prev:hover,
-                .swiper-button-next:hover {
-                    transform: scale(1.2);
-                }
-                
-                .swiper-button-prev:focus,
-                .swiper-button-next:focus {
-                    outline: none;
-                }
-                
-                .swiper-pagination-bullet {
-                    background: white;
-                    opacity: 0.5;
-                 background: #3B82F6;
-    opacity: 0.3;
-    width: 10px;
-    height: 10px;
-    margin: 0 6px !important;
-}
-    .swiper-pagination {
-    position: relative !important;
-    margin-top: 0.2rem !important;
-    bottom: 0 !important;
-}
-                
-                .swiper-pagination-bullet-active {
-   background: #3B82F6;
-    opacity: 1;                }
-            `}</style>
+
 
             <div className="mentor-banner mt-3 overflow-hidden">
                 <div className="relative flex flex-col md:flex-row r justify-between">

@@ -18,18 +18,16 @@ function Header({open, setOpen,setSettings}){
             <IoMenu fontSize={28}/>
           </button>
           <div className="logo">
-            <Link to="/home" className="hidden md:flex lg:ml-15" onClick={()=>setSettings(false)}>
-              <img src="/images/logo.jpg" alt="Logo" className="hidden lg:block"/>
-              <img src="/images/logo.svg" alt="Logo" className="lg:hidden hidden md:block"/>
+            <Link to="/home" className="hidden md:flex" onClick={()=>setSettings(false)}>
+              <img src="/images/logo.jpg" alt="Logo"/>
             </Link>
         
-          </div>
-             
+          </div>            
           </div>
            <Link to="/home" className="md:hidden flex" onClick={()=>setSettings(false)}>
               <img src="/images/mobile_logo.png" alt="Mobile Logo" />
             </Link>
-          <ul className="hidden md:flex  lg:gap-6 desktop-menu text-xs lg:text-base">
+          <ul className="hidden md:flex gap-2 lg:gap-6 desktop-menu text-xs lg:text-base">
             <li className="nav-item whitespace-nowrap">
               <NavLink className={({isActive})=> isActive ? "active" : "" } to="/home" onClick={()=>setSettings(false)}>Ana Səhifə</NavLink>
             </li>

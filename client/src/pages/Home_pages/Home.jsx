@@ -3,7 +3,6 @@ import { IoMdAdd } from "react-icons/io";
 import { MdArrowOutward } from "react-icons/md";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -63,13 +62,12 @@ const Home = () => {
 
             {/* Button */}
             <div className="flex justify-center md:justify-start">
-          <Link  to="/login">
-           <button className="bg-[#3456BE] text-white px-6 py-3 rounded-3xl flex items-center gap-3 hover:opacity-90 transition">
+              <button className="bg-[#3456BE] text-white px-6 py-3 rounded-3xl flex items-center gap-3 hover:opacity-90 transition">
                 Kəşfə başlayın 
                 <span className="bg-white text-[#3456BE] p-1 rounded-full">
                   <MdArrowOutward fontSize={18} />
                 </span>
-              </button></Link>
+              </button>
             </div>
           </div>
 
@@ -130,11 +128,11 @@ const Home = () => {
           Daha ətraflı <MdArrowOutward className="hidden md:inline-flex text-blue-500 bg-white rounded-full p-1" fontSize={24}/>
         </button>
       </div>
-      <div className="flex justify-center items-center mt-[100px] md:mt-5 ">
-        <div className="bg-blue-700 w-64  h-32 rounded-[50%/50%] relative">
+      <div className="flex justify-center items-center mt-8 md:mt-0">
+        <div className="bg-blue-700 w-64 h-32 rounded-[50%/50%] relative">
           <img 
             src="/images/macbook_.png" 
-            className="absolute lg:bottom-6 bottom-6 mt-5 right-3 object-cover scale-150 lg:scale-180 md:scale-160" 
+            className="absolute bottom-6 right-3 object-cover scale-150 md:scale-160" 
             alt="Macbook"
           />
         </div>
@@ -145,10 +143,10 @@ const Home = () => {
       
       <section className="max-w-[95vw] m-auto mt-10 md:mt-14">
         <div className="rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 overflow-hidden">
-          <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-0 md:gap-8 md:gap-12 px-4 md:px-8 pb-8 md:py-2">
+          <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-8 md:gap-12 px-4 md:px-8 py-6 md:py-10">
 
             {/* Text Content */}
-            <div className="flex-1 text-center md:text-left ">
+            <div className="flex-1 text-center md:text-left">
               <h2 className="font-bold text-2xl md:text-3xl pb-3">
                 Hər ehtiyacın — bir platformada
               </h2>
@@ -159,7 +157,7 @@ const Home = () => {
             </div>
 
             {/* Images Section */}
-            <div className="flex-1 relative flex flex-col items-center min-h-[250px] md:min-h-[350px] mt-10">
+            <div className="flex-1 relative flex flex-col items-center min-h-[250px] md:min-h-[350px]">
 
               {/* Background Circle 1 */}
               <div className="absolute top-0 left-1/3 
@@ -170,28 +168,26 @@ const Home = () => {
               <img
                 src="/images/laptop.png"
                 className="
-                hidden
-                md:block
                   relative
                   right-15
-                  max-w-70 md:max-w-[300px] lg:max-w-[500px]
-                  w-auto object-contain z-10 ml-2
+                  max-w-70 md:max-w-[300px] lg:max-w-[350px]
+                  w-auto object-contain z-10
                 "
                 alt="Laptop"
               />
 
               {/* Background Circle 2 */}
-              <div className="absolute bottom-4 right-1/3 hidden mdLabsolute
-                              w-20 h-10 md:w-36 md:h-36 
+              <div className="absolute bottom-4 right-1/3 
+                              w-20 h-20 md:w-36 md:h-36 
                               bg-purple-300 rounded-full opacity-60 z-0"></div>
 
               {/* Articles Image */}
               <img
                 src="/images/articles.jpg"
                 className="
-                  
-                  
-                  max-w-60 md:max-w-[200px] lg:max-w-[350px]
+                  mt-30
+                  ml-25
+                  max-w-50 md:max-w-[200px] lg:max-w-[250px]
                   w-auto object-contain shadow-lg rounded-lg z-20
 
                   /* Tablet (md): absolute positioning */
@@ -201,7 +197,7 @@ const Home = () => {
 
                   /* Desktop (lg+) */
                   lg:translate-x-0
-                  lg:absolute lg:top-2 lg:right-0
+                  lg:absolute lg:top-2 lg:right-25
                 "
                 alt="Articles"
               />
@@ -212,28 +208,28 @@ const Home = () => {
         </div>
       </section>
            
-  {/* Desktop view - 3 images side by side */}
+      {/* Desktop view - 3 images side by side */}
       <div className="hidden md:flex justify-center mt-30 gap-10">
-        <div><img src="/images/Group 7.svg" alt="Feature 1"  /></div>
+        <div><img src="/images/Group 7.svg" alt="Feature 1" /></div>
         <div><img src="/images/Group 10.svg" alt="Feature 2" /></div>
         <div><img src="/images/Group 9.svg" alt="Feature 3" /></div>
       </div>
 
       {/* Mobile view - Slider with arrow buttons */}
       <div className="md:hidden relative w-full mt-10">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between px-4">
           {/* Left Arrow */}
           <button 
             onClick={handlePrevSlide}
             disabled={isTransitioning}
-            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50 pl-2"
+            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50"
             aria-label="Previous slide"
           >
             <IoIosArrowBack fontSize={28} />
           </button>
 
           {/* Slider Container */}
-          <div className="flex-1 mx-1 overflow-hidden">
+          <div className="flex-1 mx-2 overflow-hidden">
             <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -243,18 +239,17 @@ const Home = () => {
                   <img 
                     src={logo} 
                     alt={`Feature ${index + 1}`} 
-                    className="w-full h-auto object-contain"
+                    className="max-w-[300px] w-full h-auto object-contain px-4"
                   />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right Arrow */}
           <button 
             onClick={handleNextSlide}
             disabled={isTransitioning}
-            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50 pr-2"
+            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50"
             aria-label="Next slide"
           >
             <IoIosArrowForward fontSize={28} />

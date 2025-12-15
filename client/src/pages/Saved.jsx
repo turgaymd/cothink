@@ -43,6 +43,14 @@ const Saved=()=>{
               .catch(err => console.error(err))
            
       }, []);
+
+        const handleUnsave=async(item)=>{
+    setBooks((prev)=>prev.filter((id)=>id!==item.book_id))
+    await axios.delete(`${apiUrl}/server/savedPages/savedBooks/getSaveBooks.php?student_id=${user.id}`,
+      {data:{book_id:item.book_id, student_id:user?.student_id}},
+      { headers: { "Content-Type": "application/json" } },
+    )
+  }
  
     return (
         <section>
@@ -87,45 +95,77 @@ const Saved=()=>{
     ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
    {books.map((item, index)=>(
+   <div className="library-item bg-white shadow-sm hover:shadow-md transition rounded-xl mt-4" key={index}>
+                <div className="flex  gap-4">
+                  <a href={`/library/books/${item.book_id}`}>
+                      <img
+                        src={item.book_img}
+                        className="w-20 h-28 object-cover rounded-md"
+                        alt="book"
+                      ></img>
   
-                   <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-
-                <div className="flex flex-col md:flex-row gap-5">
-                                          <a href={`/library/books/${item.book_id}`}>
-                  <div className="flex items-center justify-center">
-
-                  <img
-                    src={item.book_img}
-                    className="w-20 h-25 object-cover"
-                    alt="book"
-                  ></img>
-                                      
-                  </div>
                   </a>
-                  <div className="mentor-title flex flex-col gap-3">
-                    <h4 className="font-bold text-lg break-all">
+                  <div className=" flex flex-col flex-1 gap-3">
+                    <h4 className="font-semibold text-sm line-clamp-2">
                       {item.book_title}
                     </h4>
-                    <p>PDF </p>
-                    <div className="flex gap-5 md:flex-row stats ">
-                      <div className="flex items-center gap-1">
+                    <span className="inline-block rounded w-fit bg-gray-100 px-2 py-0.5">PDF </span>
+                      <div className="flex items-center gap-4 mt-auto pt-3 text-sm">
                         <a className="flex gap-1" download href={`item.book_url`}>
                           <img src="/images/download.svg" />
                           <span>Yüklə</span>
-                        </a>
-                      </div>
+       </a>
                       <div className="flex items-center gap-1">
-                        <img src="/images/share.svg" />
+                        <img src="/images/share.svg"  className="w-5"/>
                         <WhatsappShareButton url={window.location.href} title={item.book_title}>Paylaş</WhatsappShareButton>
                       </div>
-                      <div className="flex items-center gap-1">
-                      <FaBookmark fontSize={24}/> 
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      <button className="ml-auto">
 
-            </div>
+                          <FaBookmark fontSize={20} onClick={()=>handleUnsave(item)}/>
+                      </button>
+                    </div>
+                                     
+                      </div>
+                  </div>
+              </div>
+            //        <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
+
+            //     <div className="flex flex-col md:flex-row gap-5">
+            //                               <a href={`/library/books/${item.book_id}`}>
+            //       <div className="flex items-center justify-center">
+
+            //       <img
+            //         src={item.book_img}
+            //         className="w-20 h-25 object-cover"
+            //         alt="book"
+            //       ></img>
+                                      
+            //       </div>
+            //       </a>
+            //       <div className="mentor-title flex flex-col gap-3">
+            //         <h4 className="font-bold text-lg break-all">
+            //           {item.book_title}
+            //         </h4>
+            //         <p>PDF </p>
+            //         <div className="flex gap-5 md:flex-row stats ">
+            //           <div className="flex items-center gap-1">
+            //             <a className="flex gap-1" download href={`item.book_url`}>
+            //               <img src="/images/download.svg" />
+            //               <span>Yüklə</span>
+            //             </a>
+            //           </div>
+            //           <div className="flex items-center gap-1">
+            //             <img src="/images/share.svg" />
+            //             <WhatsappShareButton url={window.location.href} title={item.book_title}>Paylaş</WhatsappShareButton>
+            //           </div>
+            //           <div className="flex items-center gap-1">
+            //           <FaBookmark fontSize={24}/> 
+            //           </div>
+            //         </div>
+            //       </div>
+            //     </div>
+
+            // </div>
          
           ))}
            </div>
