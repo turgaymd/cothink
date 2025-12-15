@@ -1,10 +1,10 @@
-import { IoIosNotificationsOutline } from "react-icons/io";
-import { Link, NavLink } from "react-router-dom";
-import { IoClose, IoSettingsOutline } from "react-icons/io5";
-import { AiFillVideoCamera } from "react-icons/ai";
-import { FiBookmark } from "react-icons/fi";
-import { GoPlusCircle } from "react-icons/go";
-import { BsCameraVideo } from "react-icons/bs";
+  import { IoIosNotificationsOutline } from "react-icons/io";
+  import { Link, NavLink } from "react-router-dom";
+  import { IoClose, IoSettingsOutline } from "react-icons/io5";
+  import { AiFillVideoCamera } from "react-icons/ai";
+  import { FiBookmark } from "react-icons/fi";
+  import { GoPlusCircle } from "react-icons/go";
+  import { BsCameraVideo } from "react-icons/bs";
 
 function Sidebar({open, setOpen, setSettings, setActiveTab}){
   const handleSettings = () => {
@@ -18,12 +18,10 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
     }
   };
   
-   const handleNavigate=()=>{
-    setSettings(false)
-    if(window.innerWidth<=768){
-         setOpen(false)
-    }
-  }
+  const handleNavigate = () => {
+    setSettings(false);
+    setOpen(false);
+  };
   
   return (
     <div className="sidebar w-full md:p-0 px-2 ">
@@ -183,4 +181,4 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
   );
 }
 
-export default Sidebar;
+  export default Sidebar;
