@@ -38,7 +38,7 @@ axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
 axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
       .then(res => {
         const data=res.data.data
-        console.log(res)
+        console.log(data)
     setName(data.student_name || "")
     setEmail(data.student_email || "")
     setPassword(data.student_password || "")

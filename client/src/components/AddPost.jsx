@@ -188,7 +188,7 @@ const AddPost = ({ setActiveTab }) => {
                   }
                 }}
               />
-              <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
+              <p className="text-gray-500 md:flex hidden" >Şəkilləri buraya sürükləyin və ya</p>
               <button
                 className="find-btn text-white bg-blue-800 rounded-md px-3 py-2 "
                 onClick={handleUpload}
@@ -208,7 +208,7 @@ const AddPost = ({ setActiveTab }) => {
               <input
                 type="text"
                 className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg"
-                placeholder="Mövzunu ifadə edən açar sözlər əlavə edin"
+                placeholder="Mövzunu ifadə edən açar sözlər əlavə edin və enteri basın"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleTags}
@@ -229,14 +229,14 @@ const AddPost = ({ setActiveTab }) => {
 
           <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
             <button
-              className="border w-64 border-blue-800 text-blue-800 px-7 py-4 rounded-md"
+              className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md"
               onClick={() => setActiveTab("nothing")}
             >
               Ləğv et
             </button>
             <button
               type="submit"
-              className="w-64 text-white bg-blue-800 px-7 py-4 rounded-md"
+              className="md:w-64 w-full text-white bg-blue-800 px-7 py-4 rounded-md"
             >
               Yadda Saxla
             </button>

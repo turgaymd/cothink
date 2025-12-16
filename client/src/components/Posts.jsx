@@ -4,6 +4,8 @@ import { WhatsappShareButton } from "react-share";
 
 export const PostCard=({item})=>{
     return(
+      <a href={`/questions/${item.post_id}`}>
+ 
           <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
     <div className="flex justify-between items-center">
         <div className="flex gap-4">
@@ -30,6 +32,8 @@ export const PostCard=({item})=>{
             </div>
         </div>
             </div>
+                   
+      </a>
     )
 }
 const Posts=()=>{

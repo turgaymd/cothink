@@ -119,7 +119,7 @@ const handleSave=async(item)=>{
           </div>
         </div>
 
-        <div className="post-reactions flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-3 justify-between md:flex-row flex-col items-center">
+        <div className="post-reactions flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-3 justify-between md:flex-row items-center">
           <div className="flex gap-3">
             <div className="like-count flex items-center gap-2">
               <img src="/images/like.svg" alt="like" />
