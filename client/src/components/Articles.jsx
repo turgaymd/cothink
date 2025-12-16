@@ -14,7 +14,7 @@ export const ArticleCard=({item})=>{
                                 <img src={item.profile_img || "/images/admin.png"}/>
                                 <span>{item.mentor_name}</span>
                                 <span>•</span>
-                                <span>{item.created_at}</span>
+                                <span>  {new Date(item.created_at).toLocaleDateString()}</span>
                             </div>
                             <div className="category">
                                 <span className="bg-blue-800 rounded-md px-5 py-2">{item.category}</span>

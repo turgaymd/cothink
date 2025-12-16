@@ -1,6 +1,6 @@
   import { IoIosNotificationsOutline } from "react-icons/io";
   import { Link, NavLink } from "react-router-dom";
-  import { IoClose, IoHome, IoSettingsOutline ,IoStarOutline } from "react-icons/io5";
+  import { IoClose, IoHome, IoLogOutOutline, IoSettingsOutline ,IoStarOutline } from "react-icons/io5";
   import { AiFillVideoCamera } from "react-icons/ai";
   import { FiBookmark } from "react-icons/fi";
   import { GoPlusCircle } from "react-icons/go";
@@ -8,7 +8,12 @@
 import { IoHomeOutline } from "react-icons/io5";
 import { SiCodementor } from "react-icons/si";
 import { RiQuestionAnswerLine, RiQuestionnaireLine } from "react-icons/ri";
+import { useContext } from "react";
+import { AuthContext } from "../AuthContext";
+
 function Sidebar({open, setOpen, setSettings, setActiveTab}){
+  const {user}=useContext(AuthContext)
+
   const handleSettings = () => {
     setSettings(true);
     setOpen(false);
@@ -34,13 +39,13 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
               <div className="flex justify-between mt-10 ">
                 <div className="flex gap-3">
                   <NavLink className="profile-img rounded-full flex-shrink-0" to={"/profile"} onClick={handleNavigate}>
-                    <img src="/images/admin.png" className="w-5 h-5" alt="Profile"/>
+                    <img src={user?.profile_img ? `${user?.profile_img}` : `/images/admin.png`} className="w-5 h-5" alt="Profile"/>
                   </NavLink>  
                  <div className="mt-4"> <button className="bg-gray-300  rounded-md   flex-shrink-0">
                     <IoIosNotificationsOutline fontSize={25}/>
                   </button></div>
                 </div>
-                <div className="flex justify-end -mt-2 -mr-2">
+                <div className="flex justify-end">
                   <button 
                     onClick={handleNavigate} 
                     className="p-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -174,7 +179,8 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
           </NavLink>
         </li>
         
-        <li className="nav-item">
+        <li className="nav-item flex gap-1 items-center">
+          <IoLogOutOutline className="md:hidden flex text-red-500" fontSize={24}/>
           <NavLink 
             className="md:hidden text-red-500 flex gap-2 text-sm" 
             to="/login" 

@@ -48,6 +48,7 @@ const Questions=()=>{
       const handleSelect = (selectedCategory) => {
     setSelectedCategory(selectedCategory.value);
   };
+  const date=new Date().toLocaleDateString()
     return (
         <section>
             <Search query={query} setQuery={setQuery}/>
@@ -110,7 +111,8 @@ const Questions=()=>{
                                     {item.mentor_name}
                                 </span>
                                 <span className="text-gray-400">
-                                    {item.created_at}
+                                    {new Date(item.created_at).toLocaleDateString()}
+                                    {/* {item.created_at} */}
                                 </span>
                             </div>
                             <div className="flex gap-7 md:flex-row flex-col items-center">

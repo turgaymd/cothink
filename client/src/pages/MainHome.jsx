@@ -159,7 +159,7 @@ const MainHome = () => {
                                         <img src={item.profile_img || "images/admin.png"} alt="Aydan" className="w-15 h-15 object-cover rounded-full" />
                                         <h5>{item.mentor_name}</h5>
                                         <span>•</span>
-                                        <p>{item.created_at}</p>
+                                        <p>  {new Date(item.created_at).toLocaleDateString()}</p>
                                     </div>
                                     <div>
                                         <p>{item.post_title}</p>

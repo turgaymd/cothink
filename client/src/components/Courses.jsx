@@ -36,7 +36,7 @@ export const CourseCard=({item})=>{
                 </div>
                 <div className="flex flex-col">
                   <h4 className="font-bold">{item?.mentor_name}</h4>
-                  <p>{item?.created_at}</p>
+                  <p>  {new Date(item.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 ">
