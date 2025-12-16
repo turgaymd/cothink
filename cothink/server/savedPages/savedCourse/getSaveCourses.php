@@ -32,7 +32,7 @@ try {
 
         FROM saved_course sc
         JOIN mentor_course mc ON sc.course_id = mc.course_id
-        LEFT JOIN categories cat ON c.category_id = cat.category_id
+        LEFT JOIN categories cat ON mc.category_id = cat.category_id
         WHERE sc.student_id = ?
         ORDER BY sc.saved_at DESC
     ";

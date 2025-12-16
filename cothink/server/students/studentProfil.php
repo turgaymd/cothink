@@ -26,6 +26,7 @@ try {
                 student_id,
                 student_name,
                 student_email, 
+                student_username, 
                 student_password, 
                 profile_img, 
                 description,
