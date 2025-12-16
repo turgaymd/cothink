@@ -64,7 +64,7 @@ useEffect(() => {
         <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
             <img
-              src={mentor?.profile_img || "/images/admin.png"}
+              src={user.profile_img || "/images/admin.png"}
               className="rounded-full h-24 w-24 object-cover"
             />
           </div>

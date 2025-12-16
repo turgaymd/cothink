@@ -32,7 +32,7 @@ const Settings=({setActiveTab, setSettings})=>{
    <div className="flex flex-col justify-center items-center mb-4">
                 
                  <div className="profiles-img">
-                <img src="/images/admin.png" className="rounded-full w-24 h-24"/>
+                <img src={user.profile_img || "/images/admin.png"} className="rounded-full w-24 h-24"/>
             </div>
             <h2 className="font-medium text-xl">{user?.name}</h2>
             </div>

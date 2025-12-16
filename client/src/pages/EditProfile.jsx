@@ -18,6 +18,7 @@ const EditProfile = () => {
   const [username, setUsername] = useState("");
   const fileInputRef = useRef(null);
 
+
 useEffect(()=>{
   if(!user) return;
   if(user.type==="mentor"){
@@ -45,7 +46,7 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
     setUsername(data.student_username || "")
     setAbout(data.description || "")
     setLinkedin(data.linkedn_link || "")
-    setProfileImg(data.profile_img || "")
+    setProfileImg(`https://cothink.az${data.profile_img}`)
   });
   }
 },[user])
@@ -53,7 +54,14 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
   const handleUpload = (e) => {
     e.preventDefault();
     fileInputRef.current.click();
+
   };
+  const handleChange=(e)=>{
+        const file=e.target.files[0]
+    if(file){
+      setProfileImg(URL.createObjectURL(file))
+    }
+  }
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -83,7 +91,7 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
   }
  
     if (fileInputRef.current.files[0]) {
-      formData.append("profile_img", fileInputRef.current.files[0].value);
+      formData.append("profile_img", fileInputRef.current.files[0]);
     }
 try{
   const url= user.type==="mentor" ? 
@@ -96,7 +104,9 @@ try{
          ...prev,
         name:name,
         email:email,
+        profile_img: res.data.image ? `https://cothink.az${res.data.image}` : prev.profile_img
       }))
+      console.log(user)
        toast.success("Profil uğurla yeniləndi")
     }
     if(res.data.status==="error"){
@@ -131,6 +141,7 @@ catch(err){
 
             <input
               ref={fileInputRef}
+              onChange={handleChange}
               type="file"
               className="sr-only"
               accept="image/*"
