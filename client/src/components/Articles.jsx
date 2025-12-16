@@ -9,14 +9,14 @@ export const ArticleCard=({item})=>{
             <div className="article-item mb-5 text-black ">
                 <a href={`/library/articles/${item.article_id}`}>
                     <div className="article-content flex justify-between flex-col gap-2 border-b-gray-500">
-                        <div className="article-header flex justify-between items-center md:flex-row flex-col gap-2">
+                        <div className="article-header flex justify-between md:flex-row flex-col gap-2">
                             <div className="article-author flex items-center gap-2">
                                 <img src={item.profile_img || "/images/admin.png"}/>
                                 <span>{item.mentor_name}</span>
                                 <span>•</span>
                                 <span>  {new Date(item.created_at).toLocaleDateString()}</span>
                             </div>
-                            <div className="category">
+                            <div className="category flex items-center">
                                 <span className="bg-blue-800 rounded-md px-5 py-2">{item.category}</span>
                             </div>
                         </div>
@@ -73,7 +73,6 @@ const Articles=({query,selectedCategory})=>{
 
     return(
         <>
-            <section>
                 <div>
                     <div className="flex justify-between items-center mt-5 mb-3">
                         <h4 className="font-semibold text-xl">Bloqlar</h4>
@@ -98,7 +97,6 @@ const Articles=({query,selectedCategory})=>{
                         }
                     </div>
                 </div>
-            </section>
         </>
     )
 }
