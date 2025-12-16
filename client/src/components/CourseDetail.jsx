@@ -12,6 +12,7 @@ import { ApiContext } from "../ApiContext";
 import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../AuthContext";
 import { WhatsappShareButton } from "react-share";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 
 
 const CourseDetail=()=>{
@@ -23,6 +24,7 @@ const CourseDetail=()=>{
   const [open, setOpen]=useState(true)
   const {apiUrl}=useContext(ApiContext)
   const {user}=useContext(AuthContext)
+  const [liked,setLiked]=useState(false)
   const { id } = useParams();  
 
 
@@ -91,6 +93,34 @@ const handleSave=async(item)=>{
       toast.error("Xəta baş verdi");
     }
 }
+
+ const handleLike=async(item)=>{
+           setLiked(true)
+    try {
+      const res = await axios.post(
+        `${apiUrl}/server/courses/likeCourses.php?course_id=${item.course_id}`,
+        {
+          student_id:user?.id
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(res.data)
+      if (res.data.status === "success") {
+        console.log(res.data)
+        setCourse((prev)=>({...prev, likes:prev.likes+1}))
+   
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+  }
+
+    const handleUnlike=()=>{
+    setLiked(false)
+  }
     return(
       <>
       
@@ -105,7 +135,13 @@ const handleSave=async(item)=>{
             </div>
             <p className="text-blue-500">{course?.category_name}</p>
                 <div className="flex  gap-3 mt-5">
-            <div className="like-count flex items-center gap-1"><img src="/images/like.svg"></img>{course?.likes}</div>
+            <div className="like-count flex items-center gap-1">
+                 {
+                                            liked ? <AiFillLike fontSize={24} onClick={handleUnlike}/> :
+                                            <AiOutlineLike fontSize={24} onClick={()=>handleLike(course)}/>
+                                }
+    
+              {course?.likes}</div>
             <div className="comment-count flex items-center gap-1" >
               <WhatsappShareButton url={window.location.href} title={course?.course_title}>    
                 

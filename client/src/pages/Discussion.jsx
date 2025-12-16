@@ -7,6 +7,7 @@ import { WhatsappShareButton } from "react-share";
 import { toast, ToastContainer } from "react-toastify";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { AuthContext } from "../AuthContext";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 function Discussion(){
   const { id } = useParams();  
   const [post, setPost] = useState(null);
@@ -14,7 +15,7 @@ function Discussion(){
   const [comments, setComments]=useState([])
   const {apiUrl}=useContext(ApiContext)
   const {user}=useContext(AuthContext)
-  
+  const [liked,setLiked]=useState(false)
   useEffect(() => {
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?post_id=${id}`)
@@ -69,6 +70,33 @@ const handleSave=async(item)=>{
   if (!post) {
   return <><Loading/></>;
 }
+   const handleLike=async(item)=>{
+           setLiked(true)
+    try {
+      const res = await axios.post(
+        `${apiUrl}/server/posts/likePosts.php?post_id=${item.post_id}`,
+        {
+          student_id:user?.id
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(res.data)
+      if (res.data.status === "success") {
+        console.log(res.data)
+        setPost((prev)=>({...prev, likes:prev.likes+1}))
+   
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+  }
+
+    const handleUnlike=()=>{
+    setLiked(false)
+  }
     return(
         <>
         <ToastContainer/>
@@ -93,7 +121,15 @@ const handleSave=async(item)=>{
 <img  src={post?.post_img} className="rounded-md"/>
         </div>
         <div className="post-reactions flex justify-end gap-5 pt-3">
-            <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{post?.likes}</div>
+            <div className="like-count flex items-center gap-2">
+                   {
+                                            liked ? <AiFillLike fontSize={24} onClick={handleUnlike}/> :
+                                            <AiOutlineLike fontSize={24} onClick={()=>handleLike(post)}/>
+                                }
+              {post?.likes}
+              
+              
+              </div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{post?.comments}</div>
             <div className="saved-count flex items-center gap-2">
                   {savedPosts.includes(post.post_id) ? 
@@ -101,7 +137,9 @@ const handleSave=async(item)=>{
                                      (<FaRegBookmark   fontSize={24} onClick={()=>handleSave(post)}/>)}
               {/* <img src="/images/save.svg"></img> */}
             {post?.saved}</div>
-            <div className="share flex items-center gap-2"><img src="/images/share.svg"></img>
+            <div className="share flex items-center gap-2">
+
+              <img src="/images/share.svg"></img>
             <WhatsappShareButton url={window.location.href} title={post?.post_title}>Paylaş</WhatsappShareButton>
             </div>
         </div>
@@ -124,7 +162,10 @@ const handleSave=async(item)=>{
             </div>
                     </div> 
                         <div className="flex justify-end gap-5 comment-reactions pt-3">
-            <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{comment?.likes}</div>
+            <div className="like-count flex items-center gap-2">
+              
+              
+              <img src="/images/like.svg"></img>{comment?.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments}</div>
     </div>
                     </div>

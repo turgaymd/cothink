@@ -9,9 +9,11 @@ import { IoIosAdd } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 import { toast, ToastContainer } from "react-toastify";
 import { WhatsappShareButton } from "react-share";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 const Article = () => {
   const [article, setArticle] = useState(null);
   const [comments,setComments]=useState([])
+  const [liked, setLiked]=useState(false)
   const [comment, setComment]=useState("")
   const [savedArticles, setSavedArticles]=useState([])
   const [error,setError]=useState('')
@@ -95,6 +97,34 @@ const handleSave=async(item)=>{
       toast.error("Xəta baş verdi");
     }
 }
+    const handleLike=async(item)=>{
+           setLiked(true)
+    try {
+      const res = await axios.post(
+        `${apiUrl}/server/articles/likeArticles.php?book_id=${item.book_id}`,
+        {
+          student_id:user?.id
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(res.data)
+      if (res.data.status === "success") {
+        console.log(res.data)
+        setArticle((prev)=>({...prev, likes:prev.likes+1}))
+   
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+  }
+
+    const handleUnlike=()=>{
+    setLiked(false)
+  }
+
   return (
     <>
     <ToastContainer/>
@@ -123,8 +153,11 @@ const handleSave=async(item)=>{
 
         <div className="post-reactions flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-3 justify-between md:flex-row items-center">
           <div className="flex gap-3">
-            <div className="like-count flex items-center gap-2">
-              <img src="/images/like.svg" alt="like" />
+            <div className="like-count flex items-center gap-2" >
+                  {
+                              liked ? <AiFillLike fontSize={24} onClick={handleUnlike}/> :
+                              <AiOutlineLike fontSize={24} onClick={()=>handleLike(article)}/>
+                  }
               {article.likes || 0}
             </div>
             <div className="comment-count flex items-center gap-2">
