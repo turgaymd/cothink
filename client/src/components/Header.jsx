@@ -2,44 +2,65 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../AuthContext";
 
-function Header({open, setOpen,setSettings}){
-    const [search, setSearch]=useState(false)
-    const {user}=useContext(AuthContext)
+function Header({open, setOpen, setSettings}){
+    const [search, setSearch] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const {user} = useContext(AuthContext);
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    
     return(
       <header className="w-full top-0 z-50 navbar items-center">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
-          <button className="md:hidden text-3xl" onClick={()=>setOpen(true)}>
-            { open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
-          </button>
-          <button className="hidden md:flex text-3xl" onClick={()=>setOpen(!open)}>
-            <IoMenu fontSize={28}/>
-          </button>
-          <div className="logo">
-            <Link to="/home" className="hidden md:flex" onClick={()=>setSettings(false)}>
-              <img src="/images/logo.jpg" alt="Logo"/>
-            </Link>
-        
-          </div>            
+            <button className="md:hidden text-3xl" onClick={() => setOpen(true)}>
+              {open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
+            </button>
+            <button className="hidden md:flex text-3xl" onClick={() => setOpen(!open)}>
+              <IoMenu fontSize={28}/>
+            </button>
+            <div className="logo">
+              <Link to="/home" className="hidden md:flex lg:ml-15" onClick={() => setSettings(false)}>
+                <img src="/images/logo.jpg" alt="Logo" className="hidden lg:block"/>
+                <img src="/images/logo.svg" alt="Logo" className="lg:hidden hidden md:block"/>
+              </Link>
+            </div>            
           </div>
-           <Link to="/home" className="md:hidden flex" onClick={()=>setSettings(false)}>
-              <img src="/images/mobile_logo.png" alt="Mobile Logo" />
-            </Link>
-          <ul className="hidden md:flex gap-2 lg:gap-6 desktop-menu text-xs lg:text-base">
+          
+          <Link to="/home" className="md:hidden flex" onClick={() => setSettings(false)}>
+            <img src="/images/mobile_logo.png" alt="Mobile Logo" />
+          </Link>
+          
+          <ul className="hidden md:flex lg:gap-6 desktop-menu text-xs lg:text-base">
             <li className="nav-item whitespace-nowrap">
-              <NavLink className={({isActive})=> isActive ? "active" : "" } to="/home" onClick={()=>setSettings(false)}>Ana Səhifə</NavLink>
+              <NavLink className={({isActive}) => isActive ? "active" : ""} to="/home" onClick={() => setSettings(false)}>
+                Ana Səhifə
+              </NavLink>
             </li>
             <li className="nav-item whitespace-nowrap">
-              <NavLink className={({isActive})=> isActive ? "active" : "" } to="/questions" onClick={()=>setSettings(false)}>Sual-Cavab</NavLink>
+              <NavLink className={({isActive}) => isActive ? "active" : ""} to="/questions" onClick={() => setSettings(false)}>
+                Sual-Cavab
+              </NavLink>
             </li>
             <li className="nav-item whitespace-nowrap">
-              <NavLink className="" to="/mentors" onClick={()=>setSettings(false)}>Mentorlar</NavLink>
+              <NavLink className="" to="/mentors" onClick={() => setSettings(false)}>
+                Mentorlar
+              </NavLink>
             </li>
             <li className="nav-item whitespace-nowrap">
-              <NavLink className="" to="/rating" onClick={()=>setSettings(false)}>Reytinq</NavLink>
+              <NavLink className="" to="/rating" onClick={() => setSettings(false)}>
+                Reytinq
+              </NavLink>
             </li>
           </ul>
           
@@ -57,14 +78,14 @@ function Header({open, setOpen,setSettings}){
                 </form>
               ) : (
                 <button className="bg-gray-200 rounded-md p-2">
-                  <CiSearch className="text-2xl" onClick={()=>setSearch(true)}/>
+                  <CiSearch className="text-2xl" onClick={() => setSearch(true)}/>
                 </button>
               )
             }      
             <button className="bg-gray-200 rounded-md p-2">
               <IoIosNotificationsOutline className="text-2xl"/>
             </button>
-            <Link className="profile-img rounded-full pl-2" to="/profile" onClick={()=>setSettings(false)}>
+            <Link className="profile-img rounded-full pl-2" to="/profile" onClick={() => setSettings(false)}>
               <img src={user?.profile_img ? `${user.profile_img}` : `/images/admin.png`} className="w-10 h-10" alt="Profile"/>
             </Link>            
           </div>
