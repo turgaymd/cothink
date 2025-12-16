@@ -166,7 +166,10 @@ const MainHome = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <img src="/images/most_liked.jpg" className="w-full md:w-32 object-cover" alt="Article" />
+                                    {
+                                        item.post_img &&   <img src={item.post_img} className="w-full md:max-w-40  h-32 object-cover rounded-md" alt="Post"/> 
+                                    }
+                                  
                                 </div>
                             </div>
                         </a>

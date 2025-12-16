@@ -8,7 +8,6 @@ import { AuthContext } from "../AuthContext";
 function Header({open, setOpen,setSettings}){
     const [search, setSearch]=useState(false)
     const {user}=useContext(AuthContext)
-    console.log(user)
     return(
       <header className="w-full top-0 z-50 navbar items-center">
         <div className="flex justify-between items-center">

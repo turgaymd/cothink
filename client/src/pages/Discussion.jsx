@@ -87,7 +87,7 @@ const handleSave=async(item)=>{
                <button className="bg-blue-800 text-white rounded-full flex" >İzlə <img src="/images/add.svg"/></button>
                     </div>
             <div className="post-title mt-4">
-<p>{post?.post_title} </p>
+<p>{post?.post_desc} </p>
         </div>
         <div className="post-image pt-5">
 <img  src={post?.post_img} className="rounded-md"/>
