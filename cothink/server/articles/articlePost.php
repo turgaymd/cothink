@@ -38,8 +38,25 @@ if (isset($_FILES['article_img'])) {
         $article_img = "uploads/images/" . $filename;
     }
 }
- 
- 
+// ===============================
+//     VALIDATION
+// ===============================
+
+// if (!$article_title || !$article_desc) {
+//     echo json_encode([
+//         "status" => "error",
+//         "message" => "Title və description tələb olunur"
+//     ]);
+//     exit;
+// }
+
+// if (!$category_id) {
+//     echo json_encode([
+//         "status" => "error",
+//         "message" => "Category seçilməlidir"
+//     ]);
+//     exit;
+// }
 
 // ===============================
 //       DB INSERT SORĞUSU
@@ -47,7 +64,7 @@ if (isset($_FILES['article_img'])) {
 
 $sql = "
     INSERT INTO mentor_article 
-    ( mentor_id, article_title, article_topic,  article_desc, article_img, category_id, article_tags)
+    ( article_title, article_topic,  mentor_id, article_desc, article_img, category_id, article_tags)
     VALUES ( ?, ?, ?, ?, ?, ?, ?)
 ";
 

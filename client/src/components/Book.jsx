@@ -49,7 +49,6 @@ const Book = () => {
   }
   const handleUnlike=()=>{
     setLiked(false)
-    // setBook((prev)=>({...prev, likes:prev.likes-1}))
   }
 
   return (

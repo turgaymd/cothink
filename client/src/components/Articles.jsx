@@ -22,7 +22,7 @@ export const ArticleCard=({item})=>{
                         </div>
                         <h4 className="font-semibold">{item.article_title}</h4>
                         <div className="article-title">
-                            {
+                             {
                                 item?.article_topic?.length>90 ? (
                                     <div className="flex flex-col items-center">
                                         <p className="md:hidden flex text-white">
