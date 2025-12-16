@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { Outlet } from "react-router-dom";
@@ -8,17 +8,23 @@ import ResetPassword from "./components/ResetPassword";
 import TwoFactorAuth from "./components/TwoFactorAuth";
 import Support from "./components/Support";
 function MainLayout(){
-  const [open, setOpen]=useState(false)
+  const [open, setOpen]=useState(true)
    const [settings, setSettings] =useState(false)
   const [activeTab, setActiveTab]=useState("about")
  
+  useEffect(()=>{
+  if(window.innerWidth<=768){
+    setOpen(false)
+  }
+  }, [])
+
   return(
     <>
     <Header open={open} setOpen={setOpen} setSettings={setSettings}/>
     <div className="grid grid-cols-12">
     
        
-   <div className={`${ settings && open ? "md:col-span-3 col-span-12" : open ? "md:col-span-2  col-span-12" : "md:col-span-1  col-span-12" } hidden md:flex border-r border-r-gray-300 min-h-screen`}>
+   <div className={`${ settings && open ? "md:col-span-3 col-span-12 border-r border-r-gray-300" : open ? "md:col-span-2  col-span-12 border-r border-r-gray-300" : "md:col-span-1  col-span-12" } hidden md:flex  min-h-screen`}>
      { open ? ( 
       settings ? <Settings activeTab={activeTab} setActiveTab={setActiveTab} setSettings={setSettings}/> : <Sidebar setSettings={setSettings} setActiveTab={setActiveTab}/>
      ) :

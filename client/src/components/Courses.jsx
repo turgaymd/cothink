@@ -17,11 +17,11 @@ export const CourseCard=({item})=>{
             </a>
             </article>
             <div className="course-category mt-3 text-blue-600">{item?.category}</div>
-            <div className="course-title mb-3 mt-3 flex justify-between">
+            <div className="course-title mb-3 mt-3 flex justify-between items-center">
               <h4 className="font-bold text-2xl">
                  {item?.course_title}
               </h4>
-              <a href={`/courses/${item.course_id}`}><MdArrowOutward fontSize={24}/></a>
+              <a href={`/courses/${item.course_id}`}>{item?.course_price} AZN</a>
             </div>
             <p className="text-gray-500">
               <span className="font-medium skills text-black">
@@ -36,7 +36,7 @@ export const CourseCard=({item})=>{
                 </div>
                 <div className="flex flex-col">
                   <h4 className="font-bold">{item?.mentor_name}</h4>
-                  <p>{item?.created_at}</p>
+                  <p>  {new Date(item.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 ">
@@ -85,21 +85,35 @@ const Courses = () => {
                     <div className="filter-items flex md:flex-row flex-col gap-3">
                     <button className="active rounded-full md:w-64 w-full text-center" onClick={()=>setSelectedCategory(null)}>Hamısı</button>
                     <div className="relative md:w-64 w-full">
-                    <select
-                    value={selectedCategory || ""}
-  className="rounded-full px-5 py-2 bg-blue-800 w-full appearance-none  shadow-md text-white outline-none 
-             border  cursor-pointer"
-  onChange={(e) => handleSelect(e.target.value)}
->
-
-  {categories.map((item) => (
-    <option key={item.category_id} value={item.category} className="bg-white w-full border-none outline-none text-black font-medium">
-      {item.category}
+<div className="relative w-full">
+  <select
+    value={selectedCategory || ""}
+    onChange={(e) => handleSelect(e.target.value)}
+    className={`rounded-full px-5 py-2 bg-blue-800 w-full appearance-none shadow-md text-white outline-none 
+               border cursor-pointer ${!selectedCategory ? 'text-center' : 'text-center'}`}
+    style={{ textAlign: 'center', textAlignLast: 'center' }}
+  >
+    <option value="" disabled hidden>
+      Kateqoriya seçin
     </option>
-  ))}
-</select>
 
-<div className="absolute text-white right-3 inset-y-0 flex justify-center items-center"> ▼</div>
+    {categories.map((item) => (
+      <option
+        key={item.category_id}
+        value={item.category}
+        className="bg-white w-full border-none outline-none text-black font-medium"
+        style={{ textAlign: 'left' }}
+      >
+        {item.category}
+      </option>
+    ))}
+  </select>
+
+  <div className="pointer-events-none absolute text-white right-5 inset-y-0 flex justify-center items-center">
+    ▼
+  </div>
+</div>
+
           </div>
                 </div>
             </div>

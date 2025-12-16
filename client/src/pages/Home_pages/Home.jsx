@@ -246,7 +246,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right Arrow */}
           <button 
             onClick={handleNextSlide}
             disabled={isTransitioning}

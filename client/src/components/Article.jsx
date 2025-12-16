@@ -1,5 +1,5 @@
 import { IoMdTime } from "react-icons/io";
-import { FaRegCalendar } from "react-icons/fa";
+import { FaBookmark, FaRegBookmark, FaRegCalendar } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -8,10 +8,12 @@ import {AuthContext} from "../AuthContext"
 import { IoIosAdd } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 import { toast, ToastContainer } from "react-toastify";
+import { WhatsappShareButton } from "react-share";
 const Article = () => {
   const [article, setArticle] = useState(null);
   const [comments,setComments]=useState([])
   const [comment, setComment]=useState("")
+  const [savedArticles, setSavedArticles]=useState([])
   const [error,setError]=useState('')
   const { id } = useParams();
   const {apiUrl}=useContext(ApiContext)
@@ -64,7 +66,35 @@ const Article = () => {
                
       
   }
+  const handleUnsave=async(item)=>{
+  setSavedArticles((prev)=>prev.filter((id)=>id!==item.article_id))
+  await axios.delete(`${apiUrl}/server/savedPages/savedArticles/getSaveArticles.php?student_id=${user.id}`,
+           {data:{book_id:item.book_id, student_id:user?.student_id}},
+          { headers: { "Content-Type": "application/json" } },
+  )
 
+}
+const handleSave=async(item)=>{
+   try {
+      const res = await axios.post(
+        `${apiUrl}/server/savedPages/savedArticles/postsaveArticles.php?article_id=${item.article_id}`,
+         {
+          student_id:user?.id
+         },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(res.data)
+      if (res.data.status === "success") {
+        toast.success("Məqalə yadda saxlanıldı");
+        setSavedArticles((prev)=>[...prev, item.article_id])
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+}
   return (
     <>
     <ToastContainer/>
@@ -74,23 +104,24 @@ const Article = () => {
         <div className="flex flex-col md:flex-row gap-3 justify-between mb-4 mt-4">
           <div className="flex md:flex-row gap-3">
             <img
-              src={`../../client/uploads/images/${article.article_img}`}
+              src={`${article.article_img} || "/images/admin.png"`} 
               className="object-cover w-20 h-20 rounded-full"
             />
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
               <h4>{article.mentor_name}</h4>
               <button className="bg-blue-800 text-white px-3 py-2 rounded-full flex gap-1">
                 İzlə <IoIosAdd fontSize={24}/>
               </button>
             </div>
           </div>
-          <div className="flex gap-3 text-gray-400">
-            <IoMdTime fontSize={24} /> <p>8 dəq oxuma</p>
-            <FaRegCalendar fontSize={24} /> <p>{article.created_at}</p>
+          <div className="flex justify-between gap-3 text-gray-400">
+            <div className="flex gap-1">     <IoMdTime fontSize={24} /> <p>8 dəq oxuma</p></div>
+       <div className="flex  gap-1">  <FaRegCalendar fontSize={24} /> <p>{article.created_at}</p></div>
+          
           </div>
         </div>
 
-        <div className="post-reactions flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-3 justify-between md:flex-row flex-col items-center">
+        <div className="post-reactions flex gap-5 border-t border-t-gray-300 border-b border-b-gray-300 py-3 justify-between md:flex-row items-center">
           <div className="flex gap-3">
             <div className="like-count flex items-center gap-2">
               <img src="/images/like.svg" alt="like" />
@@ -103,10 +134,13 @@ const Article = () => {
           </div>
           <div className="post-reactions flex gap-5">
             <div className="share flex items-center gap-2">
-              <img src="/images/share.svg" alt="share" /> {article.shared || 0}
+             
+                <WhatsappShareButton url={window.location.href} title={article?.article_title}> <img src="/images/share.svg" alt="share" /> </WhatsappShareButton>{article.shared || 0}
             </div>
             <div className="saved-count flex items-center gap-2">
-              <img src="/images/save.svg" alt="saved" />
+    {savedArticles.includes(article.article_id) ? 
+                      (<FaBookmark fontSize={24} onClick={()=>handleUnsave(article)}/>) :
+                       (<FaRegBookmark fontSize={24} onClick={()=>handleSave(article)}/>)}
               {article.saved || 0}
             </div>
             <div>
@@ -128,10 +162,16 @@ const Article = () => {
           <h4 className="font-bold pt-4 text-xl">{article.article_desc}</h4>
           <p className="pt-4">{article.article_topic}</p>
         </div>
-<div className="article-tags mt-5 flex flex-col md:flex-row gap-3 items-center">
-  <span className="bg-gray-100  px-5 py-2 rounded-md">Figma</span>
-    <span className="bg-gray-100  px-5 py-2 rounded-md">ShapeTools</span>
-      <span className="bg-gray-100  px-5 py-2 rounded-md">ProductDesign</span>
+<div className="article-tags mt-5 flex flex-col md:flex-row gap-3">
+ <h4 className="font-semibold">Açar sözlər: {article.article_tags}</h4>
+  {/* {
+    article.article_tags.map((item)=>{
+      <span className="bg-gray-100  px-5 py-2 rounded-md">item.name</span>
+    })
+  } */}
+  
+    {/* <span className="bg-gray-100  px-5 py-2 rounded-md">ShapeTools</span>
+      <span className="bg-gray-100  px-5 py-2 rounded-md">ProductDesign</span> */}
 </div>
         <div className="comments ">
           <div className="flex gap-3 md:flex-row flex-col  items-center border-t border-t-gray-300 pt-3">

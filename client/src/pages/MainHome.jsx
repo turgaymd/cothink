@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"
-import categories from "../data/CategoryData";
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,13 +9,20 @@ import { ApiContext } from "../ApiContext";
 import { ArticleCard } from "../components/Articles";
 
 const MainHome = () => {
-
-    const [displayedCategories, setDisplayedCategories] = useState(categories.slice(0, 4))
-    const [visibleCategories, setVisibleCategories] = useState(4)
+    const [categories,setCategories]=useState([]);
+    const [displayedCategories, setDisplayedCategories] = useState([])
+    const [visibleCategories, setVisibleCategories] = useState(4);
+    const [selectedCategory,setSelectedCategory]=useState(null)
+    const [discussions,setDiscussions]=useState([])
     const [likedArticles, setLikedArticles]=useState([])
      const {apiUrl}=useContext(ApiContext)
    
         useEffect(() => { 
+
+             axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
+            setCategories(res.data.data)
+            setDisplayedCategories(res.data.data.slice(0,4))
+        })
     axios.get(`${apiUrl}/server/articles/articleRead.php`) 
         .then(res => {
             const mostLiked=res.data.sort((a, b)=>b.likes-a.likes).slice(0,3)
@@ -24,65 +30,20 @@ const MainHome = () => {
               console.log(mostLiked)
         })
         .catch(err => console.error(err))
+
+             axios.get(`${apiUrl}/server/posts/postsRead.php`).then(res=>{
+            setDiscussions(res.data)
+        })
 }, []);
+
+     const filteredDiscussions=discussions.filter((item)=>{
+        const matchedCategories=!selectedCategory ||  item?.category?.toLowerCase()===selectedCategory?.toLowerCase()
+        return  matchedCategories
+        }
+    )
     return (
         <section>
-            <style>{`
-     .swiper-button-prev,
-.swiper-button-next {
-    background: transparent;
-    width: 34px;
-    height: 34px;
-    color: black !important;
-    border: none;
-    outline: none;
-    transition: all 0.3s ease;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-}
-                .swiper-button-prev {
-                    left: -50px;
-                }
-                
-                .swiper-button-next {
-                    right: -50px;
-                }
-                
-                .swiper-button-prev:after,
-                .swiper-button-next:after {
-                    font-size: 28px;
-                    font-weight: normal;
-                }
-                
-                .swiper-button-prev:hover,
-                .swiper-button-next:hover {
-                    transform: scale(1.2);
-                }
-                
-                .swiper-button-prev:focus,
-                .swiper-button-next:focus {
-                    outline: none;
-                }
-                
-                .swiper-pagination-bullet {
-                    background: white;
-                    opacity: 0.5;
-                 background: #3B82F6;
-    opacity: 0.3;
-    width: 10px;
-    height: 10px;
-    margin: 0 6px !important;
-}
-    .swiper-pagination {
-    position: relative !important;
-    margin-top: 0.2rem !important;
-    bottom: 0 !important;
-}
-                
-                .swiper-pagination-bullet-active {
-   background: #3B82F6;
-    opacity: 1;                }
-            `}</style>
+
 
             <div className="mentor-banner mt-3 overflow-hidden">
                 <div className="relative flex flex-col md:flex-row r justify-between">
@@ -118,10 +79,9 @@ const MainHome = () => {
                               ) : (
                                 likedArticles.map((item) => (
                                        <SwiperSlide>
-                                  <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl">
+                                  <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl"  >
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
-
-                                <a className="relative z-10">
+                                <a className="relative z-10" href={`/library/articles/${item.article_id}`}>
                                     <div className="article-content flex justify-between flex-col gap-3">
                                         <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
                                             <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
@@ -134,7 +94,8 @@ const MainHome = () => {
                                                     <span className="text-gray-300 text-sm md:text-base">{item.created_at}</span>
                                                 </div>
                                             </div>
-                                            <div className="category">
+                                            <div className="category" >
+                                                
                                                 <span className="bg-blue-800 rounded-md px-5 py-2 text-white text-sm md:text-base">{item.category}</span>
                                             </div>
                                         </div>
@@ -169,59 +130,55 @@ const MainHome = () => {
                     </div>
                     <div className="course-filter mt-4 mb-5">
                         <div className="filter-items flex md:flex-row flex-col gap-3">
-                            <span className="active rounded-md">Sizin üçün</span>
-                            {
-                                displayedCategories.map((item, index) => (
-                                    <span className="rounded-md" key={index}>{item.name}</span>
-                                ))
-                            }
+                            <span className={`rounded-md ${selectedCategory===null ? "active" : ""}`} onClick={()=>setSelectedCategory(null)}>Hamısı</span>
+                            <div className="filtered-items flex gap-3 flex-col md:flex-row">
+                            {displayedCategories.map((item, index) => {
+                                 const isActive=selectedCategory?.toLowerCase()===item?.category?.toLowerCase()
+                                return(
+                                <button 
+                                    className={`rounded-md ${isActive ? "active" : ""} `}
+                                    key={index} 
+                                    onClick={() => setSelectedCategory(item?.category)}
+                                >
+                                    {item?.category}
+                                </button>
+                            )})}
+                        </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-                    <div className="mentor-item rounded-md">
-                        <a href="/library/articles/:id">
-                            <div className="flex justify-between md:flex-row flex-col items-center gap-1">
-                                <div className="flex flex-col justify-between">
-                                    <div className="flex gap-3 items-center">
-                                        <img src="/images/aydan.png" alt="Aydan" />
-                                        <h5>Ayan Əlizadə</h5>
+                    {
+                        filteredDiscussions.map((item)=>(
+  <div className="mentor-item rounded-md">
+                        <a href={`/questions/${item.post_id}`} className="h-full">
+                            <div className="flex justify-between flex-col gap-3 md:flex-row h-full">
+                                <div className="flex flex-col h-full gap-3 justify-between">
+                                    <div className="mentor-title flex gap-3  items-center">
+                                        <img src={item.profile_img || "images/admin.png"} alt="Aydan" className="w-15 h-15 object-cover rounded-full" />
+                                        <h5>{item.mentor_name}</h5>
                                         <span>•</span>
-                                        <p>6 saat əvvəl</p>
+                                        <p>  {new Date(item.created_at).toLocaleDateString()}</p>
                                     </div>
                                     <div>
-                                        <p>C++ Pointers – Sadə Başlanğıc Bələdçisi</p>
+                                        <p>{item.post_title}</p>
                                     </div>
                                 </div>
                                 <div>
-                                    <img src="/images/most_liked.jpg" alt="Article" />
+                                    {
+                                        item.post_img &&   <img src={item.post_img} className="w-full md:max-w-40  h-32 object-cover rounded-md" alt="Post"/> 
+                                    }
+                                  
                                 </div>
                             </div>
                         </a>
                     </div>
-
-                    <div className="mentor-item rounded-md">
-                        <a href="/library/articles/:id">
-                            <div className="flex justify-between md:flex-row flex-col items-center gap-1">
-                                <div className="flex flex-col justify-between">
-                                    <div className="flex gap-3 items-center">
-                                        <img src="/images/aydan.png" alt="Aydan" />
-                                        <h5>Ayan Əlizadə</h5>
-                                        <span>•</span>
-                                        <p>6 saat əvvəl</p>
-                                    </div>
-                                    <div>
-                                        <p>C++ Pointers – Sadə Başlanğıc Bələdçisi</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <img src="/images/most_liked.jpg" alt="Article" />
-                                </div>
-                            </div>
-                        </a>
+                        ))
+                    }
+                
                     </div>
-                </div>
+        
             </div>
         </section>
     )

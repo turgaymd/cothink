@@ -168,7 +168,7 @@ const AddCourse = ({ setActiveTab }) => {
           <div className="flex flex-col items-center border border-gray-300 p-5 rounded-2xl gap-3">
             {preview && <img src={preview} alt="Preview" className="w-32 h-32" />}
                <img src="/images/image_icon.png"/>
-                           <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
+                           <p className="text-gray-500 md:flex hidden">Şəkilləri buraya sürükləyin və ya</p>
             <button
               type="button"
               className="text-white bg-blue-800 px-3 py-2 rounded-md"
@@ -193,14 +193,14 @@ const AddCourse = ({ setActiveTab }) => {
         </div>
           <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
             <button
-              className="border w-64 border-blue-800 text-blue-800 px-7 py-4 rounded-md"
+              className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md"
               onClick={() => setActiveTab("nothing")}
             >
               Ləğv et
             </button>
             <button
               type="submit"
-              className="w-64 text-white bg-blue-800 px-7 py-4 rounded-md"
+              className="md:w-64 w-full text-white bg-blue-800 px-7 py-4 rounded-md"
             >
               Yadda Saxla
             </button>

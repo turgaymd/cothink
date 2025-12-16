@@ -4,6 +4,8 @@ import { WhatsappShareButton } from "react-share";
 
 export const PostCard=({item})=>{
     return(
+      <a href={`/questions/${item.post_id}`}>
+ 
           <div className="post-item bg-white shadow-white-700 shadow-xl rounded-2xl space-y-4">
     <div className="flex justify-between items-center">
         <div className="flex gap-4">
@@ -17,7 +19,10 @@ export const PostCard=({item})=>{
     </div>
                 <h4 className="font-bold text-2xl">{item.post_title}</h4>
                 <p className="text-gray-500">{item.post_desc}</p>
-           <img src={item.post_img} className="w-full h-60 rounded-md"/>
+                {
+                  item.post_img &&  <img src={item.post_img} className="w-full rounded-md"/>
+                }
+          
             <div className="post-reactions flex gap-5">
             <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{item.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{item.post_comments}</div>
@@ -27,6 +32,8 @@ export const PostCard=({item})=>{
             </div>
         </div>
             </div>
+                   
+      </a>
     )
 }
 const Posts=()=>{
