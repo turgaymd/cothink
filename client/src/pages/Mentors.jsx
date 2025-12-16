@@ -64,7 +64,7 @@ const Mentors = () => {
                     </div>
                 </div>
                 <div className="filter mb-3">
-                    <div className="flex justify-between mb-2">
+                    <div className="flex justify-between  items-center mb-2">
                         <h4 className="font-bold text-xl items-center">Kategoriyalar</h4>
                         {
                             visibleCategories < categories.length ? (
@@ -75,10 +75,10 @@ const Mentors = () => {
                         }
                     </div>
                     <div className="course-filter mt-2 mb-4">
-                        <div className="filtered-items flex gap-3 flex-col md:flex-row">
+                        <div className="grid grid-cols-2 md:grid-cols-4 filter-items gap-3">
                             {displayedCategories.map((item, index) => (
                                 <button 
-                                    className="rounded-md" 
+                                    className={`${selectedCategory===item.category_id ? "active text-white rounded-md " : "bg-gray-100 rounded-md"}`}
                                     key={index} 
                                     onClick={() => setSelectedCategory(item?.category_id)}
                                 >

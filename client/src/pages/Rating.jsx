@@ -15,9 +15,9 @@ const Rating=()=>{
         <div className="flex flex-col items-center gap-4">
             <h2 className="text-2xl font-bold">Reytinq Cədvəli</h2>
             <p className="text-gray-400 pb-5 mb-5">Sual verən,cavablayan,bəyənilən və paylaşım edənlər əsasında sıralama</p>
-        <div className="flex flex-col md:flex-row gap-2 mb-5 mt-5">
-            <div className="relative pt-5 md:mb-0 mb-5 order-2 md:order-1">
-         <img src="/images/elvin.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
+        <div className="flex md:flex-row gap-2 mb-5 mt-5">
+            <div className="relative pt-5 md:mb-0 mb-5 ">
+         <img src="/images/elvin.jpg" className="md:w-28 md:h-28 w-20 h-20 rounded-full border-[5px] border-blue-500 object-cover"/>
 
 <div className="absolute bottom-0 bg-blue-800 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 badge">
    <div className="flex flex-col items-center">
@@ -26,10 +26,10 @@ const Rating=()=>{
     </div>
 </div>
       </div>
-       <div className="relative mb-2 order-1 md:order-2">
+       <div className="relative mb-2">
         
-        <img src="/images/winner_cap.svg" className="absolute right-7 bottom-30"/>
-         <img src="/images/həcər.jpg" className="w-28 h-28 rounded-full border-[5px] border-amber-300 object-cover"/>
+        <img src="/images/winner_cap.svg" className="absolute md:right-7 right-3 md:bottom-30 bottom-28"/>
+         <img src="/images/həcər.jpg" className="md:w-28 md:h-28 w-20 h-20 rounded-full border-[5px] border-amber-300 object-cover"/>
 <div className="absolute bottom-0 bg-amber-300 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 winner badge">
    <div className="flex flex-col items-center text-black">
         <p>Həcər</p>
@@ -37,8 +37,8 @@ const Rating=()=>{
     </div>
 </div>
       </div>
-<div className="relative md:pt-5 pt-2 order-3 md:order-3">
- <img src="/images/emil.jpg" className="w-28 h-28 rounded-full border-[5px] border-blue-500 object-cover"/>
+<div className="relative md:pt-5 pt-2 ">
+ <img src="/images/emil.jpg" className="md:w-28 md:h-28 w-20 h-20 rounded-full border-[5px] border-blue-500 object-cover"/>
 <div className="absolute bottom-0 bg-blue-800 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 badge">
    <div className="flex flex-col items-center">
         <p>Emil</p>

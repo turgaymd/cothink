@@ -5,22 +5,24 @@ header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json; charset=UTF-8");
- 
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
- 
-if (!isset($_GET['course_id'])) {
+
+if (!isset($_GET['book_id'])) {
     echo json_encode([
         "status" => "error",
-        "message" => "course_id is required"
+        "message" => "book_id is required"
     ]);
     exit;
 }
-$course_id = intval($_GET['course_id']);
- 
+
+$book_id = intval($_GET['book_id']);
+
 $data = json_decode(file_get_contents("php://input"), true);
+
 if (!isset($data['student_id'])) {
     echo json_encode([
         "status" => "error",
@@ -28,33 +30,35 @@ if (!isset($data['student_id'])) {
     ]);
     exit;
 }
+
 $student_id = intval($data['student_id']);
 
-try { 
+try {
+    // Yoxla: book save olunubmu?
     $check = $pdo->prepare("
-        SELECT id FROM saved_course 
-        WHERE student_id = ? AND course_id = ?
+        SELECT id FROM saved_books
+        WHERE student_id = ? AND book_id = ?
     ");
-    $check->execute([$student_id, $course_id]);
+    $check->execute([$student_id, $book_id]);
 
-    if ($check->rowCount() > 0) {
+    if ($check->rowCount() === 0) {
         echo json_encode([
-            "status" => "exists",
-            "message" => "Course already saved"
+            "status" => "not_found",
+            "message" => "Book is not saved"
         ]);
         exit;
     }
- 
+
+    // Sil
     $stmt = $pdo->prepare("
-        INSERT INTO saved_course (student_id, course_id, saved_at)
-        VALUES (?, ?, NOW())
+        DELETE FROM saved_books
+        WHERE student_id = ? AND book_id = ?
     ");
-    $stmt->execute([$student_id, $course_id]);
+    $stmt->execute([$student_id, $book_id]);
 
     echo json_encode([
         "status" => "success",
-        "message" => "Course saved successfully",
-        "saved_id" => $pdo->lastInsertId()
+        "message" => "Book unsaved successfully"
     ]);
 
 } catch (PDOException $e) {
@@ -63,3 +67,4 @@ try {
         "message" => $e->getMessage()
     ]);
 }
+?>

@@ -17,11 +17,11 @@ export const CourseCard=({item})=>{
             </a>
             </article>
             <div className="course-category mt-3 text-blue-600">{item?.category}</div>
-            <div className="course-title mb-3 mt-3 flex justify-between">
+            <div className="course-title mb-3 mt-3 flex justify-between items-center">
               <h4 className="font-bold text-2xl">
                  {item?.course_title}
               </h4>
-              <a href={`/courses/${item.course_id}`}><MdArrowOutward fontSize={24}/></a>
+              <a href={`/courses/${item.course_id}`}>{item?.course_price} AZN</a>
             </div>
             <p className="text-gray-500">
               <span className="font-medium skills text-black">
@@ -36,7 +36,7 @@ export const CourseCard=({item})=>{
                 </div>
                 <div className="flex flex-col">
                   <h4 className="font-bold">{item?.mentor_name}</h4>
-                  <p>{item?.created_at}</p>
+                  <p>  {new Date(item.created_at).toLocaleDateString()}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 ">

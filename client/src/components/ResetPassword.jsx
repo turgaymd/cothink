@@ -1,15 +1,12 @@
 
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import { toast } from "react-toastify";
-const ResetPassword=({setActiveTab})=>{
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword]=useState("")
-  const [confirmPassword,setConfirmPassword]=useState('')
-  const [rememberMe,setRememberMe]=useState(false)
-  const [error, setError] = useState("");
+import { toast, ToastContainer } from "react-toastify";
+import { ApiContext } from "../ApiContext";
+import { AuthContext } from "../AuthContext";
+
 
   const PasswordInput=({label, value, setValue})=>{
       const [hide, setHide] = useState(false);
@@ -39,18 +36,34 @@ const ResetPassword=({setActiveTab})=>{
             </div>
     )
   }
+const ResetPassword=({setActiveTab})=>{
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword]=useState("")
+  const [confirmPassword,setConfirmPassword]=useState('')
+  const [rememberMe,setRememberMe]=useState(false)
+  const [error, setError] = useState("");
+ const {apiUrl}=useContext(ApiContext)
+ const {user}=useContext(AuthContext)
 
     const handleReset=async(e)=>{
          e.preventDefault();
          setError("")
          if(newPassword!==confirmPassword){
-            setError("Şifrələr uyğun gəlmir")
+            setError("Şifrələr uyğun gəlmir");
+            return;
          }
           try{
-         const res= await axios.put("http://localhost:8000/api/reset.php", {currentPassword, newPassword},
+         const res= await axios.post(`${apiUrl}/server/settings/changePass.php`, 
+          { 
+            user_id:user.id,
+             user_type:user.type,
+             current_password:currentPassword, 
+             new_password:newPassword,
+             confirm_password:confirmPassword
+            },
             {headers:{"Content-Type":"application/json"}}
           )
-          if(res.data.success){
+          if(res.data.status==="success"){
          toast.success("Şifrəniz yeniləndi")
           }
           else{
@@ -64,6 +77,7 @@ const ResetPassword=({setActiveTab})=>{
     }
     return (
         <>
+        <ToastContainer/>
              <div className="back md:hidden flex">
                                        <button onClick={()=>setActiveTab("")}><MdOutlineArrowBackIosNew fontSize={24}/></button>
                                      </div>
@@ -75,16 +89,19 @@ const ResetPassword=({setActiveTab})=>{
           {error && <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">{error}</p>}
             
             <PasswordInput
+            id="currentPassword"
              label={"Cari Şifrə"}
              value={currentPassword}
              setValue={setCurrentPassword}
             />
                <PasswordInput
+               id="newPassword"
              label={"Yeni şifrə"}
              value={newPassword}
              setValue={setNewPassword}
             />
                <PasswordInput
+               id="confirmPassword"
              label={"Yeni şifrəni təsdiqləyin"}
              value={confirmPassword}
              setValue={setConfirmPassword}
@@ -108,7 +125,7 @@ const ResetPassword=({setActiveTab})=>{
                 type="submit"
                 className="text-white bg-blue-800 w-full outline-none rounded-md"
 >
-                Daxil ol
+                Şifrəni yenilə
               </button>
             </div>
           </form>

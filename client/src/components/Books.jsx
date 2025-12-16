@@ -81,47 +81,47 @@ const Books = ({books, query, selectedCategory, visibleBooks, handleMoreBooks, h
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         {displayedBooks.length===0 ? 
-          <p className="font-bold col-span-4 text-center text-2xl">Kitab tapılmadı</p> : (
+          <p className="font-bold col-span-full text-center text-2xl">Kitab tapılmadı</p> : (
           displayedBooks.map((item, index)=>(
-            <div className="library-item shadow-xl rounded-xl mt-4" key={index}>
-              <div className="flex flex-col md:flex-row gap-5">
+            <div className="library-item bg-white shadow-sm hover:shadow-md transition rounded-xl mt-4" key={index}>
+              <div className="flex  gap-4">
                 <a href={`/library/books/${item.book_id}`}>
-                  <div className="flex items-center justify-center">
                     <img
                       src={item.book_img}
-                      className="w-20 h-25 object-cover"
+                      className="w-20 h-28 object-cover rounded-md"
                       alt="book"
                     ></img>
-                  </div>
+
                 </a>
-                <div className="mentor-title flex flex-col gap-3">
-                  <h4 className="font-bold text-lg break-all">
+                <div className=" flex flex-col flex-1 gap-3">
+                  <h4 className="font-semibold text-sm line-clamp-2">
                     {item.book_title}
                   </h4>
-                  <p>PDF </p>
-                  <div className="flex gap-5 md:flex-row stats ">
-                    <div className="flex items-center gap-1">
+                  <span className="inline-block rounded w-fit bg-gray-100 px-2 py-0.5">PDF </span>
+                    <div className="flex items-center gap-4 mt-auto pt-3 text-sm">
                       <a className="flex gap-1" download href={`item.book_url`}>
                         <img src="/images/download.svg" />
                         <span>Yüklə</span>
-                      </a>
-                    </div>
+     </a>
                     <div className="flex items-center gap-1">
-                      <img src="/images/share.svg" />
+                      <img src="/images/share.svg"  className="w-5"/>
                       <WhatsappShareButton url={window.location.href} title={item.book_title}>Paylaş</WhatsappShareButton>
                     </div>
-                    <div className="flex items-center gap-1">
+                    <button className="ml-auto">
                       {savedBooks.includes(item.book_id) ? 
-                        (<FaBookmark fontSize={24} onClick={()=>handleUnsave(item)}/>) :
-                        (<FaRegBookmark fontSize={24} onClick={()=>handleSave(item)}/>)}
-                    </div>
+                        (<FaBookmark fontSize={20} onClick={()=>handleUnsave(item)}/>) :
+                        (<FaRegBookmark fontSize={20} onClick={()=>handleSave(item)}/>)}
+                    </button>
                   </div>
+                                   
+                    </div>
                 </div>
-              </div>
             </div>
           ))
         )}
       </div>
+ 
+
     </>
   );
 };

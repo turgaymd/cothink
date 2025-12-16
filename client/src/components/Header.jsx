@@ -2,11 +2,12 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../AuthContext";
 
 function Header({open, setOpen,setSettings}){
     const [search, setSearch]=useState(false)
-
+    const {user}=useContext(AuthContext)
     return(
       <header className="w-full top-0 z-50 navbar items-center">
         <div className="flex justify-between items-center">
@@ -18,18 +19,16 @@ function Header({open, setOpen,setSettings}){
             <IoMenu fontSize={28}/>
           </button>
           <div className="logo">
-            <Link to="/home" className="hidden md:flex lg:ml-15" onClick={()=>setSettings(false)}>
-              <img src="/images/logo.jpg" alt="Logo" className="hidden lg:block"/>
-              <img src="/images/logo.svg" alt="Logo" className="lg:hidden hidden md:block"/>
+            <Link to="/home" className="hidden md:flex" onClick={()=>setSettings(false)}>
+              <img src="/images/logo.jpg" alt="Logo"/>
             </Link>
         
-          </div>
-             
+          </div>            
           </div>
            <Link to="/home" className="md:hidden flex" onClick={()=>setSettings(false)}>
               <img src="/images/mobile_logo.png" alt="Mobile Logo" />
             </Link>
-          <ul className="hidden md:flex  lg:gap-6 desktop-menu text-xs lg:text-base">
+          <ul className="hidden md:flex gap-2 lg:gap-6 desktop-menu text-xs lg:text-base">
             <li className="nav-item whitespace-nowrap">
               <NavLink className={({isActive})=> isActive ? "active" : "" } to="/home" onClick={()=>setSettings(false)}>Ana Səhifə</NavLink>
             </li>
@@ -66,7 +65,7 @@ function Header({open, setOpen,setSettings}){
               <IoIosNotificationsOutline className="text-2xl"/>
             </button>
             <Link className="profile-img rounded-full pl-2" to="/profile" onClick={()=>setSettings(false)}>
-              <img src="/images/admin.png" className="w-10 h-10" alt="Profile"/>
+              <img src={user?.profile_img ? `${user.profile_img}` : `/images/admin.png`} className="w-10 h-10" alt="Profile"/>
             </Link>            
           </div>
         </div>

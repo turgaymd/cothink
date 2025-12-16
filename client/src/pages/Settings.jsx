@@ -32,7 +32,7 @@ const Settings=({setActiveTab, setSettings})=>{
    <div className="flex flex-col justify-center items-center mb-4">
                 
                  <div className="profiles-img">
-                <img src="/images/admin.png" className="rounded-full w-24 h-24"/>
+                <img src={user.profile_img || "/images/admin.png"} className="rounded-full w-24 h-24"/>
             </div>
             <h2 className="font-medium text-xl">{user?.name}</h2>
             </div>
@@ -44,7 +44,7 @@ const Settings=({setActiveTab, setSettings})=>{
             </div>
             <div className="flex flex-col pt-3">
             <h4 className="font-bold">Haqqımda</h4>
-            <p className="text-gray-400">Ad , soyad, ünvan, profil şəkli</p>
+            <p className="text-gray-400">Ad , soyad, profil şəkli</p>
             </div>
             </div>
            <button><SlArrowRight /></button> 
@@ -56,7 +56,7 @@ const Settings=({setActiveTab, setSettings})=>{
             </div>
             <div className="flex flex-col">
             <h4 className="font-bold">Şifrəni dəyiş</h4>
-            <p className="text-gray-400">Hesab təhlükəsizliyi üçün</p>
+            <p className="text-gray-400">Hesab təhlükəsizliyi</p>
             </div>
             </div>
            <button><SlArrowRight /></button> 
@@ -99,6 +99,17 @@ const Settings=({setActiveTab, setSettings})=>{
         </div>
         <h4 className="pb-3 text-black font-bold">Daha çox</h4>
         <div className="features_card shadow-sm inset-shadow-sm">
+            <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
+            <div className="flex items-center gap-3">
+                 <div className="icons">
+              <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
+            </div>
+            <div className="flex flex-col">
+            <h4 className="font-bold">Tema</h4>
+            </div>
+            </div>
+           <button><SlArrowRight /></button> 
+        </div>
         <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("support")}>
             <div className="flex items-center gap-3">
                  <div className="icons">
@@ -121,17 +132,7 @@ const Settings=({setActiveTab, setSettings})=>{
             </div>
            <button><SlArrowRight /></button> 
         </div>
-                <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
-            <div className="flex items-center gap-3">
-                 <div className="icons">
-              <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
-            </div>
-            <div className="flex flex-col">
-            <h4 className="font-bold">Tema</h4>
-            </div>
-            </div>
-           <button><SlArrowRight /></button> 
-        </div>
+             
         
         </div>
                      </>

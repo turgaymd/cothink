@@ -176,7 +176,7 @@ const AddArticle = () => {
           <div className="flex flex-col items-center border border-gray-300 p-5 rounded-2xl gap-3">
             {preview && <img src={preview} alt="Preview" className="w-32 h-32" />}
                <img src="/images/image_icon.png"/>
-                           <p className="text-gray-500">Şəkilləri buraya sürükləyin və ya</p>
+                           <p className="text-gray-500 md:flex hidden">Şəkilləri buraya sürükləyin və ya</p>
             <button
               type="button"
               className="text-white bg-blue-800 px-3 py-2 rounded-md"
@@ -207,7 +207,7 @@ const AddArticle = () => {
           <input
             type="text"
             className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg"
-            placeholder="Mövzunu ifadə edən açar sözlər əlavə edin"
+            placeholder="Mövzunu ifadə edən açar sözlər əlavə edin və Enteri basın"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleTags}
