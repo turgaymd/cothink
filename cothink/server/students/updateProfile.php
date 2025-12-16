@@ -12,12 +12,12 @@ if (!$data) {
     $data = $_POST;
 }
 
-$student_id      = $data["mentor_id"] ?? null;
-$student_name    = $data["mentor_name"] ?? null;
-$student_username = $data["mentor_username"] ?? null;
-$student_email   = $data["mentor_email"] ?? null;
+$student_id      = $data["student_id"] ?? null;
+$student_name    = $data["student_name"] ?? null;
+$student_username = $data["studen_username"] ?? null;
+$student_email   = $data["student_email"] ?? null;
 $description    = $data["description"] ?? null;
-$student_password = $data["mentor_password"] ?? null; 
+$student_password = $data["student_password"] ?? null; 
 
 if (!$student_id) {
     echo json_encode([
