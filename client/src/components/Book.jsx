@@ -29,7 +29,7 @@ const Book = () => {
            setLiked(true)
     try {
       const res = await axios.post(
-        `${apiUrl}/server/books/likeBooks.php?book_id=${item.book_id}`,
+        `${apiUrl}/server/likes/bookLikes/like.php?book_id=${item.book_id}`,
         {
           student_id:user?.id
         },
