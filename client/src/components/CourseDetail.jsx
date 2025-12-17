@@ -110,7 +110,7 @@ const handleSave=async(item)=>{
            setLiked(true)
     try {
       const res = await axios.post(
-        `${apiUrl}/server/courses/likeCourses.php?course_id=${item.course_id}`,
+        `${apiUrl}/server/likes/courseLikes/like.php?course_id=${item.course_id}`,
         {
           student_id:user?.id
         },
