@@ -27,7 +27,9 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
   
   const handleNavigate = () => {
     setSettings(false);
-    setOpen(false);
+      if(window.innerWidth <= 768){
+      setOpen(false);
+    }
   };
   
   return (

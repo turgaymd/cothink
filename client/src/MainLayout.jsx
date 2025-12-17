@@ -8,7 +8,7 @@ import ResetPassword from "./components/ResetPassword";
 import TwoFactorAuth from "./components/TwoFactorAuth";
 import Support from "./components/Support";
 function MainLayout(){
-  const [open, setOpen]=useState(true)
+  const [open, setOpen]=useState()
    const [settings, setSettings] =useState(false)
   const [activeTab, setActiveTab]=useState("about")
  
@@ -24,7 +24,7 @@ function MainLayout(){
     <div className="grid grid-cols-12">
     
        
-   <div className={`${ settings && open ? "md:col-span-3 col-span-12 border-r border-r-gray-300" : open ? "md:col-span-2  col-span-12 border-r border-r-gray-300" : "md:col-span-1  col-span-12" } hidden md:flex  min-h-screen`}>
+   <div className={`${ settings && open ? "md:grid md:col-span-3 border-r border-r-gray-300" : open ? "md:grid md:col-span-2  border-r border-r-gray-300" : " hidden md:col-span-1 " }   min-h-screen`}>
      { open ? ( 
       settings ? <Settings activeTab={activeTab} setActiveTab={setActiveTab} setSettings={setSettings}/> : <Sidebar setSettings={setSettings} setActiveTab={setActiveTab}/>
      ) :
@@ -45,7 +45,7 @@ function MainLayout(){
     }
    
 
-    <div className={ settings ? "md:col-span-9 col-span-12" : open ?  "md:col-span-10 col-span-12" :"md:col-span-11 col-span-12"  } >
+    <div className={ settings ? "md:col-span-9 col-span-12" : open ?  "md:col-span-10 col-span-12" :"md:col-span-12 col-span-12"  } >
     {
       settings ? 
       <>
