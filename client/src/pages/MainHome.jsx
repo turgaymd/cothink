@@ -129,9 +129,9 @@ const MainHome = () => {
                     <div className=" flex justify-between mb-3">
                     </div>
                     <div className="course-filter mt-4 mb-5">
-                        <div className="filter-items flex md:flex-row flex-col gap-3">
+                        <div className="filter-items  flex md:flex-row flex-col gap-3">
                             <span className={`rounded-md ${selectedCategory===null ? "active" : ""}`} onClick={()=>setSelectedCategory(null)}>Hamısı</span>
-                            <div className="filtered-items flex gap-3 flex-col md:flex-row">
+                            <div className="filtered-items flex gap-3 overflow-x-scroll md:flex-row">
                             {displayedCategories.map((item, index) => {
                                  const isActive=selectedCategory?.toLowerCase()===item?.category?.toLowerCase()
                                 return(
