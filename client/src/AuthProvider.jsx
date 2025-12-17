@@ -16,28 +16,28 @@ const AuthProvider=({children})=>{
         
     },[])
 
-    useEffect(()=>{
-        if(!user) return;
-  const fetchProfile=async()=>{
-            try{
-                const url=user.type==="student" ? `${apiUrl}/server/students/studentProfil.php?id=${user?.id}` : `${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`
-               const res =await axios.get(url)
-                const data=res.data.data
-               const loggedUser={
-                ...user,
-                name:data.student_name || data.mentor_name || user.name,
-                email:data.student_email || data.mentor_email || user.email,
-                username:data.student_username || data.mentor_username || user.username,
-                profile_img:data.profile_img ? `https://cothink.az${data.profile_img}` : "/images/admin.png"
-               }
-setUser(loggedUser);
-            }
-            catch(err){
-                console.log(err)
-            }
-        }
-   fetchProfile()
-    },[user?.id, user?.type])
+//     useEffect(()=>{
+//         if(!user) return;
+//   const fetchProfile=async()=>{
+//             try{
+//                 const url=user.type==="student" ? `${apiUrl}/server/students/studentProfil.php?id=${user?.id}` : `${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`
+//                const res =await axios.get(url)
+//                 const data=res.data.data
+//                const loggedUser={
+//                 ...user,
+//                 name:data.student_name || data.mentor_name || user.name,
+//                 email:data.student_email || data.mentor_email || user.email,
+//                 username:data.student_username || data.mentor_username || user.username,
+//                 profile_img:data.profile_img ? `https://cothink.az${data.profile_img}` : "/images/admin.png"
+//                }
+// setUser(loggedUser);
+//             }
+//             catch(err){
+//                 console.log(err)
+//             }
+//         }
+//    fetchProfile()
+//     },[])
 
     useEffect(()=>{
         if(user){

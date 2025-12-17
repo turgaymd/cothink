@@ -34,7 +34,7 @@ function Discussion(){
       .then((res) => {
         console.log(res.data);
           const postData=res.data.find((p)=>p.post_id===Number(id))
-        setComments(postData.comments);
+        // setComments(postData.comments);
         console.log(res.data);
       })
       .catch((err) => console.error(err));
@@ -157,7 +157,7 @@ const handleSave=async(item)=>{
     </div>
 
 </div>
-<div className="comments">
+{/* <div className="comments">
  
               {  comments.map((comment)=>{
                 return(
@@ -185,7 +185,7 @@ const handleSave=async(item)=>{
             })
         }     
     
-</div>
+</div> */}
          
         </section>
       </>

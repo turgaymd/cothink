@@ -130,7 +130,7 @@ section{
   cursor: pointer;
 }
 .filter-items span{
-  padding: 10px 35px;
+  /* padding: 10px 35px; */
   background: #F6F6F6;
 }
 .filter-items button{
@@ -145,7 +145,7 @@ section{
   color: white;
 }
 .filtered-items button{
-  padding: 10px 35px;
+  /* padding: 10px 35px; */
   background: #E9E9E9;
 }
 .filter-items button.active{
@@ -446,4 +446,13 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
                 .swiper-pagination-bullet-active {
    background: #3B82F6;
     opacity: 1;                }
+
+    .no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE/Edge */
+  scrollbar-width: none !important;     /* Firefox */
+}
+
             

@@ -221,8 +221,9 @@ catch(err){
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
-        <div className="flex gap-5 items-center">
+{
+  user?.type==="mentor" && (
+       <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">LinkedIn</label>
           <input
             type="text"
@@ -231,6 +232,9 @@ catch(err){
             onChange={(e) => setLinkedin(e.target.value)}
           />
         </div>
+  )
+}
+ 
         <div className="flex md:flex-row flex-col justify-center gap-5 ">
           <button
             type="submit"

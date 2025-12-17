@@ -13,7 +13,7 @@ function Login() {
   const [hide, setHide] = useState(false);
   const [error, setError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const {setUser}=useContext(AuthContext)
+  const {setUser, user }=useContext(AuthContext)
   const {apiUrl}=useContext(ApiContext)
   const navigate = useNavigate();
 
@@ -34,17 +34,18 @@ function Login() {
       );
  console.log(res.data)
       if (res.data.success) {
-        const user = {
+        const userInfo = {
           type: res.data.type,          
           id: res.data.id,
           email: res.data.email,
           name:res.data.name,
           token: res.data.token,
+          profile_img:user.profile_img || "/images/admin.png"
         };
-          setUser(user)
-        localStorage.setItem("user", JSON.stringify(user));
+          setUser(userInfo)
+        localStorage.setItem("user", JSON.stringify(userInfo));
         if (rememberMe) {
-          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("user", JSON.stringify(userInfo));
         }
         toast.success("Giriş uğurla tamamlandı");
         setTimeout(() => navigate("/home"), 1500);
