@@ -5,8 +5,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Content-Type: application/json");
 
 require_once "../db.php";
-
-// JSON yoxdursa (çünki şəkil gələndə FormData olur) POST-u götür
+ 
 $data = json_decode(file_get_contents("php://input"), true);
 if (!$data) {
     $data = $_POST;
@@ -27,24 +26,18 @@ if (!$mentor_id) {
     ]);
     exit;
 }
-
-// -------------------------------
-// ŞƏKİL YÜKLƏMƏ
-// -------------------------------
+ 
 $image_url = null;
 
 if (!empty($_FILES['profile_img']['name'])) {
     $img_name = time() . "_" . basename($_FILES['profile_img']['name']);
-    $img_path = "../../client/public" . $img_name;
+    $img_path = "cothinke.az/server/uploads/" . $img_name;
 
     if (move_uploaded_file($_FILES["profile_img"]["tmp_name"], $img_path)) {
-        $image_url = "../../client/public" . $img_name;
+        $image_url = "cothinke.az/server/uploads/" . $img_name;
     }
 }
-
-// -------------------------------
-// SQL UPDATE HAZIRLANMASI
-// -------------------------------
+ 
 
 $sql = "UPDATE mentors SET 
             mentor_name = ?, 

@@ -23,7 +23,7 @@ $post_tags   = $_POST['post_tags'] ?? null;
 
 $post_img = null;
 if (isset($_FILES['post_img']) && $_FILES['post_img']['error'] === 0) {
-    $targetDir = "../uploads/posts/";
+    $targetDir = "cothinke.az/server/uploads/course_img/";
     if (!is_dir($targetDir)) mkdir($targetDir, 0777, true);
 
     $filename = time() . "_" . basename($_FILES['post_img']['name']);

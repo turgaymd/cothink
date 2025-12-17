@@ -31,11 +31,11 @@ if (isset($_FILES['course_img'])) {
     $file = $_FILES['course_img'];
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $filename = time() . "_course." . $ext;
-    $upload_dir = "../../client/uploads/course_img/";
+    $upload_dir = "cothinke.az/server/uploads/course_img/";
     if (!file_exists($upload_dir)) mkdir($upload_dir, 0777, true);
 
     if (move_uploaded_file($file['tmp_name'], $upload_dir . $filename)) {
-        $course_img = "uploads/course_files/" . $filename;
+        $course_img = "cothinke.az/server/uploads/course_img/" . $filename;
     }
 }
 

@@ -27,7 +27,7 @@ if (!$book_title || !$description ) {
 // FILE UPLOAD
 ////////////////////
 
-$upload_dir = __DIR__ . "/../../client/uploads/";
+$upload_dir = __DIR__ . "cothinke.az/server/uploads/course_img/";
 
 if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0777, true);

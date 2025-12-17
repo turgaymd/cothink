@@ -32,10 +32,10 @@ if (isset($_FILES['article_img'])) {
     $file = $_FILES['article_img'];
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $filename = time() . "_article." . $ext;
-    $upload_dir = "../../client/uploads/images/";
+    $upload_dir = "cothinke.az/server/uploads/course_img/";
     if (!file_exists($upload_dir)) mkdir($upload_dir, 0777, true);
     if (move_uploaded_file($file['tmp_name'], $upload_dir . $filename)) {
-        $article_img = "uploads/images/" . $filename;
+        $article_img = "cothinke.az/server/uploads/course_img/" . $filename;
     }
 }
 // ===============================
