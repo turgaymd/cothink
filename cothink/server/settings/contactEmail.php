@@ -34,14 +34,14 @@ try {
     $mail->isSMTP();
     $mail->Host       = "smtp.gmail.com";
     $mail->SMTPAuth   = true;
-    $mail->Username   = "sirinovnesib25@gmail.com";   
-    $mail->Password   = "rustov040#";      
+    $mail->Username   = "contact@cothink.az";   
+    $mail->Password   = "ContactMailBox@CoThinkAz2025";      
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
     // EMAIL SETTINGS
-    $mail->setFrom("sirinovnesib25@gmail.com", "Website Contact");
-    $mail->addAddress("sirinovnesib25@gmail.com"); 
+    $mail->setFrom("contact@cothink.az", "Website Contact");
+    $mail->addAddress("contact@cothink.az"); 
 
     $mail->isHTML(true);
     $mail->Subject = "Saytdan yeni əlaqə mesajı";
