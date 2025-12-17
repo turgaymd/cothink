@@ -21,6 +21,7 @@ const Profile = () => {
   const [studentPosts, setStudentPosts]=useState([]);
   const [postComments, setPostComments]=useState([])
   const [mentor, setMentor]=useState(null) 
+  
      console.log(user.name)
 useEffect(() => {
   if (user?.type === "mentor") {
@@ -187,7 +188,7 @@ useEffect(() => {
         {activeTab === "studentPosts" &&
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
    
-       {!Array.isArray ||  studentPosts?.length >0 ? (    
+       {!Array.isArray(studentPosts) ||  studentPosts?.length >0 ? (    
              studentPosts.map((item) =>( <PostCard  key={item.post_id} item={item} />
           ))) :
     ( 
