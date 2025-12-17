@@ -48,7 +48,6 @@ const Questions=()=>{
       const handleSelect = (selectedCategory) => {
     setSelectedCategory(selectedCategory.value);
   };
-  const date=new Date().toLocaleDateString()
     return (
         <section>
             <Search query={query} setQuery={setQuery}/>

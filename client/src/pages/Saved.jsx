@@ -24,30 +24,28 @@ const Saved=()=>{
           axios.get(`${apiUrl}/server/savedPages/savedArticles/getSaveArticles.php?student_id=${user?.id}`)
               .then(res => {
                   setArticles(res.data.saved_articles)
-                  console.log(articles) 
               })
               .catch(err => console.error(err))
                  axios.get(`${apiUrl}/server/savedPages/savedBooks/getSaveBooks.php?student_id=${user?.id}`)
               .then(res => {
                   setBooks(res.data.saved_books)
-                  console.log(books) 
+      
               })
                   axios.get(`${apiUrl}/server/savedPages/savedCourse/getSaveCourses.php?student_id=${user?.id}`)
               .then(res => {
                   setCourses(res.data.saved_courses)
-                  console.log(courses) 
+  
               })
                     axios.get(`${apiUrl}/server/savedPages/savedPosts/getSavedPosts.php?student_id=${user?.id}`)
               .then(res => {
                   setPosts(res.data.saved_books)
-                  console.log(posts) 
+    
               })
               .catch(err => console.error(err))
            
       }, []);
 
          const handleUnsave=async(item)=>{
-
            await axios.delete(`${apiUrl}/server/savedPages/savedBooks/unSaveBooks.php?book_id=${item.book_id}`,
              {data:{book_id:item.book_id, student_id:user?.id},
              headers: { "Content-Type": "application/json" } },

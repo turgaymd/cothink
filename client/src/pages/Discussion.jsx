@@ -115,7 +115,7 @@ const handleSave=async(item)=>{
 <h2 className="text-center font-medium text-2xl pb-5">Diskussiya</h2>
 <div className="discussion">
     <div className="discussion-item">
-        <div className="post-header flex md:flex-row flex-col gap-3 justify-between items-center">
+        <div className="post-header flex gap-3 justify-between items-center">
             <div className="flex post-img items-center">
   <img className="rounded avatar" src={post?.profile_img || "/images/admin.png"}></img>
            <div className="pl-3">

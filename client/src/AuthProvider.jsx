@@ -17,6 +17,7 @@ const AuthProvider=({children})=>{
     },[])
 
     useEffect(()=>{
+        if(!user) return;
   const fetchProfile=async()=>{
             try{
                 const url=user.type==="student" ? `${apiUrl}/server/students/studentProfil.php?id=${user?.id}` : `${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`
@@ -36,7 +37,7 @@ setUser(loggedUser);
             }
         }
    fetchProfile()
-    },[user])
+    },[user?.id, user?.type])
 
     useEffect(()=>{
         if(user){
