@@ -21,7 +21,16 @@ const Article = () => {
   const {apiUrl}=useContext(ApiContext)
   const {user}=useContext(AuthContext)
 
-
+  useEffect(()=>{
+    axios.get(
+      `${apiUrl}/server/savedPages/savedArticles/getSaveArticles.php?student_id=${user.id}`)
+      .then(res => {
+        const article_ids=res.data.saved_articles.map(item=>item.article_id)
+        setSavedArticles(article_ids)
+        console.log(savedArticles)
+      })
+      .catch(err => console.error(err))
+  },[])
 
     const fetchComments=async(e)=>{
   axios .get(`${apiUrl}/server/articles/articleComments.php?article_id=${id}` 
@@ -64,18 +73,20 @@ const Article = () => {
           fetchComments()
           console.log(res.data)
   }
-                
-               
-      
   }
-  const handleUnsave=async(item)=>{
-  setSavedArticles((prev)=>prev.filter((id)=>id!==item.article_id))
-  await axios.delete(`${apiUrl}/server/savedPages/savedArticles/getSaveArticles.php?student_id=${user.id}`,
-           {data:{book_id:item.book_id, student_id:user?.student_id}},
-          { headers: { "Content-Type": "application/json" } },
-  )
 
-}
+
+  const handleUnsave=async(item)=>{
+    
+    await axios.delete(`${apiUrl}/server/savedPages/savedArticles/unSaveArticles.php?article_id=${item.article_id}`,
+      {data:{article_id:item.article_id, student_id:user?.id},
+      headers: { "Content-Type": "application/json" } },
+
+    )
+          setSavedArticles((prev)=>prev.filter((id)=>id!==item.article_id))
+
+  }
+
 const handleSave=async(item)=>{
    try {
       const res = await axios.post(
@@ -124,7 +135,6 @@ const handleSave=async(item)=>{
     const handleUnlike=()=>{
     setLiked(false)
   }
-
   return (
     <>
     <ToastContainer/>

@@ -17,6 +17,8 @@ const Saved=()=>{
       const [books, setBooks]=useState([])
       const [posts, setPosts]=useState([])
       const {apiUrl}=useContext(ApiContext)
+
+
        const {user}=useContext(AuthContext)
               useEffect(() => {
           axios.get(`${apiUrl}/server/savedPages/savedArticles/getSaveArticles.php?student_id=${user?.id}`)
@@ -44,13 +46,15 @@ const Saved=()=>{
            
       }, []);
 
-        const handleUnsave=async(item)=>{
-    setBooks((prev)=>prev.filter((id)=>id!==item.book_id))
-    await axios.delete(`${apiUrl}/server/savedPages/savedBooks/getSaveBooks.php?student_id=${user.id}`,
-      {data:{book_id:item.book_id, student_id:user?.student_id}},
-      { headers: { "Content-Type": "application/json" } },
-    )
-  }
+         const handleUnsave=async(item)=>{
+
+           await axios.delete(`${apiUrl}/server/savedPages/savedBooks/unSaveBooks.php?book_id=${item.book_id}`,
+             {data:{book_id:item.book_id, student_id:user?.id},
+             headers: { "Content-Type": "application/json" } },
+           )
+                      setBooks((prev)=>prev.filter((book)=>book.book_id!==item.book_id))
+         }
+         
  
     return (
         <section>

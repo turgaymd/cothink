@@ -56,9 +56,9 @@ const Books = ({books, query, selectedCategory, visibleBooks, handleMoreBooks, h
 
   const handleUnsave=async(item)=>{
     setSavedBooks((prev)=>prev.filter((id)=>id!==item.book_id))
-    await axios.delete(`${apiUrl}/server/savedPages/savedBooks/getSaveBooks.php?student_id=${user.id}`,
-      {data:{book_id:item.book_id, student_id:user?.student_id}},
-      { headers: { "Content-Type": "application/json" } },
+    await axios.delete(`${apiUrl}/server/savedPages/savedBooks/unSaveBooks.php?book_id=${item.book_id}`,
+      {data:{book_id:item.book_id, student_id:user?.id},
+      headers: { "Content-Type": "application/json" } },
     )
   }
 

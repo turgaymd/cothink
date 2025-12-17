@@ -16,6 +16,8 @@ function Discussion(){
   const {apiUrl}=useContext(ApiContext)
   const {user}=useContext(AuthContext)
   const [liked,setLiked]=useState(false)
+
+
   useEffect(() => {
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?post_id=${id}`)
@@ -36,17 +38,26 @@ function Discussion(){
         console.log(res.data);
       })
       .catch((err) => console.error(err));
+
+               axios.get(`${apiUrl}/server/savedPages/savedPosts/getSavedPosts.php?student_id=${user?.id}`)
+              .then(res => {
+                const ids=res.data.saved_books.map(item=>item.post_id)
+                  setSavedPosts(ids)
+                  console.log(savedPosts)
+              })
+
   }, [id]);
 
     const handleUnsave=async(item)=>{
-  setSavedPosts((prev)=>prev.filter((id)=>id!==item.article_id))
-  await axios.delete(`${apiUrl}/server/savedPages/savedPosts/getSavedPosts.php?student_id=${user.id}`,
-           {data:{post_id:item.post_id, student_id:user?.student_id}},
-          { headers: { "Content-Type": "application/json" } },
-  )
 
+  await axios.delete(`${apiUrl}/server/savedPages/savedPosts/unSavePosts.php?post_id=${item.post_id}`,
+    {
+           data:{ student_id:user.id},
+          headers: { "Content-Type": "application/json" }
+         }     
+  );
+ setSavedPosts((prev)=>prev.filter((id)=>id!==item.post_id))
 }
-console.log(user.id)
 const handleSave=async(item)=>{
    try {
       const res = await axios.post(

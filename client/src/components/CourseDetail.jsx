@@ -32,7 +32,6 @@ const CourseDetail=()=>{
      axios.get(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`)
             .then((res) => {
               setComments(res.data.comments);
-              console.log(res.data);
             })
             .catch((err) => console.error(err));
         }
@@ -41,12 +40,17 @@ const CourseDetail=()=>{
       axios
         .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
         .then((res) => {
-             console.log(res.data.data)
           setCourse(res.data.data);
         })
         .catch((err) => console.error(err));
         fetchComments()
-    }, [id])
+
+          axios.get(`${apiUrl}/server/savedPages/savedCourse/getSaveCourses.php?student_id=${user?.id}`)
+              .then(res => {
+                const ids=res.data.saved_courses.map(item=>item.course_id)
+                  setSavedCourses(ids)
+              })
+    }, [id, user])
 
 
 
@@ -60,7 +64,7 @@ const CourseDetail=()=>{
         setError("Komment daxil edin")
         return;
     }
-   const res=  await axios.course(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`,
+   const res=  await axios.post(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`,
      {
         student_id:user?.id, comment_text:comment}
     )
@@ -70,8 +74,7 @@ const CourseDetail=()=>{
         fetchComments()
 }
               
-             
-    
+            
 }
 const handleSave=async(item)=>{
    try {
@@ -93,6 +96,15 @@ const handleSave=async(item)=>{
       toast.error("Xəta baş verdi");
     }
 }
+ const handleUnsave=async(item)=>{
+    
+    await axios.delete(`${apiUrl}/server/savedPages/savedCourse/unSaveCourses.php?course_id=${item.course_id}`,
+      {data:{course_id:item.course_id, student_id:user?.id},
+      headers: { "Content-Type": "application/json" } },
+      setSavedCourses((prev)=>prev.filter((id)=>id!==item.course_id))
+    )
+
+  }
 
  const handleLike=async(item)=>{
            setLiked(true)
