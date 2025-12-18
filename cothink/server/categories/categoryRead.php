@@ -4,7 +4,7 @@ require_once "../db.php";
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: *");
 
-$baseURL = "http://localhost/cothink1/cothink/server/uploads/"; 
+$baseURL = "http://cothink.az/cothink1/cothink/server/uploads/"; 
 // Öz server yoluna uyğun dəyiş
 
 try {
