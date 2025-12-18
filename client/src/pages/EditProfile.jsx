@@ -67,7 +67,11 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
     e.preventDefault();
 
     const formData = new FormData();
-    if(user.type==="mentor"){
+    if(user.type==="mentor" ){
+      if(!name ||  !username || !email ){
+        toast.error("İstifadəçi adı, email boş ola bilməz")
+        return;
+      }
     formData.append("mentor_id", user.id);
     formData.append("mentor_name", name);
     formData.append("mentor_username", username);
@@ -79,6 +83,10 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
     }
   }
    if(user.type==="student"){
+         if(!name ||  !username || !email ){
+        toast.error("İstifadəçi adı, email boş ola bilməz")
+        return;
+      }
     formData.append("student_id", user.id);
     formData.append("student_name", name);
     formData.append("student_username", username);
@@ -211,7 +219,7 @@ catch(err){
           />
         </div> */}
 
-        <div className="flex gap-5 items-center">
+        {/* <div className="flex gap-5 items-center">
           <label className="block font-bold w-40 shrink-0">Şifrə</label>
           <input
             type="password"
@@ -220,7 +228,7 @@ catch(err){
             placeholder="12345"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
+        </div> */}
 {
   user?.type==="mentor" && (
        <div className="flex gap-5 items-center">

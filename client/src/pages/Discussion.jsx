@@ -20,7 +20,17 @@ function Discussion(){
   const [liked,setLiked]=useState(false)
 
 
+     const fetchComments=async()=>{ 
+       axios.get(`${apiUrl}/server/posts/getcomments.php?post_id=${id}`)
+              .then((res) => {
+                setComments(res.data.comments);
+                console.log(res.data)
+              })
+              .catch((err) => console.error(err));
+          }
+          
   useEffect(() => {
+    
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?post_id=${id}`)
       .then((res) => {
@@ -28,7 +38,16 @@ function Discussion(){
         console.log(res.data.data);
       })
       .catch((err) => console.error(err));
+         axios.get(`${apiUrl}/server/posts/getcomments.php?post_id=${id}`)
+              .then((res) => {
+                setComments(res.data.comments);
+                console.log(res.data)
+              })
+              .catch((err) => console.error(err));
+          
+      
   }, [id]);
+
 
    useEffect(() => {
     axios
@@ -116,7 +135,7 @@ const handleSave=async(item)=>{
           setError("Komment daxil edin")
           return;
       }
-     const res=  await axios.post(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`,
+     const res=  await axios.post(`${apiUrl}/server/posts/postComments.php?post_id=${id}`,
        {
           student_id:user?.id, comment_text:comment}
       )
@@ -177,21 +196,21 @@ const handleSave=async(item)=>{
     </div>
 
 </div>
-  <form onSubmit={handleComments}>
+  <form onSubmit={handleComments} className="pt-5">
                             {error && (
                 <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
                   {error}
                 </p>
                             )}
   <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
-                    <h4 className=" mt-5 font-bold text-lg" >Rəylər</h4>
+      
                         </form>
 <div className="comments">
- 
+                 <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
               {  comments.map((comment)=>{
                 return(
                     <>
-                       <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
+       
     <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
                     <div className="comment-header flex items-center ">
             <img  className="rounded-md avatar" src={comment.profile_img}></img>

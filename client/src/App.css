@@ -454,5 +454,10 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
   -ms-overflow-style: none !important;  /* IE/Edge */
   scrollbar-width: none !important;     /* Firefox */
 }
-
-            
+.about-us{
+  background-image: url(../public/images/about.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 600px;
+  /* background-repeat: no-repeat; */
+}

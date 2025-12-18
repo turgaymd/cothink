@@ -3,6 +3,11 @@ import { IoMdAdd } from "react-icons/io";
 import { MdArrowOutward } from "react-icons/md";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Autoplay, Navigation, Pagination } from "swiper/modules"
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -44,7 +49,98 @@ const Home = () => {
 
   return (
     <>
+      <div className="about-us">
+        <div className="flex flex-col  h-full"> 
+        <div className="partners grid md:grid-cols-6 grid-cols-2  gap-3">
+             <a className="">
+  <img src="/images/rəqəmsalw.png"/>
+          </a>
+             <a className="">
+  <img src="/images/digitalw.png"/>
+          </a>
+             <a className="">
+  <img src="/images/bmuw.png"/>
+          </a>
+            
+               <a className="">
+  <img src="/images/beuw.png"/>
+          </a>
+              <a className="">
+  <img src="/images/assipw.png"/>
+          </a>
+              <a className="">
+  <img src="/images/yenifikir.png"/>
+          </a>
+        </div>
+<div className="text-center pb-4">
+   <p className="text-white text-2xl text-center">CoThink startapı ASSİP2 Hakatonunun iştirakçısı olmuş və inkubasiya mərhələsinə seçilmişdir </p>
+     </div>
+     
+     </div>
+      </div>
+      <section className="mt-4">
+                  <h2 className="text-2xl text-center pb-5">Danışıqlar apardığımız  <span className="font-bold">Tərəfdaşlarımız</span></h2>
+         <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        autoplay={{
+                            delay: 3500,
+                            disableOnInteraction: false,
+                        }}
+                        spaceBetween={20}
+                        slidesPerView={1}
+                        navigation={false}
+                        pagination={{
+                            clickable: true
+                        }}
+                    >
+                         
+                                       <SwiperSlide>
+                                        <div className="partners justify-center grid md:grid-cols-4 grid-cols-2  gap-3">
+                          
+             <a className="">
+  <img src="/images/beu_white.png"/>
+          </a>
+
+             <a className="">
+  <img src="/images/yenifikir_white.png"/>
+          </a>
+               <a className="">
+  <img src="/images/abb.png"/>
+          </a>
+
+         
+              <a className="">
+  <img src="/images/hedef.png"/>
+          </a>
+          </div>
+            </SwiperSlide>
+          <SwiperSlide>
+             <div className="partners justify-center grid md:grid-cols-4 grid-cols-2  gap-3">
+              <a className="">
+  <img src="/images/eland.png"/>
+          </a>
+                 <a className="">
+  <img src="/images/codeworld.png"/>
+          </a>
+          
+                 <a className="">
+  <img src="/images/beu_white.png"/>
+          </a>
+          
+                 <a className="">
+  <img src="/images/yenifikir_white.png"/>
+          </a>
+          </div>
+                   </SwiperSlide>               
+                           
+                        <div className="swiper-pagination flex justify-center"></div>
+                 
+                    </Swiper>
+
+      </section>
       <section id="home" className="w-full py-10">
+
+
         <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto items-center gap-10 px-5">
 
           {/* Text Side */}

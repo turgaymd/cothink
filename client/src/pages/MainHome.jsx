@@ -43,8 +43,6 @@ const MainHome = () => {
     )
     return (
         <section>
-
-
             <div className="mentor-banner mt-3 overflow-hidden">
                 <div className="relative flex flex-col md:flex-row r justify-between">
                     <div className="">
