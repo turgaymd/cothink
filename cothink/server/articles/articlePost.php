@@ -32,35 +32,13 @@ if (isset($_FILES['article_img'])) {
     $file = $_FILES['article_img'];
     $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
     $filename = time() . "_article." . $ext;
-    $upload_dir = "cothinke.az/server/uploads/course_img/";
+    $upload_dir = "../uploads/articles";
     if (!file_exists($upload_dir)) mkdir($upload_dir, 0777, true);
     if (move_uploaded_file($file['tmp_name'], $upload_dir . $filename)) {
-        $article_img = "cothinke.az/server/uploads/course_img/" . $filename;
+        $article_img = "../uploads/articles" . $filename;
     }
 }
-// ===============================
-//     VALIDATION
-// ===============================
-
-// if (!$article_title || !$article_desc) {
-//     echo json_encode([
-//         "status" => "error",
-//         "message" => "Title və description tələb olunur"
-//     ]);
-//     exit;
-// }
-
-// if (!$category_id) {
-//     echo json_encode([
-//         "status" => "error",
-//         "message" => "Category seçilməlidir"
-//     ]);
-//     exit;
-// }
-
-// ===============================
-//       DB INSERT SORĞUSU
-// ===============================
+ 
 
 $sql = "
     INSERT INTO mentor_article 

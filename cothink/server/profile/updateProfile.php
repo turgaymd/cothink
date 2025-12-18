@@ -31,10 +31,10 @@ $image_url = null;
 
 if (!empty($_FILES['profile_img']['name'])) {
     $img_name = time() . "_" . basename($_FILES['profile_img']['name']);
-    $img_path = "cothinke.az/server/uploads/" . $img_name;
+    $img_path = "../uploads/" . $img_name;
 
     if (move_uploaded_file($_FILES["profile_img"]["tmp_name"], $img_path)) {
-        $image_url = "cothinke.az/server/uploads/" . $img_name;
+        $image_url = "../uploads/" . $img_name;
     }
 }
  
