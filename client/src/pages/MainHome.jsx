@@ -156,9 +156,13 @@ const MainHome = () => {
                                 <div className="flex flex-col h-full gap-3 justify-between">
                                     <div className="mentor-title flex gap-3  items-center">
                                         <img src={item.profile_img || "images/admin.png"} alt="Aydan" className="w-15 h-15 object-cover rounded-full" />
+                                       <div className="flex flex-col">
                                         <h5>{item.mentor_name}</h5>
-                                        <span>•</span>
+                                        <div className="flex gap-1">
+                                        {/* <span>•</span> */}
                                         <p>  {new Date(item.created_at).toLocaleDateString()}</p>
+                                        </div>
+                                        </div>
                                     </div>
                                     <div>
                                         <p>{item.post_title}</p>

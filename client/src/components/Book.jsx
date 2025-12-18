@@ -4,9 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { LuTableOfContents } from "react-icons/lu";
 import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../AuthContext";
 import { AiFillLike } from "react-icons/ai"
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 const Book = () => {
   const navigate = useNavigate();
   const { id } = useParams();  
@@ -14,6 +15,8 @@ const Book = () => {
  const {apiUrl}=useContext(ApiContext)
  const {user}=useContext(AuthContext)
  const [liked,setLiked]=useState(false)
+ const [savedBooks ,setSavedBooks]=useState([])
+
 
   useEffect(() => {
     axios 
@@ -24,6 +27,18 @@ const Book = () => {
       })
       .catch((err) => console.error(err));
   }, [id]);
+
+    useEffect(()=>{
+      if(!user?.id) return;
+    axios.get(
+      `${apiUrl}/server/savedPages/savedBooks/getSaveBooks.php?student_id=${user.id}`)
+      .then(res => {
+        const book_ids=res.data.saved_books.map(book=>book.book_id)
+        setSavedBooks(book_ids)
+        console.log(book_ids)
+      })
+      .catch(err => console.error(err))
+  },[])
 
     const handleLike=async(item)=>{
            setLiked(true)
@@ -52,7 +67,38 @@ const Book = () => {
     setLiked(false)
   }
 
+   const handleSave=async(item)=>{
+    try {
+      const res = await axios.post(
+        `${apiUrl}/server/savedPages/savedBooks/postsaveBooks.php?book_id=${item.book_id}`,
+        {
+          student_id:user?.id
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log(res.data)
+      if (res.data.status === "success") {
+        toast.success("Kitab yadda saxlanıldı");
+        setSavedBooks((prev)=>[...prev, item.book_id])
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
+  }
+
+  const handleUnsave=async(item)=>{
+    setSavedBooks((prev)=>prev.filter((id)=>id!==item.book_id))
+    await axios.delete(`${apiUrl}/server/savedPages/savedBooks/unSaveBooks.php?book_id=${item.book_id}`,
+      {data:{book_id:item.book_id, student_id:user?.id},
+      headers: { "Content-Type": "application/json" } },
+    )
+  }
   return (
+    <>
+    <ToastContainer/>
     <section>
       <div>
         <h2 className="font-bold text-center text-2xl mb-6">Konvensiya</h2>
@@ -61,14 +107,16 @@ const Book = () => {
           <p className="text-xl font-semibold">{book?.book_title}</p>
           <h4 className="font-bold text-xl">{book?.mentor_name}</h4>
           <div className="post-reactions flex justify-center gap-5 w-full max-w-md">
-            <button className="like-count flex items-center gap-2" onClick={()=>handleLike(book)}>
+            <span className="like-count flex items-center gap-2" onClick={()=>handleLike(book)}>
               {
                 liked ? <AiFillLike fontSize={24} onClick={handleUnlike}/> : <img src="/images/like.svg" alt="like" /> 
               }
              {book?.likes}
-            </button>
+            </span>
             <div className="saved-count flex items-center gap-2">
-              <img src="/images/save.svg" alt="saved" /> {book?.saved}
+                                    {savedBooks.includes(book?.book_id) ? 
+                                      (<FaBookmark fontSize={20} onClick={()=>handleUnsave(book)}/>) :
+                                      (<FaRegBookmark fontSize={20} onClick={()=>handleSave(book)}/>)}
             </div>
             <div className="share flex items-center gap-2">
               <LuTableOfContents fontSize={24}/>{book?.chapters}
@@ -88,6 +136,7 @@ const Book = () => {
         </div>
       </div>
     </section>
+</>
   );
 };
 
