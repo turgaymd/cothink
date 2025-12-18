@@ -13,6 +13,8 @@ function Discussion(){
   const [post, setPost] = useState(null);
   const [savedPosts, setSavedPosts]=useState([])
   const [comments, setComments]=useState([])
+  const [comment, setComment]=useState("")
+  const [error,setError]=useState('')
   const {apiUrl}=useContext(ApiContext)
   const {user}=useContext(AuthContext)
   const [liked,setLiked]=useState(false)
@@ -34,7 +36,7 @@ function Discussion(){
       .then((res) => {
         console.log(res.data);
           const postData=res.data.find((p)=>p.post_id===Number(id))
-        // setComments(postData.comments);
+        setComments(postData.comments);
         console.log(res.data);
       })
       .catch((err) => console.error(err));
@@ -108,6 +110,24 @@ const handleSave=async(item)=>{
     const handleUnlike=()=>{
     setLiked(false)
   }
+    const handleComments=async (e)=>{
+      e.preventDefault()
+      if(comment===""){
+          setError("Komment daxil edin")
+          return;
+      }
+     const res=  await axios.post(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`,
+       {
+          student_id:user?.id, comment_text:comment}
+      )
+      if(res.data.status==="success"){
+          setComment("")
+          toast.success("Rəy paylaşıldı")
+          fetchComments()
+  }
+                
+              
+  }
     return(
         <>
         <ToastContainer/>
@@ -157,7 +177,16 @@ const handleSave=async(item)=>{
     </div>
 
 </div>
-{/* <div className="comments">
+  <form onSubmit={handleComments}>
+                            {error && (
+                <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
+                  {error}
+                </p>
+                            )}
+  <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
+                    <h4 className=" mt-5 font-bold text-lg" >Rəylər</h4>
+                        </form>
+<div className="comments">
  
               {  comments.map((comment)=>{
                 return(
@@ -185,7 +214,7 @@ const handleSave=async(item)=>{
             })
         }     
     
-</div> */}
+</div>
          
         </section>
       </>
