@@ -70,10 +70,64 @@ const About = () => {
 
   return (
     <>
-      <section id="about" className="max-w-[80vw] m-auto mt-20">
+        <div className="about-us">
+        <div className="flex flex-col  h-full"> 
+        <div className="partners grid md:grid-cols-6 grid-cols-2  gap-3">
+             <a className="">
+  <img src="/images/rəqəmsalw.png"/>
+          </a>
+             <a className="">
+  <img src="/images/digitalw.png"/>
+          </a>
+             <a className="">
+  <img src="/images/bmuw.png"/>
+          </a>
+            
+               <a className="">
+  <img src="/images/beuw.png"/>
+          </a>
+              <a className="">
+  <img src="/images/assipw.png"/>
+          </a>
+              <a className="">
+  <img src="/images/yenifikir.png"/>
+          </a>
+        </div>
+<div className="text-center pb-4">
+   <p className="text-white text-2xl text-center">CoThink startapı ASSİP2 Hakatonunun iştirakçısı olmuş və inkubasiya mərhələsinə seçilmişdir </p>
+     </div>
+     
+     </div>
+      </div>
+      <section id="about" className=" m-auto mt-10">
+        
+        <h2 className="font-bold text-center text-3xl pb-7">Haqqımızda </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5 mt-7">
+          <div className="flex">
+          <p>CoThink — təhsildə düşünməyi, sual verməyi və birlikdə öyrənməyi ön plana çıxaran yeni nəsil təhsil platformasıdır.
+            <br></br>
+  <br></br>
+Bu gün tələbələr məlumatı asan əldə edir, lakin onu dərindən anlama və müzakirə etmə imkanları azalır. CoThink bu problemi həll edərək tələbəni passiv izləyici yox, öyrənmənin aktiv iştirakçısına çevirir.
+  <br></br>
+    <br></br>
+
+Platformada sual-cavab, mentor dəstəyi, video dərslər və etibarlı resurslar vahid sistem kimi işləyir. CoThink Azərbaycan təhsil proqramına uyğun, yerli dildə və real ehtiyaclara əsaslanan öyrənmə ekosistemi yaradır.
+  <br></br>  <br></br>
+Layihə ASSİP çərçivəsində inkişaf etdirilib; CoThink ASSİP 2 Hakatonunda iştirak etmiş və inkubasiya mərhələsinə seçilmişdir. Proqram İRİA-nın dəstəyi, Yeni Fikir-in icrası və BMU-nun tərəfdaşlığı ilə həyata keçirilir.
+</p>
+</div>
+<div  className="flex flex-col gap-3">
+   <img src="/images/about_2.jpg" className="h-48"/>
+  <img src="/images/about_1.jpg" className="h-48"/>
+   
+</div>
+<div>
+
+</div>
+        </div>
         <div>
           <h2 className="font-bold text-3xl text-center">Niyə Bizi Seçməlisiniz?</h2>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-3 pt-5 mt-[80px]">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-3 pt-3 mt-[80px]">
             <div className="bg-gray-100 border border-blue-300 rounded-full w-full aspect-square min-w-[140px] flex flex-col justify-center items-center p-4 hover:border-amber-400 cursor-pointer">
               <h5 className="font-bold text-xs sm:text-sm md:text-base text-center">Təhlükəsiz və Etibarlı</h5>
               <p className="text-gray-400 text-center text-[10px] sm:text-xs md:text-sm mt-2">Bütün məzmun müəllimlər və mütəxəssislər tərəfindən yoxlanılır.</p>

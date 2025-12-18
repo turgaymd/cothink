@@ -306,7 +306,7 @@ const handleContact = async (e) => {
               {
                 collapse===index  ?          
                       <FiMinus fontSize={24} className="shrink-0" onClick={()=>setCollapse(null)}/> : 
-                       <IoMdAdd fontSize={24} className="shrink-0" onClick={()=>setCollapse(collapse==="index" ? null : index)}/>
+                       <IoMdAdd fontSize={24} className="shrink-0" onClick={()=>setCollapse(collapse===index ? null : index)}/>
             }
       
                      </div>
