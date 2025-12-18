@@ -9,14 +9,14 @@ const Navbar = () => {
   const blue = "#3456BE";
 
   const activeClass =
-    "text-white rounded-2xl px-4 py-2 transition";
+    "text-white rounded-2xl px-4 py-2 transition whitespace-nowrap";
   const normalClass =
-    "text-gray-700 hover:text-[#3456BE] transition px-4 py-2";
+    "text-gray-700 hover:text-[#3456BE] transition px-4 py-2 whitespace-nowrap";
 
   return (
     <header className="w-full sticky top-0 z-50 bg-white shadow-sm">
 
-      {/* ✅ Desktop */}
+      {/* Desktop */}
       <div className="hidden md:flex max-w-7xl mx-auto justify-between items-center px-5 py-4">
 
         {/* Logo */}
@@ -55,14 +55,14 @@ const Navbar = () => {
            <Link
           to="/login"
           style={{ backgroundColor: blue }}
-          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition"
+          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition whitespace-nowrap"
         >
           Giriş
         </Link>
         <Link
           to="/register"
           style={{ backgroundColor: blue }}
-          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition"
+          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition whitespace-nowrap"
         >
           Qeydiyyat
         </Link>
@@ -71,35 +71,35 @@ const Navbar = () => {
       
 
       {/* ✅ Mobile navbar */}
-      <div className="md:hidden flex items-center justify-between px-4 py-4">
+      <div className="md:hidden flex items-center justify-between px-3 py-3">
 
         {/* Menu icon */}
-        <button onClick={() => setOpen(!open)}>
-          {open ? <IoClose size={42} /> : <IoMenu size={42} />}
+        <button onClick={() => setOpen(!open)} className="flex-shrink-0">
+          {open ? <IoClose size={32} /> : <IoMenu size={32} />}
         </button>
 
         {/* Logo */}
-        <Link to="/">
+        <Link to="/" className="flex-shrink-0">
           <img
             src="/images/mobile_logo.png"
             alt="Logo"
-            className="h-12"
+            className="h-9"
           />
         </Link>
 
-     <div className="flex gap-3">
+     <div className="flex gap-2 flex-shrink-0">
 
                <Link
           to="/login"
           style={{ backgroundColor: blue }}
-          className="text-white rounded-2xl px-4 py-1.5 text-sm hover:opacity-90 transition"
+          className="text-white rounded-2xl px-3 py-1.5 text-xs hover:opacity-90 transition whitespace-nowrap"
         >
           Giriş
         </Link>
         <Link
           to="/register"
           style={{ backgroundColor: blue }}
-          className="text-white rounded-2xl px-4 py-1.5 text-sm hover:opacity-90 transition"
+          className="text-white rounded-2xl px-3 py-1.5 text-xs hover:opacity-90 transition whitespace-nowrap"
         >
           Qeydiyyat
         </Link>

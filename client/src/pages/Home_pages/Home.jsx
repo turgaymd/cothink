@@ -72,8 +72,8 @@ const Home = () => {
   <img src="/images/yenifikir.png"/>
           </a>
         </div>
-<div className="text-center pb-4">
-   <p className="text-white text-2xl text-center">CoThink startapı ASSİP2 Hakatonunun iştirakçısı olmuş və inkubasiya mərhələsinə seçilmişdir </p>
+<div className="text-center pb-4 md:mt-40 m-5 p-5">
+   <p className="text-white  text-3xl text-center">CoThink startapı ASSİP2 Hakatonunun iştirakçısı olmuş və inkubasiya <br /> mərhələsinə seçilmişdir </p>
      </div>
      
      </div>
