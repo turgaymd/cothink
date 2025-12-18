@@ -34,7 +34,19 @@ function Discussion(){
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?post_id=${id}`)
       .then((res) => {
-        setPost(res.data.data);
+        if(res.data.data){
+          setPost(res.data.data);
+        }
+        
+        console.log(res.data.data);
+      })
+         axios
+      .get(`${apiUrl}/server/studentPosts/postDetails.php?post_id=${id}`)
+      .then((res) => {
+        if(res.data.data){
+  setPost(res.data.data);
+        }
+      
         console.log(res.data.data);
       })
       .catch((err) => console.error(err));
@@ -205,7 +217,7 @@ const handleSave=async(item)=>{
   <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
       
                         </form>
-<div className="comments">
+{/* <div className="comments">
                  <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
               {  comments.map((comment)=>{
                 return(
@@ -233,7 +245,7 @@ const handleSave=async(item)=>{
             })
         }     
     
-</div>
+</div> */}
          
         </section>
       </>

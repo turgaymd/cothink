@@ -77,7 +77,7 @@ const MainHome = () => {
                               ) : (
                                 likedArticles.map((item) => (
                                        <SwiperSlide>
-                                  <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-3xl"  >
+                                  <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-4xl"  >
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
                                 <a className="relative z-10" href={`/library/articles/${item.article_id}`}>
                                     <div className="article-content flex justify-between flex-col gap-3">

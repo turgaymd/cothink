@@ -10,6 +10,7 @@ const Questions=()=>{
     const [displayedCategories, setDisplayedCategories]=useState([])
     const [visibleCategories, setVisibleCategories]=useState(4)
     const [discussions,setDiscussions]=useState([])
+    const [posts, setPosts]=useState([])
     const [selectedCategory,setSelectedCategory]=useState(null)
     const [query, setQuery]=useState("")
     const {apiUrl}=useContext(ApiContext)
@@ -19,12 +20,18 @@ const Questions=()=>{
         axios.get(`${apiUrl}/server/posts/postsRead.php`).then(res=>{
             setDiscussions(res.data)
         })
+           axios.get(`${apiUrl}/server/studentPosts/postsRead.php`).then(res=>{
+            setPosts(res.data.data)
+            console.log(posts)
+        })
         axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
             setCategories(res.data.data)
             setDisplayedCategories(res.data.data.slice(0,4))
         })
     },[])
 
+    const allPosts=[...discussions, ...posts].sort((a,b)=>new Date(a.created_at)-new Date (b.created_at))
+    console.log(allPosts)
     const handleMore=()=>{
         setVisibleCategories(prev=>{
             const newCount=prev+4
@@ -38,7 +45,7 @@ const Questions=()=>{
         setDisplayedCategories(categories.slice(0, 4))
     }
      
-    const filteredDiscussions=discussions.filter((item)=>{
+    const filteredDiscussions=allPosts.filter((item)=>{
         const searchedQuery= item?.post_title?.toLowerCase().includes(query.toLowerCase()) ||
         item?.mentor_name?.toLowerCase().includes(query.toLowerCase()) 
         const matchedCategories=!selectedCategory ||  item?.category?.toLowerCase()===selectedCategory?.toLowerCase()
