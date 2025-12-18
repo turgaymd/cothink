@@ -13,20 +13,53 @@ function Discussion(){
   const [post, setPost] = useState(null);
   const [savedPosts, setSavedPosts]=useState([])
   const [comments, setComments]=useState([])
+  const [comment, setComment]=useState("")
+  const [error,setError]=useState('')
   const {apiUrl}=useContext(ApiContext)
   const {user}=useContext(AuthContext)
   const [liked,setLiked]=useState(false)
 
 
+     const fetchComments=async()=>{ 
+       axios.get(`${apiUrl}/server/posts/getcomments.php?post_id=${id}`)
+              .then((res) => {
+                setComments(res.data.comments);
+                console.log(res.data)
+              })
+              .catch((err) => console.error(err));
+          }
+          
   useEffect(() => {
+    
     axios
       .get(`${apiUrl}/server/posts/postDetails.php?post_id=${id}`)
       .then((res) => {
-        setPost(res.data.data);
+        if(res.data.data){
+          setPost(res.data.data);
+        }
+        
+        console.log(res.data.data);
+      })
+         axios
+      .get(`${apiUrl}/server/studentPosts/postDetails.php?post_id=${id}`)
+      .then((res) => {
+        if(res.data.data){
+  setPost(res.data.data);
+        }
+      
         console.log(res.data.data);
       })
       .catch((err) => console.error(err));
+         axios.get(`${apiUrl}/server/posts/getcomments.php?post_id=${id}`)
+              .then((res) => {
+                setComments(res.data.comments);
+                console.log(res.data)
+              })
+              .catch((err) => console.error(err));
+          
+      
   }, [id]);
+
 
    useEffect(() => {
     axios
@@ -34,7 +67,7 @@ function Discussion(){
       .then((res) => {
         console.log(res.data);
           const postData=res.data.find((p)=>p.post_id===Number(id))
-        // setComments(postData.comments);
+        setComments(postData.comments);
         console.log(res.data);
       })
       .catch((err) => console.error(err));
@@ -108,6 +141,24 @@ const handleSave=async(item)=>{
     const handleUnlike=()=>{
     setLiked(false)
   }
+    const handleComments=async (e)=>{
+      e.preventDefault()
+      if(comment===""){
+          setError("Komment daxil edin")
+          return;
+      }
+     const res=  await axios.post(`${apiUrl}/server/posts/postComments.php?post_id=${id}`,
+       {
+          student_id:user?.id, comment_text:comment}
+      )
+      if(res.data.status==="success"){
+          setComment("")
+          toast.success("Rəy paylaşıldı")
+          fetchComments()
+  }
+                
+              
+  }
     return(
         <>
         <ToastContainer/>
@@ -157,12 +208,21 @@ const handleSave=async(item)=>{
     </div>
 
 </div>
+  <form onSubmit={handleComments} className="pt-5">
+                            {error && (
+                <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
+                  {error}
+                </p>
+                            )}
+  <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
+      
+                        </form>
 {/* <div className="comments">
- 
+                 <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
               {  comments.map((comment)=>{
                 return(
                     <>
-                       <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
+       
     <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
                     <div className="comment-header flex items-center ">
             <img  className="rounded-md avatar" src={comment.profile_img}></img>

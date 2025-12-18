@@ -30,7 +30,7 @@ function Header({open, setOpen, setSettings}){
               <IoMenu fontSize={28}/>
             </button>
             <div className="logo">
-              <Link to="/home" className="hidden md:flex lg:ml-15" onClick={() => setSettings(false)}>
+              <Link to="/home" className="hidden md:flex lg:ml-5" onClick={() => setSettings(false)}>
                 <img src="/images/logo.jpg" alt="Logo" className="hidden lg:block"/>
                 <img src="/images/logo.svg" alt="Logo" className="lg:hidden hidden md:block"/>
               </Link>

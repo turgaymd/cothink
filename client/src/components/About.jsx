@@ -1,37 +1,93 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AuthContext } from "../AuthContext";
 import { BsBack } from "react-icons/bs";
+import { ApiContext } from "../ApiContext";
 
 const About=({ setActiveTab})=>{
-  const {user}=useContext(AuthContext)
-  const [name, setName]=useState(user?.name)
+  const {user,setUser}=useContext(AuthContext)
+  const [name, setName]=useState("")
   const [lastName, setLastName]=useState("")
-  const [email, setEmail]=useState(user?.email)
-  const [phone, setPhone]=useState("+994  055-123-45-67")
+  const [email, setEmail]=useState("")
+  const [phone, setPhone]=useState("+994  ")
   const [error, setError] = useState("");
+  const {apiUrl}=useContext(ApiContext)
+  const [edit ,setEdit]=useState(false)
 
-  const handleEdit=async(e)=>{
-    e.preventDefault()
-  try{
-         const res= await axios.put("http://localhost:8000/api/about/edit.php", {name, lastName, email, phone},
-            {headers:{"Content-Type":"application/json"}}
-          )
-          if(res.data.success){
-         toast.success("Profil yeniləni")
-          }
-          else{
-            setError(res.data.message || "Xəta baş verdi")
-          }
-        }
-        catch(err){
-          setError(err.response?.data?.message || "Xəta baş verdi" )
-          console.log(err)
-        }
+  useEffect(()=>{
+    if(!user) return;
+    if(user.type==="mentor"){
+  axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
+        .then(res => {
+          const data=res.data.data
+      setName(data.mentor_name || "")
+      setEmail(data.mentor_email || "")
+    });
+    }
+    else{
+  axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
+        .then(res => {
+          const data=res.data.data
+          console.log(data)
+      setName(data.student_name || "")
+      setEmail(data.student_email || "")
+    });
+    }
+  },[user])
+
+
+ const handleEdit= async (e) => {
+    e.preventDefault();
+    setEdit(true)
+    const formData = new FormData();
+    if(user.type==="mentor" ){
+      if(!name || !email ){
+        toast.error("İstifadəçi adı, email boş ola bilməz")
+        return;
+      }
+    formData.append("mentor_id", user.id);
+    formData.append("mentor_name", name);
+    formData.append("mentor_email", email);
   }
+   if(user.type==="student"){
+         if(!name || !email ){
+        toast.error("İstifadəçi adı, email boş ola bilməz")
+        return;
+      }
+    formData.append("student_id", user.id);
+    formData.append("student_name", name);
+    formData.append("student_email", email);
+ 
+try{
+  const url= user.type==="mentor" ? 
+  `${apiUrl}/server/profile/updateProfile.php?mentor_id=${user.id}` 
+  : `${apiUrl}/server/students/updateProfile.php?student_id=${user.id}`
+   const res = await axios.post(url,  formData)
+    console.log(res.data)
+    if(res.data.status==="success"){
+      setUser((prev)=>({
+         ...prev,
+        name:name,
+        email:email,
+        profile_img: res.data.image ? `https://cothink.az${res.data.image}` : prev.profile_img
+      }))
+      console.log(user)
+       toast.success("Profil uğurla yeniləndi")
+    }
+    if(res.data.status==="error"){
+      console.log(res.data.error)
+    }
+}
+catch(err){
+  console.log(err)
+}
+   }
+  }
+
+
     return(
         <section>
           <div className="back md:hidden flex">
@@ -47,7 +103,7 @@ const About=({ setActiveTab})=>{
             {error}
           </p>
         )}
-            <div  className="flex justify-end text-blue-800 cursor-pointer"><button type="submit" className="flex gap-2"><MdOutlineEdit fontSize={24}/>Redaktə et</button></div>
+            <div  className="flex justify-end text-blue-800 cursor-pointer"><button  className="flex gap-2"><MdOutlineEdit fontSize={24} onClick={()=>setEdit(true)}/>Redaktə et</button></div>
              <form className="login-form mx-auto " onSubmit={handleEdit}>
               <div className="mb-5">
               <label
@@ -99,7 +155,7 @@ const About=({ setActiveTab})=>{
                   placeholder={email}
                   onChange={(e)=>setEmail(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
-                  required
+  
                 ></input>
               </div>
             </div>
@@ -117,11 +173,27 @@ const About=({ setActiveTab})=>{
                   placeholder={phone}
                   onChange={(e)=>setPhone(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
-                  required
                 ></input>
               </div>
 
             </div>
+            {
+              edit ? ( <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
+         
+            <button
+              className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md"
+              onClick={() => setActiveTab("nothing")}
+            >
+              Ləğv et
+            </button>
+            <button
+              type="submit"
+              className="md:w-64 w-full text-white bg-blue-800 px-7 py-4 rounded-md"
+            >
+              Yadda Saxla
+            </button>
+            </div> ) : <></>
+            } 
           </form>
           
         </div>

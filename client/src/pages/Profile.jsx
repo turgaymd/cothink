@@ -22,7 +22,7 @@ const Profile = () => {
   const [postComments, setPostComments]=useState([])
   const [mentor, setMentor]=useState(null) 
   
-     console.log(user.name)
+
 useEffect(() => {
   if (user?.type === "mentor") {
 
@@ -37,7 +37,9 @@ useEffect(() => {
       .then(res => setArticles(res.data));
 
     axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`)
-      .then(res => setMentorPosts(res.data));
+      .then(res => setMentorPosts(res.data)
+    );
+   console.log(mentorPosts)
   }
  else{
   axios.get(`${apiUrl}/server/students/studentPost.php?student_id=${user.id}`)
@@ -47,7 +49,7 @@ useEffect(() => {
   axios.get(`${apiUrl}/server/students/studentcomments.php?student_id=${user.id}`)
     .then(res =>{
  setPostComments(res.data)
- console.log(res.data)
+//  console.log(res.data)
     })
     .catch(() => setPostComments([]));
  }
@@ -177,7 +179,7 @@ useEffect(() => {
       )}
       {activeTab === "mentorPosts" &&
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-       {!Array.isArray(mentorPosts) || mentorPosts?.length === 0 ? (
+       { mentorPosts?.length === 0 ? (
             <p className="text-center text-xl font-bold col-span-3">
               Post yoxdur hazırda
             </p> ) :
@@ -188,7 +190,7 @@ useEffect(() => {
         {activeTab === "studentPosts" &&
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
    
-       {!Array.isArray(studentPosts) ||  studentPosts?.length >0 ? (    
+       {Array.isArray(studentPosts) ||  studentPosts?.length >0 ? (    
              studentPosts.map((item) =>( <PostCard  key={item.post_id} item={item} />
           ))) :
     ( 

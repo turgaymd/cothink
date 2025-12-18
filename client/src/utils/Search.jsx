@@ -1,10 +1,12 @@
 
 import { BsSearch } from "react-icons/bs";
 const Search = ({query, setQuery}) => {
-
+const handleSubmit=(e)=>{
+  e.preventDefault()
+}
   return (
     <div className="flex justify-center">
-      <form className="w-full max-w-sm">
+      <form className="w-full max-w-sm" onSubmit={handleSubmit}>
         <div className="text-center mb-4 relative">
           <input
             type="text"
