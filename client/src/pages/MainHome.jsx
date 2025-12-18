@@ -46,7 +46,7 @@ const MainHome = () => {
             <div className="mentor-banner mt-3 overflow-hidden">
                 <div className="relative flex flex-col md:flex-row r justify-between">
                     <div className="">
-                        <h2 className="text-3xl font-medium pb-3">Daha məqsədli öyrən, daha az əziyyət çək.</h2>
+                        <h2 className="text-3xl font-medium pb-3 pt-2">Daha məqsədli öyrən, daha az əziyyət çək.</h2>
                         <p className="font-medium text-xl">Sənə uyğun öyrənmə metodları ilə tanış ol.</p>
                     </div>
                     <div className="flex justify-end  mb-1 ">
@@ -57,7 +57,7 @@ const MainHome = () => {
 
             <div>
                 <h2 className="font-bold text-2xl text-center mb-8 mt-10">Ən Çox Bəyənilən Bloqlar</h2>
-                <div className="relative px-8 md:px-16">
+                <div className="relative px-4 md:px-8 lg:px-16">
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         autoplay={{
@@ -76,40 +76,38 @@ const MainHome = () => {
                                 <p className="text-center text-xl font-bold col-span-3">Bloq tapılmadı</p>
                               ) : (
                                 likedArticles.map((item) => (
-                                       <SwiperSlide>
-                                  <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-4xl"  >
-                                <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
+                                       <SwiperSlide key={item.article_id}>
+                                <div className="article-item mb-5 p-4 md:p-8 relative overflow-hidden rounded-lg mx-auto max-w-6xl">
+                                    <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
                                 <a className="relative z-10" href={`/library/articles/${item.article_id}`}>
                                     <div className="article-content flex justify-between flex-col gap-3">
                                         <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
                                             <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
                                                 <div className="flex items-center gap-2">
-                                                    <img src={item.profile_img || "/images/admin.png"} className="w-10 h-10 rounded-full" alt="Avatar" />
-                                                    <span className="text-white text-sm md:text-base">{item.mentor_name}</span>
-                                                </div>
-                                                <div className="flex items-center gap-2 md:ml-0">
-                                                    <span className="text-gray-300 hidden md:inline">•</span>
-                                                    <span className="text-gray-300 text-sm md:text-base">{item.created_at}</span>
+                                                    <img src={item.profile_img || "/images/admin.png"} className="w-10 h-10 rounded-full object-cover" alt="Avatar" />
+                                                    <div className="grid grid-cols-1">
+                                                        <span className="text-white text-sm md:text-base">{item.mentor_name}</span>
+                                                        <span className="text-gray-300 text-xs md:text-sm">{new Date(item.created_at).toLocaleDateString()}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="category" >
-                                                
-                                                <span className="bg-blue-800 rounded-md px-5 py-2 text-white text-sm md:text-base">{item.category}</span>
+                                            <div className="category my-2 md:my-0">
+                                                <span className="bg-blue-800 rounded-md px-3 md:px-5 py-1.5 md:py-2 text-white text-xs md:text-base">{item.category}</span>
                                             </div>
                                         </div>
                                            <div className="article-title">
-                                            <p className="text-white font-semibold text-sm md:text-base">{item.article_title}</p>
+                                            <p className="text-white font-semibold text-base md:text-lg">{item.article_title}</p>
                                         </div>
                                             <div className="article-title">
                         {
                             item?.article_topic?.length>90 ? (
-                                <div className="flex flex-col items-center">
-                                <p className="md:hidden flex text-white">
+                                <div className="flex flex-col">
+                                <p className="md:hidden flex text-white text-sm">
                                 {item?.article_topic.substring(0,90) }  ...                                                        
                                 </p>
-                             <p className="hidden md:flex text-white">  {item?.article_topic.substring(0,200) }...  </p>
+                             <p className="hidden md:flex text-white text-base">  {item?.article_topic.substring(0,200) }...  </p>
                              </div>) :
-                             <p className="hidden md:flex text-white">{item?.article_topic}</p>
+                             <p className="text-white text-sm md:text-base">{item?.article_topic}</p>
                         }
                     </div>      
                                     </div>
@@ -150,7 +148,7 @@ const MainHome = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                     {
                         filteredDiscussions.map((item)=>(
-  <div className="mentor-item rounded-md">
+  <div className="mentor-item rounded-md" key={item.post_id}>
                         <a href={`/questions/${item.post_id}`} className="h-full">
                             <div className="flex justify-between flex-col gap-3 md:flex-row h-full">
                                 <div className="flex flex-col h-full gap-3 justify-between">
