@@ -14,7 +14,7 @@ const Library=()=>{
   const [displayedCategories, setDisplayedCategories]=useState([])
   const [visibleCategories, setVisibleCategories]=useState(4)
   const [displayedBooks, setDisplayedBooks] = useState([])
-  const [visibleBooks, setVisibleBooks] = useState(3)
+  const [visibleBooks, setVisibleBooks] = useState()
   const {apiUrl}=useContext(ApiContext)
 
 
@@ -23,6 +23,7 @@ const Library=()=>{
       .get(`${apiUrl}/server/books/bookRead.php`) 
       .then((res) => {
         setBooks(res.data.data);
+        setVisibleBooks(res.data.data.length)
         console.log(res.data.data)
       })
       .catch((err) => console.error(err)); 
