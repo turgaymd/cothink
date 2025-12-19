@@ -15,44 +15,44 @@ const Rating=()=>{
         <div className="flex flex-col items-center gap-4">
             <h2 className="text-2xl font-bold">Reytinq Cədvəli</h2>
             <p className="text-gray-400 pb-5 mb-5">Sual verən,cavablayan,bəyənilən və paylaşım edənlər əsasında sıralama</p>
-        <div className="flex md:flex-row gap-2 mb-5 mt-5">
-            <div className="relative pt-5 md:mb-0 mb-5 ">
-         <img src="/images/elvin.jpg" className="md:w-28 md:h-28 w-20 h-20 rounded-full border-[5px] border-blue-500 object-cover"/>
+        <div className="flex md:flex-row gap-3 mb-5 mt-5 items-end justify-center">
+            <div className="relative flex flex-col items-center md:mb-0">
+         <img src="/images/elvin.jpg" className="md:w-28 md:h-28 w-24 h-24 rounded-full border-[5px] border-blue-500 object-cover"/>
 
-<div className="absolute bottom-0 bg-blue-800 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 badge">
+<div className="absolute -bottom-3 bg-blue-800 rounded-full px-3 py-1.5 text-white whitespace-nowrap">
    <div className="flex flex-col items-center">
-        <p>Elvin</p>
-     <p>812</p>
+        <p className="text-sm font-semibold">Elvin</p>
+     <p className="text-xs">812</p>
     </div>
 </div>
       </div>
-       <div className="relative mb-2">
+       <div className="relative flex flex-col items-center">
         
-        <img src="/images/winner_cap.svg" className="absolute md:right-7 right-3 md:bottom-30 bottom-28"/>
-         <img src="/images/həcər.jpg" className="md:w-28 md:h-28 w-20 h-20 rounded-full border-[5px] border-amber-300 object-cover"/>
-<div className="absolute bottom-0 bg-amber-300 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 winner badge">
+        <img src="/images/winner_cap.svg" className="absolute  right-4 md:right-7 -top-13"/>
+         <img src="/images/həcər.jpg" className="md:w-28 md:h-28 w-24 h-24 rounded-full border-[5px] border-amber-300 object-cover"/>
+<div className="absolute -bottom-3 bg-amber-300 rounded-full px-3 py-1.5 text-white whitespace-nowrap">
    <div className="flex flex-col items-center text-black">
-        <p>Həcər</p>
-     <p>856</p>
+        <p className="text-sm font-semibold">Həcər</p>
+     <p className="text-xs">856</p>
     </div>
 </div>
       </div>
-<div className="relative md:pt-5 pt-2 ">
- <img src="/images/emil.jpg" className="md:w-28 md:h-28 w-20 h-20 rounded-full border-[5px] border-blue-500 object-cover"/>
-<div className="absolute bottom-0 bg-blue-800 rounded-full px-2 py-1 text-white left-1/2 -translate-x-1/2 badge">
+<div className="relative flex flex-col items-center md:mb-0">
+ <img src="/images/emil.jpg" className="md:w-28 md:h-28 w-24 h-24 rounded-full border-[5px] border-blue-500 object-cover"/>
+<div className="absolute -bottom-3 bg-blue-800 rounded-full px-3 py-1.5 text-white whitespace-nowrap">
    <div className="flex flex-col items-center">
-        <p>Emil</p>
-     <p>715</p>
+        <p className="text-sm font-semibold">Emil</p>
+     <p className="text-xs">715</p>
     </div>
 </div>
       </div>
 
         </div>
-        <div className="mt-5 flex justify-center flex-col gap-5 items-center ">
+        <div className="mt-8 flex justify-center flex-col gap-5 items-center ">
       <p className="text-center text-xl">Töhfən üçün təşəkkürlər!<br></br>
         Davam et,  zirvədə sən də ola bilərsən!</p>
-        <button className="border border-blue-300 rounded-full w-full">Hazırki yerin:#28</button>
-                <p className="font-bold text-lg">Bugün 12 cavab,7 paylaşım,9 bəyənmə qazandın</p>
+        <button className="border border-blue-300 rounded-full w-full max-w-md py-2 hover:bg-[#4E70D7] hover:text-white hover:border-[#4E70D7] transition-colors">Hazırki yerin:#28</button>
+                <p className="font-bold text-lg text-center">Bugün 12 cavab,7 paylaşım,9 bəyənmə qazandın</p>
         </div>
              </div>
             </section>

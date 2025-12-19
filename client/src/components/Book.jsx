@@ -81,7 +81,7 @@ const Book = () => {
         toast.success("Kitab yadda saxlanıldı");
         setSavedBooks((prev)=>[...prev, item.book_id])
       } else {
-        toast.error(res.data.message);
+         toast.error("Tələbə kimi daxil olun");
       }
     } catch (err) {
       console.log(err);

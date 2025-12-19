@@ -7,6 +7,8 @@ import 'swiper/css/pagination';
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
 import { ArticleCard } from "../components/Articles";
+import { FaRegComments } from "react-icons/fa";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 const MainHome = () => {
     const [categories,setCategories]=useState([]);
@@ -72,10 +74,8 @@ const MainHome = () => {
                         }}
                     >
                      
-                                              {likedArticles.length === 0 ? (
-                                <p className="text-center text-xl font-bold col-span-3">Bloq tapılmadı</p>
-                              ) : (
-                                likedArticles.map((item) => (
+                                        
+                                {likedArticles.map((item) => (
                                        <SwiperSlide>
                                   <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-4xl"  >
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
@@ -84,7 +84,19 @@ const MainHome = () => {
                                         <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
                                             <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
                                                 <div className="flex items-center gap-2">
-                                                    <img src={item.profile_img || "/images/admin.png"} className="w-10 h-10 rounded-full" alt="Avatar" />
+                                                    
+                                                    <img
+  src={
+    item?.profile_img
+      ? item.profile_img.trim().startsWith("http")
+        ? item.profile_img.trim()
+        : `https://cothink.az/${item.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  className="w-10 h-10 rounded-full object-cover"
+  alt="Avatar"
+/>
+
                                                     <span className="text-white text-sm md:text-base">{item.mentor_name}</span>
                                                 </div>
                                                 <div className="flex items-center gap-2 md:ml-0">
@@ -116,7 +128,7 @@ const MainHome = () => {
                                 </a>
                             </div>
                                    </SwiperSlide>
-                                ))
+                                )
                               )}
                         <div className="swiper-pagination flex justify-center"></div>
                     </Swiper>
@@ -146,8 +158,66 @@ const MainHome = () => {
 
                     </div>
                 </div>
+ <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                {
+                    filteredDiscussions.map((item, index)=>(
+                        <div className="rounded-md shadow-gray-100 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
+                            <div className="flex gap-3 justify-end items-center text-sm pb-3">
+                                <span className="text-gray-400">
+                                    {item.mentor_name}
+                                </span>
+                                <span className="text-gray-400">
+                                    {new Date(item.created_at).toLocaleDateString()}
+                                    {/* {item.created_at} */}
+                                </span>
+                            </div>
+                            <div className="flex gap-7 md:flex-row flex-col items-center">
+                          <img
+  src={
+    item?.profile_img
+      ? item.profile_img.trim().startsWith("http")
+        ? item.profile_img.trim()
+        : `https://cothink.az/${item.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  className="rounded-full w-24 h-24 object-cover"
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+/>
+                                <div className="flex flex-col gap-3">
+                                    <h5 className="font-medium">{item.post_title}</h5>
+                                    <div className="flex gap-3"> 
+                                        <h4 className="font-bold">{item.category}</h4>  
+                                        <p className="text-gray-400">{item.subcategory}</p>
+                                         </div>
+                                    {item?.post_img && (
+  <img
+    src={
+      item.post_img.trim().startsWith("http")
+        ? item.post_img.trim()
+        : `https://cothink.az/server/uploads/posts/${item.post_img.trim()}`
+    }
+    className="rounded-md max-w-xs max-h-xs"
+    alt="Post"
+       onError={(e) => (e.target.style.display = "none")}
+  />
+)}
+                                   
+                                    <div>
+                                        <a className="rounded-xl border border-gray-300 flex w-40 gap-3 items-center px-3 py-2" href={`/questions/${item.post_id}`}>
+                                            <FaRegComments className="text-blue-500 text-xl"/>
+                                            Fikrini paylaş
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex justify-end">
+                                <button><BsThreeDotsVertical fontSize={24}/></button>
+                            </div>
+                        </div>
+                    ))
+                }          
+            </div>
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                     {
                         filteredDiscussions.map((item)=>(
   <div className="mentor-item rounded-md">
@@ -155,11 +225,22 @@ const MainHome = () => {
                             <div className="flex justify-between flex-col gap-3 md:flex-row h-full">
                                 <div className="flex flex-col h-full gap-3 justify-between">
                                     <div className="mentor-title flex gap-3  items-center">
-                                        <img src={item.profile_img || "images/admin.png"} alt="Aydan" className="w-15 h-15 object-cover rounded-full" />
+                                     <img
+  src={
+    item?.profile_img
+      ? item.profile_img.trim().startsWith("http")
+        ? item.profile_img.trim()
+        : `https://cothink.az/${item.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  alt="Aydan"
+  className="w-15 h-15 object-cover rounded-full"
+/>
+
                                        <div className="flex flex-col">
                                         <h5>{item.mentor_name}</h5>
                                         <div className="flex gap-1">
-                                        {/* <span>•</span> */}
+                                   
                                         <p>  {new Date(item.created_at).toLocaleDateString()}</p>
                                         </div>
                                         </div>
@@ -170,7 +251,9 @@ const MainHome = () => {
                                 </div>
                                 <div>
                                     {
-                                        item.post_img &&   <img src={item.post_img} className="w-full md:max-w-40  h-32 object-cover rounded-md" alt="Post"/> 
+                                        item.post_img &&   <img src={item.post_img} className="w-full md:max-w-40  h-32 object-cover rounded-md" alt="Post" 
+                                        onError={(e) => (e.target.style.display = "none")}
+                                        /> 
                                     }
                                   
                                 </div>
@@ -180,7 +263,7 @@ const MainHome = () => {
                         ))
                     }
                 
-                    </div>
+                    </div> */}
         
             </div>
         </section>

@@ -6,19 +6,42 @@ import { PiKey } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { FaRegComments } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useContext} from "react";
+import { useContext, useEffect, useState} from "react";
 import { AuthContext } from "../AuthContext";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import axios from "axios";
+import { ApiContext } from "../ApiContext";
 
 const Settings=({setActiveTab, setSettings})=>{
     const navigate=useNavigate()
     const {user}=useContext(AuthContext)
+    const {apiUrl}=useContext(ApiContext)
+    const [mentor,setMentor]=useState(null)
+    const [student, setStudent]=useState(null)
 
     const handleLogout=()=>{
       localStorage.removeItem("user")
         navigate("/")
     }
- 
+    useEffect(()=>{
+    axios
+      .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
+      .then((res) => {
+        setMentor(res.data.data);
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+        axios
+      .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
+      .then((res) => {
+        setStudent(res.data.data);
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+    },[])
+
+     const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
+   const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
     return (
         <section className="p-4">
            {
@@ -32,7 +55,11 @@ const Settings=({setActiveTab, setSettings})=>{
    <div className="flex flex-col justify-center items-center mb-4">
                 
                  <div className="profiles-img">
-                <img src={user.profile_img || "/images/admin.png"} className="rounded-full w-24 h-24"/>
+                  {
+                     user?.type==="mentor" ?  <img src={mentorImg} className="rounded-full w-24 h-24"/>
+                 :                 <img src={studentImg} className="rounded-full w-24 h-24"/>
+                  }
+
             </div>
             <h2 className="font-medium text-xl">{user?.name}</h2>
             </div>

@@ -10,6 +10,7 @@ const AddCourse = ({ setActiveTab }) => {
   const [courseLink, setCourseLink] = useState("");
   const [lessonTitle, setLessonTitle] = useState("");
   const [categories, setCategories] = useState([]);
+  const [coursePrice,setCoursePrice]=useState([])
   const [categoryId, setCategoryId] = useState("");
   const [preview, setPreview] = useState(null);
   const [error, setError] = useState("");
@@ -35,7 +36,7 @@ const AddCourse = ({ setActiveTab }) => {
   const handleCourse = async (e) => {
     e.preventDefault();
 
-    if (!courseTitle || !courseLink || !lessonTitle || !categoryId) {
+    if (!courseTitle || !courseLink || !lessonTitle  || !coursePrice  ||!categoryId) {
       setError("Bütün xanaları doldurun");
       return;
     }
@@ -53,6 +54,7 @@ const AddCourse = ({ setActiveTab }) => {
     formData.append("category_id", categoryId);
     formData.append("lesson_title", lessonTitle);
     formData.append("video_link", courseLink);
+       formData.append("course_price", coursePrice);
     // formData.append("course_img", courseImg);
     formData.append("mentor_id", mentor_id);
 
@@ -72,6 +74,7 @@ const AddCourse = ({ setActiveTab }) => {
         setCourseImg("");
         setCourseLink("")
         setLessonTitle("");
+         setCoursePrice("")
         setCategoryId("");
         setError("");
       } else {
@@ -130,6 +133,22 @@ const AddCourse = ({ setActiveTab }) => {
               placeholder="Kursun adını daxil edin"
               value={courseTitle}
               onChange={(e) => setCourseTitle(e.target.value)}
+            />
+          </div>
+           <div className="mb-4 mt-4">
+            <label
+              htmlFor="description"
+              className="block title font-semibold text-gray-900 pb-2"
+            >
+              Kursun qiyməti
+            </label>
+            <input
+              type="number"
+              max={50}
+              className="w-full form-input border border-gray-300 px-3 py-2 outline-none rounded-lg"
+              placeholder="Kursun qiymətini daxil edin"
+              value={coursePrice}
+              onChange={(e) => setCoursePrice(e.target.value)}
             />
           </div>
           <div>

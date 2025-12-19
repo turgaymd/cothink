@@ -8,11 +8,42 @@
 import { IoHomeOutline } from "react-icons/io5";
 import { SiCodementor } from "react-icons/si";
 import { RiQuestionAnswerLine, RiQuestionnaireLine } from "react-icons/ri";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthContext";
+import { CiStar } from "react-icons/ci";
+import { FaRegStar } from "react-icons/fa";
+import { PiChalkboard, PiChalkboardTeacher, PiChatDots } from "react-icons/pi";
+import axios from "axios";
+import { ApiContext } from "../ApiContext";
 
 function Sidebar({open, setOpen, setSettings, setActiveTab}){
   const {user}=useContext(AuthContext)
+    const [mentor, setMentor]=useState(null)
+    const [student, setStudent]=useState(null)
+    const {apiUrl}=useContext(ApiContext)
+
+ useEffect(()=>{
+  if(user.type==="mentor"){
+  axios
+
+      .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
+      .then((res) => {
+        setMentor(res.data.data);
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+  }
+  else{
+
+          axios
+      .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
+      .then((res) => {
+        setStudent(res.data.data);
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+  }
+    },[user])
 
   const handleSettings = () => {
     setSettings(true);
@@ -32,6 +63,8 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
     }
   };
   
+   const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
+   const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
   return (
     <div className="sidebar w-full md:p-0 px-2 ">
       <ul className="w-full flex flex-col md:gap-3 gap-5 md:pl-0 pl-7">
@@ -39,11 +72,16 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
           open && (
             <div className="md:hidden flex flex-col gap-5 transition-all duration-300 ease-in-out">
               <div className="flex justify-between mt-10 ">
-                <div className="flex gap-3">
+                <div className="flex items-center gap-3">
                   <NavLink className="profile-img rounded-full flex-shrink-0" to={"/profile"} onClick={handleNavigate}>
-                    <img src={user?.profile_img ? `${user?.profile_img}` : `/images/admin.png`} className="w-5 h-5" alt="Profile"/>
+                   
+                   {
+                    user?.type==="mentor" ? (<img src={mentorImg} className="w-5 h-5" alt="Profile"/>) : 
+               (  <img src={studentImg} className="w-5 h-5" alt="Profile"/> )
+                 }
+                    
                   </NavLink>  
-                 <div className="mt-4"> <button className="bg-gray-300  rounded-md   flex-shrink-0">
+                 <div className=""> <button className="bg-gray-300  rounded-md   flex-shrink-0">
                     <IoIosNotificationsOutline fontSize={25}/>
                   </button></div>
                 </div>
@@ -83,7 +121,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                     to="/questions" 
                     onClick={handleNavigate}
                   >
-                    <RiQuestionAnswerLine fontSize={24}/>
+                    <PiChatDots fontSize={24}/>
                     Sual-Cavab
                   </NavLink>
                 </li>
@@ -94,7 +132,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                     to="/mentors" 
                     onClick={handleNavigate}
                   >
-                    <SiCodementor fontSize={24}/>
+                    <PiChalkboardTeacher fontSize={24}/>
                     Mentorlar
                   </NavLink>
                 </li>
@@ -105,7 +143,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                     to="/rating" 
                     onClick={handleNavigate}
                   >
-                    <IoStarOutline fontSize={24}/>
+                    <FaRegStar fontSize={24}/>
                     Reytinq
                   </NavLink>
                 </li>

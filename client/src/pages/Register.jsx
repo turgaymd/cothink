@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { ApiContext } from "../ApiContext";
 import Select from "react-select";
+import { AuthContext } from "../AuthContext";
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ function Register() {
   const {apiUrl}=useContext(ApiContext)
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
-
+const {setUser}=useContext(AuthContext)
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
@@ -57,8 +58,8 @@ function Register() {
             name: username,
             email,
             password,
-            linkedinLink: linkedin,
-            category: subject, 
+            linkednLink: linkedin,
+            category:subject
           };
 
     try {
@@ -68,12 +69,23 @@ function Register() {
       );
       if(res.data.error){
         setError(res.data.error)
+        return;
       }
-      else if (res.data.success) {
+    if (res.data.success) {
         toast.success("Qeydiyyat uğurla tamamlandı");
-        localStorage.setItem("user", JSON.stringify(res.data));
-        setTimeout(() => navigate("/home"), 1500);
-      }
+      
+        const userInfo = {
+          type: res.data.type,          
+          id: res.data.student_id || res.data.mentor_id,
+          email: res.data.email,
+          name:res.data.name,
+          token: res.data.token,
+        };
+        setUser(userInfo)
+        localStorage.setItem("user", JSON.stringify(userInfo));
+          setTimeout(() => navigate("/home"), 1500);
+      
+    }
 
     } catch (err) {
       const msg = err.response?.data?.error || "Xəta baş verdi";

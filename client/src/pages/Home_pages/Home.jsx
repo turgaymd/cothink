@@ -49,31 +49,31 @@ const Home = () => {
 
   return (
     <>
-      <div className="about-us">
-        <div className="flex flex-col  h-full"> 
-        <div className="partners grid md:grid-cols-6 grid-cols-2  gap-3">
-             <a className="">
+   <div className="about-us p-3 md:min-h-[600px] ">
+        <div className="flex flex-col md:h-full"> 
+        <div className="partners flex md:grid md:grid-cols-6 grid-cols-2  gap-3">
+             <a className="scale-160 md:scale-100 md:scale-100">
   <img src="/images/rəqəmsalw.png"/>
           </a>
-             <a className="">
+             <a className="scale-160 md:scale-100">
   <img src="/images/digitalw.png"/>
           </a>
-             <a className="">
+             <a className="scale-160 md:scale-100">
   <img src="/images/bmuw.png"/>
           </a>
             
-               <a className="">
+               <a className="scale-160 md:scale-100">
   <img src="/images/beuw.png"/>
           </a>
-              <a className="">
+              <a className="scale-160 md:scale-100">
   <img src="/images/assipw.png"/>
           </a>
-              <a className="">
+              <a className="scale-160 md:scale-100">
   <img src="/images/yenifikir.png"/>
           </a>
         </div>
-<div className="text-center pb-4 md:mt-40 m-5 p-5">
-   <p className="text-white  text-3xl text-center">CoThink startapı ASSİP2 Hakatonunun iştirakçısı olmuş və inkubasiya <br /> mərhələsinə seçilmişdir </p>
+<div className="text-center pb-4 md:mt-40 mt-18 md:m-5  md:p-5 ">
+   <p className="text-white text-[15px] md:text-4xl text-center">CoThink startapı ASSİP2 Hakatonunun iştirakçısı olmuş və inkubasiya <br className="hidden md:block" /> mərhələsinə seçilmişdir </p>
      </div>
      
      </div>
@@ -95,7 +95,7 @@ const Home = () => {
                     >
                          
                                        <SwiperSlide>
-                                        <div className="partners justify-center grid md:grid-cols-4 grid-cols-2  gap-3">
+                                        <div className="partners  justify-center grid md:grid-cols-4 grid-cols-2  gap-3">
                           
              <a className="">
   <img src="/images/beu_white.png"/>
@@ -115,7 +115,7 @@ const Home = () => {
           </div>
             </SwiperSlide>
           <SwiperSlide>
-             <div className="partners justify-center grid md:grid-cols-4 grid-cols-2  gap-3">
+             <div className="partners justify-center  grid md:grid-cols-4 grid-cols-2  gap-3">
               <a className="">
   <img src="/images/eland.png"/>
           </a>

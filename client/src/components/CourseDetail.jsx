@@ -91,7 +91,7 @@ const handleSave=async(item)=>{
         toast.success("Kurs yadda saxlanıldı");
         setSavedCourses((prev)=>[...prev, item.course_id])
       } else {
-        toast.error(res.data.message);
+          toast.error("Tələbə kimi daxil olun");
       }
     } catch (err) {
       console.log(err);
@@ -174,7 +174,18 @@ const handleSave=async(item)=>{
         </div>
         <div className="flex md:flex-row flex-col gap-3 justify-between mt-5 mb-5 w-full">
             <div className="flex gap-3">
-            <img src={course?.profile_img || "/images/admin.png"} className="object-cover w-10 h-10 rounded-full"/>
+ <img
+  src={
+    course?.profile_img
+      ? course.profile_img.trim().startsWith("http")
+        ? course.profile_img.trim()
+        : `https://cothink.az/${course.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  className="object-cover w-10 h-10 rounded-full"
+  alt="course"
+/>
+
             <div className="flex flex-col">
                 <h4 className="font-medium">{course?.mentor_name}</h4>
                 <p className="text-gray-400">Abunəçilər 11.2k</p>

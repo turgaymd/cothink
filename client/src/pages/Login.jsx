@@ -40,7 +40,6 @@ function Login() {
           email: res.data.email,
           name:res.data.name,
           token: res.data.token,
-          profile_img:res?.data?.profile_img || "/images/admin.png"
         };
           setUser(userInfo)
         localStorage.setItem("user", JSON.stringify(userInfo));

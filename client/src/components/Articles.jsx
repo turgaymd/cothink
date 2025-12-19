@@ -11,7 +11,16 @@ export const ArticleCard=({item})=>{
                     <div className="article-content flex justify-between flex-col gap-2 border-b-gray-500">
                         <div className="article-header flex justify-between md:flex-row flex-col gap-2">
                             <div className="article-author flex items-center gap-2">
-                                <img src={item.profile_img || "/images/admin.png"}/>
+                              <img
+  src={
+    item?.profile_img
+      ? item.profile_img.trim().startsWith("http")
+        ? item.profile_img.trim()
+        : `https://cothink.az/${item.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+/>
+
                                 <span>{item.mentor_name}</span>
                                 <span>•</span>
                                 <span> {item.created_at}</span>

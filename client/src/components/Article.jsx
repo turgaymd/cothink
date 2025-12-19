@@ -101,7 +101,7 @@ const handleSave=async(item)=>{
         toast.success("Məqalə yadda saxlanıldı");
         setSavedArticles((prev)=>[...prev, item.article_id])
       } else {
-        toast.error(res.data.message);
+        toast.error("Tələbə kimi daxil olun");
       }
     } catch (err) {
       console.log(err);
@@ -144,9 +144,17 @@ const handleSave=async(item)=>{
         <div className="flex flex-col md:flex-row gap-3 justify-between mb-4 mt-4">
           <div className="flex md:flex-row gap-3">
             <img
-              src={`${article.profile_img} || "/images/admin.png"`} 
-              className="object-cover w-20 h-20 rounded-full"
-            />
+  src={
+    article?.profile_img
+      ? article.profile_img.trim().startsWith("http")
+        ? article.profile_img.trim()
+        : `https://cothink.az/${article.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  className="object-cover w-20 h-20 rounded-full"
+  alt="Article Author"
+/>
+
             <div className="flex flex-col gap-2">
               <h4>{article.mentor_name}</h4>
               <button className="bg-blue-800 text-white px-3 py-2 rounded-full flex gap-1">
@@ -193,15 +201,10 @@ const handleSave=async(item)=>{
         </div>
 
         <div className="pt-3 mt-3">
-          {article.article_img ? (
-            <img
-              src={`/${article.article_img}`}
-              className="rounded-md mb-3"
-              alt={article.article_title}
-            /> 
-          )  : <img src="/images/article.jpg" className="h-84 w-full rounded-md"/>
+    
+            <img src="/images/article.jpg" className="h-84 w-full rounded-md"/>
         
-        }
+        
           <h4 className="font-bold pt-4 text-xl">{article.article_desc}</h4>
           <p className="pt-4">{article.article_topic}</p>
         </div>
@@ -225,8 +228,7 @@ const handleSave=async(item)=>{
                             {error && (
                 <p className="text-center text-red-600 bg-red-50 rounded-md p-2 font-bold text-lg mb-3">
                   {error}
-                </p>
-          
+                </p>          
                             )}
   <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
 

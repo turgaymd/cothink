@@ -121,14 +121,37 @@ const Questions=()=>{
                                     {/* {item.created_at} */}
                                 </span>
                             </div>
-                            <div className="flex gap-7 md:flex-row flex-col items-center">
-                                <img src={item.profile_img || "/images/admin.png"} className="rounded-full w-24 h-24"/>
+                            <div className="flex gap-7 md:flex-row flex-col">
+                          <img
+  src={
+    item?.profile_img
+      ? item.profile_img.trim().startsWith("http")
+        ? item.profile_img.trim()
+        : `https://cothink.az/${item.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  className="rounded-full w-24 h-24 object-cover"
+
+/>
                                 <div className="flex flex-col gap-3">
                                     <h5 className="font-medium">{item.post_title}</h5>
                                     <div className="flex gap-3"> 
                                         <h4 className="font-bold">{item.category}</h4>  
                                         <p className="text-gray-400">{item.subcategory}</p>
-                                    </div>
+                                         </div>
+                                    {item?.post_img && (
+  <img
+    src={
+      item.post_img.trim().startsWith("http")
+        ? item.post_img.trim()
+        : `https://cothink.az/server/uploads/posts/${item.post_img.trim()}`
+    }
+    className="rounded-md max-w-xs max-h-xs"
+    alt="Post"
+       onError={(e) => (e.target.style.display = "none")}
+  />
+)}
+                                   
                                     <div>
                                         <a className="rounded-xl border border-gray-300 flex w-40 gap-3 items-center px-3 py-2" href={`/questions/${item.post_id}`}>
                                             <FaRegComments className="text-blue-500 text-xl"/>

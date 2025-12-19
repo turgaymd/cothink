@@ -3,6 +3,8 @@ import {useState } from "react";
 import { WhatsappShareButton } from "react-share";
 
 export const PostCard=({item})=>{
+  const postImg=item?.post_img?.startsWith("http") ? item?.post_img : `https://cothink.az/server/uploads/posts/${item?.post_img}`
+
     return(
       <a href={`/questions/${item.post_id}`}>
  
@@ -20,7 +22,7 @@ export const PostCard=({item})=>{
                 <h4 className="font-bold text-2xl">{item.post_title}</h4>
                 <p className="text-gray-500">{item.post_desc}</p>
                 {
-                  item.post_img &&  <img src={`https://cothink.az/server/uploads/posts/${item.post_img}`} className="w-full h-64 rounded-md"/>
+                  item.post_img &&  <img src={postImg} className="w-full h-64 rounded-md"/>
                 }
           
             <div className="post-reactions flex gap-5">

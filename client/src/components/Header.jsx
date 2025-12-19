@@ -4,12 +4,17 @@ import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../AuthContext";
+import axios from "axios";
+import { ApiContext } from "../ApiContext";
 
 function Header({open, setOpen, setSettings}){
     const [search, setSearch] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [mentor, setMentor]=useState(null)
+    const [student, setStudent]=useState(null)
     const {user} = useContext(AuthContext);
-    
+    const {apiUrl}=useContext(ApiContext)
+
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768);
@@ -19,6 +24,24 @@ function Header({open, setOpen, setSettings}){
         return () => window.removeEventListener('resize', handleResize);
     }, []);
     
+    useEffect(()=>{
+    axios
+      .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
+      .then((res) => {
+        setMentor(res.data.data);
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+          axios
+      .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
+      .then((res) => {
+        setStudent(res.data.data);
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+    },[])
+   const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
+   const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
     return(
       <header className="w-full top-0 z-50 navbar items-center">
         <div className="flex justify-between items-center">
@@ -86,7 +109,15 @@ function Header({open, setOpen, setSettings}){
               <IoIosNotificationsOutline className="text-2xl"/>
             </button>
             <Link className="profile-img rounded-full pl-2" to="/profile" onClick={() => setSettings(false)}>
-              <img src={user?.profile_img ? `${user.profile_img}` : `/images/admin.png`} className="w-10 h-10" alt="Profile"/>
+          
+          
+            {
+              user.type==="mentor" ?  (<img src={mentorImg} className="w-10 h-10" alt="Profile"/>) : 
+            
+             (  <img src={studentImg} className="w-10 h-10" alt="Profile"/>)
+            }
+            
+           
             </Link>            
           </div>
         </div>

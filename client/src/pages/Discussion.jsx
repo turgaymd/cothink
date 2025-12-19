@@ -104,7 +104,7 @@ const handleSave=async(item)=>{
         toast.success("Post yadda saxlanıldı");
         setSavedPosts((prev)=>[...prev, item.post_id])
       } else {
-        toast.error(res.data.message);
+        toast.error("Tələbə kimi daxil olun");
       }
     } catch (err) {
       console.log(err);
@@ -156,8 +156,6 @@ const handleSave=async(item)=>{
           toast.success("Rəy paylaşıldı")
           fetchComments()
   }
-                
-              
   }
     return(
         <>
@@ -168,7 +166,17 @@ const handleSave=async(item)=>{
     <div className="discussion-item">
         <div className="post-header flex gap-3 justify-between items-center">
             <div className="flex post-img items-center">
-  <img className="rounded avatar" src={post?.profile_img || "/images/admin.png"}></img>
+<img
+  className="rounded avatar"
+  src={
+    post?.profile_img
+      ? post.profile_img.trim().startsWith("http")
+        ? post.profile_img.trim()
+        : `https://cothink.az/${post.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  alt="Post Author"
+/>
            <div className="pl-3">
            <h4 className="font-semibold">{post?.mentor_name}</h4>
             <p className="text-gray-400">{post?.mentor_position}</p>
@@ -180,7 +188,19 @@ const handleSave=async(item)=>{
 <p>{post?.post_desc} </p>
         </div>
         <div className="post-image pt-5">
-<img  src={post?.post_img} className="rounded-md"/>
+<img
+  src={
+    post?.post_img
+      ? post.post_img.trim().startsWith("http")
+        ? post.post_img.trim()
+        : `https://cothink.az/server/uploads/posts/${post.post_img.trim()}`
+      : "/images/admin.png"
+  }
+  className="rounded-md"
+  alt="Post"
+   onError={(e) => (e.target.style.display = "none")}
+/>
+
         </div>
         <div className="post-reactions flex justify-end gap-5 pt-3">
             <div className="like-count flex items-center gap-2">
@@ -217,7 +237,7 @@ const handleSave=async(item)=>{
   <input type="text" className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md" placeholder="Fikirlərinizi yazın…" onChange={(e)=>setComment(e.target.value)}/>
       
                         </form>
-{/* <div className="comments">
+<div className="comments">
                  <h4 className="mb-3 mt-3 font-bold">Rəylər</h4>
               {  comments.map((comment)=>{
                 return(
@@ -245,7 +265,7 @@ const handleSave=async(item)=>{
             })
         }     
     
-</div> */}
+</div>
          
         </section>
       </>

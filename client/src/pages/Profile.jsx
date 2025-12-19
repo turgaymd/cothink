@@ -21,7 +21,7 @@ const Profile = () => {
   const [studentPosts, setStudentPosts]=useState([]);
   const [postComments, setPostComments]=useState([])
   const [mentor, setMentor]=useState(null) 
-  
+  const [student, setStudent]=useState(null)
 
 useEffect(() => {
   if (user?.type === "mentor") {
@@ -52,24 +52,39 @@ useEffect(() => {
 //  console.log(res.data)
     })
     .catch(() => setPostComments([]));
+      axios
+      .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
+      .then((res) => {
+        setStudent(res.data.data);
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err));
+    
  }
+ 
 
 
 }, []);
-
+console.log(user.type)
 //  if(studentPosts.length===0){
 //   return <Loading/>
 //  }
-
+const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
+const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
   return (
     <section>
       <div className="flex md:flex-row flex-col gap-5 justify-between">
         <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
-            <img
-              src={user.profile_img || "/images/admin.png"}
+            {user?.type==="mentor" ? (<img
+              src={mentorImg}
+              className="rounded-full h-24 w-24 object-cover"
+            />) : (
+               <img 
+              src={studentImg}
               className="rounded-full h-24 w-24 object-cover"
             />
+            )}
           </div>
           <div className="flex flex-col gap-3 justify-center">
             <h4 className="font-bold text-xl text-center md:text-left">{user?.name}</h4>
@@ -107,7 +122,7 @@ useEffect(() => {
         user.type==="mentor" ? <>
            <div className="switch-toogle flex justify-center items-center mb-5 max-w-3xl w-full bg-white border border-gray-200">
           <button
-            className={`md:rounded-full rounded-md  w-full ${
+            className={` whitespace-nowrap md:rounded-full rounded-md  w-full ${
               activeTab === "courses" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("courses")}
@@ -115,7 +130,7 @@ useEffect(() => {
             Kurslar
           </button> 
           <button
-            className={` md:rounded-full rounded-md  w-full ${
+            className={` whitespace-nowrap md:rounded-full rounded-md  w-full ${
               activeTab === "mentorPosts" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("mentorPosts")}
@@ -123,7 +138,7 @@ useEffect(() => {
             Postlar
           </button>
           <button
-            className={`md:rounded-full rounded-md  w-full ${
+            className={` whitespace-nowrap md:rounded-full rounded-md  w-full ${
               activeTab === "articles" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("articles")}
@@ -135,7 +150,7 @@ useEffect(() => {
 
             <div className="switch-toogle flex justify-center items-center mb-5  md:rounded-full rounded-md max-w-3xl w-full bg-white border border-gray-200">
           <button
-            className={`md:rounded-full rounded-md w-full ${
+            className={` whitespace-nowrap md:rounded-full rounded-md w-full ${
               activeTab === "studentPosts" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("studentPosts")}
@@ -143,7 +158,7 @@ useEffect(() => {
           Paylaşılan suallar
           </button>
           <button
-            className={` md:rounded-full rounded-md w-full ${
+            className={` whitespace-nowrap md:rounded-full rounded-md w-full ${
               activeTab === "postComments" ? "bg-blue-800 text-white" : ""
             }`}
             onClick={() => setActiveTab("postComments")}

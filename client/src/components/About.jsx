@@ -74,7 +74,6 @@ try{
         email:email,
         profile_img: res.data.image ? `https://cothink.az${res.data.image}` : prev.profile_img
       }))
-      console.log(user)
        toast.success("Profil uğurla yeniləndi")
     }
     if(res.data.status==="error"){
@@ -90,8 +89,8 @@ catch(err){
 
     return(
         <section>
-          <div className="back md:hidden flex">
-            <button onClick={()=>setActiveTab("")}><MdOutlineArrowBackIosNew fontSize={24}/></button>
+          <div className="back md:hidden flex" onClick={()=>setActiveTab("")}>
+            <button ><MdOutlineArrowBackIosNew fontSize={24}/></button>
           </div>
           <h2 className="font-bold text-2xl text-center mb-3">Haqqımda</h2>
  <div className="flex justify-center md:p-5 p-0">

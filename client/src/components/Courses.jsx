@@ -9,13 +9,15 @@ import Select from "react-select"
 import { PiX } from "react-icons/pi";
 export const CourseCard=({item})=>{
 
+  const courseImg=item?.course_img?.startsWith("http") ? item?.course_img : `https://cothink.az/server/${item?.course_img}`
+
   return(
   <div className="course-item shadow-lg rounded-2xl">
                         <article>
             <a href={`/courses/${item?.course_id}`}>
-              <img src={`${item?.course_img?.trim()}`}></img>
+              <img src={courseImg}/>
             </a>
-            </article>
+            </article> 
             <div className="course-category mt-3 text-blue-600">{item?.category}</div>
             <div className="course-title mb-3 mt-3 flex justify-between items-center">
               <h4 className="font-bold text-2xl">
@@ -32,7 +34,18 @@ export const CourseCard=({item})=>{
             <div className="flex justify-between pb-3 mt-4 flex-col md:flex-row gap-2">
               <div className="flex gap-5 items-center">
                 <div>
-                <img src={`${item?.profile_img}`} className="w-15 h-15 rounded-full object-cover"/>
+            <img
+  src={
+    item?.profile_img
+      ? item.profile_img.trim().startsWith("http")
+        ? item.profile_img.trim()
+        : `https://cothink.az/${item.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  className="w-15 h-15 rounded-full object-cover"
+  alt="profile"
+/>
+
                 </div>
                 <div className="flex flex-col">
                   <h4 className="font-bold">{item?.mentor_name}</h4>
@@ -55,9 +68,7 @@ const Courses = () => {
     const [query ,setQuery]=useState("")
     const {apiUrl}=useContext(ApiContext)
     
-      const handleSelect = (value) => {
-    setSelectedCategory(value);
-  };
+  
 
    useEffect(()=>{
         axios.get(`${apiUrl}/server/courses/courseRead.php`).then(res=>{
@@ -77,6 +88,9 @@ const Courses = () => {
         return searchedQuery && matchedCategories
        }
     )
+     const handleSelect = (selectedCategory) => {
+    setSelectedCategory(selectedCategory.value);
+  };
   return (
     <>
       <section>
@@ -86,7 +100,7 @@ const Courses = () => {
                     <button className="active rounded-full md:w-64 w-full text-center" onClick={()=>setSelectedCategory(null)}>Hamısı</button>
                     <div className="relative md:w-64 w-full">
 <div className="relative w-full">
-  <select
+  {/* <select
     value={selectedCategory || ""}
     onChange={(e) => handleSelect(e.target.value)}
     className={`rounded-full px-5 py-2 bg-blue-800 w-full appearance-none shadow-md text-white outline-none 
@@ -107,11 +121,43 @@ const Courses = () => {
         {item.category}
       </option>
     ))}
-  </select>
+  </select> */}
+ <Select className=" w-full outline-none"
+              options={categories.map((item) => ({
+                value: item.category,
+                label: item.category,
+              }))}
+              onChange={handleSelect}
+              placeholder="Kategoriya seçin"
+              styles={{
+                control:(base, state)=>({
+                    ...base,
+                    boxShadow:"none",
+                    borderRadius:"9999px",
+                    backgroundColor:"#1e40af",
+                    color:"white !important",
+                    borderColor:"gray",
+                    padding:"0.25rem 1rem",
+                }),
+                placeholder: (base) => ({
+      ...base,
+        textAlign:"center",
+      color: "white",
+    }),
+      singleValue: (base) => ({
+      ...base,
+        textAlign:"center",
+      color: "white",
+    }),
+     dropdownIndicator: (base) => ({
+      ...base,
+      color: "white",
+    }),
+              }}
+              
+            />
+            
 
-  <div className="pointer-events-none absolute text-white right-5 inset-y-0 flex justify-center items-center">
-    ▼
-  </div>
 </div>
 
           </div>
