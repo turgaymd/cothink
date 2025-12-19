@@ -29,6 +29,8 @@ const Rating=()=>{
        <div className="relative flex flex-col items-center">
         
         <img src="/images/winner_cap.svg" className="absolute  right-4 md:right-7 -top-13"/>
+
+
          <img src="/images/həcər.jpg" className="md:w-28 md:h-28 w-24 h-24 rounded-full border-[5px] border-amber-300 object-cover"/>
 <div className="absolute -bottom-3 bg-amber-300 rounded-full px-3 py-1.5 text-white whitespace-nowrap">
    <div className="flex flex-col items-center text-black">

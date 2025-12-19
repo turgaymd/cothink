@@ -78,7 +78,7 @@ section{
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-    transform: translateY(-50%) scale(1.2);  /* translateY əlavə olundu */
+    transform: translateY(-50%) scale(1.2);
 }
 
 .sidebar ul li a.active{
@@ -161,7 +161,7 @@ section{
 
 }
 .article-item{
-  background-image: url("../public/images/article_bg.svg");;
+  background-image: url("../public/images/article_bg.svg");
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 16px;
@@ -321,79 +321,47 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
 .sidebar a.active {
   color: white;
 }
-  @media (min-width: 1200px) {
-                    .swiper-button-prev,
-                    .swiper-button-next {
-                        display: flex;
-                        width: 34px;
-                        height: 34px;
-                    }
-                    
-                    .swiper-button-prev {
-                        left: -50px;
-                    }
-                    
-                    .swiper-button-next {
-                        right: -50px;
-                    }
-                }
-                                  .swiper-button-prev,
-                .swiper-button-next {
-                    background: transparent;
-                    width: 34px;
-                    height: 34px;
-                    color: black !important;
-                    border: none;
-                    outline: none;
-                    transition: all 0.3s ease;
-                    top: 50% !important;
-                    transform: translateY(-50%) !important;
-                }
-                .swiper-button-prev {
-                    left: -50px;
-                }
-                
-                .swiper-button-next {
-                    right: -50px;
-                }
-                
-                .swiper-button-prev:after,
-                .swiper-button-next:after {
-                    font-size: 28px;
-                    font-weight: normal;
-                }
-                
-                .swiper-button-prev:hover,
-                .swiper-button-next:hover {
-                    transform: scale(1.2);
-                }
-                
-                .swiper-button-prev:focus,
-                .swiper-button-next:focus {
-                    outline: none;
-                }
-                
-                .swiper-pagination-bullet {
-                    background: white;
-                    opacity: 0.5;
-                    background: #3B82F6;
-                    opacity: 0.3;
-                    width: 10px;
-                    height: 10px;
-                    margin: 0 6px !important;
-                }
-                    .swiper-pagination {
-                    position: relative !important;
-                    margin-top: 0.2rem !important;
-                    bottom: 0 !important;
-                }
-                                
-                                .swiper-pagination-bullet-active {
-                  background: #3B82F6;
-                    opacity: 1; 
-                                }
 
-     .swiper-button-prev,
+/* ===== SLIDER RESPONSIVE STYLES ===== */
+
+/* Slider container */
+.swiper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Slide item - responsive hündürlük */
+.article-item {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .article-item {
+        min-height: 280px;
+    }
+}
+
+/* Slider oxları - yalnız 1300px-dən yuxarı */
+@media (min-width: 1300px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: flex !important;
+    }
+}
+
+/* 1300px-dən aşağı ekranlarda oxları gizlət */
+@media (max-width: 1299px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none !important;
+    }
+}
+
+/* Slider oxlarının stilləri */
+.swiper-button-prev,
 .swiper-button-next {
     background: transparent;
     width: 34px;
@@ -405,59 +373,62 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
     top: 50% !important;
     transform: translateY(-50%) !important;
 }
-                .swiper-button-prev {
-                    left: -50px;
-                }
-                
-                .swiper-button-next {
-                    right: -50px;
-                }
-                
-                .swiper-button-prev:after,
-                .swiper-button-next:after {
-                    font-size: 28px;
-                    font-weight: normal;
-                }
-                
-                .swiper-button-prev:hover,
-                .swiper-button-next:hover {
-                    transform: scale(1.2);
-                }
-                
-                .swiper-button-prev:focus,
-                .swiper-button-next:focus {
-                    outline: none;
-                }
-                
-                .swiper-pagination-bullet {
-                    background: white;
-                    opacity: 0.5;
-                 background: #3B82F6;
+
+.swiper-button-prev {
+    left: -40px;
+}
+
+.swiper-button-next {
+    right: -40px;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    transform: translateY(-50%) scale(1.2) !important;
+}
+
+.swiper-button-prev:focus,
+.swiper-button-next:focus {
+    outline: none;
+}
+
+/* Pagination */
+.swiper-pagination {
+    position: relative !important;
+    margin-top: 1.5rem !important;
+    bottom: 0 !important;
+}
+
+.swiper-pagination-bullet {
+    background: #3B82F6;
     opacity: 0.3;
     width: 10px;
     height: 10px;
     margin: 0 6px !important;
 }
-    .swiper-pagination {
-    position: relative !important;
-    margin-top: 0.2rem !important;
-    bottom: 0 !important;
-}
-                
-                .swiper-pagination-bullet-active {
-   background: #3B82F6;
-    opacity: 1;                }
 
-    .no-scrollbar::-webkit-scrollbar {
+.swiper-pagination-bullet-active {
+    background: #3B82F6;
+    opacity: 1;
+}
+
+/* ===== END SLIDER STYLES ===== */
+
+.no-scrollbar::-webkit-scrollbar {
   display: none !important;
 }
 .no-scrollbar {
-  -ms-overflow-style: none !important;  /* IE/Edge */
-  scrollbar-width: none !important;     /* Firefox */
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
 }
 .about-us{
   background-image: url(../public/images/about.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  /* background-repeat: no-repeat; */
 }
