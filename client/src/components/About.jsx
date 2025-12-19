@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AuthContext } from "../AuthContext";
@@ -10,7 +10,7 @@ import { ApiContext } from "../ApiContext";
 const About=({ setActiveTab})=>{
   const {user,setUser}=useContext(AuthContext)
   const [name, setName]=useState("")
-  const [lastName, setLastName]=useState("")
+  const [lastName, setLastName]=useState(" ")
   const [email, setEmail]=useState("")
   const [phone, setPhone]=useState("+994  ")
   const [error, setError] = useState("");
@@ -88,6 +88,8 @@ catch(err){
 
 
     return(
+      <>
+      <ToastContainer/>
         <section>
           <div className="back md:hidden flex" onClick={()=>setActiveTab("")}>
             <button ><MdOutlineArrowBackIosNew fontSize={24}/></button>
@@ -116,6 +118,7 @@ catch(err){
                   type= "text"
                   id="name"
                   placeholder={name}
+                   disabled={!edit ? true : false}
                   onChange={(e)=>setName(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                   required
@@ -134,6 +137,7 @@ catch(err){
                   type="text" 
                   id="lastName"
                   placeholder={lastName}
+                   disabled={!edit ? true : false}
                   onChange={(e)=>setLastName(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                 ></input>
@@ -151,6 +155,7 @@ catch(err){
                   type= "text" 
                   id="email"
                   placeholder={email}
+                  disabled={!edit ? true : false}
                   onChange={(e)=>setEmail(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
   
@@ -168,6 +173,7 @@ catch(err){
                 <input
                   type= "text" 
                   id="phone"
+                   disabled={!edit ? true : false}
                   placeholder={phone}
                   onChange={(e)=>setPhone(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
@@ -200,6 +206,7 @@ catch(err){
 
 
         </section>
+        </>
     )
 }
 export default About;
