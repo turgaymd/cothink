@@ -11,7 +11,6 @@ const EditProfile = () => {
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
   const [phone, setPhone] = useState("+994");
-  // const [gender, setGender] = useState("Kişi");
   const [password, setPassword] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [profileImg, setProfileImg]=useState("")
@@ -28,7 +27,6 @@ axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
   
     setName(data.mentor_name || "")
     setEmail(data.mentor_email || "")
-    setPassword(data.mentor_password || "")
     setUsername(data.mentor_username || "")
     setAbout(data.description || "")
     setLinkedin(data.linkedn_link || "")
@@ -42,7 +40,6 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
         console.log(data)
     setName(data.student_name || "")
     setEmail(data.student_email || "")
-    setPassword(data.student_password || "")
     setUsername(data.student_username || "")
     setAbout(data.description || "")
     setLinkedin(data.linkedn_link || "")
@@ -78,9 +75,6 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
     formData.append("mentor_email", email);
     formData.append("description", about);
     formData.append("linkedn_link", linkedin);
-    if(password.trim()){
-    formData.append("mentor_password", password);
-    }
   }
    if(user.type==="student"){
          if(!name ||  !username || !email ){
@@ -92,9 +86,6 @@ axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
     formData.append("student_username", username);
     formData.append("student_email", email);
     formData.append("description", about);
-    if(password.trim()){
-    formData.append("student_password", password);
-    }
     formData.append("linkedn_link", linkedin);
   }
  

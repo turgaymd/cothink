@@ -118,10 +118,12 @@ const handleSave=async(item)=>{
         },
         { headers: { "Content-Type": "application/json" } }
       );
-      console.log(res.data)
-      if (res.data.status === "success") {
-        console.log(res.data)
-        setArticle((prev)=>({...prev, likes:prev.likes+1}))
+    if (res.data.status === "liked") {
+             setArticle((prev)=>({...prev, likes:prev.likes+1}))
+        setLiked(true)
+      }
+     else if(res.data.status === "exists"){
+        toast.info("Artiq bəyənmisiniz")
    
       } else {
         toast.error(res.data.message);
@@ -221,8 +223,8 @@ const handleSave=async(item)=>{
 </div>
         <div className="comments ">
           <div className="flex gap-3 md:flex-row flex-col  items-center border-t border-t-gray-300 pt-3">
-     <img src="/images/admin.png" className="w-25 h-25" alt="avatar" /> 
-     <h4 className="font-bold text-xl">{user?.name}</h4>
+     {/* <img src="/images/admin.png" className="w-25 h-25" alt="avatar" /> 
+     <h4 className="font-bold text-xl">{user?.name}</h4> */}
           </div>
             <form onSubmit={handleComments}>
                             {error && (
@@ -248,20 +250,39 @@ const handleSave=async(item)=>{
               comments.length>0 ? (
                 comments.map((comment)=>{
                 return(
-              <div className="comment-item mt-4 mb-4" key={comment?.comment_id} >
-                    <div className="comment-header flex md:flex-row flex-col items-center ">
-            <img  className="rounded-md w-30 h-30" src={comment?.profile_img || "/images/admin.png"}></img>
+                  <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
+                    <div className="comment-header flex items-start">
+         <div className="w-16 h-16 shrink-0">
+           <img
+  className="rounded-full w-full h-full object-cover "
+  src={
+    comment?.profile_img
+      ? comment.profile_img.trim().startsWith("http")
+        ? comment.profile_img.trim()
+        : `https://cothink.az/${comment.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  alt="Profile"
+/>
+         </div>
+        
+
+
             <div className="pl-4">
-           <h4 className="font-semibold">{comment?.mentor_name}</h4>
-            <p className="text-gray-500">{comment?.mentor_position}</p>
-            <p className="mt-3 text-black">{comment?.comment_text}</p>
+           <h4 className="font-semibold">{comment.student_name}</h4>
+            <p className="text-gray-500">{comment.mentor_position}</p>
+            <p className="mt-3 text-black">{comment.comment_text}</p>
             </div>
                     </div> 
                         <div className="flex justify-end gap-5 comment-reactions pt-3">
-            <div className="like-count flex items-center gap-2"><img src="/images/like.svg"></img>{comment?.likes}</div>
+            <div className="like-count flex items-center gap-2">
+              
+              
+              <img src="/images/like.svg"></img>{comment?.likes}</div>
             <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments}</div>
     </div>
                     </div>
+           
                 )
               }
             ))

@@ -50,11 +50,12 @@ const Book = () => {
         },
         { headers: { "Content-Type": "application/json" } }
       );
-      console.log(res.data)
-      if (res.data.status === "success") {
-        console.log(res.data)
-        setBook((prev)=>({...prev, likes:prev.likes+1}))
-   
+      if (res.data.status === "liked") {
+             setBook((prev)=>({...prev, likes:prev.likes+1}))
+        setLiked(true)
+      }
+     else if(res.data.status === "exists"){
+        toast.info("Artiq bəyənmisiniz")
       } else {
         toast.error(res.data.message);
       }

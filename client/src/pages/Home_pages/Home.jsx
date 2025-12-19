@@ -8,10 +8,15 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { FiMinus } from "react-icons/fi";
+import Faqs from "./FAQ";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+
+
 
   const logos = [
     "/images/Group 7.svg",
@@ -52,23 +57,23 @@ const Home = () => {
    <div className="about-us p-3 md:min-h-[600px] ">
         <div className="flex flex-col md:h-full"> 
         <div className="partners flex md:grid md:grid-cols-6 grid-cols-2  gap-3">
-             <a className="scale-160 md:scale-100 md:scale-100">
+             <a className="scale-160 md:scale-100 md:scale-100" href="https://idda.az/az" target="_blank">
   <img src="/images/rəqəmsalw.png"/>
           </a>
-             <a className="scale-160 md:scale-100">
+             <a className="scale-160 md:scale-100" href="https://idda.az/az" target="_blank">
   <img src="/images/digitalw.png"/>
           </a>
-             <a className="scale-160 md:scale-100">
+             <a className="scale-160 md:scale-100" href="https://beu.edu.az/en" target="_blank">
   <img src="/images/bmuw.png"/>
           </a>
             
-               <a className="scale-160 md:scale-100">
+               <a className="scale-160 md:scale-100" href="https://beu.edu.az/en" target="_blank">
   <img src="/images/beuw.png"/>
           </a>
               <a className="scale-160 md:scale-100">
   <img src="/images/assipw.png"/>
           </a>
-              <a className="scale-160 md:scale-100">
+              <a className="scale-160 md:scale-100" href="https://yenifikir.az/" target="_blank">
   <img src="/images/yenifikir.png"/>
           </a>
         </div>
@@ -101,15 +106,15 @@ const Home = () => {
   <img src="/images/beu_white.png"/>
           </a>
 
-             <a className="">
-  <img src="/images/yenifikir_white.png"/>
+             <a className="" href="https://yenifikir.az/" target="_blank">
+  <img src="/images/yenifikir_white.png" />
           </a>
-               <a className="">
+               <a className="" href="https://abbtech.az/" target="_blank" >
   <img src="/images/abb.png"/>
           </a>
 
          
-              <a className="">
+              <a className="" href="https://hedef.edu.az/" target="_blank">
   <img src="/images/hedef.png"/>
           </a>
           </div>
@@ -124,11 +129,11 @@ const Home = () => {
           </a>
           
                  <a className="">
-  <img src="/images/beu_white.png"/>
+  <img src="/images/beu_white.png" href="https://beu.edu.az/en" target="_blank"/>
           </a>
           
                  <a className="">
-  <img src="/images/yenifikir_white.png"/>
+  <img src="/images/yenifikir_white.png" href="https://yenifikir.az/" target="_blank"/>
           </a>
           </div>
                    </SwiperSlide>               
@@ -353,40 +358,7 @@ const Home = () => {
         </div>
       </div>
 
-      <section className="max-w-[80vw] m-auto mt-10 mb-10">
-        <div>
-          <h2 className="font-bold text-2xl text-center pb-12 mt-5">Tez-tez Soruşulan Suallar</h2>
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-3">
-            <div className="border border-gray-200 px-5 py-2 rounded-md">
-              <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
-                <h6 className="font-medium">CoThink-də dərsləri necə tapa bilərəm?</h6>
-                <IoMdAdd fontSize={24}/>
-              </div>
-              <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
-                <h6 className="font-medium">Məzmunu kim hazırlayır?</h6>
-                <IoMdAdd fontSize={24}/>
-              </div>
-              <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
-                <h6 className="font-medium">Sual verdikdə nə qədər vaxta cavab gəlir?</h6>
-                <IoMdAdd fontSize={24}/>
-              </div>
-              <div className="flex justify-between pt-3 pb-3 border-b border-b-gray-200">
-                <h6 className="font-medium">Platformadan istifadə ödənişlidir?</h6>
-                <IoMdAdd fontSize={24}/>
-              </div>
-              <div className="flex justify-between pt-3 pb-3">
-                <h6 className="font-medium">Məzmunun düzgünlüyü necə yoxlanılır?</h6>
-                <IoMdAdd fontSize={24}/>
-              </div>
-            </div>
-            <div className="flex flex-col gap-5 items-center justify-center">
-              <img src="/images/faq.png" className="object-cover" alt="FAQ"/>
-              <h6 className="font-bold text-2xl pt-4 pb-4">Başqa sualınız var?</h6>
-              <button className="rounded-full contact-btn px-6 py-2 bg-blue-800 text-white hover:bg-blue-900 transition-colors">Əlaqə saxlayın</button>
-            </div>
-          </div>
-        </div>
-      </section>
+   <Faqs/>
     </>
   );
 };

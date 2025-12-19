@@ -104,7 +104,7 @@ const CourseContent=()=>{
                     <img src="/images/library.svg" className="w-10 h-10"/>
                     <div>
                 <h5>{course?.lessons?.length} Dərs</h5>
-                <p className="text-gray-500">Ümumi 52 saat</p>
+                <p className="text-gray-500">Ümumi 15 dəqiqə</p>
                     </div>
                     </div>                
                </div>
@@ -119,8 +119,8 @@ const CourseContent=()=>{
                         <h4 className="font-bold text-lg">{lesson?.lesson_title}</h4>
                         </div>
                         <div className="flex gap-3 text-gray-400">
-                         <p>5 Dərs</p>
-                        <span>45 Dəqiqə</span>
+                         <p>0 Dərs</p>
+                        <span>0 Dəqiqə</span>
                         </div>
                     </div>
                         ))
@@ -147,9 +147,20 @@ const CourseContent=()=>{
                     <>
     <div className="comment-item mt-4 mb-4" key={comment?.comment_id} >
                     <div className="comment-header flex md:flex-row flex-col items-center ">
-            <img  className="rounded-md w-30 h-30" src={comment?.profile_img || "/images/admin.png"}></img>
+          <img
+  className="rounded-md w-30 h-30"
+  src={
+    comment?.profile_img
+      ? comment.profile_img.trim().startsWith("http")
+        ? comment.profile_img.trim()
+        : `https://cothink.az/${comment.profile_img.trim()}`
+      : "/images/admin.png"
+  }
+  alt="Profile"
+/>
+
             <div className="pl-4">
-           <h4 className="font-semibold">{comment?.mentor_name}</h4>
+           <h4 className="font-semibold">{comment?.student_name}</h4>
             <p className="text-gray-500">{comment?.mentor_position}</p>
             <p className="mt-3 text-black">{comment?.comment_text}</p>
             </div>

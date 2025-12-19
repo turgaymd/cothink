@@ -102,7 +102,7 @@ catch(err){
             {error}
           </p>
         )}
-            <div  className="flex justify-end text-blue-800 cursor-pointer"><button  className="flex gap-2"><MdOutlineEdit fontSize={24} onClick={()=>setEdit(true)}/>Redaktə et</button></div>
+            <div  className="flex justify-end text-blue-800 cursor-pointer"><button  className="flex gap-2" onClick={()=>setEdit(true)}><MdOutlineEdit fontSize={24} />Redaktə et</button></div>
              <form className="login-form mx-auto " onSubmit={handleEdit}>
               <div className="mb-5">
               <label
@@ -136,7 +136,6 @@ catch(err){
                   placeholder={lastName}
                   onChange={(e)=>setLastName(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
-                  required
                 ></input>
               </div>
             </div>
@@ -179,9 +178,9 @@ catch(err){
             {
               edit ? ( <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
          
-            <button
+            <button type="button"
               className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md"
-              onClick={() => setActiveTab("nothing")}
+              onClick={()=>setEdit(false)}
             >
               Ləğv et
             </button>

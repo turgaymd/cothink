@@ -158,7 +158,7 @@ const MainHome = () => {
 
                     </div>
                 </div>
- <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 {
                     filteredDiscussions.map((item, index)=>(
                         <div className="rounded-md shadow-gray-100 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
@@ -171,7 +171,7 @@ const MainHome = () => {
                                     {/* {item.created_at} */}
                                 </span>
                             </div>
-                            <div className="flex gap-7 md:flex-row flex-col items-center">
+                            <div className="flex gap-7 md:flex-row flex-col">
                           <img
   src={
     item?.profile_img

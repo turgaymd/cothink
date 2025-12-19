@@ -3,6 +3,7 @@ import { MdArrowOutward } from "react-icons/md";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useState, useEffect } from "react";
+import Faqs from "./FAQ";
 
 // Testimonial Card Component
 const TestimonialCard = ({ avatar, name, role, text }) => (
@@ -74,22 +75,22 @@ const About = () => {
         <div className="flex flex-col md:h-full"> 
         <div className="partners flex md:grid md:grid-cols-6 grid-cols-2  gap-3">
              <a className="scale-160 md:scale-100 md:scale-100">
-  <img src="/images/rəqəmsalw.png"/>
+  <img src="/images/rəqəmsalw.png"  href="https://idda.az/az" target="_blank"/>
           </a>
              <a className="scale-160 md:scale-100">
-  <img src="/images/digitalw.png"/>
+  <img src="/images/digitalw.png"  href="https://idda.az/az" target="_blank"/>
           </a>
              <a className="scale-160 md:scale-100">
-  <img src="/images/bmuw.png"/>
+  <img src="/images/bmuw.png" href="https://beu.edu.az/en" target="_blank"/>
           </a>
             
                <a className="scale-160 md:scale-100">
-  <img src="/images/beuw.png"/>
+  <img src="/images/beuw.png" href="https://beu.edu.az/en" target="_blank"/>
           </a>
               <a className="scale-160 md:scale-100">
   <img src="/images/assipw.png"/>
           </a>
-              <a className="scale-160 md:scale-100">
+              <a className="scale-160 md:scale-100" href="https://yenifikir.az/" target="_blank">
   <img src="/images/yenifikir.png"/>
           </a>
         </div>
@@ -267,42 +268,7 @@ Layihə ASSİP çərçivəsində inkişaf etdirilib; CoThink ASSİP 2 Hakatonund
           </button>
         </div>
       </div>
-      <section className="max-w-[80vw] m-auto mt-10 mb-10">
-        <div>
-          <h2 className="text-xl md:text-3xl text-center pb-8 md:pb-12 mt-5">
-            <span className="font-bold">Tez-tez</span> Soruşulan <span className="font-bold">Suallar</span>
-          </h2>
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-5 md:gap-3">
-            <div className="border border-gray-200 px-4 md:px-5 py-2 rounded-md">
-              <div className="flex justify-between items-center pt-3 pb-3 border-b border-b-gray-200 gap-3">
-                <h6 className="font-medium text-sm md:text-base">CoThink-də dərsləri necə tapa bilərəm?</h6>
-                <IoMdAdd fontSize={24} className="flex-shrink-0"/>
-              </div>
-              <div className="flex justify-between items-center pt-3 pb-3 border-b border-b-gray-200 gap-3">
-                <h6 className="font-medium text-sm md:text-base">Məzmunu kim hazırlayır?</h6>
-                <IoMdAdd fontSize={24} className="flex-shrink-0"/>
-              </div>
-              <div className="flex justify-between items-center pt-3 pb-3 border-b border-b-gray-200 gap-3">
-                <h6 className="font-medium text-sm md:text-base">Sual verdikdə nə qədər vaxta cavab gəlir?</h6>
-                <IoMdAdd fontSize={24} className="flex-shrink-0"/>
-              </div>
-              <div className="flex justify-between items-center pt-3 pb-3 border-b border-b-gray-200 gap-3">
-                <h6 className="font-medium text-sm md:text-base">Platformadan istifadə ödənişlidir?</h6>
-                <IoMdAdd fontSize={24} className="flex-shrink-0"/>
-              </div>
-              <div className="flex justify-between items-center pt-3 pb-3 gap-3">
-                <h6 className="font-medium text-sm md:text-base">Məzmunun düzgünlüyü necə yoxlanılır?</h6>
-                <IoMdAdd fontSize={24} className="flex-shrink-0"/>
-              </div>
-            </div>
-            <div className="flex flex-col gap-3 md:gap-5 items-center justify-center py-5">
-              <img src="/images/faq.png" className="object-cover max-w-[200px] md:max-w-full" alt="FAQ"/>
-              <h6 className="font-bold text-xl md:text-2xl pt-2 md:pt-4 pb-2 md:pb-4 text-center">Başqa sualınız var?</h6>
-              <button className="rounded-full contact-btn px-6 py-2 bg-blue-800 text-white hover:bg-blue-900 transition-colors">Əlaqə saxlayın</button>
-            </div>
-          </div>
-        </div>
-      </section>
+  <Faqs/>
     </>
   );
 };
