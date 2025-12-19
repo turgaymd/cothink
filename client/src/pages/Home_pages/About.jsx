@@ -74,18 +74,18 @@ const About = () => {
      <div className="about-us p-3 md:min-h-[600px] ">
         <div className="flex flex-col md:h-full"> 
         <div className="partners flex md:grid md:grid-cols-6 grid-cols-2  gap-3">
-             <a className="scale-160 md:scale-100 md:scale-100">
-  <img src="/images/rəqəmsalw.png"  href="https://idda.az/az" target="_blank"/>
+             <a className="scale-160 md:scale-100"  href="https://idda.az/az" target="_blank">
+  <img src="/images/rəqəmsalw.png"  />
           </a>
-             <a className="scale-160 md:scale-100">
-  <img src="/images/digitalw.png"  href="https://idda.az/az" target="_blank"/>
+             <a className="scale-160 md:scale-100" href="https://idda.az/az" target="_blank">
+  <img src="/images/digitalw.png"  />
           </a>
-             <a className="scale-160 md:scale-100">
-  <img src="/images/bmuw.png" href="https://beu.edu.az/en" target="_blank"/>
+             <a className="scale-160 md:scale-100" href="https://beu.edu.az/en" target="_blank">
+  <img src="/images/bmuw.png" />
           </a>
             
-               <a className="scale-160 md:scale-100">
-  <img src="/images/beuw.png" href="https://beu.edu.az/en" target="_blank"/>
+               <a className="scale-160 md:scale-100 " href="https://beu.edu.az/en" target="_blank">
+  <img src="/images/beuw.png" />
           </a>
               <a className="scale-160 md:scale-100">
   <img src="/images/assipw.png"/>
