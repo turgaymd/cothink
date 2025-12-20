@@ -71,7 +71,6 @@ const AddPost = ({ setActiveTab }) => {
    const res = await axios.post(url,formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      console.log(res.data)
      
       if (res.data.status==="success") {
         toast.success("Post uğurla əlavə olundu");
@@ -83,7 +82,6 @@ const AddPost = ({ setActiveTab }) => {
         setPreview(null);
         setInput("")
         setError("");
-        console.log(res.data)
       } else {
                 toast.error(res.data.message);
           
@@ -229,7 +227,7 @@ const AddPost = ({ setActiveTab }) => {
 
           <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
             <button
-              className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md"
+              className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md" type="button"
               onClick={() => setActiveTab("nothing")}
             >
               Ləğv et
