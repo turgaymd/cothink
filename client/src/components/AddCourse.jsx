@@ -4,6 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { FiUploadCloud } from "react-icons/fi";
 import Select from "react-select";
 import { ApiContext } from "../ApiContext";
+import { useNavigate } from "react-router-dom";
 const AddCourse = ({ setActiveTab }) => {
   const [courseTitle, setCourseTitle] = useState("");
   const [courseImg, setCourseImg] = useState("");
@@ -14,6 +15,8 @@ const AddCourse = ({ setActiveTab }) => {
   const [categoryId, setCategoryId] = useState("");
   const [preview, setPreview] = useState(null);
   const [error, setError] = useState("");
+
+  const navigate=useNavigate("/share")
   const { apiUrl } = useContext(ApiContext);
   useEffect(() => {
     axios
@@ -88,6 +91,15 @@ const AddCourse = ({ setActiveTab }) => {
   const handleSelect = (selectedCategory) => {
     setCategoryId(selectedCategory.value);
   };
+  const handleReset=()=>{
+        setCourseTitle("");
+        setCourseImg("");
+        setCourseLink("")
+        setLessonTitle("");
+         setCoursePrice("")
+        setCategoryId("");
+        setActiveTab("nothing")
+}
   return (
     <>
       <ToastContainer />
@@ -212,8 +224,8 @@ const AddCourse = ({ setActiveTab }) => {
         </div>
           <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
             <button
-              className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md"
-              onClick={() => setActiveTab("nothing")}
+              className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md" type="button"
+              onClick={handleReset}
             >
               Ləğv et
             </button>

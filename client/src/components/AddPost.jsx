@@ -106,6 +106,17 @@ const AddPost = ({ setActiveTab }) => {
   const handleRemove = (removedTag) => {
     setPostTags(postTags.filter((tag) => tag !== removedTag));
   };
+
+  const handleReset=()=>{
+        setPostTitle("");
+        setPostDesc("");
+        setPostImg(null);
+        setPostTags([]);
+        setCategoryId("");
+        setPreview(null);
+        setInput("")
+        setActiveTab("nothing")
+  }
   return (
     <>
       <ToastContainer />
@@ -228,7 +239,7 @@ const AddPost = ({ setActiveTab }) => {
           <div className="submit-form mt-5 gap-3 flex flex-col md:flex-row justify-center items-center">
             <button
               className="border md:w-64 w-full border-blue-800 text-blue-800 px-7 py-4 rounded-md" type="button"
-              onClick={() => setActiveTab("nothing")}
+              onClick={handleReset}
             >
               Ləğv et
             </button>

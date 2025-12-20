@@ -174,7 +174,7 @@ const handleSave=async(item)=>{
   alt="Post Author"
 />
            <div className="pl-3">
-           <h4 className="font-semibold">{post?.mentor_name}</h4>
+           <h4 className="font-semibold">{post?.mentor_name || post?.student_name}</h4>
             <p className="text-gray-400">{post?.mentor_position}</p>
             </div>
                 </div>

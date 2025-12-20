@@ -114,7 +114,7 @@ function Header({open, setOpen, setSettings}){
             {
               user.type==="mentor" ?  (<img src={mentorImg} className="w-10 h-10" alt="Profile"/>) : 
             
-             (  <img src={studentImg} className="w-10 h-10" alt="Profile"/>)
+             (  <img src={studentImg} className="w-10 h-10 object-cover" alt="Profile"/>)
             }
             
            

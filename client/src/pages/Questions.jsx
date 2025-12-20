@@ -45,8 +45,7 @@ const Questions=()=>{
     }
      
     const filteredDiscussions=allPosts.filter((item)=>{
-        const searchedQuery= item?.post_title?.toLowerCase().includes(query.toLowerCase()) ||
-        item?.mentor_name?.toLowerCase().includes(query.toLowerCase()) 
+        const searchedQuery= item?.post_title?.toLowerCase().includes(query.toLowerCase())
         const matchedCategories=!selectedCategory ||  item?.category?.toLowerCase()===selectedCategory?.toLowerCase()
         return searchedQuery && matchedCategories
     })
@@ -112,8 +111,8 @@ const Questions=()=>{
                     filteredDiscussions.map((item, index)=>(
                         <div className="rounded-md shadow-gray-100 bg-gray-100 shadow-2xl px-5 py-3" key={index}>
                             <div className="flex gap-3 justify-end items-center text-sm pb-3">
-                                <span className="text-gray-400">
-                                    {item.mentor_name}
+                                <span className="text-gray-400 font-semibold">
+                                    {item?.mentor_name || item?.student_name}
                                 </span>
                                 <span className="text-gray-400">
                                     {new Date(item.created_at).toLocaleDateString()}

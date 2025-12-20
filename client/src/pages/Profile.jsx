@@ -24,6 +24,7 @@ const Profile = () => {
   const [mentor, setMentor]=useState(null) 
   const [student, setStudent]=useState(null)
   const [profileImg, setProfileImg]=useState("")
+  const [linkedin, setLinkedin] = useState("");
   const [edit, setEdit]=useState(false)
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -46,8 +47,8 @@ useEffect(() => {
     setEmail(data.mentor_email || "")
     setUsername(data.mentor_username || "")
     setAbout(data.description || "")
-    // setLinkedin(data.linkedn_link || "")
-    setProfileImg(data.profile_img || "")
+    setLinkedin(data.linkedn_link || "")
+     setProfileImg(`https://cothink.az${data.profile_img}`)
       })
       
  
@@ -103,7 +104,15 @@ useEffect(() => {
       const submitForm = async (e) => {
    
     const formData = new FormData();
- 
+ if(user.type==="mentor"){
+     formData.append("mentor_id", user.id);
+    formData.append("mentor_name", name);
+    formData.append("mentor_username", username);
+    formData.append("mentor_email", email);
+    formData.append("description", about);
+    formData.append("linkedn_link", linkedin);
+  }
+
 
    if(user.type==="student"){
     formData.append("student_id", user.id);

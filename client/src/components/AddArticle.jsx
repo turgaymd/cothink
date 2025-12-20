@@ -107,7 +107,17 @@ const AddArticle = () => {
       toast.error("Xəta baş verdi");
     }
   };
-
+const handleReset=()=>{
+              setArticleTitle("");
+              setArticleDesc("");
+              setArticleContent("");
+              setArticleImg(null);
+              setPreview(null);
+              setCategoryId("");
+              setArticleTags([]);
+              setInput("");
+              navigate("/share")
+}
   return (
     <div className="research-form">
       <h2 className="text-center font-bold text-3xl pb-5">Bloq əlavə et</h2>
@@ -230,17 +240,7 @@ const AddArticle = () => {
           <button
             type="reset"
             className="border border-blue-800 text-blue-800 px-7 py-4 rounded-md"
-            onClick={() => {
-              setArticleTitle("");
-              setArticleDesc("");
-              setArticleContent("");
-              setArticleImg(null);
-              setPreview(null);
-              setCategoryId("");
-              setArticleTags([]);
-              setInput("");
-              navigate("/share")
-            }}
+            onClick={handleReset}
           >
             Ləğv et
           </button>
