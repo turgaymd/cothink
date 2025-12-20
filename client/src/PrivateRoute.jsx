@@ -9,7 +9,7 @@ const {user, loading}=useContext(AuthContext)
       return <Loading/>
     }
  if(!user){
-       return  <Navigate to={'/home'} replace/>
+       return  <Navigate to={'/'} replace/>
  }
    return <Outlet/>
 

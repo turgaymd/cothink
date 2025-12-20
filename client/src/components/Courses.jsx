@@ -34,17 +34,17 @@ export const CourseCard=({item})=>{
             <div className="flex justify-between pb-3 mt-4 flex-col md:flex-row gap-2">
               <div className="flex gap-5 items-center">
                 <div>
-            <img
-  src={
-    item?.profile_img
-      ? item.profile_img.trim().startsWith("http")
-        ? item.profile_img.trim()
-        : `https://cothink.az/${item.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  className="w-15 h-15 rounded-full object-cover"
-  alt="profile"
-/>
+                      <img
+            src={
+              item?.profile_img
+                ? item.profile_img.trim().startsWith("http")
+                  ? item.profile_img.trim()
+                  : `https://cothink.az/${item.profile_img.trim()}`
+                : "/images/admin.png"
+            }
+            className="w-15 h-15 rounded-full object-cover"
+            alt="profile"
+          />
 
                 </div>
                 <div className="flex flex-col">

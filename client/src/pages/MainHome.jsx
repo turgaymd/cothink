@@ -11,6 +11,7 @@ import { ArticleCard } from "../components/Articles";
 import { FaRegComments } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { GrNext } from "react-icons/gr";
+
 const MainHome = () => {
     const [categories,setCategories]=useState([]);
     const [displayedCategories, setDisplayedCategories] = useState([])
@@ -77,15 +78,13 @@ const MainHome = () => {
                             clickable: true
                         }}
                     >
-                     
-                                        
                                 {likedArticles.map((item) => (
                                        <SwiperSlide>
                                   <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-4xl"  >
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
                                 <a className="relative z-10 block h-full" href={`/library/articles/${item.article_id}`}>
                                     <div className="article-content  h-full gap-4 flex flex-col justify-between">
-                                        <div className="article-header flex justify-between flex-col md:flex-row items-center md:items-center gap-2">
+                                        <div className="article-header flex justify-between flex-col md:flex-row md:items-center gap-2">
                                             <div className="article-author flex  items-center gap-2">
                                                                  
                                                 <img src={item?.profile_img ? item.profile_img.trim().startsWith("http") ? item.profile_img.trim()
@@ -95,9 +94,6 @@ const MainHome = () => {
                                                                 className="w-10 h-10 rounded-full object-cover border-2 border-white/30"
                                                                 alt="Avatar"
                                                                 />
-
-                                               
-                                              
                                                 <div className="flex flex-col  md:ml-0">
                                                          <span className="text-white font-medium text-sm md:text-base">{item.mentor_name}</span>
                                                     {/* <span className="text-gray-300 hidden md:inline">•</span> */}
@@ -176,17 +172,17 @@ const MainHome = () => {
                                 </span>
                             </div>
                             <div className="flex gap-7 md:flex-row flex-col">
-                          <img
-  src={
-    item?.profile_img
-      ? item.profile_img.trim().startsWith("http")
-        ? item.profile_img.trim()
-        : `https://cothink.az/${item.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  className="rounded-full w-24 h-24 object-cover"
+                            <img
+                            src={
+                                item?.profile_img
+                                ? item.profile_img.trim().startsWith("http")
+                                    ? item.profile_img.trim()
+                                    : `https://cothink.az/${item.profile_img.trim()}`
+                                : "/images/admin.png"
+                            }
+                            className="rounded-full w-24 h-24 object-cover"
 
-/>
+                            />
                                 <div className="flex flex-col gap-3">
                                     <h5 className="font-medium">{item.post_title}</h5>
                                     <div className="flex gap-3"> 
@@ -194,18 +190,18 @@ const MainHome = () => {
                                         <p className="text-gray-400">{item.subcategory}</p>
                                          </div>
                                     {item?.post_img && (
-  <img
-    src={
-      item.post_img.trim().startsWith("http")
-        ? item.post_img.trim()
-        : `https://cothink.az/server/uploads/posts/${item.post_img.trim()}`
-    }
-    className="rounded-md max-w-xs max-h-xs"
-    alt="Post"
-       onError={(e) => (e.target.style.display = "none")}
-  />
-)}
-                                   
+                                    <img
+                                        src={
+                                        item.post_img.trim().startsWith("http")
+                                            ? item.post_img.trim()
+                                            : `https://cothink.az/server/uploads/posts/${item.post_img.trim()}`
+                                        }
+                                        className="rounded-md max-w-xs max-h-xs"
+                                        alt="Post"
+                                        onError={(e) => (e.target.style.display = "none")}
+                                    />
+                                    )}
+                                                                    
                                     <div>
                                         <a className="rounded-xl border border-gray-300 flex w-40 gap-3 items-center px-3 py-2" href={`/questions/${item.post_id}`}>
                                             <FaRegComments className="text-blue-500 text-xl"/>
