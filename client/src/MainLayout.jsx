@@ -7,6 +7,7 @@ import About from "./components/About";
 import ResetPassword from "./components/ResetPassword";
 import TwoFactorAuth from "./components/TwoFactorAuth";
 import Support from "./components/Support";
+import Features from "./components/Features";
 function MainLayout(){
   const [open, setOpen]=useState()
    const [settings, setSettings] =useState(false)
@@ -57,6 +58,7 @@ function MainLayout(){
     {activeTab==="changePassword" && <ResetPassword setActiveTab={setActiveTab}/> }
     {activeTab ==="twofactorauth" && <TwoFactorAuth setActiveTab={setActiveTab}/> }
     {activeTab ==="support" && <Support setActiveTab={setActiveTab}/> }
+    {activeTab ==="features" && <Features setActiveTab={setActiveTab}/> }
     </>
   )
 }
@@ -66,6 +68,7 @@ function MainLayout(){
     {activeTab==="changePassword" && <ResetPassword/> }
     {activeTab ==="twofactorauth" && <TwoFactorAuth/> }
     {activeTab ==="support" && <Support/> }
+    {activeTab ==="features" && <Features/>}
     </div>
       </>
       : <Outlet/>

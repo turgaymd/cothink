@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsInstagram, BsLinkedin } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoMdAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
 import Faqs from "./FAQ";
+import axios from "axios";
+import { ApiContext } from "../../ApiContext";
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const {apiUrl}=useContext(ApiContext)
 
   const logos = [
     "/images/Group 7.svg",
@@ -33,16 +35,11 @@ const handleContact = async (e) => {
   formData.append("message", message);
 
   try {
-    const res = await fetch("http://localhost/cothink1/cothink/server/settings/contactEmail.php", {
-      method: "POST",
-      body: formData
-    });
+    const res = await axios.post(`${apiUrl}/server/settings/contactEmail.php`, formData)
+console.log(res.data)
 
-    const data = await res.json();
 
-    alert(data.message);
-
-    if (data.status === "success") {
+    if (res.data.status === "success") {
       setName("");
       setEmail("");
       setPhone("");
@@ -95,9 +92,12 @@ const handleContact = async (e) => {
       </div>
 
       {/* Əlaqə forması */}
+       <form onSubmit={handleContact}>
       <div className="mt-8 max-w-2xl mx-auto">
         <div>
+              
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-4'>
+       
             <div className="w-full">
               <label className="block font-bold pb-2">Ad</label>
               <input 
@@ -145,14 +145,14 @@ const handleContact = async (e) => {
           <div className='text-center mt-6'>
             <button 
               className="w-full md:w-auto px-12 py-3 rounded-full bg-black text-white font-semibold hover:bg-gray-800 transition-colors" 
-              onClick={handleContact}
+              type="submit"
             >
               Təsdiqlə
             </button>
           </div>
         </div>
       </div>
-      
+      </form>
     </section>
       <section className="max-w-[95vw] m-auto mt-10 md:mt-14">
         <div className="rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 overflow-hidden">

@@ -6,16 +6,36 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { AuthContext } from "../AuthContext";
 import { BsBack } from "react-icons/bs";
 import { ApiContext } from "../ApiContext";
-
+import Select from "react-select"
 const About=({ setActiveTab})=>{
   const {user,setUser}=useContext(AuthContext)
   const [name, setName]=useState("")
-  const [lastName, setLastName]=useState(" ")
+  const [lastName, setLastName]=useState("")
   const [email, setEmail]=useState("")
+  const [linkedin, setLinkedin] = useState("");
+  const [subject, setSubject] = useState(""); 
   const [phone, setPhone]=useState("+994  ")
   const [error, setError] = useState("");
   const {apiUrl}=useContext(ApiContext)
   const [edit ,setEdit]=useState(false)
+  const [categories,setCategories]=useState([])
+
+
+  useEffect(() => {
+      axios
+        .get(`${apiUrl}/server/categories/categoryRead.php`)
+        .then((res) => {
+          if (res.data.status === "success") {
+            setCategories(res.data.data);
+          }
+        })
+        .catch(() => toast.error("Category yüklənmədi"));
+    }, []);
+
+  const handleSelect = (selectedCategory) => {
+    setSubject(selectedCategory.value);
+  };
+
 
   useEffect(()=>{
     if(!user) return;
@@ -25,6 +45,7 @@ const About=({ setActiveTab})=>{
           const data=res.data.data
       setName(data.mentor_name || "")
       setEmail(data.mentor_email || "")
+      setLinkedin(data.linkedn_link || "")
     });
     }
     else{
@@ -51,6 +72,8 @@ const About=({ setActiveTab})=>{
     formData.append("mentor_id", user.id);
     formData.append("mentor_name", name);
     formData.append("mentor_email", email);
+    formData.append("linkedn_link", linkedin);
+    
   }
    if(user.type==="student"){
          if(!name || !email ){
@@ -60,7 +83,7 @@ const About=({ setActiveTab})=>{
     formData.append("student_id", user.id);
     formData.append("student_name", name);
     formData.append("student_email", email);
- 
+    }
 try{
   const url= user.type==="mentor" ? 
   `${apiUrl}/server/profile/updateProfile.php?mentor_id=${user.id}` 
@@ -80,11 +103,11 @@ try{
       console.log(res.data.error)
     }
 }
+ 
 catch(err){
   console.log(err)
 }
    }
-  }
 
 
     return(
@@ -117,7 +140,7 @@ catch(err){
                 <input
                   type= "text"
                   id="name"
-                  placeholder={name}
+                   value={name}
                    disabled={!edit ? true : false}
                   onChange={(e)=>setName(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
@@ -135,15 +158,14 @@ catch(err){
               <div className="relative">
                 <input
                   type="text" 
-                  id="lastName"
-                  placeholder={lastName}
+                  value={lastName}
                    disabled={!edit ? true : false}
                   onChange={(e)=>setLastName(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
                 ></input>
               </div>
             </div>
-            <div className="mb-5">
+                  <div className="mb-5">
               <label
                 htmlFor="email"
                 className="font-semibold mb-4"
@@ -154,7 +176,7 @@ catch(err){
                 <input
                   type= "text" 
                   id="email"
-                  placeholder={email}
+                  value={email}
                   disabled={!edit ? true : false}
                   onChange={(e)=>setEmail(e.target.value)}
                   className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
@@ -162,6 +184,53 @@ catch(err){
                 ></input>
               </div>
             </div>
+            {
+              user.type==="mentor" && (
+                <>
+                 <div className="mb-5">
+              <label
+                htmlFor="email"
+                className="font-semibold mb-4"
+              >
+                LinkedIn hesabım
+              </label>
+              <div className="relative">
+                <input
+                  type= "text" 
+                  id="email"
+                  value={linkedin}
+                  disabled={!edit ? true : false}
+                  onChange={(e)=>setLinkedin(e.target.value)}
+                  className="w-full rounded-md px-3 py-2 mt-2 bg-white text-gray-500 outline-none"
+  
+                ></input>
+              </div>
+            </div>
+            
+            <div className="mb-5">
+              <label
+                htmlFor="subject"
+                className="font-semibold mb-4"
+              >
+                Fənn
+              </label>
+              <div className="relative">
+            <Select
+            options={categories.map((item) => ({
+              value: item.category_id,
+              label: item.category,
+            }))}
+            onChange={handleSelect}
+            placeholder="Fənn seçin"
+          />
+                 
+              </div>
+            </div>
+            </>
+              )
+            }
+      
+            
              <div className="mb-5">
               <label
                 htmlFor="phone"

@@ -167,7 +167,7 @@ const Settings=({setActiveTab, setSettings})=>{
             </div>
            <button><SlArrowRight /></button> 
         </div>
-                <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
+                <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("features")}>
             <div className="flex items-center gap-3">
                  <div className="icons">
               <span className="text-blue-500 rounded-full"><CiCircleInfo fontSize={24}/></span>  
