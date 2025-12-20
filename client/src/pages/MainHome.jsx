@@ -31,7 +31,6 @@ const MainHome = () => {
         .then(res => {
             const mostLiked=res.data.sort((a, b)=>b.likes-a.likes).slice(0,3)
             setLikedArticles(mostLiked)  
-              console.log(mostLiked)
         })
         .catch(err => console.error(err))
 

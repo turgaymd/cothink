@@ -16,7 +16,6 @@ const Mentors = () => {
     useEffect(() => {
         axios.get(`${apiUrl}/server/mentors/mentors.php`).then(res => {
             setMentors(res.data);
-            console.log(res.data);
         });
 
         axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res => {
@@ -100,17 +99,17 @@ const Mentors = () => {
                             <div className="mentor-item shadow-xl rounded-xl" key={index}>
                                 <a href={`/mentors/mentor/${item?.mentor_id}`} className="block">
                                     <div className="mentor-title gap-5 items-center flex md:flex-row flex-col">
-                                        <img
-  src={
-    item?.profile_img
-      ? item.profile_img.trim().startsWith("http")
-        ? item.profile_img.trim()
-        : `https://cothink.az/${item.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  className="rounded-full aspect-square h-24 w-24 object-cover"
-  alt="mentor"
-/>
+                                    <img
+                                    src={
+                                        item?.profile_img
+                                        ? item.profile_img.trim().startsWith("http")
+                                            ? item.profile_img.trim()
+                                            : `https://cothink.az/${item.profile_img.trim()}`
+                                        : "/images/admin.png"
+                                    }
+                                    className="rounded-full aspect-square h-24 w-24 object-cover"
+                                    alt="mentor"
+                                    />
                                         <div className="flex flex-col w-full text-center sm:text-left ">
                                             <h4 className="font-bold text-lg">{item?.mentor_name}</h4>
                                             <p>{item?.category}</p>

@@ -24,7 +24,6 @@ function Discussion(){
        axios.get(`${apiUrl}/server/posts/getcomments.php?post_id=${id}`)
               .then((res) => {
                 setComments(res.data.comments);
-                console.log(res.data)
               })
               .catch((err) => console.error(err));
           }
@@ -37,8 +36,6 @@ function Discussion(){
         if(res.data.data){
           setPost(res.data.data);
         }
-        
-        console.log(res.data.data);
       })
          axios
       .get(`${apiUrl}/server/studentPosts/postDetails.php?post_id=${id}`)
@@ -53,7 +50,6 @@ function Discussion(){
          axios.get(`${apiUrl}/server/posts/getcomments.php?post_id=${id}`)
               .then((res) => {
                 setComments(res.data.comments);
-                console.log(res.data)
               })
               .catch((err) => console.error(err));
           
@@ -68,7 +64,6 @@ function Discussion(){
         console.log(res.data);
           const postData=res.data.find((p)=>p.post_id===Number(id))
         setComments(postData.comments);
-        console.log(res.data);
       })
       .catch((err) => console.error(err));
 
@@ -76,7 +71,7 @@ function Discussion(){
               .then(res => {
                 const ids=res.data.saved_books.map(item=>item.post_id)
                   setSavedPosts(ids)
-                  console.log(savedPosts)
+
               })
 
   }, [id]);

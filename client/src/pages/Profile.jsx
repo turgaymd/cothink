@@ -58,7 +58,6 @@ useEffect(() => {
     axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`)
       .then(res => setMentorPosts(res.data)
     );
-   console.log(mentorPosts)
   }
  else{
   axios.get(`${apiUrl}/server/students/studentPost.php?student_id=${user.id}`)
@@ -68,7 +67,6 @@ useEffect(() => {
   axios.get(`${apiUrl}/server/students/studentcomments.php?student_id=${user.id}`)
     .then(res =>{
  setPostComments(res.data)
-//  console.log(res.data)
     })
     .catch(() => setPostComments([]));
       axios
@@ -76,13 +74,11 @@ useEffect(() => {
       .then((res) => {
         // setStudent(res.data.data);
         const data=res.data.data
-        console.log(res.data)
     setName(data.student_name || "")
     setEmail(data.student_email || "")
     setUsername(data.student_username || "")
     setAbout(data.description || "")
     setProfileImg(`https://cothink.az${data.profile_img}`)
-    console.log(data)
       })
       .catch((err) => console.log(err));
     

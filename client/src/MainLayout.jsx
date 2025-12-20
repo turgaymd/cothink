@@ -13,7 +13,7 @@ function MainLayout(){
   const [activeTab, setActiveTab]=useState("about")
  
   useEffect(()=>{
-  if(window.innerWidth<=768){
+  if(window.innerWidth>=768){
     setOpen(false)
   }
   }, [])
@@ -24,7 +24,7 @@ function MainLayout(){
     <div className="grid grid-cols-12">
     
        
-   <div className={`${ settings && open ? "md:grid md:col-span-3 border-r border-r-gray-300" : open ? "md:grid md:col-span-2  border-r border-r-gray-300" : " hidden md:col-span-1 " }   min-h-screen`}>
+   <div className={`${ settings && open ? "md:grid md:col-span-3 border-r border-r-gray-300" : open ? "md:grid md:col-span-2  border-r border-r-gray-300" : "  md:col-span-1 " }   hidden min-h-screen`}>
      { open ? ( 
       settings ? <Settings activeTab={activeTab} setActiveTab={setActiveTab} setSettings={setSettings}/> : <Sidebar setSettings={setSettings} setActiveTab={setActiveTab}/>
      ) :

@@ -32,7 +32,6 @@ const CourseDetail=()=>{
      axios.get(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`)
             .then((res) => {
               setComments(res.data.comments);
-              console.log(comments)
             })
             .catch((err) => console.error(err));
         }
@@ -73,7 +72,6 @@ const CourseDetail=()=>{
         setComment("")
         toast.success("Rəy paylaşıldı")
         fetchComments()
-        console.log(comments)
 }
               
             

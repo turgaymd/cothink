@@ -190,8 +190,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Niyə Bizi Seçməlisiniz Section */}
-      <section id="about" className="max-w-[80vw] m-auto mt-20">
+      <section id="about" className="max-w-[80vw] m-auto mt-10">
         <div>
           <h2 className="font-bold text-3xl text-center">Niyə Bizi Seçməlisiniz?</h2>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-3 pt-5 mt-[80px]">

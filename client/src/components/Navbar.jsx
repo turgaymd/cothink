@@ -54,15 +54,13 @@ const Navbar = () => {
        <div className="flex gap-3">
            <Link
           to="/login"
-          style={{ backgroundColor: blue }}
-          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition whitespace-nowrap"
+          className="text-blue-800 border border-blue-800  rounded-3xl px-6 py-2 hover:opacity-90 transition whitespace-nowrap"
         >
           Giriş
         </Link>
         <Link
           to="/register"
-          style={{ backgroundColor: blue }}
-          className="text-white rounded-3xl px-6 py-2 hover:opacity-90 transition whitespace-nowrap"
+          className="text-blue-800 rounded-3xl border border-blue-800  px-6 py-2 hover:opacity-90 transition whitespace-nowrap"
         >
           Qeydiyyat
         </Link>
@@ -91,15 +89,13 @@ const Navbar = () => {
 
                <Link
           to="/login"
-          style={{ backgroundColor: blue }}
-          className="text-white rounded-2xl px-3 py-1.5 text-xs hover:opacity-90 transition whitespace-nowrap"
+          className="text-blue-800 rounded-2xl border border-blue-800 px-3 py-1.5 text-xs hover:opacity-90 transition whitespace-nowrap"
         >
           Giriş
         </Link>
         <Link
           to="/register"
-          style={{ backgroundColor: blue }}
-          className="text-white rounded-2xl px-3 py-1.5 text-xs hover:opacity-90 transition whitespace-nowrap"
+          className="text-blue-800 rounded-2xl border border-blue-800 px-3 py-1.5 text-xs hover:opacity-90 transition whitespace-nowrap"
         >
           Qeydiyyat
         </Link>

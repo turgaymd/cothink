@@ -22,7 +22,6 @@ const Questions=()=>{
         })
            axios.get(`${apiUrl}/server/studentPosts/postsRead.php`).then(res=>{
             setPosts(res.data.data)
-            console.log(posts)
         })
         axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 
             setCategories(res.data.data)

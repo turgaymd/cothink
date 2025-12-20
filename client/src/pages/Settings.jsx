@@ -32,14 +32,12 @@ const Settings=({setActiveTab, setSettings})=>{
       .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
       .then((res) => {
         setMentor(res.data.data);
-        console.log(res.data)
       })
       .catch((err) => console.log(err));
         axios
       .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
       .then((res) => {
         setStudent(res.data.data);
-        console.log(res.data)
       })
       .catch((err) => console.log(err));
     },[])

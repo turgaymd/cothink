@@ -21,7 +21,6 @@ const CourseContent=()=>{
      axios.get(`${apiUrl}/server/courses/courseComments.php?course_id=${id}`)
             .then((res) => {
               setComments(res.data.comments);
-              console.log(res.data);
             })
             .catch((err) => console.error(err));
         }
@@ -30,7 +29,6 @@ const CourseContent=()=>{
             .get(`${apiUrl}/server/courses/courseDetails.php?id=${id}`)
             .then((res) => {
               setCourse(res.data.data);
-              console.log(res.data.data);
             })
             .catch((err) => console.error(err));
                 fetchComments()
@@ -67,12 +65,8 @@ const CourseContent=()=>{
         toast.success("Rəy paylaşıldı")
         fetchComments()
 }
-              
-             
-    
+                 
 }
-
-
     return(
         <>
         <ToastContainer/>

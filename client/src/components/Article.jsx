@@ -27,7 +27,6 @@ const Article = () => {
       .then(res => {
         const article_ids=res.data.saved_articles.map(item=>item.article_id)
         setSavedArticles(article_ids)
-        console.log(savedArticles)
       })
       .catch(err => console.error(err))
   },[])
@@ -71,7 +70,6 @@ const Article = () => {
           setComment("")
           toast.success("Rəy paylaşıldı")
           fetchComments()
-          console.log(res.data)
   }
   }
 

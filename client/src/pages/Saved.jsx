@@ -17,14 +17,14 @@ const Saved=()=>{
       const [books, setBooks]=useState([])
       const [posts, setPosts]=useState([])
       const {apiUrl}=useContext(ApiContext)
-
+       
  console.log(articles)
        const {user}=useContext(AuthContext)
               useEffect(() => {
           axios.get(`${apiUrl}/server/savedPages/savedArticles/getSaveArticles.php?student_id=${user?.id}`)
               .then(res => {
                   setArticles(res.data.saved_articles)
-                  console.log(articles)
+              
               })
               .catch(err => console.error(err))
                  axios.get(`${apiUrl}/server/savedPages/savedBooks/getSaveBooks.php?student_id=${user?.id}`)

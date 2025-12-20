@@ -29,7 +29,6 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
       .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
       .then((res) => {
         setMentor(res.data.data);
-        console.log(res.data)
       })
       .catch((err) => console.log(err));
   }
@@ -39,7 +38,6 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
       .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
       .then((res) => {
         setStudent(res.data.data);
-        console.log(res.data)
       })
       .catch((err) => console.log(err));
   }
