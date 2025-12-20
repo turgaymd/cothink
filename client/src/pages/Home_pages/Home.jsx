@@ -84,7 +84,7 @@ const Home = () => {
      </div>
       </div>
       <section className="mt-4">
-                  <h2 className="text-2xl text-center pb-5">Danışıqlar apardığımız  <span className="font-bold">Tərəfdaşlarımız</span></h2>
+                  <h2 className="text-2xl text-center mb-12 mt-7">Danışıqlar apardığımız  <span className="font-bold">Tərəfdaşlarımız</span></h2>
          <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
                         autoplay={{
@@ -143,12 +143,12 @@ const Home = () => {
                     </Swiper>
 
       </section>
-      <section id="home" className="w-full py-10">
+      {/* <section id="home" className="w-full py-10">
 
 
         <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto items-center gap-10 px-5">
 
-          {/* Text Side */}
+
           <div className="flex flex-col justify-center order-2 md:order-1 text-center md:text-left">
 
             <h2 className="font-bold text-2xl md:text-4xl leading-tight">
@@ -161,7 +161,7 @@ const Home = () => {
               CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bilikləri bir araya gətirir.
             </p>
 
-            {/* Button */}
+    
             <div className="flex justify-center md:justify-start">
               <button className="bg-[#3456BE] text-white px-6 py-3 rounded-3xl flex items-center gap-3 hover:opacity-90 transition">
                 Kəşfə başlayın 
@@ -172,7 +172,7 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Image Side */}
+     
           <div className="flex justify-center items-center order-1 md:order-2">
             <img
               src="/images/home_banner.png"
@@ -188,12 +188,12 @@ const Home = () => {
           </div>
 
         </div>
-      </section>
+      </section> */}
 
-      <section id="about" className="max-w-[80vw] m-auto mt-10">
+      <section id="about" className="max-w-[80vw] m-auto mt-5">
         <div>
           <h2 className="font-bold text-3xl text-center">Niyə Bizi Seçməlisiniz?</h2>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-3 pt-5 mt-[80px]">
+          <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-3 pt-5 mt-7">
             <div className="bg-gray-100 border border-blue-300 rounded-full w-full aspect-square min-w-[140px] flex flex-col justify-center items-center p-4 hover:border-amber-400 cursor-pointer">
               <h5 className="font-bold text-xs sm:text-sm md:text-base text-center">Təhlükəsiz və Etibarlı</h5>
               <p className="text-gray-400 text-center text-[10px] sm:text-xs md:text-sm mt-2">Bütün məzmun müəllimlər və mütəxəssislər tərəfindən yoxlanılır.</p>
@@ -215,7 +215,7 @@ const Home = () => {
       </section>
       <section className="max-w-[80vw] m-auto">
   <div className="mt-10 mb-4">
-    <h2 className="text-3xl text-center pb-5">Bizim <span className="font-bold">Üstünlüyümüz</span></h2>
+    <h2 className="text-3xl text-center pb-7">Bizim <span className="font-bold">Üstünlüyümüz</span></h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-7 mt-10">
       <div className="mb-5 flex flex-col justify-center">
         <h2 className="text-2xl">Nə üçün biz <span className="font-bold">Fərqliyik?</span></h2>
@@ -224,7 +224,7 @@ const Home = () => {
           mentor dəstəyi və sual–cavab —hamısı bir yerdədir. AI filtrasiyası lazımsız məlumatı aradan qaldırır 
           və diqqəti yalnız həqiqi bilikdə saxlayır. İmtahana və dərslərə hazırlıq daha sürətli, daha aydın və daha motivasiyalı olur.
         </p>
-        <button className="bg-blue-800 w-full md:w-auto text-white rounded-full flex items-center justify-center gap-3 px-6 py-3 hover:bg-blue-900 transition-colors">
+        <button className="bg-blue-800 mb-5 w-full md:w-auto text-white rounded-full flex items-center justify-center gap-3 px-6 py-3 hover:bg-blue-900 transition-colors">
           Daha ətraflı <MdArrowOutward className="hidden md:inline-flex text-blue-500 bg-white rounded-full p-1" fontSize={24}/>
         </button>
       </div>
@@ -232,7 +232,7 @@ const Home = () => {
         <div className="bg-blue-700 w-64 h-32 rounded-[50%/50%] relative">
           <img 
             src="/images/macbook_.png" 
-            className="absolute bottom-6 right-3 object-cover scale-150 md:scale-160" 
+            className="absolute bottom-6 right-3 object-cover scale-150 mt-3 md:scale-160" 
             alt="Macbook"
           />
         </div>
