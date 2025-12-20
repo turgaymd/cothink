@@ -31,6 +31,7 @@ const Profile = () => {
   const [username, setUsername] = useState("");
   const fileInputRef = useRef(null);
 useEffect(() => {
+  if(!user) return;
   if (user?.type === "mentor") {
 
     axios.get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${user.id}`)
@@ -150,15 +151,12 @@ catch(err){
       <div className="flex md:flex-row flex-col gap-5 justify-between">
         <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
-            {user?.type==="mentor" ? (<img
-              src={profileImg}
-              className="rounded-full h-24 w-24 object-cover"
-            />) : (
+         
                <img 
-              src={profileImg}
+              src={profileImg || "/images/admin.png" }
               className="rounded-full h-24 w-24 object-cover"
             />
-            )}
+
           </div>
           <div className="flex flex-col gap-3 justify-center">
             <h4 className="font-bold text-xl text-center md:text-left">{user?.name}</h4>
@@ -295,7 +293,7 @@ catch(err){
         {activeTab === "studentPosts" &&
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
    
-       {Array.isArray(studentPosts) ||  studentPosts?.length >0 ? (    
+       {!Array.isArray(studentPosts) ||  studentPosts?.length >0 ? (    
              studentPosts.map((item) =>( <PostCard  key={item.post_id} item={item} />
           ))) :
     ( 
