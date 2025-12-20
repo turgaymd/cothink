@@ -11,7 +11,8 @@ import { AuthContext } from "../AuthContext";
 import { MdOutlineArrowBackIosNew, MdOutlineEdit } from "react-icons/md";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
-
+import { WiMoonAltThirdQuarter } from "react-icons/wi";
+import { TbAuth2Fa } from "react-icons/tb";
 
 const Settings=({setActiveTab, setSettings})=>{
     const navigate=useNavigate()
@@ -90,7 +91,7 @@ const Settings=({setActiveTab, setSettings})=>{
             </div>
             <div className="flex flex-col pt-3">
             <h4 className="font-bold">Haqqımda</h4>
-            <p className="text-gray-400">Ad , soyad, profil şəkli</p>
+            <p className="text-gray-400">Ad , soyad, email</p>
             </div>
             </div>
            <button><SlArrowRight /></button> 
@@ -110,7 +111,7 @@ const Settings=({setActiveTab, setSettings})=>{
           <div className="flex justify-between mt-5 mb-5 border-b border-b-gray-200 pb-3" onClick={()=>setActiveTab("twofactorauth")}>
             <div className="flex items-center gap-3 cursor-pointer" >
                  <div className="icons">
-              <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
+              <span className="text-blue-500 rounded-full"><TbAuth2Fa fontSize={28}/></span>  
             </div>
             <div className="flex flex-col">
             <h4 className="font-bold">İki mərhələli təsdiq</h4>
@@ -148,7 +149,7 @@ const Settings=({setActiveTab, setSettings})=>{
             <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
             <div className="flex items-center gap-3">
                  <div className="icons">
-              <span className="text-blue-500 rounded-full"><CiUser fontSize={24}/></span>  
+              <span className="text-blue-500 rounded-full"><WiMoonAltThirdQuarter fontSize={28}/></span>  
             </div>
             <div className="flex flex-col">
             <h4 className="font-bold">Tema</h4>

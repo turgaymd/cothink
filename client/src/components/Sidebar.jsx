@@ -70,7 +70,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
           open && (
             <div className="md:hidden flex flex-col gap-5 transition-all duration-300 ease-in-out">
               <div className="flex justify-between mt-10 ">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center">
                   <NavLink className="profile-img rounded-full flex-shrink-0" to={"/profile"} onClick={handleNavigate}>
                    
                    {
@@ -79,7 +79,7 @@ function Sidebar({open, setOpen, setSettings, setActiveTab}){
                  }
                     
                   </NavLink>  
-                 <div className=""> <button className="bg-gray-300  rounded-md   flex-shrink-0">
+                 <div className=""> <button className="  rounded-md   flex-shrink-0">
                     <IoIosNotificationsOutline fontSize={25}/>
                   </button></div>
                 </div>
