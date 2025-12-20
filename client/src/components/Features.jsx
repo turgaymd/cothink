@@ -1,6 +1,5 @@
 
-import { SlArrowRight } from "react-icons/sl";
-import { CiCircleInfo } from "react-icons/ci";
+
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 const Features=({setActiveTab})=>{
     return(
@@ -20,7 +19,7 @@ const Features=({setActiveTab})=>{
                         <h4 className="font-bold">CoThink.az</h4>
                                  <p className="text-gray-400">Öyrənməni daha ağıllı, daha sadə və daha əlçatan edən yeni nəsil təhsil platforması.
 CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bilikləri bir araya gətirir.</p>
-                        <a className="text-red-500 underline underline-offset-1">Şərtlər - Məxfilik siyasəti</a>
+                        <a className="text-red-500 underline underline-offset-1 rules" href="/privacy">Şərtlər - Məxfilik siyasəti</a>
                         </div>
                        
                         </div>

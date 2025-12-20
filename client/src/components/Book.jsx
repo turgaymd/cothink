@@ -6,7 +6,7 @@ import Loading from "../utils/Loading";
 import { ApiContext } from "../ApiContext";
 import { toast, ToastContainer } from "react-toastify";
 import { AuthContext } from "../AuthContext";
-import { AiFillLike } from "react-icons/ai"
+import { AiFillLike, AiOutlineLike } from "react-icons/ai"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 const Book = () => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const Book = () => {
  const {user}=useContext(AuthContext)
  const [liked,setLiked]=useState(false)
  const [savedBooks ,setSavedBooks]=useState([])
+ const [likedBooks, setLikedBooks]=useState([])
 
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const Book = () => {
         console.log(book_ids)
       })
       .catch(err => console.error(err))
+    
   },[])
 
     const handleLike=async(item)=>{
@@ -64,9 +66,31 @@ const Book = () => {
       toast.error("Xəta baş verdi");
     }
   }
-  const handleUnlike=()=>{
-    setLiked(false)
+   const handleUnlike=async(item)=>{
+           setLiked(false)
+    try {
+      const res = await axios.post(
+        `${apiUrl}/server/likes/bookLikes/unlike.php?book_id=${item.book_id}`,
+        {
+          student_id:user?.id
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      if (res.data.status === "unliked") {
+             setBook((prev)=>({...prev, likes:prev.likes-1}))
+        setLiked(false)
+      }
+     else if(res.data.status === "exists"){
+        toast.info("Artiq bəyənmisiniz")
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
   }
+
 
    const handleSave=async(item)=>{
     try {
@@ -108,9 +132,9 @@ const Book = () => {
           <p className="text-xl font-semibold">{book?.book_title}</p>
           <h4 className="font-bold text-xl">{book?.mentor_name}</h4>
           <div className="post-reactions flex justify-center gap-5 w-full max-w-md">
-            <span className="like-count flex items-center gap-2" onClick={()=>handleLike(book)}>
+            <span className="like-count flex items-center gap-2" >
               {
-                liked ? <AiFillLike fontSize={24} onClick={handleUnlike}/> : <img src="/images/like.svg" alt="like" /> 
+                liked ? <AiFillLike fontSize={28} onClick={()=>handleUnlike(book)}/> : <AiOutlineLike fontSize={28} onClick={()=>handleLike(book)}/> 
               }
              {book?.likes}
             </span>

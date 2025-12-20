@@ -132,8 +132,27 @@ const handleSave=async(item)=>{
     }
   }
 
-    const handleUnlike=()=>{
-    setLiked(false)
+  const handleUnlike=async(item)=>{
+           setLiked(true)
+    try {
+      const res = await axios.post(
+        `${apiUrl}/server/likes/articleLikes/unlike.php?article_id=${item.article_id}`,
+        {
+          student_id:user?.id
+        },
+        { headers: { "Content-Type": "application/json" } }
+      );
+    if (res.data.status === "unliked") {
+             setArticle((prev)=>({...prev, likes:prev.likes-1}))
+        setLiked(false)
+      }
+  else {
+        toast.error(res.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Xəta baş verdi");
+    }
   }
   return (
     <>
@@ -173,7 +192,7 @@ const handleSave=async(item)=>{
           <div className="flex gap-3">
             <div className="like-count flex items-center gap-2" >
                   {
-                              liked ? <AiFillLike fontSize={24} onClick={handleUnlike}/> :
+                              liked ? <AiFillLike fontSize={24} onClick={()=>handleUnlike(article)}/> :
                               <AiOutlineLike fontSize={24} onClick={()=>handleLike(article)}/>
                   }
               {article.likes || 0}

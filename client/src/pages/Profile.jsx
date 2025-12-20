@@ -40,7 +40,7 @@ useEffect(() => {
  
     axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
       .then(res =>{
-        // setMentor(res.data.data);
+        setMentor(res.data.data);
           const data=res.data.data
   
     setName(data.mentor_name || "")
@@ -48,7 +48,7 @@ useEffect(() => {
     setUsername(data.mentor_username || "")
     setAbout(data.description || "")
     setLinkedin(data.linkedn_link || "")
-     setProfileImg(`https://cothink.az${data.profile_img}`)
+     setProfileImg(data?.profile_img ? `https://cothink.az${data?.profile_img}` : "/images/admin.png")
       })
       
  
@@ -73,13 +73,14 @@ useEffect(() => {
       axios
       .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
       .then((res) => {
-        // setStudent(res.data.data);
+        setStudent(res.data.data);
         const data=res.data.data
+        console.log(student)
     setName(data.student_name || "")
     setEmail(data.student_email || "")
     setUsername(data.student_username || "")
     setAbout(data.description || "")
-    setProfileImg(`https://cothink.az${data.profile_img}`)
+    setProfileImg(data?.profile_img ? `https://cothink.az${data?.profile_img}` : "/images/admin.png")
       })
       .catch((err) => console.log(err));
     
@@ -158,13 +159,13 @@ catch(err){
           <div>
          
                <img 
-              src={profileImg || "/images/admin.png" }
+              src={profileImg }
               className="rounded-full h-24 w-24 object-cover"
             />
 
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <h4 className="font-bold text-xl text-center md:text-left">{user?.name}</h4>
+            <h4 className="font-bold text-xl text-center md:text-left">{mentor?.mentor_name || student?.student_name}</h4>
             <div className="flex gap-5">
               <span>0 tələbə</span>
               <span>{user.type==="mentor" ? mentorPosts.length : studentPosts.length} post</span>

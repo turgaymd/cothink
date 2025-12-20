@@ -54,6 +54,9 @@ section{
   color: #444444;
 
 }
+.rules{
+  text-decoration: underline;
+}
 .hide{
   position: absolute;
   right: 10px;

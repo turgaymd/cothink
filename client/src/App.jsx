@@ -44,6 +44,7 @@ import BookView from "./components/BookView";
 import Article from "./components/Article";
 import AddArticle from "./components/AddArticle";
 import PrivateRouter from "./PrivateRoute";
+import Privacy from "./pages/Conditions";
 
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
             </Route>
 
-
+             <Route path="/privacy" element={<Privacy/>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot" element={<ForgotPassword />} />

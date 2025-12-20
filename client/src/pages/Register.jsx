@@ -21,6 +21,7 @@ function Register() {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 const {setUser}=useContext(AuthContext)
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
@@ -210,16 +211,18 @@ const {setUser}=useContext(AuthContext)
               </div>
 
               <div className="flex mb-2 justify-between">
-                <div>
+                <div className="flex items-center">
                   <input
                     type="checkbox"
                     id="rememberMe"
                     checked={agreed}
                     onChange={() => setAgreed(!agreed)}
                   />
+                 
                   <label htmlFor="rememberMe" className="text-gray-500 ms-2">
-                    Qaydalar və şərtlər
+                   <a href="/privacy" className="rules"> Qaydalar və şərtlərlə tanış oldum</a> 
                   </label>
+              
                 </div>
               </div>
 
