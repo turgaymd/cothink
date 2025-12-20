@@ -338,11 +338,11 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
     align-items: center;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .article-item {
         min-height: 280px;
     }
-}
+} */
 
 /* Slider oxları - yalnız 1300px-dən yuxarı */
 @media (min-width: 1300px) {

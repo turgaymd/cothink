@@ -60,7 +60,7 @@ const Mentor = () => {
       <section>
         <h2 className="text-center font-bold text-2xl ">Mentor Profili </h2>
         <div className="mentor-profile mt-4 ">
-          <div className="bg-white shadow-3xl border border-gray-200 rounded-lg px-10 py-4">
+          <div className="bg-white shadow-lg/30 inset-shadow-lg sha border border-gray-200 rounded-lg px-10 py-4">
             <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
               <div className="profil-img flex flex-col justify-center items-center">
                <img

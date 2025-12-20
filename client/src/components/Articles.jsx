@@ -11,7 +11,7 @@ export const ArticleCard=({item})=>{
                     <div className="article-content flex justify-between flex-col gap-2 border-b-gray-500">
                         <div className="article-header flex justify-between md:flex-row flex-col gap-2">
                             <div className="article-author flex items-center gap-2">
-                              <img
+                              <img className="object-cover"
   src={
     item?.profile_img
       ? item.profile_img.trim().startsWith("http")
@@ -23,7 +23,7 @@ export const ArticleCard=({item})=>{
 
                                 <span>{item.mentor_name}</span>
                                 <span>•</span>
-                                <span> {item.created_at}</span>
+                                <span> {new Date (item.created_at).toLocaleDateString()}</span>
                             </div>
                             <div className="category flex items-center">
                                 <span className="bg-blue-800 rounded-md px-5 py-2">{item.category}</span>
@@ -52,13 +52,14 @@ export const ArticleCard=({item})=>{
 
 const Articles=({query,selectedCategory})=>{
     const [articles,setArticles]=useState([])
-    const [visibleArticles, setVisibleArticles] = useState(3)
+    const [visibleArticles, setVisibleArticles] = useState()
     const {apiUrl}=useContext(ApiContext)
    
     useEffect(() => { 
         axios.get(`${apiUrl}/server/articles/articleRead.php`) 
             .then(res => {
                 setArticles(res.data)  
+                setVisibleArticles()
                 console.log(res.data)
             })
             .catch(err => console.error(err))

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { GrPrevious } from "react-icons/gr";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -9,7 +10,7 @@ import { ApiContext } from "../ApiContext";
 import { ArticleCard } from "../components/Articles";
 import { FaRegComments } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
-
+import { GrNext } from "react-icons/gr";
 const MainHome = () => {
     const [categories,setCategories]=useState([]);
     const [displayedCategories, setDisplayedCategories] = useState([])
@@ -68,7 +69,10 @@ const MainHome = () => {
                         }}
                         spaceBetween={20}
                         slidesPerView={1}
-                        navigation={true}
+                        navigation={{
+                            nextEl:"swiper-button-next",
+                            prevEl:"swiper-button-prev",
+                        }}
                         pagination={{
                             clickable: true
                         }}
@@ -79,40 +83,37 @@ const MainHome = () => {
                                        <SwiperSlide>
                                   <div className="article-item mb-5 p-6 relative overflow-hidden rounded-lg mx-auto max-w-4xl"  >
                                 <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
-                                <a className="relative z-10" href={`/library/articles/${item.article_id}`}>
-                                    <div className="article-content flex justify-between flex-col gap-3">
-                                        <div className="article-header flex justify-between flex-col md:flex-row items-start md:items-center gap-2">
-                                            <div className="article-author flex flex-col md:flex-row md:items-center gap-2">
-                                                <div className="flex items-center gap-2">
-                                                    
-                                                    <img
-  src={
-    item?.profile_img
-      ? item.profile_img.trim().startsWith("http")
-        ? item.profile_img.trim()
-        : `https://cothink.az/${item.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  className="w-10 h-10 rounded-full object-cover"
-  alt="Avatar"
-/>
+                                <a className="relative z-10 block h-full" href={`/library/articles/${item.article_id}`}>
+                                    <div className="article-content  h-full gap-4 flex flex-col justify-between">
+                                        <div className="article-header flex justify-between flex-col md:flex-row items-center md:items-center gap-2">
+                                            <div className="article-author flex  items-center gap-2">
+                                                                 
+                                                <img src={item?.profile_img ? item.profile_img.trim().startsWith("http") ? item.profile_img.trim()
+                                                                        : `https://cothink.az/${item.profile_img.trim()}`
+                                                                    : "/images/admin.png"
+                                                                }
+                                                                className="w-10 h-10 rounded-full object-cover border-2 border-white/30"
+                                                                alt="Avatar"
+                                                                />
 
-                                                    <span className="text-white text-sm md:text-base">{item.mentor_name}</span>
+                                               
+                                              
+                                                <div className="flex flex-col  md:ml-0">
+                                                         <span className="text-white font-medium text-sm md:text-base">{item.mentor_name}</span>
+                                                    {/* <span className="text-gray-300 hidden md:inline">•</span> */}
+                                                    <span className="text-gray-300 text-sm md:text-base">   {new Date (item.created_at).toLocaleDateString()}</span>
                                                 </div>
-                                                <div className="flex items-center gap-2 md:ml-0">
-                                                    <span className="text-gray-300 hidden md:inline">•</span>
-                                                    <span className="text-gray-300 text-sm md:text-base">{item.created_at}</span>
-                                                </div>
-                                            </div>
+                                             </div>
                                             <div className="category" >
                                                 
                                                 <span className="bg-blue-800 rounded-md px-5 py-2 text-white text-sm md:text-base">{item.category}</span>
                                             </div>
-                                        </div>
-                                           <div className="article-title">
-                                            <p className="text-white font-semibold text-sm md:text-base">{item.article_title}</p>
-                                        </div>
-                                            <div className="article-title">
+                                    </div>
+                                           {/* <div className="article-title">
+                                           
+                                        </div> */}
+                                            <div className="article-body  text-gray-200 text-sm md:text-base">
+                        <p className="text-white font-semibold text-lg md:text-xl">{item.article_title}</p>
                         {
                             item?.article_topic?.length>90 ? (
                                 <div className="flex flex-col items-center">
@@ -124,12 +125,15 @@ const MainHome = () => {
                              <p className="hidden md:flex text-white">{item?.article_topic}</p>
                         }
                     </div>      
-                                    </div>
+                                 </div>
+                                 
                                 </a>
                             </div>
                                    </SwiperSlide>
                                 )
                               )}
+                              <div className="swiper-button-prev "><GrPrevious className="text-gray-600"/></div>
+                               <div className="swiper-button-next"><GrNext className="text-gray-600"/></div>
                         <div className="swiper-pagination flex justify-center"></div>
                     </Swiper>
 
@@ -217,54 +221,7 @@ const MainHome = () => {
                     ))
                 }          
             </div>
-                {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-                    {
-                        filteredDiscussions.map((item)=>(
-  <div className="mentor-item rounded-md">
-                        <a href={`/questions/${item.post_id}`} className="h-full">
-                            <div className="flex justify-between flex-col gap-3 md:flex-row h-full">
-                                <div className="flex flex-col h-full gap-3 justify-between">
-                                    <div className="mentor-title flex gap-3  items-center">
-                                     <img
-  src={
-    item?.profile_img
-      ? item.profile_img.trim().startsWith("http")
-        ? item.profile_img.trim()
-        : `https://cothink.az/${item.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  alt="Aydan"
-  className="w-15 h-15 object-cover rounded-full"
-/>
-
-                                       <div className="flex flex-col">
-                                        <h5>{item.mentor_name}</h5>
-                                        <div className="flex gap-1">
-                                   
-                                        <p>  {new Date(item.created_at).toLocaleDateString()}</p>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p>{item.post_title}</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    {
-                                        item.post_img &&   <img src={item.post_img} className="w-full md:max-w-40  h-32 object-cover rounded-md" alt="Post" 
-                                        onError={(e) => (e.target.style.display = "none")}
-                                        /> 
-                                    }
-                                  
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                        ))
-                    }
-                
-                    </div> */}
-        
+               
             </div>
         </section>
     )
