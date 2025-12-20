@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { IoMenu } from "react-icons/io5";
 import { CourseCard } from "../components/Courses";
@@ -10,10 +10,11 @@ import { ApiContext } from "../ApiContext";
 import { CommentCard } from "../components/Comments";
 import { WhatsappShareButton } from "react-share";
 import { AuthContext } from "../AuthContext";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const {apiUrl}= useContext(ApiContext)
-  const {user}=useContext(AuthContext)
+  const {user,setUser}=useContext(AuthContext)
   const [activeTab, setActiveTab] = useState(user?.type==="mentor" ? "courses" : "studentPosts");
   const [courses, setCourses] = useState([]);
   const [articles, setArticles] = useState([]);
@@ -22,7 +23,13 @@ const Profile = () => {
   const [postComments, setPostComments]=useState([])
   const [mentor, setMentor]=useState(null) 
   const [student, setStudent]=useState(null)
-
+  const [profileImg, setProfileImg]=useState("")
+  const [edit, setEdit]=useState(false)
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [about, setAbout] = useState("");
+  const [username, setUsername] = useState("");
+  const fileInputRef = useRef(null);
 useEffect(() => {
   if (user?.type === "mentor") {
 
@@ -30,7 +37,18 @@ useEffect(() => {
       .then(res => setCourses(res.data));
  
     axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
-      .then(res => setMentor(res.data.data));
+      .then(res =>{
+        // setMentor(res.data.data);
+          const data=res.data.data
+  
+    setName(data.mentor_name || "")
+    setEmail(data.mentor_email || "")
+    setUsername(data.mentor_username || "")
+    setAbout(data.description || "")
+    // setLinkedin(data.linkedn_link || "")
+    setProfileImg(data.profile_img || "")
+      })
+      
  
 
     axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`)
@@ -55,8 +73,15 @@ useEffect(() => {
       axios
       .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
       .then((res) => {
-        setStudent(res.data.data);
+        // setStudent(res.data.data);
+        const data=res.data.data
         console.log(res.data)
+    setName(data.student_name || "")
+    setEmail(data.student_email || "")
+    setUsername(data.student_username || "")
+    setAbout(data.description || "")
+    setProfileImg(`https://cothink.az${data.profile_img}`)
+    console.log(data)
       })
       .catch((err) => console.log(err));
     
@@ -65,23 +90,72 @@ useEffect(() => {
 
 
 }, []);
-console.log(user.type)
-//  if(studentPosts.length===0){
-//   return <Loading/>
-//  }
-const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
-const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
+    const handleUpload = (e) => {
+    e.preventDefault();
+    setEdit(true)
+    fileInputRef.current.click();
+
+  };
+  const handleChange=(e)=>{
+        const file=e.target.files[0]
+    if(file){
+      setProfileImg(URL.createObjectURL(file))
+    }
+  }
+
+      const submitForm = async (e) => {
+   
+    const formData = new FormData();
+ 
+
+   if(user.type==="student"){
+    formData.append("student_id", user.id);
+    formData.append("student_name", name);
+    formData.append("student_username", username);
+    formData.append("student_email", email);
+    formData.append("description", about);
+  }
+ 
+    if (fileInputRef.current.files[0]) {
+      formData.append("profile_img", fileInputRef.current.files[0]);
+    }
+try{
+  const url= user.type==="mentor" ? 
+  `${apiUrl}/server/profile/updateProfile.php?mentor_id=${user.id}` 
+  : `${apiUrl}/server/students/updateProfile.php?student_id=${user.id}`
+   const res = await axios.post(url,  formData)
+    console.log(res.data)
+    if(res.data.status==="success"){
+         setUser((prev)=>({
+         ...prev,
+        name:name,
+        email:email,
+        profile_img: res.data.image ? `https://cothink.az${res.data.image}` : prev.profile_img
+      }))
+     
+       toast.success("Profil uğurla yeniləndi")
+    }
+    if(res.data.status==="error"){
+      console.log(res.data.error)
+    }
+}
+catch(err){
+  console.log(err)
+}
+}
+// const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
+// const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
   return (
     <section>
       <div className="flex md:flex-row flex-col gap-5 justify-between">
         <div className="flex md:flex-row flex-col gap-5 items-center">
           <div>
             {user?.type==="mentor" ? (<img
-              src={mentorImg}
+              src={profileImg}
               className="rounded-full h-24 w-24 object-cover"
             />) : (
                <img 
-              src={studentImg}
+              src={profileImg}
               className="rounded-full h-24 w-24 object-cover"
             />
             )}
@@ -105,18 +179,34 @@ const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_im
           </button>
         </div> */}
       </div>
+      <form onSubmit={submitForm}>
       <div className="flex md:flex-row flex-col gap-3 mt-3 mb-3">
-        <a
+          <input
+                      ref={fileInputRef}
+                      onChange={handleChange}
+                      type="file"
+                      className="sr-only"
+                      accept="image/*"
+                    />
+                    {
+                      edit ? (
+                         <button className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5" type="submit">Göndər</button> 
+                      )
+                      :   (<button
           className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5"
-          href="/profile/edit"
+           onClick={handleUpload} type="button"
         >
-          Profili redaktə et
-        </a>
+          Profil şəklini dəyiş 
+        </button>)
+                    }
+      
         <button className="flex-1 md:flex-none bg-blue-800 text-white rounded-full  py-3">
           <WhatsappShareButton url={window.location.href} title={user?.name}>    Profili paylaş</WhatsappShareButton>
       
-        </button>
+        </button >
+       
       </div>
+      </form>
       <div className="flex justify-center mb-5 mt-5">
       {
         user.type==="mentor" ? <>

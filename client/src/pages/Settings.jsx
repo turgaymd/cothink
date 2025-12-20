@@ -4,13 +4,14 @@ import { CiCircleInfo } from "react-icons/ci";
 import { BiBlock } from "react-icons/bi";
 import { PiKey } from "react-icons/pi";
 import { IoLogOutOutline } from "react-icons/io5";
-import { FaRegComments } from "react-icons/fa";
+import { FaRegComments, FaRegEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState} from "react";
 import { AuthContext } from "../AuthContext";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { MdOutlineArrowBackIosNew, MdOutlineEdit } from "react-icons/md";
 import axios from "axios";
 import { ApiContext } from "../ApiContext";
+
 
 const Settings=({setActiveTab, setSettings})=>{
     const navigate=useNavigate()
@@ -19,10 +20,13 @@ const Settings=({setActiveTab, setSettings})=>{
     const [mentor,setMentor]=useState(null)
     const [student, setStudent]=useState(null)
 
+
     const handleLogout=()=>{
       localStorage.removeItem("user")
         navigate("/")
     }
+
+    
     useEffect(()=>{
     axios
       .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
@@ -40,6 +44,7 @@ const Settings=({setActiveTab, setSettings})=>{
       .catch((err) => console.log(err));
     },[])
 
+
      const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
    const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
     return (
@@ -53,16 +58,32 @@ const Settings=({setActiveTab, setSettings})=>{
                      }><MdOutlineArrowBackIosNew fontSize={24}/></button>
                </div>
    <div className="flex flex-col justify-center items-center mb-4">
-                
-                 <div className="profiles-img">
+              
+                 <div className="profiles-img relative">
                   {
                      user?.type==="mentor" ?  <img src={mentorImg} className="rounded-full w-24 h-24"/>
                  :                 <img src={studentImg} className="rounded-full w-24 h-24"/>
                   }
 
+            
+          
+
+          {/* {
+            !edit  && <button type="button" className=" p-1.5 bg-blue-500  rounded-full absolute -bottom-3 right-4 text-blue-500" >
+              <FaRegEdit fontSize={18} className="text-white  rounded-full"/>
+              </button>
+          } */}
+          </div>
+            {/* {
+              edit &&   <button type="submit" className="text-blue-500" >
+            Göndər
+            </button>
+            } */}
+
+            <h2 className="font-medium text-xl pt-3">{user?.name}</h2>
+        
             </div>
-            <h2 className="font-medium text-xl">{user?.name}</h2>
-            </div>
+           
         <div className=" px-3 py-2 mb-5 mt-4 shadow-sm inset-shadow-sm">
         <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 cursor-pointer" onClick={()=>setActiveTab("about")}>
             <div className="flex items-center gap-3">
