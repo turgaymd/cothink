@@ -4,7 +4,7 @@ import AddCourse from "../components/AddCourse";
 import { BsBook, BsCameraVideo } from "react-icons/bs";
 import { PiArticleLight } from "react-icons/pi";
 import { LuBookAudio } from "react-icons/lu";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 const Share=()=>{
       const [activeTab, setActiveTab]=useState("nothing")
       const {user}=useContext(AuthContext)

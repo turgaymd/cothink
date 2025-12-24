@@ -1,11 +1,10 @@
 import { useContext, useState } from "react";
 import { BsInstagram, BsLinkedin } from "react-icons/bs";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { IoMdAdd } from "react-icons/io";
-import { FiMinus } from "react-icons/fi";
 import Faqs from "./FAQ";
 import axios from "axios";
-import { ApiContext } from "../../ApiContext";
+import { ApiContext } from "../../context/ApiContext";
+import { toast, ToastContainer } from "react-toastify";
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,7 +23,7 @@ const handleContact = async (e) => {
   e.preventDefault();
 
   if (!email || !phone || !message) {
-    alert("Bütün xanaları doldurun");
+   toast.error("Bütün xanaları doldurun");
     return;
   }
 
@@ -58,7 +57,8 @@ console.log(res.data)
     setCurrentSlide((prev) => (prev - 1 + logos.length) % logos.length);
   };
 
-  return (
+  return (<>
+    <ToastContainer/>
    <div>
      <section id="contact" className="max-w-[80vw] m-auto py-8">
       <h2 className="font-bold text-center text-3xl mb-7">Əlaqə</h2>
@@ -274,6 +274,7 @@ console.log(res.data)
 
 
    </div>
+   </>
     
   );
 };

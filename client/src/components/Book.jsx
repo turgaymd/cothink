@@ -3,11 +3,12 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { LuTableOfContents } from "react-icons/lu";
 import Loading from "../utils/Loading";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { toast, ToastContainer } from "react-toastify";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+
 const Book = () => {
   const navigate = useNavigate();
   const { id } = useParams();  

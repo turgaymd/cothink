@@ -3,8 +3,8 @@ import { FaBookmark, FaRegBookmark, FaRegCalendar } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { ApiContext } from "../ApiContext";
-import {AuthContext} from "../AuthContext"
+import { ApiContext } from "../context/ApiContext";
+import {AuthContext} from "../context/AuthContext"
 import { IoIosAdd } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 import { toast, ToastContainer } from "react-toastify";

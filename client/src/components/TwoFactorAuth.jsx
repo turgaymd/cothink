@@ -26,7 +26,7 @@ const TwoFactorAuth=({setActiveTab})=>{
                                 </span>  
                             </div>
                             <div className="flex flex-col">
-                                <h4 className="font-bold">SMS vasitəsilə təsdiqləmə</h4>
+                                <h4 className="font-bold text-black">SMS vasitəsilə təsdiqləmə</h4>
                             </div>
                         </div>
                        
@@ -42,7 +42,6 @@ const TwoFactorAuth=({setActiveTab})=>{
                         </div>
                     </div>
 
-                    {/* Email Toggle */}
                     <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3 gap-2">
                         <div className="flex items-center gap-3">
                             <div className="icons">
@@ -51,7 +50,7 @@ const TwoFactorAuth=({setActiveTab})=>{
                                 </span>  
                             </div>
                             <div className="flex flex-col">
-                                <h4 className="font-bold">E-poçt vasitəsilə təsdiqləmə</h4>
+                                <h4 className="font-bold text-black">E-poçt vasitəsilə təsdiqləmə</h4>
                             </div>
                         </div>
                         

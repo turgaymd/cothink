@@ -3,9 +3,9 @@ import { useContext, useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { BsBack } from "react-icons/bs";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import Select from "react-select"
 const About=({ setActiveTab})=>{
   const {user,setUser}=useContext(AuthContext)

@@ -7,12 +7,13 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { FaRegComments, FaRegEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState} from "react";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { MdOutlineArrowBackIosNew, MdOutlineEdit } from "react-icons/md";
 import axios from "axios";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { WiMoonAltThirdQuarter } from "react-icons/wi";
 import { TbAuth2Fa } from "react-icons/tb";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Settings=({setActiveTab, setSettings})=>{
     const navigate=useNavigate()
@@ -20,13 +21,15 @@ const Settings=({setActiveTab, setSettings})=>{
     const {apiUrl}=useContext(ApiContext)
     const [mentor,setMentor]=useState(null)
     const [student, setStudent]=useState(null)
-
-
+    const {theme,setTheme}=useContext(ThemeContext)
+ 
     const handleLogout=()=>{
       localStorage.removeItem("user")
         navigate("/")
     }
-
+  const handleTheme=()=>{
+         setTheme(prev=>(prev==="light" ? "dark" : "light"))
+  }
     
     useEffect(()=>{
     axios
@@ -144,15 +147,15 @@ const Settings=({setActiveTab, setSettings})=>{
            <button ><SlArrowRight className="text-red-500"/></button> 
         </div>
         </div>
-        <h4 className="pb-3 text-black font-bold">Daha çox</h4>
-        <div className="features_card shadow-sm inset-shadow-sm">
+        <h4 className="pb-3 font-bold">Daha çox</h4>
+        <div className="features_card shadow-sm inset-shadow-sm" >
             <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
             <div className="flex items-center gap-3">
                  <div className="icons">
-              <span className="text-blue-500 rounded-full"><WiMoonAltThirdQuarter fontSize={28}/></span>  
+              <span className="text-blue-500 rounded-full"><WiMoonAltThirdQuarter fontSize={28} /></span>  
             </div>
             <div className="flex flex-col">
-            <h4 className="font-bold">Tema</h4>
+            <h4 className="font-bold  text-black">Tema</h4>
             </div>
             </div>
            <button><SlArrowRight /></button> 
@@ -163,7 +166,7 @@ const Settings=({setActiveTab, setSettings})=>{
               <span className="text-blue-500 rounded-full"><FaRegComments fontSize={24}/></span>  
             </div>
             <div className="flex flex-col">
-            <h4 className="font-bold">Kömək / Dəstək</h4>
+            <h4 className="font-bold  text-black">Kömək / Dəstək</h4>
             </div>
             </div>
            <button><SlArrowRight /></button> 
@@ -174,7 +177,7 @@ const Settings=({setActiveTab, setSettings})=>{
               <span className="text-blue-500 rounded-full"><CiCircleInfo fontSize={24}/></span>  
             </div>
             <div className="flex flex-col">
-            <h4 className="font-bold">Websayt Haqqında</h4>
+            <h4 className="font-bold text-black">Websayt Haqqında</h4>
             </div>
             </div>
            <button><SlArrowRight /></button> 

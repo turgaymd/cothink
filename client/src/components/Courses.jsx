@@ -1,12 +1,10 @@
 
-// import courses from "../data/CoursesData";
+
 import Search from "../utils/Search";
-import { MdArrowOutward } from "react-icons/md";
 import { useContext, useEffect,useState } from "react";
 import axios from "axios";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import Select from "react-select"
-import { PiX } from "react-icons/pi";
 export const CourseCard=({item})=>{
 
   const courseImg=item?.course_img?.startsWith("http") ? item?.course_img : `https://cothink.az/server/${item?.course_img}`
@@ -72,7 +70,6 @@ const Courses = () => {
 
    useEffect(()=>{
         axios.get(`${apiUrl}/server/courses/courseRead.php`).then(res=>{
-          console.log(res.data)
             setCourses(res.data)
         })
            axios.get(`${apiUrl}/server/categories/categoryRead.php`).then(res=>{ 

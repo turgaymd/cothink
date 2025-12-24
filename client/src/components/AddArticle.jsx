@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { ApiContext } from "../ApiContext";
-import { AuthContext } from "../AuthContext";
+import { ApiContext } from "../context/ApiContext";
+import { AuthContext } from "../context/AuthContext";
 
 const AddArticle = () => {
   const [articleTitle, setArticleTitle] = useState("");

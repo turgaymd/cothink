@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { FiUploadCloud } from "react-icons/fi";
 import Select from "react-select";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { useNavigate } from "react-router-dom";
 const AddCourse = ({ setActiveTab }) => {
   const [courseTitle, setCourseTitle] = useState("");
@@ -17,6 +17,7 @@ const AddCourse = ({ setActiveTab }) => {
   const [error, setError] = useState("");
 
   const navigate=useNavigate("/share")
+  
   const { apiUrl } = useContext(ApiContext);
   useEffect(() => {
     axios

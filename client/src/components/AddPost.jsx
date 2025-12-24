@@ -3,9 +3,9 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import Select from "react-select";
 import { IoMdClose } from "react-icons/io";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { TbChevronsDownLeft } from "react-icons/tb";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 const AddPost = ({ setActiveTab }) => {
   const [postTitle, setPostTitle] = useState("");
   const [postDesc, setPostDesc] = useState("");

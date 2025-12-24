@@ -1,16 +1,14 @@
-import {  SlArrowDown, SlArrowUp } from "react-icons/sl";
-import { CiUser } from "react-icons/ci";
+
 import { BsChatRightText } from "react-icons/bs";
-import { MdAssignment } from "react-icons/md";
 import { FaBookmark, FaRegBookmark, FaRegComments, FaRegFile } from "react-icons/fa";
 import { FaRegCirclePlay } from "react-icons/fa6";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { toast, ToastContainer } from "react-toastify";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { WhatsappShareButton } from "react-share";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 

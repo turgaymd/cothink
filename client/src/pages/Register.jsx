@@ -4,9 +4,9 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import Select from "react-select";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

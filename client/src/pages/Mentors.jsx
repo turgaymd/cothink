@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Search from "../utils/Search";
 import axios from "axios";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 
 const Mentors = () => {
     const [categories, setCategories] = useState([]);

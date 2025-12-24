@@ -4,8 +4,8 @@ import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { toast, ToastContainer } from "react-toastify";
-import { ApiContext } from "../ApiContext";
-import { AuthContext } from "../AuthContext";
+import { ApiContext } from "../context/ApiContext";
+import { AuthContext } from "../context/AuthContext";
 
 
   const PasswordInput=({label, value, setValue})=>{
@@ -55,7 +55,7 @@ const ResetPassword=({setActiveTab})=>{
           try{
          const res= await axios.post(`${apiUrl}/server/settings/changePass.php`, 
           { 
-            user_id:user.id,
+             user_id:user.id,
              user_type:user.type,
              current_password:currentPassword, 
              new_password:newPassword,

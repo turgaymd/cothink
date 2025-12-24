@@ -3,8 +3,9 @@ import Search from "../utils/Search";
 import Articles from "./Articles";
 import axios from "axios";
 import Books from "./Books";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context//ApiContext";
 import Select from "react-select"
+
 const Library=()=>{
   const [activeTab, setActiveTab]=useState("books")
   const [books, setBooks]=useState([])
@@ -60,7 +61,7 @@ const Library=()=>{
             <>
      <section>
     <div className="flex justify-center mb-5">
-    <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full bg-white border border-gray-200">
+    <div className="switch-toogle flex justify-center items-center mb-5 rounded-full max-w-3xl w-full border border-gray-200">
             <button className={` rounded-full w-full ${activeTab==="books" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("books")}>Kitablar</button>
             <button className={`rounded-full w-full ${activeTab==="articles" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActiveTab("articles")}>Bloqlar</button>
         </div> 

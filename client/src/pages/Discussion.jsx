@@ -2,11 +2,11 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { WhatsappShareButton } from "react-share";
 import { toast, ToastContainer } from "react-toastify";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 function Discussion(){
   const { id } = useParams();  
@@ -162,17 +162,17 @@ const handleSave=async(item)=>{
     <div className="discussion-item">
         <div className="post-header flex gap-3 justify-between items-center">
             <div className="flex post-img items-center">
-<img
-  className="rounded avatar object-cover"
-  src={
-    post?.profile_img
-      ? post.profile_img.trim().startsWith("http")
-        ? post.profile_img.trim()
-        : `https://cothink.az/${post.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  alt="Post Author"
-/>
+            <img
+              className="rounded avatar object-cover"
+              src={
+                post?.profile_img
+                  ? post.profile_img.trim().startsWith("http")
+                    ? post.profile_img.trim()
+                    : `https://cothink.az/${post.profile_img.trim()}`
+                  : "/images/admin.png"
+              }
+              alt="Post Author"
+            />
            <div className="pl-3">
            <h4 className="font-semibold">{post?.mentor_name || post?.student_name}</h4>
             <p className="text-gray-400">{post?.mentor_position}</p>
@@ -184,18 +184,18 @@ const handleSave=async(item)=>{
 <p>{post?.post_desc} </p>
         </div>
         <div className="post-image pt-5">
-<img
-  src={
-    post?.post_img
-      ? post.post_img.trim().startsWith("http")
-        ? post.post_img.trim()
-        : `https://cothink.az/server/uploads/posts/${post.post_img.trim()}`
-      : "/images/admin.png"
-  }
-  className="rounded-md"
-  alt="Post"
-   onError={(e) => (e.target.style.display = "none")}
-/>
+        <img
+          src={
+            post?.post_img
+              ? post.post_img.trim().startsWith("http")
+                ? post.post_img.trim()
+                : `https://cothink.az/server/uploads/posts/${post.post_img.trim()}`
+              : "/images/admin.png"
+          }
+          className="rounded-md"
+          alt="Post"
+          onError={(e) => (e.target.style.display = "none")}
+        />
 
         </div>
         <div className="post-reactions flex justify-end gap-5 pt-3">
@@ -241,17 +241,17 @@ const handleSave=async(item)=>{
     <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
                     <div className="comment-header flex items-start">
          <div className="w-16 h-16 shrink-0">
-           <img
-  className="rounded-full w-full h-full object-cover "
-  src={
-    comment?.profile_img
-      ? comment.profile_img.trim().startsWith("http")
-        ? comment.profile_img.trim()
-        : `https://cothink.az/${comment.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  alt="Profile"
-/>
+              <img
+      className="rounded-full w-full h-full object-cover "
+      src={
+        comment?.profile_img
+          ? comment.profile_img.trim().startsWith("http")
+            ? comment.profile_img.trim()
+            : `https://cothink.az/${comment.profile_img.trim()}`
+          : "/images/admin.png"
+      }
+      alt="Profile"
+    />
          </div>
         
 

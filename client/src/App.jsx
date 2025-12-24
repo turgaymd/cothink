@@ -10,7 +10,7 @@ import SentCode from "./pages/SentCode";
 
 
 import AuthProvider from "./AuthProvider";
-import ApiProvider from "./ApiContext";
+import ApiProvider from "./context/ApiContext";
 
 
 import MainLayout from "./MainLayout";
@@ -31,7 +31,6 @@ import Mentors from "./pages/Mentors";
 import Mentor from "./pages/Mentor";
 import Rating from "./pages/Rating";
 import Profile from "./pages/Profile";
-import EditProfile from "./pages/EditProfile";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
@@ -45,12 +44,14 @@ import Article from "./components/Article";
 import AddArticle from "./components/AddArticle";
 import PrivateRouter from "./PrivateRoute";
 import Privacy from "./pages/Conditions";
+import ThemeProvider from "./context/ThemeContext";
 
 
 function App() {
   return (
     <ApiProvider>
       <AuthProvider>
+        <ThemeProvider>
         <BrowserRouter>
           <Routes>
             <Route element={<LandingLayout />}>
@@ -85,7 +86,6 @@ function App() {
               <Route path="/courses/:id/content" element={<CourseContent />} />
               <Route path="/rating" element={<Rating />} />
               <Route path="/profile" element={<Profile />} />
-              <Route path="/profile/edit" element={<EditProfile />} />
               <Route path="/settings" element={<Settings />} />
             </Route>
             </Route>
@@ -94,6 +94,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        </ThemeProvider>
       </AuthProvider>
     </ApiProvider>
   );

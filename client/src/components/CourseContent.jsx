@@ -4,8 +4,8 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { useParams } from "react-router-dom";
 import Loading from "../utils/Loading";
-import { ApiContext } from "../ApiContext";
-import { AuthContext } from "../AuthContext";
+import { ApiContext } from "../context/ApiContext";
+import { AuthContext } from "../context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 const CourseContent=()=>{
         const { id } = useParams();  

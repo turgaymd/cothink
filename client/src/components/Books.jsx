@@ -4,8 +4,8 @@ import { FaBookmark } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import {WhatsappShareButton} from "react-share"
-import { ApiContext } from "../ApiContext";
-import { AuthContext } from "../AuthContext";
+import { ApiContext } from "../context/ApiContext";
+import { AuthContext } from "../context/AuthContext";
  
 const Books = ({books, query, selectedCategory, visibleBooks, handleMoreBooks, handleLessBooks}) => {
 
@@ -27,7 +27,6 @@ const Books = ({books, query, selectedCategory, visibleBooks, handleMoreBooks, h
       .then(res => {
         const book_ids=res.data.saved_books.map(book=>book.book_id)
         setSavedBooks(book_ids)
-        console.log(book_ids)
       })
       .catch(err => console.error(err))
   },[])
@@ -41,7 +40,6 @@ const Books = ({books, query, selectedCategory, visibleBooks, handleMoreBooks, h
         },
         { headers: { "Content-Type": "application/json" } }
       );
-      console.log(res.data)
       if (res.data.status === "success") {
         toast.success("Kitab yadda saxlanıldı");
         setSavedBooks((prev)=>[...prev, item.book_id])
@@ -83,7 +81,7 @@ const Books = ({books, query, selectedCategory, visibleBooks, handleMoreBooks, h
         {displayedBooks.length===0 ? 
           <p className="font-bold col-span-full text-center text-2xl">Kitab tapılmadı</p> : (
           displayedBooks.map((item, index)=>(
-            <div className="library-item bg-white shadow-sm hover:shadow-md transition rounded-xl mt-4" key={index}>
+            <div className="library-item  shadow-sm hover:shadow-md transition rounded-xl mt-4" key={index}>
               <div className="flex  gap-4">
                 <a href={`/library/books/${item.book_id}`}>
                     <img

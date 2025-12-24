@@ -1,6 +1,6 @@
 import { useState,useEffect, useContext } from "react";
 import axios from "axios";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 export const ArticleCard=({item})=>{
@@ -12,14 +12,14 @@ export const ArticleCard=({item})=>{
                         <div className="article-header flex justify-between md:flex-row flex-col gap-2">
                             <div className="article-author flex items-center gap-2">
                               <img className="object-cover"
-  src={
-    item?.profile_img
-      ? item.profile_img.trim().startsWith("http")
-        ? item.profile_img.trim()
-        : `https://cothink.az/${item.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-/>
+                                src={
+                                    item?.profile_img
+                                    ? item.profile_img.trim().startsWith("http")
+                                        ? item.profile_img.trim()
+                                        : `https://cothink.az/${item.profile_img.trim()}`
+                                    : "/images/admin.png"
+                                }
+                                />
 
                                 <span>{item.mentor_name}</span>
                                 <span>•</span>
@@ -60,7 +60,6 @@ const Articles=({query,selectedCategory})=>{
             .then(res => {
                 setArticles(res.data)  
                 setVisibleArticles()
-                console.log(res.data)
             })
             .catch(err => console.error(err))
     }, []);

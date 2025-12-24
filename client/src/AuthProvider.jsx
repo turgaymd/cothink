@@ -1,6 +1,6 @@
 import {  useContext, useEffect, useState } from "react";
-import { AuthContext } from "./AuthContext";
-import { ApiContext } from "./ApiContext";
+import { AuthContext } from "./context/AuthContext";
+import { ApiContext } from "./context/ApiContext";
 import axios from "axios";
 const AuthProvider=({children})=>{
     const [user,setUser]=useState(null)
@@ -25,6 +25,7 @@ const AuthProvider=({children})=>{
         }
 
     },[user])
+
 useEffect(() => {
     if (!user) return;
 
@@ -44,6 +45,7 @@ useEffect(() => {
 
     fetchProfile();
   }, [user, apiUrl, setProfile]);
+  
     return(
         <AuthContext.Provider value={{user, setUser, profile, setProfile, loading}} >
          {children}

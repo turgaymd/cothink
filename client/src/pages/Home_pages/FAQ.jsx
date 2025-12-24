@@ -59,7 +59,7 @@ text:"Cavablar Mentorlar və yüksək reytinqli tələbələr tərəfindən qiym
           <div className="flex flex-col gap-3 md:gap-5 items-center justify-center py-5">
             <img src="/images/faq.png" className="object-cover max-w-[200px] md:max-w-full" alt="FAQ"/>
             <h6 className="font-bold text-xl md:text-2xl pt-2 md:pt-4 pb-2 md:pb-4 text-center">Başqa sualınız var?</h6>
-            <button className="rounded-full contact-btn px-6 py-2 bg-blue-800 text-white hover:bg-blue-900 transition-colors">Əlaqə saxlayın</button>
+            <a className="rounded-full contact-btn px-6 py-2 bg-blue-800 text-white hover:bg-blue-900 transition-colors" href="/contact">Əlaqə saxlayın</a>
           </div>
         </div>
       </div>

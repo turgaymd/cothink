@@ -6,11 +6,11 @@ import { ArticleCard } from "../components/Articles";
 import Posts, { PostCard } from "../components/Posts";
 import axios from "axios";
 import Loading from "../utils/Loading";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { CommentCard } from "../components/Comments";
 import { WhatsappShareButton } from "react-share";
-import { AuthContext } from "../AuthContext";
-import { toast } from "react-toastify";
+import { AuthContext } from "../context/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
 
 const Profile = () => {
   const {apiUrl}= useContext(ApiContext)
@@ -103,7 +103,7 @@ useEffect(() => {
   }
 
       const submitForm = async (e) => {
-   
+        e.preventDefault()
     const formData = new FormData();
  if(user.type==="mentor"){
      formData.append("mentor_id", user.id);
@@ -141,6 +141,7 @@ try{
       }))
      
        toast.success("Profil uğurla yeniləndi")
+       setEdit(false)
     }
     if(res.data.status==="error"){
       console.log(res.data.error)
@@ -153,6 +154,8 @@ catch(err){
 // const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
 // const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
   return (
+    <>
+    <ToastContainer/>
     <section>
       <div className="flex md:flex-row flex-col gap-5 justify-between">
         <div className="flex md:flex-row flex-col gap-5 items-center">
@@ -194,7 +197,7 @@ catch(err){
                     />
                     {
                       edit ? (
-                         <button className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5" type="submit">Göndər</button> 
+                         <button className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5" type="submit">Yadda saxla</button> 
                       )
                       :   (<button
           className="flex-1 md:flex-none bg-blue-800 text-center text-white rounded-full py-3 px-5"
@@ -214,7 +217,7 @@ catch(err){
       <div className="flex justify-center mb-5 mt-5">
       {
         user.type==="mentor" ? <>
-           <div className="switch-toogle flex justify-center items-center mb-5 max-w-3xl w-full bg-white border border-gray-200">
+           <div className="switch-toogle flex justify-center items-center mb-5 max-w-3xl w-full  border border-gray-200">
           <button
             className={` whitespace-nowrap md:rounded-full rounded-md  w-full ${
               activeTab === "courses" ? "bg-blue-800 text-white" : ""
@@ -242,7 +245,7 @@ catch(err){
         </div>
         </> :
 
-            <div className="switch-toogle flex justify-center items-center mb-5  md:rounded-full rounded-md max-w-3xl w-full bg-white border border-gray-200">
+            <div className="switch-toogle flex justify-center items-center mb-5  md:rounded-full rounded-md max-w-3xl w-full  border border-gray-200">
           <button
             className={` whitespace-nowrap md:rounded-full rounded-md w-full ${
               activeTab === "studentPosts" ? "bg-blue-800 text-white" : ""
@@ -321,6 +324,8 @@ catch(err){
     )} 
       </>}
     </section>
+    </>
+   
   );
 };
 

@@ -7,7 +7,7 @@ import Articles, { ArticleCard } from "../components/Articles";
 import Posts, { PostCard } from "../components/Posts";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import Loading from "../utils/Loading";
 
 const Mentor = () => {
@@ -59,18 +59,16 @@ const Mentor = () => {
           <div className="bg-white shadow-lg/30 inset-shadow-lg sha border border-gray-200 rounded-lg px-10 py-4">
             <div className="gap-2 grid grid-cols-1 lg:grid-cols-2">
               <div className="profil-img flex flex-col justify-center items-center">
-               <img
-  src={
-    mentor?.profile_img
-      ? mentor.profile_img.trim().startsWith("http")
-        ? mentor.profile_img.trim()
-        : `https://cothink.az/${mentor.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  className="mentor-avatar rounded-full object-cover"
-  alt="mentor"
-/>
-
+              <img src={
+                  mentor?.profile_img
+                    ? mentor.profile_img.trim().startsWith("http")
+                      ? mentor.profile_img.trim()
+                      : `https://cothink.az/${mentor.profile_img.trim()}`
+                    : "/images/admin.png"
+                }
+                className="mentor-avatar rounded-full object-cover"
+                alt="mentor"
+              />
                 <div className="flex justify-end gap-5 comment-reactions pt-3 text-blue-700">
                   <div className="like-count flex items-center gap-2">
                     <HiOutlineUsers fontSize={24} /> {mentor.students} tələbə

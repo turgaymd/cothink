@@ -6,7 +6,7 @@ const Rating=()=>{
         <div className="md:col-span-10 p-5">
             <section>
                 <div className="flex justify-center">
-    <div className="switch-toogle flex md:flex-row flex-col justify-center rounded-md md:rounded-full items-center mb-5 max-w-3xl w-full bg-white border border-gray-200">
+    <div className="switch-toogle flex md:flex-row flex-col justify-center rounded-md md:rounded-full items-center mb-5 max-w-3xl w-full  border border-gray-200">
             <button className={`rounded-md md:rounded-full w-full ${active==="week" ?  "bg-blue-800 text-white " : ''}`} onClick={()=>setActive("week")}>Həftəlik Reyting</button>
             <button className={`rounded-md md:rounded-full w-full ${active==="month" ?  "bg-blue-800 text-white" : ''}`} onClick={()=>setActive("month")}>Aylıq Reyting</button>
         </div>

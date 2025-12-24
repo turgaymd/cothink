@@ -3,9 +3,9 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link, NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { useContext, useState, useEffect } from "react";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 
 function Header({open, setOpen, setSettings}){
     const [search, setSearch] = useState(false);
@@ -25,21 +25,26 @@ function Header({open, setOpen, setSettings}){
     }, []);
     
     useEffect(()=>{
-    axios
+      if(user.type==="mentor"){
+  axios
       .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
       .then((res) => {
         setMentor(res.data.data);
         console.log(res.data)
       })
       .catch((err) => console.log(err));
-          axios
-      .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
+          
+      }
+  else{
+  axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
       .then((res) => {
         setStudent(res.data.data);
         console.log(res.data)
       })
       .catch((err) => console.log(err));
-    },[])
+  }
+    
+    },[user])
    const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
    const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
     return(

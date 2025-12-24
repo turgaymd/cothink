@@ -58,23 +58,23 @@ const Home = () => {
         <div className="flex flex-col md:h-full"> 
         <div className="partners flex md:grid md:grid-cols-6 grid-cols-2  gap-3">
              <a className="scale-160 md:scale-100 md:scale-100" href="https://idda.az/az" target="_blank">
-  <img src="/images/rəqəmsalw.png"/>
+  <img src="/images/rəqəmsalw.png" alt="partner"/>
           </a>
-             <a className="scale-160 md:scale-100" href="https://idda.az/az" target="_blank">
-  <img src="/images/digitalw.png"/>
+             <a className="scale-160 md:scale-100" href="https://idda.az/az" target="_blank" >
+  <img src="/images/digitalw.png"  alt="partner"/>
           </a>
              <a className="scale-160 md:scale-100" href="https://beu.edu.az/en" target="_blank">
-  <img src="/images/bmuw.png"/>
+  <img src="/images/bmuw.png"  alt="partner"/>
           </a>
             
                <a className="scale-160 md:scale-100" href="https://beu.edu.az/en" target="_blank">
-  <img src="/images/beuw.png"/>
+  <img src="/images/beuw.png"  alt="partner"/>
           </a>
               <a className="scale-160 md:scale-100">
-  <img src="/images/assipw.png"/>
+  <img src="/images/assipw.png"  alt="partner"/>
           </a>
               <a className="scale-160 md:scale-100" href="https://yenifikir.az/" target="_blank">
-  <img src="/images/yenifikir.png"/>
+  <img src="/images/yenifikir.png"  alt="partner"/>
           </a>
         </div>
 <div className="text-center pb-4 md:mt-40 mt-18 md:m-5  md:p-5 ">
@@ -103,37 +103,37 @@ const Home = () => {
                                         <div className="partners  justify-center grid md:grid-cols-4 grid-cols-2  gap-3">
                           
              <a className="">
-  <img src="/images/beu_white.png"/>
+  <img src="/images/beu_white.png"  alt="partner"/>
           </a>
 
              <a className="" href="https://yenifikir.az/" target="_blank">
-  <img src="/images/yenifikir_white.png" />
+  <img src="/images/yenifikir_white.png"  alt="partner"/>
           </a>
                <a className="" href="https://abbtech.az/" target="_blank" >
-  <img src="/images/abb.png"/>
+  <img src="/images/abb.png"  alt="partner"/>
           </a>
 
          
               <a className="" href="https://hedef.edu.az/" target="_blank">
-  <img src="/images/hedef.png"/>
+  <img src="/images/hedef.png"  alt="partner"/>
           </a>
           </div>
             </SwiperSlide>
           <SwiperSlide>
              <div className="partners justify-center  grid md:grid-cols-4 grid-cols-2  gap-3">
               <a className="">
-  <img src="/images/eland.png"/>
+  <img src="/images/eland.png"  alt="partner"/>
           </a>
                  <a className="">
-  <img src="/images/codeworld.png"/>
-          </a>
-          
-                 <a className="">
-  <img src="/images/beu_white.png" href="https://beu.edu.az/en" target="_blank"/>
+  <img src="/images/codeworld.png"  alt="partner"/>
           </a>
           
-                 <a className="">
-  <img src="/images/yenifikir_white.png" href="https://yenifikir.az/" target="_blank"/>
+                 <a className="" href="https://beu.edu.az/en" target="_blank">
+  <img src="/images/beu_white.png"  alt="partner" />
+          </a>
+          
+                 <a className="" href="https://yenifikir.az/" target="_blank">
+  <img src="/images/yenifikir_white.png" alt="partner"/>
           </a>
           </div>
                    </SwiperSlide>               
@@ -143,52 +143,6 @@ const Home = () => {
                     </Swiper>
 
       </section>
-      {/* <section id="home" className="w-full py-10">
-
-
-        <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto items-center gap-10 px-5">
-
-
-          <div className="flex flex-col justify-center order-2 md:order-1 text-center md:text-left">
-
-            <h2 className="font-bold text-2xl md:text-4xl leading-tight">
-              Bilik paylaşdıqca artır
-            </h2>
-
-            <p className="text-gray-500 py-5 text-base md:text-lg leading-relaxed">
-              Öyrənməni daha ağıllı, daha sadə və daha əlçatan edən yeni nəsil təhsil platforması.
-              <br />
-              CoThink — akademik cəhətdən düzgün və sənə uyğunlaşdırılmış bilikləri bir araya gətirir.
-            </p>
-
-    
-            <div className="flex justify-center md:justify-start">
-              <button className="bg-[#3456BE] text-white px-6 py-3 rounded-3xl flex items-center gap-3 hover:opacity-90 transition">
-                Kəşfə başlayın 
-                <span className="bg-white text-[#3456BE] p-1 rounded-full">
-                  <MdArrowOutward fontSize={18} />
-                </span>
-              </button>
-            </div>
-          </div>
-
-     
-          <div className="flex justify-center items-center order-1 md:order-2">
-            <img
-              src="/images/home_banner.png"
-              className="
-                w-full 
-                max-w-[400px] 
-                md:max-w-[430px] 
-                lg:max-w-[500px]
-                rounded-xl
-              "
-              alt="Home Banner"
-            />
-          </div>
-
-        </div>
-      </section> */}
 
       <section id="about" className="max-w-[80vw] m-auto mt-5">
         <div>

@@ -6,8 +6,8 @@ import Course, { CourseCard } from "../components/Courses";
 import Books from "../components/Books";
 import Posts, { PostCard } from "../components/Posts";
 import axios from "axios";
-import { ApiContext } from "../ApiContext";
-import { AuthContext } from "../AuthContext";
+import { ApiContext } from "../context/ApiContext";
+import { AuthContext } from "../context/AuthContext";
 import { WhatsappShareButton } from "react-share";
 import { FaBookmark } from "react-icons/fa";
 const Saved=()=>{
@@ -98,7 +98,7 @@ const Saved=()=>{
     ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-5">
    {books.map((item, index)=>(
-   <div className="library-item bg-white shadow-sm hover:shadow-md transition rounded-xl mt-4" key={index}>
+   <div className="library-item  shadow-sm hover:shadow-md transition rounded-xl mt-4" key={index}>
                 <div className="flex  gap-4">
                   <a href={`/library/books/${item.book_id}`}>
                       <img

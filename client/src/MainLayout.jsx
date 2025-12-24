@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { Outlet } from "react-router-dom";
@@ -8,21 +8,22 @@ import ResetPassword from "./components/ResetPassword";
 import TwoFactorAuth from "./components/TwoFactorAuth";
 import Support from "./components/Support";
 import Features from "./components/Features";
+import { ThemeContext } from "./context/ThemeContext";
 function MainLayout(){
   const [open, setOpen]=useState()
    const [settings, setSettings] =useState(false)
   const [activeTab, setActiveTab]=useState("about")
- 
+   const {theme}=useContext(ThemeContext)
   useEffect(()=>{
   if(window.innerWidth>=768){
     setOpen(false)
   }
   }, [])
-
+const layoutClass=` ${settings ? "md:col-span-9 col-span-12" : open ?  "md:col-span-10 col-span-12" :"md:col-span-12 col-span-12"}  }`
   return(
-    <>
+  <div className={`${theme==="dark" ? "bg-gray-800 text-white": "bg-white text-black"}`}>
     <Header open={open} setOpen={setOpen} setSettings={setSettings}/>
-    <div className="grid grid-cols-12">
+    <div className={`grid grid-cols-12 ` } >
     
        
    <div className={`${ settings && open ? "md:grid md:col-span-3 border-r border-r-gray-300" : open ? "md:grid md:col-span-2  border-r border-r-gray-300" : "  md:col-span-1 " }   hidden min-h-screen`}>
@@ -46,11 +47,11 @@ function MainLayout(){
     }
    
 
-    <div className={ settings ? "md:col-span-9 col-span-12" : open ?  "md:col-span-10 col-span-12" :"md:col-span-12 col-span-12"  } >
+    <div className= {layoutClass} >
     {
       settings ? 
       <>
-      <div className="md:hidden">
+      <div className="md:hidden" >
 {
   activeTab==="" ? <Settings setActiveTab={setActiveTab} activeTab={activeTab} setSettings={setSettings}/> : (
        <>
@@ -77,7 +78,7 @@ function MainLayout(){
     </div>
 
     </div>
-    </>
+    </div>
   )
 }
 export default MainLayout;

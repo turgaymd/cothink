@@ -1,20 +1,16 @@
   import { IoIosNotificationsOutline } from "react-icons/io";
   import { Link, NavLink } from "react-router-dom";
   import { IoClose, IoHome, IoLogOutOutline, IoSettingsOutline ,IoStarOutline } from "react-icons/io5";
-  import { AiFillVideoCamera } from "react-icons/ai";
   import { FiBookmark } from "react-icons/fi";
   import { GoPlusCircle } from "react-icons/go";
   import { BsCameraVideo } from "react-icons/bs";
 import { IoHomeOutline } from "react-icons/io5";
-import { SiCodementor } from "react-icons/si";
-import { RiQuestionAnswerLine, RiQuestionnaireLine } from "react-icons/ri";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../AuthContext";
-import { CiStar } from "react-icons/ci";
+import { AuthContext } from "../context/AuthContext";
 import { FaRegStar } from "react-icons/fa";
 import { PiChalkboard, PiChalkboardTeacher, PiChatDots } from "react-icons/pi";
 import axios from "axios";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 
 function Sidebar({open, setOpen, setSettings, setActiveTab}){
   const {user}=useContext(AuthContext)

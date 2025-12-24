@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import axios from "axios";
-import { ApiContext } from "../ApiContext";
+import { ApiContext } from "../context/ApiContext";
 import { ArticleCard } from "../components/Articles";
 import { FaRegComments } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
