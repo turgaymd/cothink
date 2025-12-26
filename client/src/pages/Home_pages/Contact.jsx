@@ -5,19 +5,15 @@ import Faqs from "./FAQ";
 import axios from "axios";
 import { ApiContext } from "../../context/ApiContext";
 import { toast, ToastContainer } from "react-toastify";
+import Team from "./Team";
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [currentSlide, setCurrentSlide] = useState(0);
   const {apiUrl}=useContext(ApiContext)
 
-  const logos = [
-    "/images/Group 7.svg",
-    "/images/Group 10.svg",
-    "/images/Group 9.svg"
-  ];
+
 
 const handleContact = async (e) => {
   e.preventDefault();
@@ -49,35 +45,26 @@ console.log(res.data)
   }
 };
 
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % logos.length);
-  };
 
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + logos.length) % logos.length);
-  };
 
-  return (<>
+  return (
+  <>
     <ToastContainer/>
    <div>
      <section id="contact" className="max-w-[80vw] m-auto py-8">
       <h2 className="font-bold text-center text-3xl mb-7">Əlaqə</h2>
       
-      {/* Əlaqə məlumatları - responsive grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white mt-5 mb-8">
-        {/* Email kartı */}
         <div className="bg-blue-800 rounded-lg p-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
           <h4 className="font-bold text-xl">Email Address</h4>
           <p className="text-gray-100 whitespace-nowrap">contact@cothink.az</p>
         </div>
 
-        {/* Telefon kartı */}
         <div className="bg-blue-800 rounded-lg p-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
           <h4 className="font-bold text-xl">Phone Number</h4>
           <p className="text-gray-100 whitespace-nowrap">+994 77 633 09 33</p>
         </div>
 
-        {/* Sosial media kartı */}
         <div className="bg-blue-800 rounded-lg p-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
           <h4 className="font-bold text-xl">Social Media</h4>
           <div className="flex gap-3">
@@ -91,7 +78,6 @@ console.log(res.data)
         </div>
       </div>
 
-      {/* Əlaqə forması */}
        <form onSubmit={handleContact}>
       <div className="mt-8 max-w-2xl mx-auto">
         <div>
@@ -155,8 +141,8 @@ console.log(res.data)
       </form>
     </section>
       <section className="max-w-[95vw] m-auto mt-10 md:mt-14">
-        <div className="rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 overflow-hidden">
-          <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-0 md:gap-8 md:gap-12 px-4 md:px-8 pb-8 md:py-2">
+        <div className="rounded-2xl bg-linear-to-r from-blue-100 to-purple-100 overflow-hidden">
+          <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-0 md:gap-8  px-4 md:px-8 pb-8 md:py-2">
 
             {/* Text Content */}
             <div className="flex-1 text-center md:text-left ">
@@ -169,15 +155,14 @@ console.log(res.data)
               </p>
             </div>
 
-            {/* Images Section */}
+     
             <div className="flex-1 relative flex flex-col items-center min-h-[250px] md:min-h-[350px] mt-10">
 
-              {/* Background Circle 1 */}
+     
               <div className="absolute top-0 left-1/3 
                               w-28 h-28 md:w-44 md:h-44 
                               bg-blue-300 rounded-full opacity-60 z-0"></div>
 
-              {/* Laptop Image */}
               <img
                 src="/images/laptop.png"
                 className="
@@ -191,12 +176,12 @@ console.log(res.data)
                 alt="Laptop"
               />
 
-              {/* Background Circle 2 */}
+
               <div className="absolute bottom-4 right-1/3 hidden mdLabsolute
                               w-20 h-10 md:w-36 md:h-36 
                               bg-purple-300 rounded-full opacity-60 z-0"></div>
 
-              {/* Articles Image */}
+
               <img
                 src="/images/articles.jpg"
                 className="
@@ -222,56 +207,9 @@ console.log(res.data)
           </div>
         </div>
       </section>
-  {/* Desktop view - 3 images side by side */}
-    <div className="hidden md:flex justify-center mt-30 gap-10 max-w-[85vw] m-auto">
-      <img src="/images/Group 7.svg" alt="Feature 1" className="flex-1 h-auto object-contain" />
-      <img src="/images/Group 10.svg" alt="Feature 2" className="flex-1 h-auto object-contain" />
-      <img src="/images/Group 9.svg" alt="Feature 3" className="flex-1 h-auto object-contain" />
-    </div>
 
-    {/* Mobile view - Slider with arrow buttons */}
-    <div className="md:hidden relative w-full mt-10">
-      <div className="flex items-center justify-between">
-        {/* Left Arrow */}
-        <button 
-          onClick={handlePrevSlide}
-          className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 pl-2"
-          aria-label="Previous slide"
-        >
-          <IoIosArrowBack fontSize={28} />
-        </button>
-
-        {/* Slider Container */}
-        <div className="flex-1 mx-1 overflow-hidden">
-          <div 
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-          >
-            {logos.map((logo, index) => (
-              <div key={index} className="w-full flex-shrink-0 flex justify-center items-center py-5">
-                <img 
-                  src={logo} 
-                  alt={`Feature ${index + 1}`} 
-                  className="w-full h-auto object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Arrow */}
-        <button 
-          onClick={handleNextSlide}
-          className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 pr-2"
-          aria-label="Next slide"
-        >
-          <IoIosArrowForward fontSize={28} />
-        </button>
-      </div>
-    </div>
-
+<Team/>
 <Faqs/>
-
 
    </div>
    </>

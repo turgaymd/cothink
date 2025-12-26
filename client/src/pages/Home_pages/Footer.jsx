@@ -18,10 +18,8 @@ const Footer = () => {
   return (
     <footer className="from-gray-50 to-blue-50 py-12">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Responsive Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
           
-          {/* Logo and Newsletter Section - Full width on mobile, spans 1 col on tablet/desktop */}
           <div className="md:col-span-1 lg:col-span-1">
             <a href="/" className="inline-block mb-4">
               <img 
@@ -52,12 +50,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Empty space on desktop (2nd column) */}
           <div className="hidden lg:block"></div>
 
-          {/* Wrapper for Company and Privacy links - side by side on mobile */}
           <div className="col-span-1 md:col-span-2 lg:col-span-2 grid grid-cols-2 gap-8">
-            {/* Company Links */}
             <div>
               <h4 className="font-bold text-gray-900 mb-4">Şirkət</h4>
               <ul className="space-y-2">
@@ -87,8 +82,6 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-
-            {/* Privacy & Security Links */}
             <div>
               <h4 className="font-bold text-gray-900 mb-4">Gizlilik və təhlükəsizlik</h4>
               <ul className="space-y-2">
@@ -136,8 +129,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Copyright */}
         <div className="border-t border-gray-200 mt-12 pt-6 text-center">
           <p className="text-gray-500 text-sm">
             © 2025 CoThink. Bütün hüquqlar qorunur.

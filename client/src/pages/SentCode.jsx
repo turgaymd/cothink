@@ -7,10 +7,7 @@ const SentCode=()=>{
     const [message, setMessage]=useState("")
     const [error, setError]=useState("")
     const navigate=useNavigate()
-    // const inputRefs=useRef([])
-    // const handleFocus=(e)=>{
-    //  e.target.select()
-    // }
+
     const handleConfirm=(e)=>{
         e.preventDefault()
         if(otp.length<4){
@@ -20,7 +17,7 @@ const SentCode=()=>{
         if(otp==='1234'){
               navigate("/courses")
         }
-        // navigate("/home")
+
     }
 return (
   <div className="flex justify-center items-center min-h-screen">

@@ -1,11 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { IoAddCircleOutline } from "react-icons/io5";
-import { IoMenu } from "react-icons/io5";
 import { CourseCard } from "../components/Courses";
 import { ArticleCard } from "../components/Articles";
 import Posts, { PostCard } from "../components/Posts";
 import axios from "axios";
-import Loading from "../utils/Loading";
 import { ApiContext } from "../context/ApiContext";
 import { CommentCard } from "../components/Comments";
 import { WhatsappShareButton } from "react-share";
@@ -30,65 +27,62 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
   const [username, setUsername] = useState("");
+
   const fileInputRef = useRef(null);
 useEffect(() => {
   if(!user) return;
-  if (user?.type === "mentor") {
+  const fetchingProfile = async ()=>{
 
-    axios.get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${user.id}`)
-      .then(res => setCourses(res.data));
- 
-    axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`)
-      .then(res =>{
-        setMentor(res.data.data);
-          const data=res.data.data
-  
-    setName(data.mentor_name || "")
-    setEmail(data.mentor_email || "")
-    setUsername(data.mentor_username || "")
-    setAbout(data.description || "")
-    setLinkedin(data.linkedn_link || "")
-     setProfileImg(data?.profile_img ? `https://cothink.az${data?.profile_img}` : "/images/admin.png")
-      })
-      
- 
-
-    axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`)
-      .then(res => setArticles(res.data));
-
-    axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`)
-      .then(res => setMentorPosts(res.data)
-    );
+     try{
+    const [mentorRes,courseRes, postRes, articleRes] = await Promise.all([
+  axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${user.id}`),
+  axios.get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${user.id}`),
+  axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${user.id}`),
+  axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${user.id}`),   
+    ])
+   setMentor(mentorRes.data.data);
+    setCourses(courseRes.data);
+    setMentorPosts(postRes.data);
+    setArticles(articleRes.data);
+    const mentorData=mentorRes.data.data
+    setName(mentorData.mentor_name || "")
+    setEmail(mentorData.mentor_email || "")
+    setUsername(mentorData.mentor_username || "")
+    setAbout(mentorData.description || "")
+    setLinkedin(mentorData.linkedn_link || "")
+     setProfileImg(mentorData?.profile_img ? `https://cothink.az${mentorData?.profile_img}` : "/images/admin.png")
+     }
+     catch(err){
+      console.log(err)
+     }
   }
- else{
-  axios.get(`${apiUrl}/server/students/studentPost.php?student_id=${user.id}`)
-    .then(res => setStudentPosts(res.data.data))
-    .catch(() => setStudentPosts([])); 
- 
-  axios.get(`${apiUrl}/server/students/studentcomments.php?student_id=${user.id}`)
-    .then(res =>{
- setPostComments(res.data)
-    })
-    .catch(() => setPostComments([]));
-      axios
-      .get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`)
-      .then((res) => {
-        setStudent(res.data.data);
-        const data=res.data.data
-        console.log(student)
-    setName(data.student_name || "")
-    setEmail(data.student_email || "")
-    setUsername(data.student_username || "")
-    setAbout(data.description || "")
-    setProfileImg(data?.profile_img ? `https://cothink.az${data?.profile_img}` : "/images/admin.png")
-      })
-      .catch((err) => console.log(err));
-    
- }
- 
+    const fetchStudent=async()=>{
+ const [studentRes, studentPostRes, studentCommentRes] = await Promise.all([
+   axios.get(`${apiUrl}/server/students/studentProfil.php?id=${user.id}`),
+  axios.get(`${apiUrl}/server/students/studentPost.php?student_id=${user.id}`),
+    axios.get(`${apiUrl}/server/students/studentcomments.php?student_id=${user.id}`),
+ ])
+
+  setStudentPosts(studentPostRes.data.data)
+ setPostComments(studentCommentRes.data) 
+  setStudent(studentRes.data.data);
+   const studentData=studentRes.data.data
+    setName(studentData.student_name || "")
+    setEmail(studentData.student_email || "")
+    setUsername(studentData.student_username || "")
+    setAbout(studentData.description || "")
+    setProfileImg(studentData?.profile_img ? `https://cothink.az${studentData?.profile_img}` : "/images/admin.png")
+    }
+  if (user?.type === "mentor") {
+  fetchingProfile()
+  }
+  else{
+  fetchStudent()
+  }
+}, [apiUrl, user]);
 
 
-}, []);
+
     const handleUpload = (e) => {
     e.preventDefault();
     setEdit(true)
@@ -151,8 +145,6 @@ catch(err){
   console.log(err)
 }
 }
-// const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
-// const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
   return (
     <>
     <ToastContainer/>

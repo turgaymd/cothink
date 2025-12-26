@@ -2,72 +2,26 @@ import { IoMdAdd } from "react-icons/io";
 import { MdArrowOutward } from "react-icons/md";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useState, useEffect } from "react";
 import Faqs from "./FAQ";
+import Team from "./Team";
 
-// Testimonial Card Component
-const TestimonialCard = ({ avatar, name, role, text }) => (
-  <div className="w-full flex-shrink-0 px-2">
-    <div className="relative bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-6 py-7 mt-12">
-      <div className="absolute -top-8">
-        <img src={avatar} className="w-16 h-16 object-cover rounded-full" alt={name}/>
-      </div>
-      <h4 className="font-bold text-lg mt-2">{name}</h4>
-      <p className="text-gray-500 text-sm">{role}</p>
-      <RiDoubleQuotesL fontSize={24} className="text-blue-500 mt-2"/>
-      <p className="text-gray-600 pb-4 pt-3 text-sm text-center">
-        {text}
-      </p>
-    </div>
-  </div>
-);
+// const TestimonialCard = ({ avatar, name, role, text }) => (
+//   <div className="w-full shrink-0 px-2">
+//     <div className="relative bg-white rounded-2xl border rounded-br-[25px] rounded-bl-[65px] rounded-tr-[35px] rounded-tl-[35px] border-gray-300 shadow-xl flex flex-col items-center justify-center px-6 py-7 mt-12">
+//       <div className="absolute -top-8">
+//         <img src={avatar} className="w-16 h-16 object-cover rounded-full" alt={name}/>
+//       </div>
+//       <h4 className="font-bold text-lg mt-2">{name}</h4>
+//       <p className="text-gray-500 text-sm">{role}</p>
+//       <RiDoubleQuotesL fontSize={24} className="text-blue-500 mt-2"/>
+//       <p className="text-gray-600 pb-4 pt-3 text-sm text-center">
+//         {text}
+//       </p>
+//     </div>
+//   </div>
+// );
 
 const About = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentTestimonialSlide, setCurrentTestimonialSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  
-  const logos = [
-    "/images/Group 7.svg",
-    "/images/Group 10.svg",
-    "/images/Group 9.svg"
-  ];
-
-  // Logo slider timer
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNextSlide();
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [currentSlide]);
-
-  // Testimonial slider timer
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonialSlide((prev) => (prev + 1) % 3);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const handlePrevSlide = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => {
-      const newSlide = prev === 0 ? logos.length - 1 : prev - 1;
-      return newSlide;
-    });
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
-
-  const handleNextSlide = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => {
-      const newSlide = (prev + 1) % logos.length;
-      return newSlide;
-    });
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
 
   return (
     <>
@@ -149,8 +103,8 @@ Layihə ASSİP çərçivəsində inkişaf etdirilib; CoThink ASSİP 2 Hakatonund
         </div>
       </section>
    <section className="max-w-[95vw] m-auto mt-10 md:mt-14">
-        <div className="rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 overflow-hidden">
-          <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-0 md:gap-8 md:gap-12 px-4 md:px-8 pb-8 md:py-2">
+        <div className="rounded-2xl bg-linear-to-r from-blue-100 to-purple-100 overflow-hidden">
+          <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-0 md:gap-8  px-4 md:px-8 pb-8 md:py-2">
 
             {/* Text Content */}
             <div className="flex-1 text-center md:text-left ">
@@ -219,55 +173,8 @@ Layihə ASSİP çərçivəsində inkişaf etdirilib; CoThink ASSİP 2 Hakatonund
 
 
 
-     {/* Desktop view - 3 images side by side */}
-      <div className="hidden md:flex justify-center mt-30 gap-10">
-        <div><img src="/images/Group 7.svg" alt="Feature 1"  /></div>
-        <div><img src="/images/Group 10.svg" alt="Feature 2" /></div>
-        <div><img src="/images/Group 9.svg" alt="Feature 3" /></div>
-      </div>
-
-      {/* Mobile view - Slider with arrow buttons */}
-      <div className="md:hidden relative w-full mt-10">
-        <div className="flex items-center justify-between">
-          {/* Left Arrow */}
-          <button 
-            onClick={handlePrevSlide}
-            disabled={isTransitioning}
-            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50 pl-2"
-            aria-label="Previous slide"
-          >
-            <IoIosArrowBack fontSize={28} />
-          </button>
-
-          {/* Slider Container */}
-          <div className="flex-1 mx-1 overflow-hidden">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {logos.map((logo, index) => (
-                <div key={index} className="w-full flex-shrink-0 flex justify-center items-center py-5">
-                  <img 
-                    src={logo} 
-                    alt={`Feature ${index + 1}`} 
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Arrow */}
-          <button 
-            onClick={handleNextSlide}
-            disabled={isTransitioning}
-            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50 pr-2"
-            aria-label="Next slide"
-          >
-            <IoIosArrowForward fontSize={28} />
-          </button>
-        </div>
-      </div>
+ 
+  <Team/>
   <Faqs/>
     </>
   );

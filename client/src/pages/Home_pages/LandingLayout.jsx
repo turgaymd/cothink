@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../../components/Navbar";  // ← 2 səviyyə yuxarı, sonra components
+import Navbar from "../../components/Navbar";  
 import Footer from "./Footer";
 
 const LandingLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow">
+      <main className="grow">
         <Outlet />
       </main>
       <Footer />

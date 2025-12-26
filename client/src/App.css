@@ -1,9 +1,8 @@
-@import "tailwindcss";
-@tailwind utilities;
+  @import "tailwindcss";
 
 body{
   background-color: white;
-  font-family: "DM Sansss",sans-serif;
+  font-family: "DM Sans",sans-serif;
 }
 .navbar{
   padding: 20px 20px;
@@ -46,9 +45,7 @@ section{
 .read-the-docs {
   color: #888;
 }
-/* input{
-  outline: none;
-} */
+
 .forget-password{
   text-decoration: underline;
   color: #444444;
@@ -65,7 +62,6 @@ section{
 .profile-img img{
   width: 50px;
   height: 50px;
-  /* background: #3663C5; */
   border-radius: 50%;
 }
 .navbar a.active{
@@ -104,10 +100,7 @@ section{
 .submit-form button{
   padding: 15px 60px;
 }
-/* form label{
-  display: block;
-  padding-bottom: 0.6rem;
-} */
+
 .post-header img, .comment-header img{
   border-radius: 50%;
 }
@@ -126,14 +119,12 @@ section{
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background: #FAFAFA; */
   border-radius: 10px;
   border: 1px solid #E9E9E9;
   padding: 20px 25px;
   cursor: pointer;
 }
 .filter-items span{
-  /* padding: 10px 35px; */
   background: #F6F6F6;
 }
 .filter-items button{
@@ -148,7 +139,6 @@ section{
   color: white;
 }
 .filtered-items button{
-  /* padding: 10px 35px; */
   background: #E9E9E9;
 }
 .filter-items button.active{
@@ -185,7 +175,6 @@ padding: 15px 25px;
 color: #828282;
 background: #F6F6F6;
 border: 1px solid #E9E9E9;
-/* box-shadow:10px 10px 10px 10px  #F6F6F6; */
 }
 .library-item{
   padding: 20px 15px;
@@ -216,7 +205,7 @@ border: 1px solid #ccc;
 }
 
 .discussion-item, .comment-item{
-    padding: 2em;
+  padding: 2em;
   border-radius: 15px;
   border:1px solid #E9E9E9;
   color: #444444;
@@ -293,11 +282,7 @@ footer h4{
 .testimonal{
   padding: 3rem;
 }
-/* .stats img{
-  color: #444444 !important;
-  width: 24px;
-  height: 24px;
-} */
+
 .student-box{
   padding: 2rem;
 box-shadow: -10px 20px 25px rgba(59, 130, 246, 0.4);
@@ -315,38 +300,26 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
 .service-icon{
   background-color: #CEE2FF;
 }
-/* .sidebar a.active svg,
-.sidebar a.active img {
-  filter: brightness(0) invert(1);
-} */
+
 
 .sidebar a.active {
   color: white;
 }
 
-/* ===== SLIDER RESPONSIVE STYLES ===== */
 
-/* Slider container */
 .swiper {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Slide item - responsive hündürlük */
 .article-item {
     min-height: 200px;
     display: flex;
     align-items: center;
 }
 
-/* @media (min-width: 768px) {
-    .article-item {
-        min-height: 280px;
-    }
-} */
 
-/* Slider oxları - yalnız 1300px-dən yuxarı */
 @media (min-width: 1300px) {
     .swiper-button-prev,
     .swiper-button-next {
@@ -354,7 +327,7 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
     }
 }
 
-/* 1300px-dən aşağı ekranlarda oxları gizlət */
+
 @media (max-width: 1299px) {
     .swiper-button-prev,
     .swiper-button-next {
@@ -362,7 +335,7 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
     }
 }
 
-/* Slider oxlarının stilləri */
+
 .swiper-button-prev,
 .swiper-button-next {
     background: transparent;
@@ -390,17 +363,7 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
     font-weight: normal;
 }
 
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-    transform: translateY(-50%) scale(1.2) !important;
-}
 
-.swiper-button-prev:focus,
-.swiper-button-next:focus {
-    outline: none;
-}
-
-/* Pagination */
 .swiper-pagination {
     position: relative !important;
     margin-top: 1.5rem !important;
@@ -422,13 +385,6 @@ box-shadow: 10px 20px 25px rgba(59, 130, 246, 0.4);
 
 /* ===== END SLIDER STYLES ===== */
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none !important;
-}
-.no-scrollbar {
-  -ms-overflow-style: none !important;
-  scrollbar-width: none !important;
-}
 .about-us{
   background-image: url(../public/images/about.jpg);
   background-size: cover;

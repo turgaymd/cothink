@@ -20,31 +20,25 @@ const Mentor = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`${apiUrl}/server/mentors/mentorDetail.php?id=${id}`)
-      .then((res) => {
-        setMentor(res.data.data);
-      })
-      .catch((err) => console.log(err));
-         axios
-      .get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${id}`)
-      .then((res) => {
-        setCourses(res.data);
+    const fetchingMentor=async()=>{
+    try{
+      const [mentorRes,courseRes, postRes, articleRes] = await Promise.all([
+     axios.get(`${apiUrl}/server/mentors/mentorDetail.php?id=${id}`),
+    axios.get(`${apiUrl}/server/mentors/mentorCourses.php?mentor_id=${id}`),
+    axios.get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${id}`),
+    axios.get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${id}`),
+      ])
+        setMentor(mentorRes.data.data);
+        setCourses(courseRes.data);
+        setPosts(postRes.data);
+        setArticles(articleRes.data);
+    }
+    catch(err){
+      console.log(err)
+    }
+    }
+  fetchingMentor()
 
-      })
-      .catch((err) => console.log(err));
-       axios
-      .get(`${apiUrl}/server/mentors/mentorPosts.php?mentor_id=${id}`)
-      .then((res) => {
-        setPosts(res.data);
-      })
-      .catch((err) => console.log(err));
-       axios
-      .get(`${apiUrl}/server/mentors/mentorArticles.php?mentor_id=${id}`)
-      .then((res) => {
-        setArticles(res.data);
-      })
-      .catch((err) => console.log(err));
   }, [id]);
 
 

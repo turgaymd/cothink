@@ -1,63 +1,22 @@
-import { useState, useEffect } from "react";
-import { IoMdAdd } from "react-icons/io";
+
 import { MdArrowOutward } from "react-icons/md";
-import { RiDoubleQuotesL } from "react-icons/ri";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Navigation, Pagination } from "swiper/modules"
+import { Autoplay, Pagination } from "swiper/modules"
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { FiMinus } from "react-icons/fi";
 import Faqs from "./FAQ";
+import Team from "./Team";
 
 const Home = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
-
-
-
-  const logos = [
-    "/images/Group 7.svg",
-    "/images/Group 10.svg",
-    "/images/Group 9.svg"
-  ];
-
-  // Logo slider timer - hər 3 saniyədə avtomatik dəyişir
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNextSlide();
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [currentSlide]);
-
-  const handlePrevSlide = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => {
-      const newSlide = prev === 0 ? logos.length - 1 : prev - 1;
-      return newSlide;
-    });
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
-
-  const handleNextSlide = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => {
-      const newSlide = (prev + 1) % logos.length;
-      return newSlide;
-    });
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
 
   return (
     <>
    <div className="about-us p-3 md:min-h-[600px] ">
         <div className="flex flex-col md:h-full"> 
         <div className="partners flex md:grid md:grid-cols-6 grid-cols-2  gap-3">
-             <a className="scale-160 md:scale-100 md:scale-100" href="https://idda.az/az" target="_blank">
+             <a className="scale-160 md:scale-100" href="https://idda.az/az" target="_blank">
   <img src="/images/rəqəmsalw.png" alt="partner"/>
           </a>
              <a className="scale-160 md:scale-100" href="https://idda.az/az" target="_blank" >
@@ -85,55 +44,54 @@ const Home = () => {
       </div>
       <section className="mt-4">
                   <h2 className="text-2xl text-center mb-12 mt-7">Danışıqlar apardığımız  <span className="font-bold">Tərəfdaşlarımız</span></h2>
-         <Swiper
-                        modules={[Navigation, Pagination, Autoplay]}
-                        autoplay={{
-                            delay: 3500,
-                            disableOnInteraction: false,
-                        }}
-                        spaceBetween={20}
-                        slidesPerView={1}
-                        navigation={false}
-                        pagination={{
-                            clickable: true
-                        }}
-                    >
+                  <Swiper
+                                modules={[ Pagination, Autoplay]}
+                                autoplay={{
+                                    delay: 3500,
+                                    disableOnInteraction: false,
+                                }}
+                                spaceBetween={20}
+                                slidesPerView={1}
+                                pagination={{
+                                    clickable: true
+                                }}
+                            >
                          
-                                       <SwiperSlide>
-                                        <div className="partners  justify-center grid md:grid-cols-4 grid-cols-2  gap-3">
+                               <SwiperSlide>
+  <div className="partners  justify-center grid md:grid-cols-4 grid-cols-2  gap-3">
                           
-             <a className="">
+             <a >
   <img src="/images/beu_white.png"  alt="partner"/>
           </a>
 
-             <a className="" href="https://yenifikir.az/" target="_blank">
+             <a  href="https://yenifikir.az/" target="_blank">
   <img src="/images/yenifikir_white.png"  alt="partner"/>
           </a>
-               <a className="" href="https://abbtech.az/" target="_blank" >
+               <a  href="https://abbtech.az/" target="_blank" >
   <img src="/images/abb.png"  alt="partner"/>
           </a>
 
          
-              <a className="" href="https://hedef.edu.az/" target="_blank">
+              <a  href="https://hedef.edu.az/" target="_blank">
   <img src="/images/hedef.png"  alt="partner"/>
           </a>
           </div>
             </SwiperSlide>
           <SwiperSlide>
              <div className="partners justify-center  grid md:grid-cols-4 grid-cols-2  gap-3">
-              <a className="">
-  <img src="/images/eland.png"  alt="partner"/>
+              <a >
+  <img src="/images/eland.png"  alt="partner"  loading="lazy"/>
           </a>
-                 <a className="">
-  <img src="/images/codeworld.png"  alt="partner"/>
-          </a>
-          
-                 <a className="" href="https://beu.edu.az/en" target="_blank">
-  <img src="/images/beu_white.png"  alt="partner" />
+                 <a >
+  <img src="/images/codeworld.png"  alt="partner" loading="lazy"/>
           </a>
           
-                 <a className="" href="https://yenifikir.az/" target="_blank">
-  <img src="/images/yenifikir_white.png" alt="partner"/>
+                 <a  href="https://beu.edu.az/en" target="_blank">
+  <img src="/images/beu_white.png"  alt="partner" loading="lazy" />
+          </a>
+          
+                 <a  href="https://yenifikir.az/" target="_blank">
+  <img src="/images/yenifikir_white.png" alt="partner" loading="lazy"/>
           </a>
           </div>
                    </SwiperSlide>               
@@ -196,10 +154,8 @@ const Home = () => {
 </section>
       
       <section className="max-w-[95vw] m-auto mt-10 md:mt-14">
-        <div className="rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 overflow-hidden">
+        <div className="rounded-2xl bg-linear-to-r from-blue-100 to-purple-100 overflow-hidden">
           <div className="flex md:flex-row flex-col-reverse justify-between items-center gap-8 md:gap-12 px-4 md:px-8 py-6 md:py-10">
-
-            {/* Text Content */}
             <div className="flex-1 text-center md:text-left">
               <h2 className="font-bold text-2xl md:text-3xl pb-3">
                 Hər ehtiyacın — bir platformada
@@ -210,16 +166,12 @@ const Home = () => {
               </p>
             </div>
 
-            {/* Images Section */}
             <div className="flex-1 relative flex flex-col items-center min-h-[250px] md:min-h-[350px]">
-
-              {/* Background Circle 1 */}
               <div className="absolute top-0 left-1/3 
                               w-28 h-28 md:w-44 md:h-44 
                               bg-blue-300 rounded-full opacity-60 z-0"></div>
 
-              {/* Laptop Image */}
-              <img
+         <img
                 src="/images/laptop.png"
                 className="
                   relative
@@ -227,33 +179,27 @@ const Home = () => {
                   max-w-70 md:max-w-[300px] lg:max-w-[350px]
                   w-auto object-contain z-10
                 "
-                alt="Laptop"
+                alt="Laptop" loading="lazy"
               />
 
-              {/* Background Circle 2 */}
               <div className="absolute bottom-4 right-1/3 
                               w-20 h-20 md:w-36 md:h-36 
                               bg-purple-300 rounded-full opacity-60 z-0"></div>
-
-              {/* Articles Image */}
               <img
                 src="/images/articles.jpg"
-                className="
-                  mt-30
+                className="mt-30
                   ml-25
                   max-w-50 md:max-w-[200px] lg:max-w-[250px]
                   w-auto object-contain shadow-lg rounded-lg z-20
 
-                  /* Tablet (md): absolute positioning */
                   md:mt-0 md:ml-0
                   md:translate-x-10
                   md:absolute md:right-5
 
-                  /* Desktop (lg+) */
                   lg:translate-x-0
                   lg:absolute lg:top-2 lg:right-25
                 "
-                alt="Articles"
+                alt="Articles" loading="lazy"
               />
 
             </div>
@@ -262,55 +208,7 @@ const Home = () => {
         </div>
       </section>
            
-      {/* Desktop view - 3 images side by side */}
-      <div className="hidden md:flex justify-center mt-30 gap-10">
-        <div><img src="/images/Group 7.svg" alt="Feature 1" /></div>
-        <div><img src="/images/Group 10.svg" alt="Feature 2" /></div>
-        <div><img src="/images/Group 9.svg" alt="Feature 3" /></div>
-      </div>
-
-      {/* Mobile view - Slider with arrow buttons */}
-      <div className="md:hidden relative w-full mt-10">
-        <div className="flex items-center justify-between px-4">
-          {/* Left Arrow */}
-          <button 
-            onClick={handlePrevSlide}
-            disabled={isTransitioning}
-            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50"
-            aria-label="Previous slide"
-          >
-            <IoIosArrowBack fontSize={28} />
-          </button>
-
-          {/* Slider Container */}
-          <div className="flex-1 mx-2 overflow-hidden">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-            >
-              {logos.map((logo, index) => (
-                <div key={index} className="w-full flex-shrink-0 flex justify-center items-center py-5">
-                  <img 
-                    src={logo} 
-                    alt={`Feature ${index + 1}`} 
-                    className="max-w-[300px] w-full h-auto object-contain px-4"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <button 
-            onClick={handleNextSlide}
-            disabled={isTransitioning}
-            className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 z-10 disabled:opacity-50"
-            aria-label="Next slide"
-          >
-            <IoIosArrowForward fontSize={28} />
-          </button>
-        </div>
-      </div>
-
+ <Team/>
    <Faqs/>
     </>
   );
