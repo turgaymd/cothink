@@ -3,7 +3,6 @@ import { MdArrowOutward } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Pagination } from "swiper/modules"
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Faqs from "./FAQ";
 import Team from "./Team";
@@ -17,27 +16,27 @@ const Home = () => {
         <div className="flex flex-col md:h-full"> 
         <div className="partners flex md:grid md:grid-cols-6 grid-cols-2  gap-3">
              <a className="scale-160 md:scale-100" href="https://idda.az/az" target="_blank">
-  <img src="/images/rəqəmsalw.png" alt="partner"/>
+  <img src="/images/rəqəmsalw.png" alt="partner" fetchPriority="high"/>
           </a>
              <a className="scale-160 md:scale-100" href="https://idda.az/az" target="_blank" >
-  <img src="/images/digitalw.png"  alt="partner"/>
+  <img src="/images/digitalw.png"  alt="partner" fetchPriority="high"/>
           </a>
              <a className="scale-160 md:scale-100" href="https://beu.edu.az/en" target="_blank">
-  <img src="/images/bmuw.png"  alt="partner"/>
+  <img src="/images/bmuw.png"  alt="partner" fetchPriority="high"/>
           </a>
             
                <a className="scale-160 md:scale-100" href="https://beu.edu.az/en" target="_blank">
-  <img src="/images/beuw.png"  alt="partner"/>
+  <img src="/images/beuw.png"  alt="partner" fetchPriority="high"/>
           </a>
               <a className="scale-160 md:scale-100">
-  <img src="/images/assipw.png"  alt="partner"/>
+  <img src="/images/assipw.png"  alt="partner" fetchPriority="high"/>
           </a>
               <a className="scale-160 md:scale-100" href="https://yenifikir.az/" target="_blank">
-  <img src="/images/yenifikir.png"  alt="partner"/>
+  <img src="/images/yenifikir.png"  alt="partner" fetchPriority="high"/>
           </a>
         </div>
 <div className="text-center pb-4 md:mt-40 mt-18 md:m-5  md:p-5 ">
-   <p className="text-white text-[15px] md:text-4xl text-center">CoThink startapı ASSİP2 Hakatonunun iştirakçısı olmuş və inkubasiya <br className="hidden md:block" /> mərhələsinə seçilmişdir </p>
+   <h1 className="text-white text-[15px] md:text-4xl text-center">CoThink startapı ASSİP2 Hakatonunun iştirakçısı olmuş və inkubasiya <br className="hidden md:block" /> mərhələsinə seçilmişdir </h1>
      </div>
      
      </div>
@@ -52,6 +51,10 @@ const Home = () => {
                                 }}
                                 spaceBetween={20}
                                 slidesPerView={1}
+                                observer={false}
+                                observeParents={false}
+                                resizeObserver={false}
+                                watchSlidesProgress={false}
                                 pagination={{
                                     clickable: true
                                 }}

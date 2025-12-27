@@ -9,20 +9,11 @@ import { ApiContext } from "../context/ApiContext";
 
 function Header({open, setOpen, setSettings}){
     const [search, setSearch] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [mentor, setMentor]=useState(null)
     const [student, setStudent]=useState(null)
     const {user} = useContext(AuthContext);
     const {apiUrl}=useContext(ApiContext)
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
     
     useEffect(()=>{
       if(user.type==="mentor"){
@@ -45,6 +36,8 @@ function Header({open, setOpen, setSettings}){
   }
     
     },[user])
+
+    
    const mentorImg = !mentor?.profile_img? "/images/admin.png": mentor?.profile_img.startsWith("http") ? mentor?.profile_img : `https://cothink.az/${mentor.profile_img}`;
    const studentImg=!student?.profile_img? "/images/admin.png": student?.profile_img.startsWith("http") ? student?.profile_img : `https://cothink.az/${student.profile_img}`;
     return(
@@ -54,7 +47,7 @@ function Header({open, setOpen, setSettings}){
             <button className="md:hidden text-3xl" onClick={() => setOpen(true)}>
               {open ? <IoClose fontSize={28}/> : <IoMenu fontSize={28}/>}
             </button>
-            <button className="hidden md:flex text-3xl" onClick={() => setOpen(!open)}>
+            <button className="hidden md:flex text-3xl" id="burgerBtn" onClick={() => setOpen(!open)} aria-labelledby="burgermenu">
               <IoMenu fontSize={28}/>
             </button>
             <div className="logo">
@@ -121,8 +114,6 @@ function Header({open, setOpen, setSettings}){
             
              (  <img src={studentImg} className="w-10 h-10 object-cover" alt="Profile"/>)
             }
-            
-           
             </Link>            
           </div>
         </div>

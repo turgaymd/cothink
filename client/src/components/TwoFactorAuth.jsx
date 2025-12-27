@@ -17,7 +17,6 @@ const TwoFactorAuth=({setActiveTab})=>{
             <h2 className="text-center text-2xl font-bold pb-5">İki mərhələli təsdiq</h2>
             <div className="md:p-5 p-0">
                 <div className="features_card shadow-sm inset-shadow-sm">
-                    {/* SMS Toggle */}
                     <div className="flex justify-between border-b border-b-gray-200 pb-3 mb-3">
                         <div className="flex items-center gap-3">
                             <div className="icons">

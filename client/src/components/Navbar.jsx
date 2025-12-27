@@ -96,6 +96,7 @@ const Navbar = () => {
         <ul className="flex flex-col gap-4 px-6 py-5 bg-white shadow-md">
 
           {menuItems.map((item, i) => (
+              <li key={i}>
             <NavLink
               key={i}
               to={item.path}
@@ -107,6 +108,7 @@ const Navbar = () => {
             >
               {item.label}
             </NavLink>
+            </li>
           ))}
 
         </ul>
