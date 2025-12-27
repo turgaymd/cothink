@@ -10,6 +10,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { toast, ToastContainer } from "react-toastify";
 import { WhatsappShareButton } from "react-share";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { CommentCard } from "./Comments";
 const Article = () => {
   const [article, setArticle] = useState(null);
   const [comments,setComments]=useState([])
@@ -31,7 +32,7 @@ const Article = () => {
       .catch(err => console.error(err))
   },[])
 
-    const fetchComments=async(e)=>{
+    const fetchComments=async()=>{
   axios .get(`${apiUrl}/server/articles/articleComments.php?article_id=${id}` 
       )
       .then((res) => {
@@ -163,16 +164,16 @@ const handleSave=async(item)=>{
         <div className="flex flex-col md:flex-row gap-3 justify-between mb-4 mt-4">
           <div className="flex md:flex-row gap-3">
             <img
-  src={
-    article?.profile_img
-      ? article.profile_img.trim().startsWith("http")
-        ? article.profile_img.trim()
-        : `https://cothink.az/${article.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  className="object-cover w-20 h-20 rounded-full"
-  alt="Article Author"
-/>
+            src={
+              article?.profile_img
+                ? article.profile_img.trim().startsWith("http")
+                  ? article.profile_img.trim()
+                  : `https://cothink.az/${article.profile_img.trim()}`
+                : "/images/admin.png"
+            }
+            className="object-cover w-20 h-20 rounded-full"
+            alt="Article Author"
+          />
 
             <div className="flex flex-col gap-2">
               <h4>{article.mentor_name}</h4>
@@ -229,14 +230,6 @@ const handleSave=async(item)=>{
         </div>
 <div className="article-tags mt-5 flex flex-col md:flex-row gap-3">
  <h4 className="font-semibold">Açar sözlər: {article.article_tags}</h4>
-  {/* {
-    article.article_tags.map((item)=>{
-      <span className="bg-gray-100  px-5 py-2 rounded-md">item.name</span>
-    })
-  } */}
-  
-    {/* <span className="bg-gray-100  px-5 py-2 rounded-md">ShapeTools</span>
-      <span className="bg-gray-100  px-5 py-2 rounded-md">ProductDesign</span> */}
 </div>
         <div className="comments ">
           <div className="flex gap-3 md:flex-row flex-col  items-center border-t border-t-gray-300 pt-3">
@@ -258,48 +251,11 @@ const handleSave=async(item)=>{
            
             <p>{user?.username}</p>
           </div>
-          {/* <input
-            type="text"
-            className="w-full bg-gray-200 px-3 py-2 outline-none rounded-md"
-            placeholder="Fikirlərinizi yazın…"
-          /> */}
             {
               comments.length>0 ? (
                 comments.map((comment)=>{
                 return(
-                  <div className="comment-item mt-4 mb-4" key={comment.comment_id} >
-                    <div className="comment-header flex items-start">
-         <div className="w-16 h-16 shrink-0">
-           <img
-  className="rounded-full w-full h-full object-cover "
-  src={
-    comment?.profile_img
-      ? comment.profile_img.trim().startsWith("http")
-        ? comment.profile_img.trim()
-        : `https://cothink.az/${comment.profile_img.trim()}`
-      : "/images/admin.png"
-  }
-  alt="Profile"
-/>
-         </div>
-        
-
-
-            <div className="pl-4">
-           <h4 className="font-semibold">{comment.student_name}</h4>
-            <p className="text-gray-500">{comment.mentor_position}</p>
-            <p className="mt-3 text-black">{comment.comment_text}</p>
-            </div>
-                    </div> 
-                        <div className="flex justify-end gap-5 comment-reactions pt-3">
-            <div className="like-count flex items-center gap-2">
-              
-              
-              <img src="/images/like.svg"></img>{comment?.likes}</div>
-            <div className="comment-count flex items-center gap-2" ><img src="/images/comment.svg"></img>{comment?.comments}</div>
-    </div>
-                    </div>
-           
+               <CommentCard key={comment._id} comment={comment}/>
                 )
               }
             ))

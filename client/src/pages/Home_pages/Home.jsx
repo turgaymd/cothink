@@ -146,7 +146,7 @@ const Home = () => {
       <div className="flex justify-center items-center mt-8 md:mt-0">
         <div className="bg-blue-700 w-64 h-32 rounded-[50%/50%] relative">
           <img 
-            src="/images/macbook_.png" 
+            src="/images/macbook_.webp" 
             className="absolute bottom-6 right-3 object-cover scale-150 mt-3 md:scale-160" 
             alt="Macbook"
           />
@@ -175,7 +175,7 @@ const Home = () => {
                               bg-blue-300 rounded-full opacity-60 z-0"></div>
 
          <img
-                src="/images/laptop.png"
+                src="/images/laptop.webp"
                 className="
                   relative
                   right-15
@@ -189,7 +189,7 @@ const Home = () => {
                               w-20 h-20 md:w-36 md:h-36 
                               bg-purple-300 rounded-full opacity-60 z-0"></div>
               <img
-                src="/images/articles.jpg"
+                src="/images/articles.webp"
                 className="mt-30
                   ml-25
                   max-w-50 md:max-w-[200px] lg:max-w-[250px]

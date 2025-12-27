@@ -45,6 +45,8 @@ import AddArticle from "./components/AddArticle";
 import PrivateRouter from "./PrivateRoute";
 import Privacy from "./pages/Conditions";
 import ThemeProvider from "./context/ThemeContext";
+import { Suspense } from "react";
+import Loading from "./utils/Loading";
 
 
 function App() {
@@ -53,6 +55,7 @@ function App() {
       <AuthProvider>
         <ThemeProvider>
         <BrowserRouter>
+        <Suspense fallback={<Loading/>}>
           <Routes>
             <Route element={<LandingLayout />}>
               <Route path="/" element={<Home />} />
@@ -93,6 +96,7 @@ function App() {
 
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </BrowserRouter>
         </ThemeProvider>
       </AuthProvider>

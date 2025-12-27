@@ -164,7 +164,7 @@ console.log(res.data)
                               bg-blue-300 rounded-full opacity-60 z-0"></div>
 
               <img
-                src="/images/laptop.png"
+                src="/images/laptop.webp"
                 className="
                 hidden
                 md:block
@@ -183,7 +183,7 @@ console.log(res.data)
 
 
               <img
-                src="/images/articles.jpg"
+                src="/images/articles.webp"
                 className="
                   
                   

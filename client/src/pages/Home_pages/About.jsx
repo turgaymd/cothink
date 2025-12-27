@@ -127,7 +127,7 @@ Layihə ASSİP çərçivəsində inkişaf etdirilib; CoThink ASSİP 2 Hakatonund
 
               {/* Laptop Image */}
               <img
-                src="/images/laptop.png"
+                src="/images/laptop.webp"
                 className="
                 hidden
                 md:block
@@ -146,7 +146,7 @@ Layihə ASSİP çərçivəsində inkişaf etdirilib; CoThink ASSİP 2 Hakatonund
 
               {/* Articles Image */}
               <img
-                src="/images/articles.jpg"
+                src="/images/articles.webp"
                 className="
                   
                   
