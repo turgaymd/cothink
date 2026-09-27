@@ -1,1 +1,1 @@
-# cothink
+# Cothink Educational Platform
